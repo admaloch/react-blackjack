@@ -1,4 +1,4 @@
-import { useState, createContext, Dispatch, SetStateAction } from "react";
+import { useState, createContext, Dispatch, SetStateAction, useEffect } from "react";
 import ProviderProps from "../../models/ProviderProps";
 
 interface CardObjInterface {
@@ -26,6 +26,15 @@ const defaultDeck: CardObjInterface[] = [
     { card: 'kink', value: 10, diamonds: 6, clubs: 6, hearts: 6, spades: 6 },
     { card: 'ace', value: 11, diamonds: 6, clubs: 6, hearts: 6, spades: 6 },
 ]
+useEffect(
+    function updateCards() {
+        let initCardNum = 0
+        const remainingCards = deck.reduce((x, y) => x + (y.diamonds + y.clubs + y.hearts + y.spades), 0)
+        setDeckSum(remainingCards)
+    },
+    [deck]
+)
+
 
 export interface DeckContextProps {
     deck: CardObjInterface[];
@@ -39,8 +48,8 @@ export const DeckContext = createContext<DeckContextProps>({
 
 export function DeckProvider({ children }: ProviderProps): JSX.Element {
     const [deck, setDeck] = useState<CardObjInterface[]>(defaultDeck);
-    
-    
+    const [deckSum, setDeckSum] = useState()
+
     return (
         <DeckContext.Provider value={{ deck, setDeck }}>
             {children}
