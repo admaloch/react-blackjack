@@ -1,13 +1,13 @@
-import { useState, createContext, Dispatch, SetStateAction, useEffect } from "react";
+import  { useState, createContext, Dispatch, SetStateAction, useEffect } from "react";
 import ProviderProps from "../../models/ProviderProps";
 
 interface CardObjInterface {
-    card: string,
-    value: number,
-    diamonds: number,
-    clubs: number,
-    hearts: number,
-    spades: number,
+  card: string;
+  value: number;
+  diamonds: number;
+  clubs: number;
+  hearts: number;
+  spades: number;
 }
 
 const defaultDeck: CardObjInterface[] = [
@@ -23,37 +23,40 @@ const defaultDeck: CardObjInterface[] = [
     { card: '10', value: 10, diamonds: 6, clubs: 6, hearts: 6, spades: 6 },
     { card: 'jack', value: 10, diamonds: 6, clubs: 6, hearts: 6, spades: 6 },
     { card: 'queen', value: 10, diamonds: 6, clubs: 6, hearts: 6, spades: 6 },
-    { card: 'kink', value: 10, diamonds: 6, clubs: 6, hearts: 6, spades: 6 },
+    { card: 'king', value: 10, diamonds: 6, clubs: 6, hearts: 6, spades: 6 },
     { card: 'ace', value: 11, diamonds: 6, clubs: 6, hearts: 6, spades: 6 },
 ]
-useEffect(
-    function updateCards() {
-        let initCardNum = 0
-        const remainingCards = deck.reduce((x, y) => x + (y.diamonds + y.clubs + y.hearts + y.spades), 0)
-        setDeckSum(remainingCards)
-    },
-    [deck]
-)
-
 
 export interface DeckContextProps {
-    deck: CardObjInterface[];
-    setDeck: Dispatch<SetStateAction<CardObjInterface[]>>;
+  deck: CardObjInterface[];
+  setDeck: Dispatch<SetStateAction<CardObjInterface[]>>;
+  numCardsLeft: number;
+  setNumCardsLeft: Dispatch<SetStateAction<number>>;
 }
 
 export const DeckContext = createContext<DeckContextProps>({
-    deck: defaultDeck,
-    setDeck: () => { },
+  deck: defaultDeck,
+  setDeck: () => {},
+  numCardsLeft: 336,
+  setNumCardsLeft: () => {},
 });
 
 export function DeckProvider({ children }: ProviderProps): JSX.Element {
-    const [deck, setDeck] = useState<CardObjInterface[]>(defaultDeck);
-    const [deckSum, setDeckSum] = useState()
+  
+  const [deck, setDeck] = useState<CardObjInterface[]>(defaultDeck);
+  const [numCardsLeft, setNumCardsLeft] = useState(336);
 
-    return (
-        <DeckContext.Provider value={{ deck, setDeck }}>
-            {children}
-        </DeckContext.Provider>
+  useEffect(() => {
+    const remainingCards = deck.reduce(
+      (acc, card) => acc + card.diamonds + card.clubs + card.hearts + card.spades,
+      0
     );
-}
+    setNumCardsLeft(remainingCards);
+  }, [deck]);
 
+  return (
+    <DeckContext.Provider value={{ deck, setDeck, numCardsLeft, setNumCardsLeft }}>
+      {children}
+    </DeckContext.Provider>
+  );
+}

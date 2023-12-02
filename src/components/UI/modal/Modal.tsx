@@ -1,10 +1,21 @@
-import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import ReactDOM from 'react-dom';
 import './Modal.css';
 import CloseIcon from '@mui/icons-material/Close';
-import { MainModalProps } from '../../models/ModalProps';
+
+export interface ModalProps {
+    closeModal: () => void;
+    open: boolean;
+}
+export interface OpenModalProps {
+    openModal: () => void;
+}
+
+export interface MainModalProps extends ModalProps {
+    children: JSX.Element;
+}
+
 
 export default function Modal({ open, children, closeModal }: MainModalProps): JSX.Element | null {
 
@@ -43,5 +54,5 @@ export default function Modal({ open, children, closeModal }: MainModalProps): J
         </>,
         document.getElementById('portal') as Element
     );
-};
+}
 
