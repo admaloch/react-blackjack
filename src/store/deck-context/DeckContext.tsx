@@ -31,14 +31,13 @@ export interface DeckContextProps {
   deck: CardObjInterface[];
   setDeck: Dispatch<SetStateAction<CardObjInterface[]>>;
   numCardsLeft: number;
-  setNumCardsLeft: Dispatch<SetStateAction<number>>;
+
 }
 
 export const DeckContext = createContext<DeckContextProps>({
   deck: defaultDeck,
   setDeck: () => {},
   numCardsLeft: 336,
-  setNumCardsLeft: () => {},
 });
 
 export function DeckProvider({ children }: ProviderProps): JSX.Element {
@@ -54,8 +53,10 @@ export function DeckProvider({ children }: ProviderProps): JSX.Element {
     setNumCardsLeft(remainingCards);
   }, [deck]);
 
+
+
   return (
-    <DeckContext.Provider value={{ deck, setDeck, numCardsLeft, setNumCardsLeft }}>
+    <DeckContext.Provider value={{ deck, setDeck, numCardsLeft }}>
       {children}
     </DeckContext.Provider>
   );

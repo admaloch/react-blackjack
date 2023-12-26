@@ -1,7 +1,7 @@
 import { CssBaseline } from '@mui/material'
 import { PlayersArrProvider } from './store/player-context/PlayersArrContext'
 import './App.css'
-import IntroComponent from './components/UI/IntroComponent'
+import GameIntro from './components/GameIntro'
 import { DealerObjProvider } from './store/dealer-context/DealerObjContext'
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
     <PlayersArrProvider>
       <DealerObjProvider>
         <CssBaseline />
-        <IntroComponent />
+        <GameIntro />
       </DealerObjProvider>
     </PlayersArrProvider>
   )
