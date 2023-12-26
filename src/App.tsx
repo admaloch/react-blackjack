@@ -1,18 +1,14 @@
 import { CssBaseline } from '@mui/material'
-import { PlayersArrProvider } from './store/player-arr/PlayersArrSlice'
 import './App.css'
 import GameIntro from './components/GameIntro'
-import { DealerObjProvider } from './store/dealer-obj/dealerObjSlice'
 
 function App() {
 
   return (
-    <PlayersArrProvider>
-      <DealerObjProvider>
+    <>
         <CssBaseline />
         <GameIntro />
-      </DealerObjProvider>
-    </PlayersArrProvider>
+    </>
   )
 }
 

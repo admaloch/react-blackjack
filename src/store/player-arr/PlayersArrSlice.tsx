@@ -33,9 +33,14 @@ const initialState: PlayerObjInterface[] = [
 ];
 
 const playerArrSlice = createSlice({
-    name: 'players-arr',
+    name: 'playersArr',
     initialState,
-    reducers: {},
+    reducers: {
+        updatePlayer: (state, action) => {
+            state === action.payload
+        }
+    },
 })
+export const { updatePlayer } = playerArrSlice.actions
 
 export default playerArrSlice.reducer
