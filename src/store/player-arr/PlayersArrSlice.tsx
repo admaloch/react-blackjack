@@ -41,6 +41,7 @@ const playerArrSlice = createSlice({
         }
     },
 })
+
 export const { updatePlayer } = playerArrSlice.actions
 
 export default playerArrSlice.reducer

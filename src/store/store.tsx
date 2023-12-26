@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import dealerObjReducer from "./dealer-obj/dealerObjSlice";
-import playersArrReducer from "./player-arr/PlayersArrSlice";
+import playersArrReducer from "./player-arr/playersArrSlice";
 import deckReducer from "./deck/deckSlice";
 
 export const store = configureStore({

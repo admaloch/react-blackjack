@@ -9,6 +9,8 @@ interface CardObjInterface {
   spades: number;
 }
 
+
+
 const initialState: CardObjInterface[] = [
   { card: '1', value: 1, diamonds: 6, clubs: 6, hearts: 6, spades: 6 },
   { card: '2', value: 2, diamonds: 6, clubs: 6, hearts: 6, spades: 6 },

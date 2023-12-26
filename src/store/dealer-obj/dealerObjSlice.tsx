@@ -18,7 +18,7 @@ const initialState: DealerObjInterface = {
 }
 
 const dealerObjSlice = createSlice({
-    name: 'dealer-obj',
+    name: 'dealerObj',
     initialState,
     reducers: {
         updateDealer: (state, action) => {
