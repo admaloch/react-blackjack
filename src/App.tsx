@@ -1,6 +1,6 @@
 import { CssBaseline } from '@mui/material'
 import './App.css'
-import GameIntro from './components/GameIntro'
+import GameIntro from './components/game-intro/GameIntro'
 
 
 // import { useSelector } from "react-redux";

@@ -1,0 +1,19 @@
+* {
+    border: red solid 1px;
+}
+
+:root {
+    --background: #000;
+    --text: #ffffff;
+  }
+
+  body {
+
+
+}
+
+#root {
+    min-height: 100vh;
+    background-color: var(--background);
+    color: var(--text);
+}
