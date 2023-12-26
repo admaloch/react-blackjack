@@ -1,6 +1,6 @@
-import { useContext } from 'react';
 
-import { DealerObjContext, DealerObjContextProps } from './DealerObjContext';
+
+import { DealerObjContext, DealerObjContextProps } from './dealerObjSlice';
 
 export function useDealerObjContext(): DealerObjContextProps {
   const dealerObjContext = useContext(DealerObjContext);

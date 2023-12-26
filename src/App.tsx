@@ -2,7 +2,7 @@ import { CssBaseline } from '@mui/material'
 import { PlayersArrProvider } from './store/player-context/PlayersArrContext'
 import './App.css'
 import GameIntro from './components/GameIntro'
-import { DealerObjProvider } from './store/dealer-context/DealerObjContext'
+import { DealerObjProvider } from './store/dealer-obj/dealerObjSlice'
 
 function App() {
 
