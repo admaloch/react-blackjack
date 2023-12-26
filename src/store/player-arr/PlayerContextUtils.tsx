@@ -1,5 +1,5 @@
 
-import { PlayersArrContext, PlayersArrContextProps } from './PlayersArrContext';
+import { PlayersArrContext, PlayersArrContextProps } from './PlayersArrSlice';
 
 export function usePlayersArrContext(): PlayersArrContextProps {
   const playersArrContext = useContext(PlayersArrContext);

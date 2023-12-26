@@ -9,13 +9,8 @@ import { createSlice } from "@reduxjs/toolkit";
     isBlackjack: boolean;
 }
 
-//  interface DealerObjContextProps {
-//     dealerObj: DealerObjInterface;
-//     setDealerObj: Dispatch<SetStateAction<DealerObjInterface>>;
-// }
-
 const initialState: DealerObjInterface = {
-    name: '',
+    name: 'Dealer',
     hand: [],
     handValues: [],
     sum: 0,
@@ -27,6 +22,5 @@ const dealerObjSlice = createSlice({
     initialState,
     reducers: {},
 })
-
 
 export default dealerObjSlice.reducer
