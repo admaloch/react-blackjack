@@ -10,9 +10,9 @@ interface Inputs {
 }
 
 export default function PlayerForm() {
-    const playerArr = useSelector((state: RootState) => state.playersArr);
+    const playerDataArr = useSelector((state: RootState) => state.playersArr);
     const dispatch = useDispatch();
-
+    console.log(playerDataArr)
     const {
         register,
         handleSubmit,

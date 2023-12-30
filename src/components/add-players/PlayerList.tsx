@@ -1,14 +1,21 @@
-
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
+import Player from "./Player";
 
 export default function PlayerList() {
+  const playerDataArr = useSelector((state: RootState) => state.playersArr);
+
   return (
     <div className="player-list">
-        <h2>Current players:</h2>
-        <ul>
-            <li>Davis</li>
-            <li>James</li>
-            <li>Lilly</li>
-        </ul>
+      <h2>Current players:</h2>
+      <ul>
+        {playerDataArr.map((player) => (
+          <Player
+            key={player.name}
+            name={player.name}
+          />
+        ))}
+      </ul>
     </div>
   )
 }
