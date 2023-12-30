@@ -3,6 +3,10 @@ import { PlayerInterface } from "../../models/PlayerProps";
 
 const initialState: PlayerInterface[] = [];
 
+interface PlayerNameProps {
+    name: string;
+}
+
 const playerArrSlice = createSlice({
     name: 'playersArr',
     initialState,
@@ -15,10 +19,16 @@ const playerArrSlice = createSlice({
             if (index !== -1) {
                 state[index] = action.payload;
             }
-        }
+        },
+        removePlayer: (state, action: PayloadAction<PlayerNameProps>) => {
+            const index = state.findIndex(player => player.name === action.payload.name);
+            if (index !== -1) {
+              state.splice(index, 1); 
+            }
+          }
     },
 });
 
-export const { addPlayer, updatePlayer } = playerArrSlice.actions;
+export const { addPlayer, updatePlayer, removePlayer } = playerArrSlice.actions;
 
 export default playerArrSlice.reducer;

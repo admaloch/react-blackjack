@@ -30,12 +30,48 @@
 
 }
 
-.add-players span {
-
-}
 
 .add-players input {
     padding: .4rem;
     margin-right: .2rem;
 }
+
+.player-list {
+    border: var(--text) solid 1px;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-top: 1rem;
+}
+.player-list h2 {
+    margin-bottom: 0!important;
+}
+.player-list ul {
+    padding-left: 0;
+}
+.player-list li {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 20px;
+}
+
+.delete-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.delete-icon svg {
+transition: .15s ease-in-out opacity;
+cursor: pointer;
+}
+
+.delete-icon svg:hover {
+    opacity: .7;
+}
+
+.start-game-btn {
+    margin-top: 1rem;
+}
+
 

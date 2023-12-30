@@ -20,7 +20,8 @@ export default function PlayerForm() {
     } = useForm<Inputs>();
 
     const onSubmit: SubmitHandler<Inputs> = (data) => {
-        dispatch(addPlayer({ ...emptyPlayerItem, name: data.nameInput }));
+        const playerName = data.nameInput.toLowerCase()
+        dispatch(addPlayer({ ...emptyPlayerItem, name: playerName}));
     };
 
     return (
