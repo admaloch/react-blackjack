@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface PlayerObjInterface {
     name: string;
@@ -15,33 +15,24 @@ interface PlayerObjInterface {
     roundsWon: number;
 }
 
-const initialState: PlayerObjInterface[] = [
-    {
-        name: '',
-        hand: [],
-        handValues: [],
-        sum: 0,
-        isBlackjack: false,
-        bank: 1000,
-        bet: 0,
-        minBet: 5,
-        betDoubled: false,
-        isPlayerActive: false,
-        betOptions: ['$5', '$25', '$50', '$100', '$500', '$1000', 'All'],
-        roundsWon: 0,
-    }
-];
+const initialState: PlayerObjInterface[] = [];
 
 const playerArrSlice = createSlice({
     name: 'playersArr',
     initialState,
     reducers: {
-        updatePlayer: (state, action) => {
-            state === action.payload
+        addPlayer: (state, action: PayloadAction<PlayerObjInterface>) => {
+            state.push(action.payload);
+        },
+        updatePlayer: (state, action: PayloadAction<PlayerObjInterface>) => {
+            const index = state.findIndex(player => player.name === action.payload.name);
+            if (index !== -1) {
+                state[index] = action.payload;
+            }
         }
     },
-})
+});
 
-export const { updatePlayer } = playerArrSlice.actions
+export const { addPlayer, updatePlayer } = playerArrSlice.actions;
 
-export default playerArrSlice.reducer
+export default playerArrSlice.reducer;

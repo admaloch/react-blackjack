@@ -1,6 +1,7 @@
 import { CssBaseline } from '@mui/material'
 import './App.css'
 import GameIntro from './components/game-intro/GameIntro'
+import AddPlayers from './components/add-players/AddPlayers'
 
 
 // import { useSelector } from "react-redux";
@@ -14,7 +15,8 @@ function App() {
   return (
     <>
         <CssBaseline />
-        <GameIntro />
+        {/* <GameIntro /> */}
+        <AddPlayers/>
     </>
   )
 }
