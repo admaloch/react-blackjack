@@ -30,7 +30,7 @@ export default function PlayerForm() {
                 <input {...register("nameInput", { required: true })} />
                 <Button>Add Player</Button>
             </div>
-            {errors.nameInput && <span>This field is required</span>}
+            {errors.nameInput && <span>Please enter a valid name</span>}
         </form>
     );
 }
