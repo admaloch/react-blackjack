@@ -3,13 +3,15 @@ import Box from '@mui/material/Box';
 import Popper from '@mui/material/Popper';
 import Fade from '@mui/material/Fade';
 import './Icons.css'
+import { PopperPlacementType } from '@mui/material/Popper';
 
 interface IconWithPopperProps {
   icon: React.ComponentType<{ sx?: React.CSSProperties }>;
   text: string;
+  placement?: PopperPlacementType; // Use PopperPlacementType from @mui/material
 }
 
-export function IconWithPopper({ icon: IconComponent, text }: IconWithPopperProps) {
+export function IconWithPopper({ icon: IconComponent, text, placement = 'bottom' }: IconWithPopperProps) {
   const [hovered, setHovered] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -32,7 +34,7 @@ export function IconWithPopper({ icon: IconComponent, text }: IconWithPopperProp
       onMouseLeave={handleMouseLeave}
     >
       <IconComponent />
-      <Popper id={id} open={canBeOpen} anchorEl={anchorEl} transition>
+      <Popper placement={placement} id={id} open={canBeOpen} anchorEl={anchorEl} transition>
         {({ TransitionProps }) => (
           <Fade {...TransitionProps} timeout={350}>
             <Box

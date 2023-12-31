@@ -18,13 +18,13 @@ export default function AddPlayers() {
                 <PlayerForm />
             </div>
             {playerDataArr.length > 0 && <PlayerList />}
-            
-            {playerDataArr.length > 0 && 
-            <div className="start-game-btn">
-                <Button>
-                <NavLink to="/playGame">Start Game</NavLink>
-                </Button>
-            </div>
+
+            {playerDataArr.length > 0 &&
+                <div className="start-game-btn">
+                    <Button>
+                        <NavLink to="/playGame">Start Game</NavLink>
+                    </Button>
+                </div>
             }
         </div>
     )
