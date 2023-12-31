@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import dealerObjReducer from "./dealer-obj/dealerObjSlice";
 import playersArrReducer from "./player-arr/playersArrSlice";
+import gameDataReducer from "./game-data/GameDataSlice";
 import deckReducer from "./deck/deckSlice";
 
 export const store = configureStore({
@@ -8,6 +9,7 @@ export const store = configureStore({
         dealerObj: dealerObjReducer,
         playersArr: playersArrReducer,
         deck: deckReducer,
+        gameData: gameDataReducer
     },
 })
 

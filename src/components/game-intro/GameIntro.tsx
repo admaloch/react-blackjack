@@ -7,7 +7,7 @@ export default function GameIntro() {
     <div className="game-intro">
       <h1>Welcome to the Blackjack table</h1>
       <Button>
-        <NavLink to="../add-players/AddPlayers">Start Game</NavLink>
+        <NavLink to="/addPlayers">Start Game</NavLink>
       </Button>
     </div>
   );

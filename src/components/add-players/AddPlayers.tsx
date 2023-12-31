@@ -4,7 +4,7 @@ import "./AddPlayers.css"
 import PlayerForm from "./PlayerForm"
 import PlayerList from "./PlayerList"
 import Button from "../UI/button/Button";
-
+import { NavLink } from "react-router-dom";
 
 
 export default function AddPlayers() {
@@ -21,7 +21,9 @@ export default function AddPlayers() {
             
             {playerDataArr.length > 0 && 
             <div className="start-game-btn">
-                <Button>Begin Game</Button>
+                <Button>
+                <NavLink to="/playGame">Start Game</NavLink>
+                </Button>
             </div>
             }
         </div>
