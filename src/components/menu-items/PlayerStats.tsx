@@ -1,9 +1,9 @@
-import AssessmentIcon from '@mui/icons-material/Assessment';
+import { PlayerStatsIcon } from "../UI/icons/PlayerStatsIcon";
 
 export default function PlayerStats() {
   return (
     <div className="icon-container">
-      <AssessmentIcon sx={{ fontSize: 30 }} />
+      <PlayerStatsIcon/>
     </div>
   )
 }

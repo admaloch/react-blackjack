@@ -7,19 +7,3 @@
     padding: 1rem;
 }
 
-.icon-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.icon-container svg {
-    fill: var(--text);
-    transition: .15s ease-in-out opacity;
-    cursor: pointer;
-
-}
-
-.icon-container svg:hover {
-    opacity: .7;
-}
