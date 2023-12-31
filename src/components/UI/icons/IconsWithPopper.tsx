@@ -2,13 +2,12 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Popper from '@mui/material/Popper';
 import Fade from '@mui/material/Fade';
-import './Icons.css'
-import { PopperPlacementType } from '@mui/material/Popper';
+import './IconsWithPopper.css'
+import IconProps from './IconWithPopperProps';
 
-interface IconWithPopperProps {
+interface IconWithPopperProps extends IconProps {
   icon: React.ComponentType<{ sx?: React.CSSProperties }>;
   text: string;
-  placement?: PopperPlacementType; // Use PopperPlacementType from @mui/material
 }
 
 export function IconWithPopper({ icon: IconComponent, text, placement = 'bottom' }: IconWithPopperProps) {

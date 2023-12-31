@@ -1,9 +1,9 @@
-import { PlayerStatsIcon } from "../UI/icons/PlayerStatsIcon";
+import { StatsIconWithPopper } from "../UI/icons/StatsIconWithPopper";
 
 export default function PlayerStats() {
   return (
-    <div className="icon-container">
-      <PlayerStatsIcon/>
+    <div>
+      <StatsIconWithPopper />
     </div>
   )
 }

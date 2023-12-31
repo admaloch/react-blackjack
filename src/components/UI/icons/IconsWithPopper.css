@@ -9,7 +9,7 @@
     fill: var(--text);
     transition: .15s ease-in-out opacity;
     cursor: pointer;
-    font-size: 2rem;
+    /* font-size: 2rem; */
 }
 
 .icon-container svg:hover {

@@ -1,9 +1,9 @@
-import { QuitGameIcon } from '../UI/icons/QuitIcon';
+import { QuitIconWithPopper } from "../UI/icons/QuitIconWithPopper"
 
 export default function QuitGame() {
   return (
-    <div className="menu-icon-container">
-      <QuitGameIcon/>
+    <div>
+      <QuitIconWithPopper/>
     </div>
   )
 }
