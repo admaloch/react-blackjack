@@ -9,4 +9,13 @@
     align-items: center;
     /* overflow-y: scroll; */
 }
+.modal-content-container h3,
+.modal-content-container h4,
+.modal-content-container ul{
+margin: 0;
+}
+
+.modal-content-container h4{
+margin: .5rem 0;
+}
 

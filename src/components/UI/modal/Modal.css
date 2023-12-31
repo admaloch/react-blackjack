@@ -19,8 +19,8 @@
 .modal-container {
   background-color: var(--text);
   position: fixed;
-  --modal-width: 100%;
-  --modal-height: 100%;
+  --modal-width: 92%;
+  --modal-height: 95%;
   width: var(--modal-width);
   height: var(--modal-height);
   left: calc((100% - var(--modal-width))/2);
@@ -31,6 +31,7 @@
   visibility: hidden;
   opacity: 0;
   transition: .5s all;
+  border-radius: 5px;
 }
 
 .active {
@@ -40,37 +41,37 @@
 
 @media screen and (min-width: 500px) {
   .modal-container {
-    --modal-width: 95%;
-    --modal-height: 90%;
+    --modal-width: 90%;
+    --modal-height: 55%;
   }
 }
 
 @media screen and (min-width: 768px) {
   .modal-container {
-    border-radius: 5px;
-    --modal-width: 80%;
-    --modal-height: 65%;
+
+    --modal-width: 70%;
+    --modal-height: 50%;
   }
 }
 
 @media screen and (min-width: 992px) {
   .modal-container {
-    --modal-width: 70%;
-    --modal-height: 75%;
+    --modal-width: 50%;
+    --modal-height: 50%;
   }
 }
 
 @media screen and (min-width: 1200px) {
   .modal-container {
-    --modal-width: 60%;
-    --modal-height: 70%;
+    --modal-width: 40%;
+    --modal-height: 50%;
   }
 }
 
 @media screen and (min-width: 1500px) {
   .modal-container {
-    --modal-width: 50%;
-    --modal-height: 70%;
+    --modal-width: 30%;
+    --modal-height: 30%;
   }
 }
 
