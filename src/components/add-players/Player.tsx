@@ -8,27 +8,17 @@ import Box from '@mui/material/Box';
 import Popper from '@mui/material/Popper';
 import Fade from '@mui/material/Fade';
 
-
 interface PlayerProps {
     name: string;
 }
 
-
-
-
-
-
 export default function Player({ name }: PlayerProps) {
-
-
     // popper
     const [open, setOpen] = React.useState(false);
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
-
     const canBeOpen = open && Boolean(anchorEl);
     const deletePopperId = canBeOpen ? 'transition-popper' : undefined;
-
 
     const handleMouseEnter = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
@@ -39,16 +29,13 @@ export default function Player({ name }: PlayerProps) {
         setOpen((previousOpen) => !previousOpen);
     };
 
-
     // delete player from game
     const dispatch = useDispatch();
     const formattedName = name.charAt(0).toUpperCase() + name.slice(1)
 
-
     const removePlayerHandler = () => {
         dispatch(removePlayer({ name: name }))
     }
-
 
     return (
         <li>
@@ -83,8 +70,6 @@ export default function Player({ name }: PlayerProps) {
                     </Fade>
                 )}
             </Popper>
-
-
         </li >
     )
 }

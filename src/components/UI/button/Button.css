@@ -1,15 +1,22 @@
- button {
-    padding: .5rem 1.5rem;
+ button{
+     padding: .5rem 1.5rem;
+     color: var(--text);
+     border: var(--text) solid 1px;
+     background-color: var(--background);
+     cursor: pointer;
+     transition: .15s ease-in-out all;
+     font-size: 1rem;
+     border-radius: 5px;
+ }
+
+ button a {
     color: var(--text);
-    border: var(--text) solid 1px;
-    background-color: var(--background);
-    cursor: pointer;
-    transition: .2s ease-in-out all;
-    font-size: 1rem;
-    border-radius: 5px;
+    text-decoration: none;
+    transition: .15s ease-in-out all;
 }
 
-button:hover {
-    color: var(--background);
-    background-color: var(--text);
-}
+ button:hover,
+ button:hover a {
+     color: var(--background);
+     background-color: var(--text);
+ }
