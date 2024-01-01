@@ -1,4 +1,4 @@
-.modal-content-container {
+.stats-modal-container {
     /* background-color: var(--mainBackground); */
     /* padding: rem; */
     width: 100%;
@@ -9,13 +9,21 @@
     align-items: center;
     /* overflow-y: scroll; */
 }
-.modal-content-container h3,
-.modal-content-container h4,
-.modal-content-container ul{
-margin: 0;
+.stats-modal-container li {
+    list-style: none;
 }
 
-.modal-content-container h4{
-margin: .5rem 0;
+.stats-modal-container h3,
+.stats-modal-container h4,
+.stats-modal-container ul {
+    margin: 0;
 }
 
+
+.stats-modal-container h3 {
+  font-size: 2rem;
+}
+.stats-modal-container h4 {
+    margin: .5rem 0;
+    font-size: 1.3rem;
+}

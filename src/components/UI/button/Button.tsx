@@ -1,11 +1,11 @@
 import './Button.css'
 
 interface BtnProps {
-    children: string | JSX.Element;
+  children: string | JSX.Element;
 }
 
-export default function Button({children}:BtnProps): JSX.Element {
+export default function Button({ children }: BtnProps): JSX.Element {
   return (
-    <button>{children}</button>
+    <button className="game-btn">{children}</button>
   )
 }

@@ -9,7 +9,7 @@ export default function PlayerStatsItem({ name, bank, roundsWon }: PlayerStatsIt
 
     return (
         <li>
-            <h4>{name}: Current Bank: {`$${bank}`}: Total Rounds Won: {roundsWon}</h4>
+            {name}: Current Bank: {`$${bank}`}: Total Rounds Won: {roundsWon}
         </li>
     )
 }

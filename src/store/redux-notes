@@ -1,0 +1,8 @@
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
+const currRound = useSelector((state: RootState) => state.gameData.roundsPlayed);
+
+import { useDispatch } from 'react-redux';
+import { addPlayer } from '../../store/player-arr/playersArrSlice';
+const dispatch = useDispatch();
+dispatch(addPlayer({ ...emptyPlayerItem, name: formattedName }));

@@ -27,9 +27,12 @@ const deckSlice = createSlice({
     updateIsMenuShown: (state) => {
       state.isMenuShown = !state.isMenuShown;
     },
+    updateIsPlayerStatsShown: (state) => {
+      state.isPlayerStatsShown = !state.isPlayerStatsShown;
+    },
   },
 })
 
-export const { updateRoundsPlayed, updateIsGameActive, updateIsMenuShown } = deckSlice.actions
+export const { updateRoundsPlayed, updateIsGameActive, updateIsMenuShown, updateIsPlayerStatsShown } = deckSlice.actions
 
 export default deckSlice.reducer

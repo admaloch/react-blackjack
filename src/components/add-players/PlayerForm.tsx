@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Button from '../UI/button/Button';
 import { RootState } from '../../store/store';
 import { useSelector, useDispatch } from 'react-redux';
 import { addPlayer } from '../../store/player-arr/playersArrSlice';
@@ -45,7 +44,7 @@ export default function PlayerForm() {
                         setInputValue(e.target.value);
                     }}
                 />
-                <Button>Add Player</Button>
+                <button className="game-btn">Add Player</button>
             </div>
             {!isNameValid && <span className="error-message">{errorMsg}</span>}
         </form>

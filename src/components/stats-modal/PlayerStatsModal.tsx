@@ -19,7 +19,7 @@ export default function PlayerStatsModal({ closeModal, open }: PlayerStatsProps)
             closeModal={closeModal}
             open={open}
         >
-            <div className="modal-content-container">
+            <div className="stats-modal-container">
                 <h3>Player Stats</h3>
                 <h4>Current Round: {currRound}</h4>
 
