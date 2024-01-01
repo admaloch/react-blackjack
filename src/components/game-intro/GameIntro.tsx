@@ -4,9 +4,10 @@ import './GameIntro.css';
 
 export default function GameIntro() {
   return (
-    <div className="game-intro">
+    <div className="game-intro game-container">
       <h1>Welcome to the Blackjack table</h1>
-      <Button>
+      <Button
+      >
         <NavLink to="/addPlayers">Start Game</NavLink>
       </Button>
     </div>

@@ -16,7 +16,9 @@ export default function PlayerForm() {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         if (inputValue.trim().length > 0 && playerArr.length < 5 && !playerArr.some(player => player.name === inputValue.trim())) {
-            dispatch(addPlayer({ ...emptyPlayerItem, name: inputValue.trim() }));
+            const formattedName = inputValue.trim().charAt(0).toUpperCase() + inputValue.trim().slice(1)
+
+            dispatch(addPlayer({ ...emptyPlayerItem, name: formattedName }));
             setInputValue('');
             setIsNameValid(true);
         } else {

@@ -1,14 +1,17 @@
 import { useSelector } from "react-redux"
 import { RootState } from "../../store/store"
-import GameMenu from "../menu-items/GameMenu";
+import './MainGame.css'
 
 export default function StartRound() {
     const currRound = useSelector((state: RootState) => state.gameData.roundsPlayed);
 
     return (
         <>
-            <GameMenu />
-            <h1>Begin Round {currRound}</h1>
+            
+            <div className="game-container main-game">
+                <h2>Begin Round {currRound}</h2>
+            </div>
+
         </>
     )
 }

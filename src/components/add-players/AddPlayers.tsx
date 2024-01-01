@@ -12,9 +12,9 @@ export default function AddPlayers() {
     const playerDataArr = useSelector((state: RootState) => state.playersArr);
 
     return (
-        <div className="add-players">
+        <div className="add-players game-container">
             <div className="form-container">
-                <h1>Enter your name to join the game</h1>
+                <h2>Enter your name to join the game</h2>
                 <PlayerForm />
             </div>
             {playerDataArr.length > 0 && <PlayerList />}

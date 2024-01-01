@@ -7,7 +7,7 @@ export default function PlayerList() {
 
   return (
     <div className="player-list">
-      <h2>Current players:</h2>
+      <h3>Current players:</h3>
       <ul>
         {playerDataArr.map((player) => (
           <Player

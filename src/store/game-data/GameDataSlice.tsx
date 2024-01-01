@@ -1,8 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
+interface GameDataProps {
+  roundsPlayed: number;
+  isGameActive: boolean;
+  isMenuShown: boolean;
+  isPlayerStatsShown: boolean;
+}
+
+const initialState: GameDataProps = {
   roundsPlayed: 1,
   isGameActive: false,
+  isMenuShown: false,
+  isPlayerStatsShown: false,
 }
 
 const deckSlice = createSlice({
@@ -15,9 +24,12 @@ const deckSlice = createSlice({
     updateIsGameActive: (state) => {
       state.isGameActive = !state.isGameActive;
     },
+    updateIsMenuShown: (state) => {
+      state.isMenuShown = !state.isMenuShown;
+    },
   },
 })
 
-export const { updateRoundsPlayed, updateIsGameActive } = deckSlice.actions
+export const { updateRoundsPlayed, updateIsGameActive, updateIsMenuShown } = deckSlice.actions
 
 export default deckSlice.reducer
