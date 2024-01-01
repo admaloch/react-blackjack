@@ -6,3 +6,5 @@ import { useDispatch } from 'react-redux';
 import { addPlayer } from '../../store/player-arr/playersArrSlice';
 const dispatch = useDispatch();
 dispatch(addPlayer({ ...emptyPlayerItem, name: formattedName }));
+
+

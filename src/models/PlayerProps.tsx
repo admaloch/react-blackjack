@@ -23,7 +23,7 @@ export const emptyPlayerItem: PlayerInterface = {
     bet: 0,
     minBet: 5,
     betDoubled: false,
-    isPlayerActive: false,
+    isPlayerActive: true,
     betOptions: ['$5', '$25', '$50', '$100', '$500', '$1000', 'All'],
     roundsWon: 0,
 }

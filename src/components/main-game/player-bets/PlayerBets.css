@@ -1,0 +1,50 @@
+.place-bets h4 {
+    font-size: 2rem;
+}
+.place-bets h5 {
+    font-size: 1.5rem;
+}
+
+.tokens-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tokens-container div {
+    background-color: var(--text);
+    color: var(--background);
+    transition: opacity .15s ease-in-out;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    text-align: center;
+    margin:.5rem;
+    padding: .2rem;
+    cursor: pointer;
+}
+
+.tokens-container div:hover {
+    opacity: .7;
+}
+
+.place-bets button {
+    margin-top: 1rem;
+}
+
+.btn-container {
+    display: flex;
+    justify-self: center;
+    align-items: center;
+}
+
+.btn-container svg {
+    font-size: 2rem;
+    margin: 1rem 0 0 .3rem;
+}
+
+.disabled {
+    display: block !important;
+    pointer-events: none; 
+    opacity: .5;
+}
