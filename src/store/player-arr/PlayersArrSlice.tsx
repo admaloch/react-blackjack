@@ -23,9 +23,9 @@ const playerArrSlice = createSlice({
         removePlayer: (state, action: PayloadAction<PlayerNameProps>) => {
             const index = state.findIndex(player => player.name === action.payload.name);
             if (index !== -1) {
-              state.splice(index, 1); 
+                state.splice(index, 1);
             }
-          }
+        },
     },
 });
 

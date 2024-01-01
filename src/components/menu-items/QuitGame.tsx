@@ -3,14 +3,9 @@ import { NavLink } from "react-router-dom"
 
 export default function QuitGame() {
 
-  const quitGameHandler () => {
-
-  }
 
   return (
-    <div
-      onClick={quitGameHandler}
-    >
+    <div>
       <NavLink to="/">
         <QuitIconWithPopper />
       </NavLink>
