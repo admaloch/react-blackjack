@@ -6,40 +6,13 @@ import BetToken from './BetToken';
 import { ResetIconWithPopper } from '../../UI/icons/ResetIconWithPopper';
 import { useDispatch } from 'react-redux';
 import { updatePlayer } from '../../../store/player-arr/playersArrSlice';
-import { arraysEqual } from '../../../utils/Utility';
-
+import { updatePlayerTokens } from './updatePlayerTokens';
 export default function PlayerBets() {
+
     const dispatch = useDispatch();
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const [currPlayerIndex, setCurrPlayerIndex] = useState(0);
     const [isBetValid, setIsBetValid] = useState(false);
-
-    const tokenClickHandler = (input: number) => {
-        const updatedBet = playersArr[currPlayerIndex].currBet + input
-        const updatedBank = playersArr[currPlayerIndex].bank - input
-        dispatch(updatePlayer({ ...playersArr[currPlayerIndex], currBet: updatedBet, bank: updatedBank, currTokens: updateTokensArray() }));
-    };
-
-
-    const updateTokensArray = () => {
-        const defaultPattern: number[] = [5, 10, 20, 50, 100, 500];
-        const currentSum = defaultPattern.reduce((sum, num) => sum + num, 0);
-        let filteredArray = [];
-        let remainingSum = playersArr[currPlayerIndex].bank;
-        if (currentSum > playersArr[currPlayerIndex].bank) {
-            for (const num of defaultPattern) {
-                if (remainingSum - num >= 0) {
-                    filteredArray.push(num);
-                    remainingSum -= num;
-                } else break;
-            }
-        } else {
-            filteredArray = defaultPattern;
-        }
-        return filteredArray
-    }
-
-
 
     useEffect(() => {
         if (playersArr[currPlayerIndex].currBet > playersArr[currPlayerIndex].minBet) {
@@ -49,12 +22,23 @@ export default function PlayerBets() {
         }
     }, [playersArr, currPlayerIndex]);
 
-    const resetHandler = () => {
-        dispatch(updatePlayer({ ...playersArr[currPlayerIndex], bank: playersArr[currPlayerIndex].bank + playersArr[currPlayerIndex].currBet, currBet: 0 }));
+    const tokenClickHandler = (input: number) => {
+        const updatedBet = playersArr[currPlayerIndex].currBet + input
+        const updatedBank = playersArr[currPlayerIndex].bank - input
+        const updatedTokens = updatePlayerTokens(updatedBank)
+        dispatch(updatePlayer({ ...playersArr[currPlayerIndex], currBet: updatedBet, bank: updatedBank, currTokens: updatedTokens }));
     };
 
-    const allTokensHandle = () => {
-        dispatch(updatePlayer({ ...playersArr[currPlayerIndex], bank: 0, currBet: playersArr[currPlayerIndex].currBet + playersArr[currPlayerIndex].bank }));
+    const resetHandler = () => {
+        const updatedBank = playersArr[currPlayerIndex].bank + playersArr[currPlayerIndex].currBet
+        const updatedTokens = updatePlayerTokens(updatedBank)
+        dispatch(updatePlayer({ ...playersArr[currPlayerIndex], bank: updatedBank, currBet: 0, currTokens: updatedTokens }));
+    };
+
+    const allTokensHandler = () => {
+        const updatedBet = playersArr[currPlayerIndex].currBet + playersArr[currPlayerIndex].bank
+        const updatedTokens = updatePlayerTokens(0)
+        dispatch(updatePlayer({ ...playersArr[currPlayerIndex], bank: 0, currBet: updatedBet, currTokens: updatedTokens }));
     }
 
     const nextPlayerHandler = () => {
@@ -80,7 +64,7 @@ export default function PlayerBets() {
                     ))}
                 {playersArr[currPlayerIndex].bank > 0 &&
                     <div
-                        onClick={allTokensHandle}
+                        onClick={allTokensHandler}
                         className="all-tokens">All</div>
                 }
             </div>
