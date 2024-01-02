@@ -32,13 +32,38 @@ export default function PlayerBets() {
 
     useEffect(() => {
         playersArr.forEach(player => {
-            const resetTokens = defaultTokenOptions
-            const reducedTokens = player.currTokens.reduce((a, b) => a + b)
-            // const updatedTokens = player.currTokens.filter(x => player.bank > reducedTokens && x)
-            const updatedTokens = resetTokens.filter(token => player.bank > resetTokens
-                .reduce((a, b) => a + b)
-                && token)
-            dispatch(updatePlayer({ ...player, currTokens: updatedTokens }));
+            const defaultPattern = defaultTokenOptions
+            const currentSum = player.currTokens.reduce((sum, num) => sum + num, 0);
+
+            let filteredArray = [];
+            let remainingSum = player.bank;
+            if (currentSum > player.bank) {
+                for (const num of player.currTokens) {
+                    if (remainingSum - num >= 0) {
+                        filteredArray.push(num);
+                        remainingSum -= num;
+                    } else {
+                        break;
+                    }
+                }
+                return filteredArray
+            } else {
+                let newArray: number[] = [...player.currTokens];
+
+                for (const num of defaultPattern) {
+                    if (!newArray.includes(num)) {
+                        newArray.push(num);
+                        if (newArray.reduce((sum, num) => sum + num, 0) >= player.bank) {
+                            break;
+                        }
+                    }
+                }
+
+                return newArray;
+                dispatch(updatePlayer({ ...player, currTokens: newArray }));
+            }
+
+            // dispatch(updatePlayer({ ...player, currTokens: updatedTokens }));
         })
 
     }, [playersArr]);
