@@ -6,7 +6,7 @@ import BetToken from './BetToken';
 import { ResetIconWithPopper } from '../../UI/icons/ResetIconWithPopper';
 import { useDispatch } from 'react-redux';
 import { updatePlayer } from '../../../store/player-arr/playersArrSlice';
-const defaultTokenOptions: number[] = [5, 10, 20, 50, 100, 500];
+
 
 export default function PlayerBets() {
     const dispatch = useDispatch();
@@ -14,22 +14,16 @@ export default function PlayerBets() {
     const [currPlayerIndex, setCurrPlayerIndex] = useState(0);
     const [isBetValid, setIsBetValid] = useState(false);
 
-    console.log(playersArr)
-
     const tokenClickHandler = (input: number) => {
         const updatedBet = playersArr[currPlayerIndex].currBet + input
         const updatedBank = playersArr[currPlayerIndex].bank - input
         dispatch(updatePlayer({ ...playersArr[currPlayerIndex], currBet: updatedBet, bank: updatedBank }));
     };
 
-
-
-
-
     useEffect(() => {
         playersArr.forEach(player => {
             // reset tokens as default then remove if needed
-            const defaultPattern = defaultTokenOptions
+            const defaultPattern: number[] = [5, 10, 20, 50, 100, 500];
             const currentSum = defaultPattern.reduce((sum, num) => sum + num, 0);
             let filteredArray = [];
             let remainingSum = player.bank;
@@ -43,12 +37,30 @@ export default function PlayerBets() {
                     }
                 }
             } else {
-             filteredArray = defaultPattern   
+                filteredArray = defaultPattern;
             }
-            dispatch(updatePlayer({ ...player, currTokens: filteredArray }));
-        })
+
+            // Check if an update is necessary before dispatching the action
+            if (!arraysEqual(player.currTokens, filteredArray)) {
+                dispatch(updatePlayer({ ...player, currTokens: filteredArray }));
+            }
+        });
 
     }, [playersArr]);
+
+    // Helper function to compare arrays
+    function arraysEqual(arr1: number[], arr2: number[]): boolean {
+        if (arr1.length !== arr2.length) {
+            return false;
+        }
+        for (let i = 0; i < arr1.length; i++) {
+            if (arr1[i] !== arr2[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 
     useEffect(() => {
         if (playersArr[currPlayerIndex].currBet > playersArr[currPlayerIndex].minBet) {
@@ -58,14 +70,11 @@ export default function PlayerBets() {
         }
     }, [playersArr, currPlayerIndex]);
 
-
-
     const resetHandler = () => {
         dispatch(updatePlayer({ ...playersArr[currPlayerIndex], bank: playersArr[currPlayerIndex].bank + playersArr[currPlayerIndex].currBet, currBet: 0 }));
     };
 
     const nextPlayerHandler = () => {
-        // Move to the next player
         setCurrPlayerIndex((prevIndex) => (prevIndex + 1) % playersArr.length);
     };
 
@@ -80,15 +89,21 @@ export default function PlayerBets() {
                     .map((item) => (
                         <BetToken key={item} number={item} tokenClickHandler={tokenClickHandler} />
                     ))}
+                {isBetValid &&
+                    <div
+                    className='reset-tokens'
+                    onClick={resetHandler}>
+                        <ResetIconWithPopper placement='top' />
+                    </div>
+                }
+
             </div>
-            <div className="btn-container">
-                <button className={isBetValid ? 'game-btn' : 'game-btn disabled'} onClick={nextPlayerHandler}>
-                    Place Bet
-                </button>
-                <div onClick={resetHandler}>
-                    {isBetValid && <ResetIconWithPopper placement='right' />}
-                </div>
-            </div>
+
+            <button className={isBetValid ? 'game-btn' : 'game-btn disabled'} onClick={nextPlayerHandler}>
+                Place Bet
+            </button>
+
+
         </div>
     );
 }

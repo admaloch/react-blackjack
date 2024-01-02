@@ -11,20 +11,33 @@
     align-items: center;
 }
 
-.tokens-container div {
+.betting-token,
+.reset-tokens {
     background-color: var(--text);
     color: var(--background);
     transition: opacity .15s ease-in-out;
     width: 50px;
     height: 50px;
     border-radius: 50px;
-    text-align: center;
+    /* text-align: center; */
     margin:.5rem;
     padding: .2rem;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.tokens-container div:hover {
+.betting-token {
+    padding: .2rem;
+}
+
+
+
+
+
+.betting-token:hover,
+.reset-tokens:hover {
     opacity: .7;
 }
 
@@ -32,15 +45,12 @@
     margin-top: 1rem;
 }
 
-.btn-container {
-    display: flex;
-    justify-self: center;
-    align-items: center;
-}
 
-.btn-container svg {
+
+.tokens-container svg {
     font-size: 2rem;
-    margin: 1rem 0 0 .3rem;
+    /* margin: 1rem 0 0 .3rem; */
+    filter: invert(100);
 }
 
 .disabled {

@@ -6,7 +6,9 @@ interface BetTokenProps {
 
 export default function BetToken({ number, tokenClickHandler }: BetTokenProps) {
     return (
-        <div onClick={() => tokenClickHandler(number)}>
+        <div
+        className="betting-token"
+        onClick={() => tokenClickHandler(number)}>
             {number}
         </div>
     );
