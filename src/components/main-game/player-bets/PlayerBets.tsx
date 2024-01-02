@@ -10,16 +10,13 @@ const defaultTokenOptions: number[] = [5, 10, 20, 50, 100, 500];
 
 export default function PlayerBets() {
     const playersArr = useSelector((state: RootState) => state.playersArr);
+    const [currPlayer, setCurrPlayer] = useState(emptyPlayerItem)
 
     const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
     const [isBetValid, setIsBetValid] = useState(false);
     const [tokenOptions, setTokenOptions] = useState(defaultTokenOptions);
 
-    const tokenClickHandler = (input: number) => {
-        setCurrPlayer((oldPlayer) => {
-            return { ...oldPlayer, bet: oldPlayer.bet + input, bank: oldPlayer.bank - input };
-        });
-    };
+    console.log(playersArr)
 
     useEffect(() => {
         setTokenOptions((oldTokens) => {
@@ -32,6 +29,12 @@ export default function PlayerBets() {
             setIsBetValid(false);
         }
     }, [currentPlayerIndex, playersArr]);
+
+    const tokenClickHandler = (input: number) => {
+        setCurrPlayer((oldPlayer) => {
+            return { ...oldPlayer, bet: oldPlayer.bet + input, bank: oldPlayer.bank - input };
+        });
+    };
 
     const resetHandler = () => {
         setTokenOptions(defaultTokenOptions);

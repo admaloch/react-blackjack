@@ -9,6 +9,8 @@ export default function PlayerForm() {
     const dispatch = useDispatch();
 
     const [inputValue, setInputValue] = useState<string>('');
+
+
     const [isNameValid, setIsNameValid] = useState<boolean>(true);
     const [errorMsg, setErrorMsg] = useState<string>('Please enter a valid name');
 
@@ -16,8 +18,8 @@ export default function PlayerForm() {
         e.preventDefault();
         if (inputValue.trim().length > 0 && playerArr.length < 5 && !playerArr.some(player => player.name === inputValue.trim())) {
             const formattedName = inputValue.trim().charAt(0).toUpperCase() + inputValue.trim().slice(1)
-
-            dispatch(addPlayer({ ...emptyPlayerItem, name: formattedName }));
+            const playerIndex = playerArr.length
+            dispatch(addPlayer({ ...emptyPlayerItem, name: formattedName, id: playerIndex }));
             setInputValue('');
             setIsNameValid(true);
         } else {

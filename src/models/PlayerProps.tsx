@@ -1,4 +1,5 @@
 export interface PlayerInterface {
+    id: number;
     name: string;
     hand: string[];
     handValues: number[];
@@ -9,11 +10,12 @@ export interface PlayerInterface {
     minBet: number;
     betDoubled: boolean;
     isPlayerActive: boolean;
-    betOptions: string[];
+    betOptions: number[];
     roundsWon: number;
 }
 
 export const emptyPlayerItem: PlayerInterface = {
+    id: 0,
     name: '',
     hand: [],
     handValues: [],
@@ -24,6 +26,6 @@ export const emptyPlayerItem: PlayerInterface = {
     minBet: 5,
     betDoubled: false,
     isPlayerActive: true,
-    betOptions: ['$5', '$25', '$50', '$100', '$500', '$1000', 'All'],
+    betOptions: [5, 10, 20, 50, 100, 500],
     roundsWon: 0,
 }
