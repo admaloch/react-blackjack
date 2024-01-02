@@ -2,7 +2,6 @@ import './PlayerBets.css';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store/store';
 import { useEffect, useState } from 'react';
-import { emptyPlayerItem } from '../../../models/PlayerProps';
 import BetToken from './BetToken';
 import { ResetIconWithPopper } from '../../UI/icons/ResetIconWithPopper';
 import { useDispatch } from 'react-redux';
@@ -12,15 +11,12 @@ const defaultTokenOptions: number[] = [5, 10, 20, 50, 100, 500];
 export default function PlayerBets() {
     const dispatch = useDispatch();
     const playersArr = useSelector((state: RootState) => state.playersArr);
-    const [currPlayer, setCurrPlayer] = useState(emptyPlayerItem)
     const [currPlayerIndex, setCurrPlayerIndex] = useState(0);
     const [isBetValid, setIsBetValid] = useState(false);
-    const [tokenOptions, setTokenOptions] = useState(defaultTokenOptions);
 
     console.log(playersArr)
 
     const tokenClickHandler = (input: number) => {
-
         const updatedBet = playersArr[currPlayerIndex].currBet + input
         const updatedBank = playersArr[currPlayerIndex].bank - input
         dispatch(updatePlayer({ ...playersArr[currPlayerIndex], currBet: updatedBet, bank: updatedBank }));
@@ -32,13 +28,13 @@ export default function PlayerBets() {
 
     useEffect(() => {
         playersArr.forEach(player => {
+            // reset tokens as default then remove if needed
             const defaultPattern = defaultTokenOptions
-            const currentSum = player.currTokens.reduce((sum, num) => sum + num, 0);
-
+            const currentSum = defaultPattern.reduce((sum, num) => sum + num, 0);
             let filteredArray = [];
             let remainingSum = player.bank;
             if (currentSum > player.bank) {
-                for (const num of player.currTokens) {
+                for (const num of defaultPattern) {
                     if (remainingSum - num >= 0) {
                         filteredArray.push(num);
                         remainingSum -= num;
@@ -46,30 +42,15 @@ export default function PlayerBets() {
                         break;
                     }
                 }
-                return filteredArray
             } else {
-                let newArray: number[] = [...player.currTokens];
-
-                for (const num of defaultPattern) {
-                    if (!newArray.includes(num)) {
-                        newArray.push(num);
-                        if (newArray.reduce((sum, num) => sum + num, 0) >= player.bank) {
-                            break;
-                        }
-                    }
-                }
-
-                return newArray;
-                dispatch(updatePlayer({ ...player, currTokens: newArray }));
+             filteredArray = defaultPattern   
             }
-
-            // dispatch(updatePlayer({ ...player, currTokens: updatedTokens }));
+            dispatch(updatePlayer({ ...player, currTokens: filteredArray }));
         })
 
     }, [playersArr]);
 
     useEffect(() => {
-
         if (playersArr[currPlayerIndex].currBet > playersArr[currPlayerIndex].minBet) {
             setIsBetValid(true);
         } else {
@@ -80,10 +61,6 @@ export default function PlayerBets() {
 
 
     const resetHandler = () => {
-        setTokenOptions(defaultTokenOptions);
-        setCurrPlayer((oldPlayer) => {
-            return { ...oldPlayer, bank: oldPlayer.bank + oldPlayer.currBet, bet: 0 };
-        });
         dispatch(updatePlayer({ ...playersArr[currPlayerIndex], bank: playersArr[currPlayerIndex].bank + playersArr[currPlayerIndex].currBet, currBet: 0 }));
     };
 
