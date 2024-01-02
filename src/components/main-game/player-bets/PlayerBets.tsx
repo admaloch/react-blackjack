@@ -17,34 +17,27 @@ export default function PlayerBets() {
     const tokenClickHandler = (input: number) => {
         const updatedBet = playersArr[currPlayerIndex].currBet + input
         const updatedBank = playersArr[currPlayerIndex].bank - input
-        dispatch(updatePlayer({ ...playersArr[currPlayerIndex], currBet: updatedBet, bank: updatedBank }));
+        dispatch(updatePlayer({ ...playersArr[currPlayerIndex], currBet: updatedBet, bank: updatedBank, currTokens: updateTokensArray() }));
     };
 
-    useEffect(() => {
-        playersArr.forEach(player => {
-            const defaultPattern: number[] = [5, 10, 20, 50, 100, 500];
-            const currentSum = defaultPattern.reduce((sum, num) => sum + num, 0);
-            let filteredArray = [];
-            let remainingSum = player.bank;
-            if (currentSum > player.bank) {
-                for (const num of defaultPattern) {
-                    if (remainingSum - num >= 0) {
-                        filteredArray.push(num);
-                        remainingSum -= num;
-                    } else {
-                        break;
-                    }
-                }
-            } else {
-                filteredArray = defaultPattern;
-            }
-            if (!arraysEqual(player.currTokens, filteredArray)) {
-                dispatch(updatePlayer({ ...player, currTokens: filteredArray }));
-            }
-        });
 
-    }, [playersArr]);
-
+    const updateTokensArray = () => {
+        const defaultPattern: number[] = [5, 10, 20, 50, 100, 500];
+        const currentSum = defaultPattern.reduce((sum, num) => sum + num, 0);
+        let filteredArray = [];
+        let remainingSum = playersArr[currPlayerIndex].bank;
+        if (currentSum > playersArr[currPlayerIndex].bank) {
+            for (const num of defaultPattern) {
+                if (remainingSum - num >= 0) {
+                    filteredArray.push(num);
+                    remainingSum -= num;
+                } else break;
+            }
+        } else {
+            filteredArray = defaultPattern;
+        }
+        return filteredArray
+    }
 
 
 
