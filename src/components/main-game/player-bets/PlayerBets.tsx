@@ -7,10 +7,14 @@ import { updatePlayer } from '../../../store/player-arr/playersArrSlice';
 import Tokens from './Tokens';
 import PlaceBetBtn from './PlaceBetBtn';
 import ResetBetsBtn from './ResetBetsBtn';
+import { useNavigate } from "react-router";
+
 
 export default function PlayerBets() {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const [currPlayerIndex, setCurrPlayerIndex] = useState(0);
     const [isBetValid, setIsBetValid] = useState(false);
@@ -25,7 +29,11 @@ export default function PlayerBets() {
 
     const nextPlayerHandler = () => {
         dispatch(updatePlayer({ ...playersArr[currPlayerIndex], minBet: playersArr[currPlayerIndex].currBet }));
-        setCurrPlayerIndex((prevIndex) => (prevIndex + 1) % playersArr.length);
+        if(playersArr.length - 1 !== currPlayerIndex) {
+            setCurrPlayerIndex((prevIndex) => (prevIndex + 1) % playersArr.length);
+        } else {
+            navigate("/dealCards");
+        }
     };
 
     return (
