@@ -6,11 +6,11 @@ export interface PlayerInterface {
     sum: number;
     isBlackjack: boolean;
     bank: number;
-    bet: number;
+    currBet: number;
     minBet: number;
     betDoubled: boolean;
     isPlayerActive: boolean;
-    betOptions: number[];
+    currTokens: number[];
     roundsWon: number;
 }
 
@@ -22,10 +22,10 @@ export const emptyPlayerItem: PlayerInterface = {
     sum: 0,
     isBlackjack: false,
     bank: 1000,
-    bet: 0,
+    currBet: 0,
     minBet: 5,
     betDoubled: false,
     isPlayerActive: true,
-    betOptions: [5, 10, 20, 50, 100, 500],
+    currTokens: [5, 10, 20, 50, 100, 500],
     roundsWon: 0,
 }

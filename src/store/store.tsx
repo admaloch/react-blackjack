@@ -3,6 +3,7 @@ import dealerObjReducer from "./dealer-obj/dealerObjSlice";
 import playersArrReducer from "./player-arr/playersArrSlice";
 import gameDataReducer from "./game-data/GameDataSlice";
 import deckReducer from "./deck/deckSlice";
+import { useEffect } from "react";
 
 export const store = configureStore({
     reducer: {
@@ -12,6 +13,8 @@ export const store = configureStore({
         gameData: gameDataReducer
     },
 })
+
+
 
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch
