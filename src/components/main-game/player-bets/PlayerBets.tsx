@@ -6,7 +6,7 @@ import BetToken from './BetToken';
 import { ResetIconWithPopper } from '../../UI/icons/ResetIconWithPopper';
 import { useDispatch } from 'react-redux';
 import { updatePlayer } from '../../../store/player-arr/playersArrSlice';
-
+import { arraysEqual } from '../../../utils/Utility';
 
 export default function PlayerBets() {
     const dispatch = useDispatch();
@@ -22,7 +22,6 @@ export default function PlayerBets() {
 
     useEffect(() => {
         playersArr.forEach(player => {
-            // reset tokens as default then remove if needed
             const defaultPattern: number[] = [5, 10, 20, 50, 100, 500];
             const currentSum = defaultPattern.reduce((sum, num) => sum + num, 0);
             let filteredArray = [];
@@ -39,8 +38,6 @@ export default function PlayerBets() {
             } else {
                 filteredArray = defaultPattern;
             }
-
-            // Check if an update is necessary before dispatching the action
             if (!arraysEqual(player.currTokens, filteredArray)) {
                 dispatch(updatePlayer({ ...player, currTokens: filteredArray }));
             }
@@ -48,18 +45,7 @@ export default function PlayerBets() {
 
     }, [playersArr]);
 
-    // Helper function to compare arrays
-    function arraysEqual(arr1: number[], arr2: number[]): boolean {
-        if (arr1.length !== arr2.length) {
-            return false;
-        }
-        for (let i = 0; i < arr1.length; i++) {
-            if (arr1[i] !== arr2[i]) {
-                return false;
-            }
-        }
-        return true;
-    }
+
 
 
     useEffect(() => {
@@ -74,12 +60,22 @@ export default function PlayerBets() {
         dispatch(updatePlayer({ ...playersArr[currPlayerIndex], bank: playersArr[currPlayerIndex].bank + playersArr[currPlayerIndex].currBet, currBet: 0 }));
     };
 
+    const allTokensHandle = () => {
+        dispatch(updatePlayer({ ...playersArr[currPlayerIndex], bank: 0, currBet: playersArr[currPlayerIndex].currBet + playersArr[currPlayerIndex].bank }));
+    }
+
     const nextPlayerHandler = () => {
+        dispatch(updatePlayer({ ...playersArr[currPlayerIndex], minBet: playersArr[currPlayerIndex].currBet }));
         setCurrPlayerIndex((prevIndex) => (prevIndex + 1) % playersArr.length);
     };
 
     return (
         <div className='game-container place-bets'>
+            {isBetValid &&
+                <div className='reset-tokens' onClick={resetHandler}>
+                    <ResetIconWithPopper placement='top' />
+                </div>
+            }
             <h4>Place Bet: {playersArr[currPlayerIndex].name}</h4>
             <h5>Current Bank: {`$${playersArr[currPlayerIndex].bank}`}</h5>
             <h5>Min bit: {`$${playersArr[currPlayerIndex].minBet}`}</h5>
@@ -89,21 +85,15 @@ export default function PlayerBets() {
                     .map((item) => (
                         <BetToken key={item} number={item} tokenClickHandler={tokenClickHandler} />
                     ))}
-                {isBetValid &&
+                {playersArr[currPlayerIndex].bank > 0 &&
                     <div
-                    className='reset-tokens'
-                    onClick={resetHandler}>
-                        <ResetIconWithPopper placement='top' />
-                    </div>
+                        onClick={allTokensHandle}
+                        className="all-tokens">All</div>
                 }
-
             </div>
-
             <button className={isBetValid ? 'game-btn' : 'game-btn disabled'} onClick={nextPlayerHandler}>
                 Place Bet
             </button>
-
-
         </div>
     );
 }
