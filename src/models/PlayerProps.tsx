@@ -1,9 +1,12 @@
+interface PlayerHand {
+    cards: string[],
+    cardValues: number[],
+    cardSum: number,
+}
+
 export interface PlayerInterface {
-    id: number;
     name: string;
-    hand: string[];
-    handValues: number[];
-    sum: number;
+    hand: PlayerHand;
     isBlackjack: boolean;
     bank: number;
     currBet: number;
@@ -15,11 +18,12 @@ export interface PlayerInterface {
 }
 
 export const emptyPlayerItem: PlayerInterface = {
-    id: 0,
     name: '',
-    hand: [],
-    handValues: [],
-    sum: 0,
+    hand: {
+        cards: [],
+        cardValues: [],
+        cardSum: 0,
+    },
     isBlackjack: false,
     bank: 1000,
     currBet: 0,

@@ -29,16 +29,16 @@ export default function PlayerBets() {
 
     const nextPlayerHandler = () => {
         dispatch(updatePlayer({ ...playersArr[currPlayerIndex], minBet: playersArr[currPlayerIndex].currBet }));
-        if(playersArr.length - 1 !== currPlayerIndex) {
+        if (playersArr.length - 1 !== currPlayerIndex) {
             setCurrPlayerIndex((prevIndex) => (prevIndex + 1) % playersArr.length);
         } else {
-            navigate("/dealCards");
+            navigate("/startRound");
         }
     };
 
     return (
         <div className='game-container place-bets'>
-            {isBetValid && <ResetBetsBtn currPlayerIndex={currPlayerIndex}/>}
+            {isBetValid && <ResetBetsBtn currPlayerIndex={currPlayerIndex} />}
             <h4>Place Bet: {playersArr[currPlayerIndex].name}</h4>
             <h5>Current Bank: {`$${playersArr[currPlayerIndex].bank}`}</h5>
             <h5>Min bit: {`$${playersArr[currPlayerIndex].minBet}`}</h5>
