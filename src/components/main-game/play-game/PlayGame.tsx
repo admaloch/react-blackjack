@@ -35,50 +35,7 @@ export default function PlayGame() {
         }
     };
 
-    const genRandomCard = (nameInput:string, numCards = 1) => {
-        const player = playersArr.find(x => x.name === nameInput);
-        if (!player) {
-            return null;
-        }
-        const suits = ['♦', '♣', '♥', '♠'];
-        const updatedHand = { ...player.hand };
-
-        for (let i = 0; i < numCards; i++) {
-            while (true) {
-                const suitIndex = Math.floor(Math.random() * 4);
-                const cardIndex = Math.floor(Math.random() * 14);
-                const numCardLeft = deck[cardIndex].suits[suitIndex];
-                if (numCardLeft > 0) {
-                    const newCard = `${deck[cardIndex].card}${suits[suitIndex]}`;
-                    updatedHand.cards.push(newCard);
-                    const newCardVal = deck[cardIndex].value;
-                    updatedHand.cardValues.push(newCardVal);
-                    updatedHand.cardSum = updatedHand.cardValues.reduce((a, b) => a + b);
-                    break;
-                }
-            }
-            if (updatedHand.cardValues.includes(11)) {
-                console.log('there is an ace');
-                const updatedPlayer = changeAceVal(player);
-                return updatedPlayer;
-            }
-        }
-
-        return player;
-    };
-
-
-    const changeAceVal = (playerObj: PlayerInterface) => {
-        const updatedPlayer = { ...playerObj }; // Use spread to create a shallow copy
-        const { cardValues } = updatedPlayer.hand;
-        while (updatedPlayer.hand.cardSum > 21) {
-            const lastIndex = cardValues.lastIndexOf(11);
-            if (lastIndex === -1) break; // No more aces
-            cardValues[lastIndex] = 1;
-            updatedPlayer.hand.cardSum = cardValues.reduce((a, b) => a + b);
-        }
-        return updatedPlayer;
-    };
+    
 
 
 

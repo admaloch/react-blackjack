@@ -1,12 +1,18 @@
-interface PlayerHand {
+interface Hand {
     cards: string[],
     cardValues: number[],
     cardSum: number,
 }
 
+export interface DealerObjInterface {
+    name: string;
+    hand: Hand;
+    isBlackjack: boolean;
+}
+
 export interface PlayerInterface {
     name: string;
-    hand: PlayerHand;
+    hand: Hand;
     isBlackjack: boolean;
     bank: number;
     currBet: number;
@@ -33,3 +39,6 @@ export const emptyPlayerItem: PlayerInterface = {
     currTokens: [5, 10, 20, 50, 100, 500],
     roundsWon: 0,
 }
+
+
+

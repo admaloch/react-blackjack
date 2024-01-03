@@ -1,19 +1,13 @@
-
 import { createSlice } from "@reduxjs/toolkit";
-
- interface DealerObjInterface {
-    name: string;
-    hand: string[];
-    handValues: number[];
-    sum: number;
-    isBlackjack: boolean;
-}
+import { DealerObjInterface } from "../../models/PlayerProps";
 
 const initialState: DealerObjInterface = {
     name: 'Dealer',
-    hand: [],
-    handValues: [],
-    sum: 0,
+    hand: {
+        cards: [],
+        cardValues: [],
+        cardSum: 0,
+    },
     isBlackjack: false,
 }
 
