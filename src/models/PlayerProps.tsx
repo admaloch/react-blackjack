@@ -1,4 +1,4 @@
-interface Hand {
+export interface Hand {
     cards: string[],
     cardValues: number[],
     cardSum: number,

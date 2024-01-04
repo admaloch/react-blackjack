@@ -1,26 +1,27 @@
-const drawCards = (nameInput:string, numCards = 1) => {
-    let player = null;
-    if (nameInput !== 'Dealer') {
-      player = playersArr.find(x => x.name === nameInput);
-    } else {
-      player = dealerObj;
-    }
-    if (!player) {
+import { Hand } from "../../../../models/PlayerProps";
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
+
+const deck = useSelector((state: RootState) => state.deck);
+
+
+const drawCards = (playerHand:Hand, numCards = 1) => {
+    if (!playerHand) {
       return null;
     }
-    let { hand } = player;
+    let updatedHand = {...playerHand}
     for (let i = 0; i < numCards; i++) {
-      hand = drawCard(hand);
+      updatedHand = drawCard(playerHand);
     }
-    if (hand.cardValues.includes(11)) {
+    if (playerHand.cardValues.includes(11)) {
       console.log('there is an ace')
-      hand = changeAceVal(hand);
+      updatedHand = changeAceVal(playerHand);
     }
-    return hand;
+    return updatedHand;
   };
   
-  const drawCard = (hand) => {
-    const updatedHand = { ...hand };
+  const drawCard = (playerHand: Hand) => {
+    const handWithNewCards = { ...playerHand };
     const suits = ['♦', '♣', '♥', '♠'];
     while (true) {
       const suitIndex = Math.floor(Math.random() * 4);
@@ -28,25 +29,24 @@ const drawCards = (nameInput:string, numCards = 1) => {
       const numCardLeft = deck[cardIndex].suits[suitIndex];
       if (numCardLeft > 0) {
         const newCard = `${deck[cardIndex].card}${suits[suitIndex]}`;
-        updatedHand.cards.push(newCard);
+        handWithNewCards.cards.push(newCard);
         const newCardVal = deck[cardIndex].value;
-        updatedHand.cardValues.push(newCardVal);
-        updatedHand.cardSum = updatedHand.cardValues.reduce((a, b) => a + b);
+        handWithNewCards.cardValues.push(newCardVal);
+        handWithNewCards.cardSum = handWithNewCards.cardValues.reduce((a, b) => a + b);
         break;
       }
     }
-    return updatedHand;
+    return handWithNewCards;
   };
   
-  const changeAceVal = (hand) => {
-  
-    const updatedHand = { ...hand };
-    const { cardValues } = updatedHand;
-    while (updatedHand.cardSum > 21) {
+  const changeAceVal = (playerHand) => {
+    const handWithNewAceVals = { ...playerHand };
+    const { cardValues } = handWithNewAceVals;
+    while (handWithNewAceVals.cardSum > 21) {
       const lastIndex = cardValues.lastIndexOf(11);
       if (lastIndex === -1) break;
       cardValues[lastIndex] = 1;
-      updatedHand.cardSum = cardValues.reduce((a, b) => a + b);
+      handWithNewAceVals.cardSum = cardValues.reduce((a, b) => a + b);
     }
-    return updatedHand;
+    return handWithNewAceVals;
   };
