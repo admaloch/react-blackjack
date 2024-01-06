@@ -1,9 +1,12 @@
 import { Hand } from "../../../models/PlayerProps";
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store/store';
+// this function takes in the current hand obj, and number of cards to draw and updates the current hand -- there is also logic to update the ace value
 
-export default function DrawCards (playerHandInput: Hand, numCardsDrawn = 1 ) {
+export default function useDrawCards(playerHandInput: Hand, numCardsDrawn = 1) {
+
   const deck = useSelector((state: RootState) => state.deck);
+
   const drawCards = (playerHand: Hand, numCards = 1) => {
     if (!playerHand) {
       return null;
@@ -19,29 +22,46 @@ export default function DrawCards (playerHandInput: Hand, numCardsDrawn = 1 ) {
     return updatedPlayerHand;
   };
 
-  const drawCard = (handInput:Hand) => {
+  const drawCard = (handInput: Hand) => {
     const handWithNewCards = { ...handInput };
     const suits = ['♦', '♣', '♥', '♠'];
     const urlSuits = ['D', 'S', 'H', 'S'];
-    while (true) {
+
+    let isValidCardDraw = false;
+
+    while (!isValidCardDraw) {
       const suitIndex = Math.floor(Math.random() * 4);
       const cardIndex = Math.floor(Math.random() * 14);
       const numCardLeft = deck[cardIndex].suits[suitIndex];
+
       if (numCardLeft > 0) {
         const newCard = `${deck[cardIndex].card}${suits[suitIndex]}`;
         const newCardVal = deck[cardIndex].value;
-        const cardUrl = `${deck[cardIndex].card}${urlSuits[suitIndex]}`
-        handWithNewCards.cards.push(newCard);
-        handWithNewCards.cardNumVals.push(newCardVal);
-        handWithNewCards.cardUrlVals.push(cardUrl);
-        handWithNewCards.cardSum = handWithNewCards.cardNumVals.reduce((a, b) => a + b);
-        break;
+        const cardUrl = `${deck[cardIndex].card}${urlSuits[suitIndex]}`;
+
+        const updatedCards = [...handWithNewCards.cards, newCard];
+        const updatedCardNumVals = [...handWithNewCards.cardNumVals, newCardVal];
+        const updatedCardUrlVals = [...handWithNewCards.cardUrlVals, cardUrl];
+
+        const updatedHand = {
+          ...handWithNewCards,
+          cards: updatedCards,
+          cardNumVals: updatedCardNumVals,
+          cardUrlVals: updatedCardUrlVals,
+          cardSum: handWithNewCards.cardSum + newCardVal,
+        };
+
+        isValidCardDraw = true;
+        return updatedHand;
       }
     }
+
     return handWithNewCards;
   };
 
-  const changeAceVal = (handInput:Hand) => {
+
+
+  const changeAceVal = (handInput: Hand) => {
     const handWithAlteredAceVals = { ...handInput };
     while (handWithAlteredAceVals.cardSum > 21) {
       const lastIndex = handWithAlteredAceVals.cardNumVals.lastIndexOf(11);

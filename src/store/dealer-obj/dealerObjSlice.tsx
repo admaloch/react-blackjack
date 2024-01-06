@@ -5,7 +5,8 @@ const initialState: DealerObjInterface = {
     name: 'Dealer',
     hand: {
         cards: [],
-        cardValues: [],
+        cardUrlVals: [],
+        cardNumVals: [],
         cardSum: 0,
     },
     isBlackjack: false,
@@ -16,11 +17,14 @@ const dealerObjSlice = createSlice({
     initialState,
     reducers: {
         updateDealer: (state, action) => {
-            state === action.payload
+            state = action.payload
+        },
+        updateDealerHand: (state, action) => {
+            state.hand = action.payload
         }
     },
 })
 
-export const { updateDealer } = dealerObjSlice.actions
+export const { updateDealer, updateDealerHand } = dealerObjSlice.actions
 
 export default dealerObjSlice.reducer

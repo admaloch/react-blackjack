@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { PlayerInterface } from "../../models/PlayerProps";
+import { Hand } from "../../models/PlayerProps";
 
 const initialState: PlayerInterface[] = [];
 
@@ -20,6 +21,7 @@ const playerArrSlice = createSlice({
                 state[index] = action.payload;
             }
         },
+
         removePlayer: (state, action: PayloadAction<PlayerNameProps>) => {
             const index = state.findIndex(player => player.name === action.payload.name);
             if (index !== -1) {

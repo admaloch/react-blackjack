@@ -17,6 +17,7 @@ function App() {
   const isMenuShown = useSelector((state: RootState) => state.gameData.isMenuShown);
   return (
     <>
+     <CssBaseline />
       {isMenuShown && <GameMenu />}
       <Routes>
         <Route path='/' element={<GameIntro />} />
@@ -25,7 +26,7 @@ function App() {
         <Route path='/placeBets' element={<PlayerBets />} />
         <Route path='/startRound' element={<PlayGame />} />
       </Routes>
-      <CssBaseline />
+     
     </>
   )
 }

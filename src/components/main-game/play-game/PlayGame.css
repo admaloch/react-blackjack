@@ -17,26 +17,23 @@
 .player-table {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     height: 50%;
     width: 100%;
-    
+    position: relative;
+
 }
+
 .player-table {
     border-top: var(--text) solid 2px;
 }
 
-.deal-cards {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* width: 100%; */
-}
+
 
 .curr-hand {
     border: red solid 1px;
-    padding: 3rem;
+    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -45,12 +42,12 @@
 }
 
 .curr-hand .player-card {
-/* border: green solid 1px; */
-/* max-width: 230px; */
-display: flex;
-justify-content: center;
-align-items: center;
-margin: .2rem;
+    /* border: green solid 1px; */
+    /* max-width: 230px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: .2rem;
 }
 
 .curr-hand img {
