@@ -18,7 +18,7 @@ export interface PlayerInterface {
     bank: number;
     currBet: number;
     minBet: number;
-    betDoubled: boolean;
+    isDoubleUp: boolean;
     isPlayerActive: boolean;
     currTokens: number[];
     roundsWon: number;

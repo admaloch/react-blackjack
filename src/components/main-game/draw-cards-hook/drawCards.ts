@@ -26,7 +26,7 @@ const drawCard = (handInput: Hand, deck: CardObjInterface[]) => {
 
     while (!isValidCardDraw) {
         const suitIndex = Math.floor(Math.random() * 4);
-        const cardIndex = Math.floor(Math.random() * 14);
+        const cardIndex = Math.floor(Math.random() * 13);
         const numCardLeft = deck[cardIndex].suits[suitIndex];
 
         if (numCardLeft > 0) {

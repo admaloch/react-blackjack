@@ -16,8 +16,10 @@ export default function PlayerTable({ playerIndex, isPlayerRoundComplete }: Play
 
     return (
         <div className="player-table">
-{!isPlayerRoundComplete && <PlayerIcons/>}
-            
+            <PlayerIcons
+                playerIndex={playerIndex}
+            />
+
             <h4>{currPlayer.name}</h4>
             <div className="player-info">
                 <h5>Current Bank: {currPlayer.bank}</h5>

@@ -7,6 +7,7 @@ import { updateDealerHand } from '../../../store/dealer-obj/dealerObjSlice';
 import { useEffect, useState } from 'react';
 import DealerTable from './dealer-round/DealerTable';
 import PlayerTable from './player-round/PlayerTable';
+import EndOfTurnModal from './end-turn-modal/EndOfTurnModal';
 import './PlayGame.css'
 // import { Hand, PlayerInterface } from '../../../models/PlayerProps';
 // import useDrawCards from '../draw-cards-hook/useDrawCards';
@@ -24,10 +25,14 @@ export default function PlayGame() {
     const deck = useSelector((state: RootState) => state.deck);
     const [currPlayerIndex, setCurrPlayerIndex] = useState(0);
     const [isPlayerRoundComplete, setIsPlayerRoundComplete] = useState(false)
+    const [isModalOpen, setIsModalOpen] = useState(false)
+
+
 
     // Use the custom hook directly in the component
     // const newDealerHand = useDrawCards(dealerObj.hand, 2);
     // const newPlayerHand = useDrawCards(playersArr[currPlayerIndex].hand, 2);
+
 
 
     useEffect(() => {
@@ -53,14 +58,17 @@ export default function PlayGame() {
     return (
         <div className='game-container play-round'>
             <div className="table">
-                <DealerTable 
-                isPlayerRoundComplete={isPlayerRoundComplete}
+                <DealerTable
+                    isPlayerRoundComplete={isPlayerRoundComplete}
                 />
                 <PlayerTable
                     playerIndex={currPlayerIndex}
                     isPlayerRoundComplete={isPlayerRoundComplete}
                 />
             </div>
+            <EndOfTurnModal
+            playerIndex={currPlayerIndex}
+            />
         </div>
     );
 }
