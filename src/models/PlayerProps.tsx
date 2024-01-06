@@ -1,6 +1,7 @@
 export interface Hand {
     cards: string[],
-    cardValues: number[],
+    cardUrlVals: string[]
+    cardNumVals: number[],
     cardSum: number,
 }
 
@@ -27,7 +28,8 @@ export const emptyPlayerItem: PlayerInterface = {
     name: '',
     hand: {
         cards: [],
-        cardValues: [],
+        cardUrlVals: [],
+        cardNumVals: [],
         cardSum: 0,
     },
     isBlackjack: false,
