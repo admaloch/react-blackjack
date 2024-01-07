@@ -4,11 +4,11 @@ import Cards from '../display-cards/Cards';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../store/store';
 
-interface DealerTableProps {
-  isPlayerFinished: boolean;
-}
+// interface DealerTableProps {
+//   isPlayerFinished: boolean;
+// }
 
-export default function DealerTable({isPlayerFinished}:DealerTableProps) {
+export default function DealerTable() {
   const dealerObj = useSelector((state: RootState) => state.dealerObj);
 
   return (

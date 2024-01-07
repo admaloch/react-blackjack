@@ -16,15 +16,12 @@ export default function PlayGame() {
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const dealerObj = useSelector((state: RootState) => state.dealerObj);
     const deck = useSelector((state: RootState) => state.deck);
+
     const [currPlayerIndex, setCurrPlayerIndex] = useState(0);
     const [isPlayerFinished, setisPlayerFinished] = useState(false)
 
     const endRound = () => setisPlayerFinished(true)
     const startRound = () => setisPlayerFinished(false)
-
-
-
-
 
     useEffect(() => {
         if (currPlayerIndex === 0) {
@@ -35,23 +32,18 @@ export default function PlayGame() {
         dispatch(updatePlayer({ ...playersArr[currPlayerIndex], hand: newPlayerHand }));
     }, [currPlayerIndex]);
 
-    const nextPlayerHandler = () => {
-        if (playersArr.length - 1 !== currPlayerIndex) {
-            setCurrPlayerIndex((prevIndex) => (prevIndex + 1) % playersArr.length);
-        } else {
-            console.log('Dealers turn')
-        }
-    };
+    const changeToNextPlayer = () => {
+        setCurrPlayerIndex((prevIndex) => (prevIndex + 1) % playersArr.length);
+    }
+
+
 
     return (
         <div className='game-container play-round'>
             <div className="table">
-                <DealerTable
-                    isPlayerFinished={isPlayerFinished}
-                />
+                <DealerTable />
                 <PlayerTable
                     playerIndex={currPlayerIndex}
-                    isPlayerFinished={isPlayerFinished}
                     endRound={endRound}
                 />
             </div>
@@ -59,7 +51,8 @@ export default function PlayGame() {
                 playerIndex={currPlayerIndex}
                 isPlayerFinished={isPlayerFinished}
                 startRound={startRound}
-                nextPlayerHandler={nextPlayerHandler}
+                changeToNextPlayer={changeToNextPlayer}
+                endRound={endRound}
             />
         </div>
     );

@@ -30,7 +30,7 @@
 .game-btn{
     padding: .5rem 1.5rem;
     color: var(--text);
-    border: var(--text) solid 1px;
+    border: var(--text) solid 2px;
     background-color: var(--background);
     cursor: pointer;
     transition: .15s ease-in-out all;
@@ -47,5 +47,9 @@
 .game-btn:hover,
 .game-btn:hover a {
     color: var(--background);
-    background-color: var(--text);
 }
+.game-btn:hover {
+    background-color: var(--text);
+    border: var(--background) solid 2px;
+}
+

@@ -2,8 +2,8 @@
 
 .form-container {
     border: var(--text) solid 1px;
-    min-height: 150px;
-    padding: 1rem;
+
+    padding: 2rem;
     border-radius: 10px;
 }
 

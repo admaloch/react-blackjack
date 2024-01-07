@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { DrawCardsIconWithPopper } from "../../../UI/icons/DrawCardsIconWithPopper"
 import { useDispatch } from 'react-redux';
 import { updatePlayer } from "../../../../store/player-arr/playersArrSlice";
@@ -8,6 +7,7 @@ import drawCards from "../../draw-cards-hook/drawCards";
 import { ExitTableIconWithPopper } from "../../../UI/icons/ExitTableIconWithPopper";
 
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import { current } from "@reduxjs/toolkit";
 
 interface PlayerIconsProps {
     playerIndex: number;
@@ -30,7 +30,7 @@ export default function PlayerIcons({ playerIndex, endRound }: PlayerIconsProps)
                 ...playersArr[playerIndex],
                 hand: newPlayerHand,
             }));
-        }, 500);
+        }, 250);
     }
 
     const doubleUpHandler = () => {
@@ -39,15 +39,17 @@ export default function PlayerIcons({ playerIndex, endRound }: PlayerIconsProps)
             dispatch(updatePlayer({
                 ...playersArr[playerIndex],
                 hand: newPlayerHand,
-                bank: playersArr[playerIndex].bank / 2,
                 currBet: playersArr[playerIndex].currBet * 2,
+                bank: playersArr[playerIndex].bank - playersArr[playerIndex].currBet,
                 isDoubleUp: true,
             }));
-        }, 500);
+        }, 350);
     }
 
     const stayBtnHandler = () => {
-        console.log('stay')
+        setTimeout(() => {
+            endRound()
+        }, 350)
     }
 
     return (
@@ -62,7 +64,7 @@ export default function PlayerIcons({ playerIndex, endRound }: PlayerIconsProps)
                 </div>
                 <div className="player-btn-container">
                     <button
-                        onClick={() => endRound()}
+                        onClick={stayBtnHandler}
                         className="game-btn stay-btn">Stay
                     </button>
                 </div>

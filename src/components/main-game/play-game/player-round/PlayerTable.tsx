@@ -6,34 +6,28 @@ import PlayerIcons from './PlayerIcons';
 
 interface PlayerTableProps {
     playerIndex: number;
-    isPlayerFinished: boolean;
     endRound: () => void;
 }
 
-export default function PlayerTable({ playerIndex, isPlayerFinished, endRound }: PlayerTableProps) {
+export default function PlayerTable({ playerIndex, endRound }: PlayerTableProps) {
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const currPlayer = playersArr[playerIndex]
 
     return (
         <div className="player-table">
-
             <PlayerIcons
-            endRound={endRound}
+                endRound={endRound}
                 playerIndex={playerIndex}
             />
-
             <h4>{currPlayer.name}</h4>
             <div className="player-info">
                 <h5>Current Bank: {currPlayer.bank}</h5>
                 <h5>Current Bet: {currPlayer.currBet}</h5>
                 <h5>Card sum {currPlayer.hand.cardSum}</h5>
             </div>
-
-
             <Cards
                 cardUrlVals={currPlayer.hand.cardUrlVals}
             />
-
         </div>
     )
 }
