@@ -16,6 +16,7 @@ export default function PlayerTable({ playerIndex, isPlayerRoundComplete }: Play
 
     return (
         <div className="player-table">
+            
             <PlayerIcons
                 playerIndex={playerIndex}
             />

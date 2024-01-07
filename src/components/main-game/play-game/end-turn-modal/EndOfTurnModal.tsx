@@ -18,14 +18,15 @@ interface EndOfTurnModalProps {
 
 export default function EndOfTurnModal({ playerIndex }: EndOfTurnModalProps) {
     const playersArr = useSelector((state: RootState) => state.playersArr);
-    const { hand } = playersArr[playerIndex]
+    // const { hand } = playersArr[playerIndex]
 
     const [isModalOpen, setIsModalOpen] = useState(false)
+    // const [modalContents, setIsModalContents] = useState()
 
     const openModal = () => setIsModalOpen(true)
     const closeModal = () => setIsModalOpen(false)
 
-    let modalContents = ''
+    let modalContents = 'end of turn'
 
 
     // if (hand.cardSum > 21) {
@@ -37,7 +38,7 @@ export default function EndOfTurnModal({ playerIndex }: EndOfTurnModalProps) {
     //     setIsModalOpen(true)
     // }
 
-    
+
 
     const playerDataArr = useSelector((state: RootState) => state.playersArr);
     const currRound = useSelector((state: RootState) => state.gameData.roundsPlayed);
