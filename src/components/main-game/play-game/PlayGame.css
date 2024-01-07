@@ -39,18 +39,43 @@
     height: 5rem;
 }
 
-.player-table .icon-container {
+.player-table .icon-wrapper {
     position: absolute;
+    display: flex;
+border: yellow solid 1px;
     right: 0;
     top: 0;
 
 }
 
-.double-btn {
+
+
+.icon-wrapper .icon-container {
+position: relative;
+top: .3rem;
+}
+
+.draw-cards-icon,
+.player-btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.exit-table-icon {
+    position: absolute;
+    bottom: -1rem;
+    left: .5rem;
+}
+.exit-table-icon svg {
+ width: 40px;
+}
+/* .double-btn {
     position: relative;
     right: 4rem;
     top: 1rem;
-}
+} */
+
 
 .curr-hand {
     border: red solid 1px;

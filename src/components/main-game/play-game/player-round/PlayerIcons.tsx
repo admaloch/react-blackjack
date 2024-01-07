@@ -5,6 +5,7 @@ import { updatePlayer } from "../../../../store/player-arr/playersArrSlice";
 import { useSelector } from 'react-redux';
 import { RootState } from "../../../../store/store";
 import drawCards from "../../draw-cards-hook/drawCards";
+import { ExitTableIconWithPopper } from "../../../UI/icons/ExitTableIconWithPopper";
 
 interface PlayerIconsProps {
     playerIndex: number
@@ -40,21 +41,38 @@ export default function PlayerIcons({ playerIndex }: PlayerIconsProps) {
                 isDoubleUp: true,
             }));
         }, 500);
+    }
 
+    const stayBtnHandler = () => {
+        console.log('stay')
     }
 
     return (
-        <div className='icon-container'>
-            <div
-                onClick={drawCardsHandler}
-                className="draw-cards-icon">
-                <DrawCardsIconWithPopper placement="top" />
+        <>
+            <div className='icon-wrapper'>
+                <div className="player-btn-container">
+                    <button
+                        style={doubleUpStyle}
+                        onClick={doubleUpHandler}
+                        className="game-btn double-btn">Double Up?
+                    </button>
+                </div>
+                <div className="player-btn-container">
+                    <button
+                        onClick={stayBtnHandler}
+                        className="game-btn stay-btn">Stay
+                    </button>
+                </div>
 
+                <div
+                    onClick={drawCardsHandler}
+                    className="draw-cards-icon">
+                    <DrawCardsIconWithPopper placement="top" />
+                </div>
             </div>
-            <button
-                style={doubleUpStyle}
-                onClick={doubleUpHandler}
-                className="game-btn double-btn">Double Up?</button>
-        </div>
+            <div className="exit-table-icon">
+                <ExitTableIconWithPopper placement="top"/>
+            </div>
+        </>
     )
 }
