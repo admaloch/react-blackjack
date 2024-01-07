@@ -6,18 +6,19 @@ import PlayerIcons from './PlayerIcons';
 
 interface PlayerTableProps {
     playerIndex: number;
-    isPlayerRoundComplete: boolean;
-
+    isPlayerFinished: boolean;
+    endRound: () => void;
 }
 
-export default function PlayerTable({ playerIndex, isPlayerRoundComplete }: PlayerTableProps) {
+export default function PlayerTable({ playerIndex, isPlayerFinished, endRound }: PlayerTableProps) {
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const currPlayer = playersArr[playerIndex]
 
     return (
         <div className="player-table">
-            
+
             <PlayerIcons
+            endRound={endRound}
                 playerIndex={playerIndex}
             />
 

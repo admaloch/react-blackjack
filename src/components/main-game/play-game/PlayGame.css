@@ -67,9 +67,32 @@ top: .3rem;
     bottom: -1rem;
     left: .5rem;
 }
+
 .exit-table-icon svg {
  width: 40px;
 }
+.draw-cards-icon {
+    position: absolute;
+    bottom: -.3rem;
+    right: -.7rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.plus-icon svg {
+    width: 20px;
+    height: 20px;
+}
+.plus-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
 /* .double-btn {
     position: relative;
     right: 4rem;

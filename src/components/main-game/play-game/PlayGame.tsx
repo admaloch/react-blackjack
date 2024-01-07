@@ -17,7 +17,14 @@ export default function PlayGame() {
     const dealerObj = useSelector((state: RootState) => state.dealerObj);
     const deck = useSelector((state: RootState) => state.deck);
     const [currPlayerIndex, setCurrPlayerIndex] = useState(0);
-    const [isPlayerRoundComplete, setIsPlayerRoundComplete] = useState(false)
+    const [isPlayerFinished, setisPlayerFinished] = useState(false)
+
+    const endRound = () => setisPlayerFinished(true)
+    const startRound = () => setisPlayerFinished(false)
+
+
+
+
 
     useEffect(() => {
         if (currPlayerIndex === 0) {
@@ -32,7 +39,7 @@ export default function PlayGame() {
         if (playersArr.length - 1 !== currPlayerIndex) {
             setCurrPlayerIndex((prevIndex) => (prevIndex + 1) % playersArr.length);
         } else {
-            setIsPlayerRoundComplete(true)
+            console.log('Dealers turn')
         }
     };
 
@@ -40,15 +47,19 @@ export default function PlayGame() {
         <div className='game-container play-round'>
             <div className="table">
                 <DealerTable
-                    isPlayerRoundComplete={isPlayerRoundComplete}
+                    isPlayerFinished={isPlayerFinished}
                 />
                 <PlayerTable
                     playerIndex={currPlayerIndex}
-                    isPlayerRoundComplete={isPlayerRoundComplete}
+                    isPlayerFinished={isPlayerFinished}
+                    endRound={endRound}
                 />
             </div>
             <EndOfTurnModal
-            playerIndex={currPlayerIndex}
+                playerIndex={currPlayerIndex}
+                isPlayerFinished={isPlayerFinished}
+                startRound={startRound}
+                nextPlayerHandler={nextPlayerHandler}
             />
         </div>
     );

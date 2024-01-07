@@ -5,10 +5,10 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../../../store/store';
 
 interface DealerTableProps {
-  isPlayerRoundComplete: boolean;
+  isPlayerFinished: boolean;
 }
 
-export default function DealerTable({isPlayerRoundComplete}:DealerTableProps) {
+export default function DealerTable({isPlayerFinished}:DealerTableProps) {
   const dealerObj = useSelector((state: RootState) => state.dealerObj);
 
   return (

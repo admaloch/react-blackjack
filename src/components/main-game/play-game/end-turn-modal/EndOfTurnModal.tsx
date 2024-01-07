@@ -4,53 +4,52 @@ import { RootState } from "../../store/store"
 import { useState, useEffect } from 'react';
 
 
-
-
-
-
-
 interface EndOfTurnModalProps {
     playerIndex: number;
-
+    isPlayerFinished: boolean;
+    startRound: () => void;
+    endRound: () => void;
+    nextPlayerHandler: () => void;
 }
 
 
 
-export default function EndOfTurnModal({ playerIndex }: EndOfTurnModalProps) {
+export default function EndOfTurnModal({ playerIndex, isPlayerFinished, endRound, startRound, nextPlayerHandler }: EndOfTurnModalProps) {
+
     const playersArr = useSelector((state: RootState) => state.playersArr);
-    // const { hand } = playersArr[playerIndex]
 
-    const [isModalOpen, setIsModalOpen] = useState(false)
-    // const [modalContents, setIsModalContents] = useState()
+    const { hand } = playersArr[playerIndex]
 
-    const openModal = () => setIsModalOpen(true)
-    const closeModal = () => setIsModalOpen(false)
+    let modalContents: string = ''
 
-    let modalContents = 'end of turn'
+    useEffect(() => {
 
+        if (hand.cardSum > 21) {
+            endRound()
+            nextPlayerHandler()
+        }
+        if (hand.cards.length === 2 && hand.cardSum === 21) {
+            endRound()
+            nextPlayerHandler()
+        }
+    }, [playersArr])
 
-    // if (hand.cardSum > 21) {
-    //     modalContents = "Player Bust"
-    //     setIsModalOpen(true)
-    // }
-    // if (hand.cards.length === 2 && hand.cardSum === 21) {
-    //     modalContents = "BlackJack"
-    //     setIsModalOpen(true)
-    // }
-
-
-
-    const playerDataArr = useSelector((state: RootState) => state.playersArr);
-    const currRound = useSelector((state: RootState) => state.gameData.roundsPlayed);
-
+    if (hand.cardSum > 21) {
+        modalContents = 'Player Bust'
+    } else if (hand.cards.length === 2 && hand.cardSum === 21) {
+        modalContents = 'Blackjack!'
+    } else {
+        modalContents = 'Player stayed!'
+    }
 
     return (
         <Modal
-            closeModal={closeModal}
-            open={isModalOpen}
+            closeModal={startRound}
+            open={isPlayerFinished}
         >
             <div className="end-turn-modal">
                 <h2>{modalContents}</h2>
+                <button className="game-btn">Next player</button>
             </div>
         </Modal>
     )

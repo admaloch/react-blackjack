@@ -7,11 +7,14 @@ import { RootState } from "../../../../store/store";
 import drawCards from "../../draw-cards-hook/drawCards";
 import { ExitTableIconWithPopper } from "../../../UI/icons/ExitTableIconWithPopper";
 
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+
 interface PlayerIconsProps {
-    playerIndex: number
+    playerIndex: number;
+    endRound: () => void;
 }
 
-export default function PlayerIcons({ playerIndex }: PlayerIconsProps) {
+export default function PlayerIcons({ playerIndex, endRound }: PlayerIconsProps) {
     const deck = useSelector((state: RootState) => state.deck);
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const dispatch = useDispatch();
@@ -59,19 +62,23 @@ export default function PlayerIcons({ playerIndex }: PlayerIconsProps) {
                 </div>
                 <div className="player-btn-container">
                     <button
-                        onClick={stayBtnHandler}
+                        onClick={() => endRound()}
                         className="game-btn stay-btn">Stay
                     </button>
                 </div>
-
-                <div
-                    onClick={drawCardsHandler}
-                    className="draw-cards-icon">
-                    <DrawCardsIconWithPopper placement="top" />
-                </div>
             </div>
+
+            <div
+                onClick={drawCardsHandler}
+                className="draw-cards-icon">
+                <div className="plus-icon">
+                    <AddCircleOutlineIcon />
+                </div>
+                <DrawCardsIconWithPopper placement="top" />
+            </div>
+
             <div className="exit-table-icon">
-                <ExitTableIconWithPopper placement="top"/>
+                <ExitTableIconWithPopper placement="top" />
             </div>
         </>
     )
