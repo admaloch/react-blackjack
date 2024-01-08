@@ -7,7 +7,6 @@ import drawCards from "../../draw-cards-hook/drawCards";
 import { ExitTableIconWithPopper } from "../../../UI/icons/ExitTableIconWithPopper";
 
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import { current } from "@reduxjs/toolkit";
 
 interface PlayerIconsProps {
     playerIndex: number;
@@ -54,20 +53,26 @@ export default function PlayerIcons({ playerIndex, endRound }: PlayerIconsProps)
 
     return (
         <>
-            <div className='icon-wrapper'>
+            <div className="other-options">
                 <div className="player-btn-container">
                     <button
                         style={doubleUpStyle}
                         onClick={doubleUpHandler}
-                        className="game-btn double-btn">Double Up?
+                        className="game-btn double-btn">Double Down
                     </button>
                 </div>
                 <div className="player-btn-container">
                     <button
-                        onClick={stayBtnHandler}
-                        className="game-btn stay-btn">Stay
+                        className="game-btn insurance-btn">Insurance
                     </button>
                 </div>
+            </div>
+
+            <div className="player-btn-container">
+                <button
+                    onClick={stayBtnHandler}
+                    className="game-btn stay-btn">Stay
+                </button>
             </div>
 
             <div

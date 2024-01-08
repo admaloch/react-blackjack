@@ -144,3 +144,23 @@ top: .3rem;
     align-items: center;
     margin: .2rem .7rem .7rem .7rem ;
 }
+
+.stay-btn {
+    position: absolute;
+    top: .2em;
+    right: .5rem;
+}
+
+.other-options {
+    position: absolute;
+    top: 0rem;
+    display: flex;
+    justify-content: center;
+   
+}
+
+.other-options button {
+    margin: .2rem;
+}
+
+

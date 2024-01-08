@@ -69,8 +69,8 @@ export default function EndOfTurnModal({ playerIndex, isPlayerFinished, endRound
         >
             <div className="end-turn-modal">
                 <h2>{modalHeader}</h2>
+                
                 <div className="end-turn-stats">
-
                     {currPlayer.isDoubleUp
                         ? <h3>Doubled bet: {currPlayer.currBet}</h3>
                         : <h3>Bet: {currPlayer.currBet}</h3>
