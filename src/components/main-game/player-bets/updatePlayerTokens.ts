@@ -1,5 +1,5 @@
 export const updatePlayerTokens = (currBank: number) => {
-    const defaultPattern: number[] = [5, 10, 20, 50, 100, 500];
+    const defaultPattern: number[] = [1, 5, 25, 50, 100, 500];
     const currentSum = defaultPattern.reduce((sum, num) => sum + num, 0);
     let filteredArray = [];
     let remainingSum = currBank;

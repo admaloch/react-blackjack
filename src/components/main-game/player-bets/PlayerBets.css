@@ -11,8 +11,7 @@
     align-items: center;
 }
 
-.betting-token,
-.all-tokens{
+.tokens-container div{
     background-color: var(--text);
     color: var(--background);
     transition: opacity .15s ease-in-out;
@@ -25,30 +24,84 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.betting-token,
-.all-tokens {
     width: 50px;
     height: 50px;
     padding: .2rem;
 }
 
+:root {
+    --token1: #ffd23f;
+    --token5: #ee4266;
+    --token25: #0ead69;
+    --token50: #00bbf9;
+    --token100: #323031;
+    --token500: #540d6e;
+}
+
+#token1{
+    background-color: var(--token1);
+    color: var(--background);
+    border: dashed 4px var(--token50);
+}
+#token5{
+    background-color: var(--token5);
+    color: var(--background);
+    border: dashed 4px var(--token500);
+}
+#token25{
+    background-color: var(--token25);
+    color: var(--background);
+    border: dashed 4px var(--token1);
+}
+#token50{
+    background-color: var(--token50);
+    color: var(--background);
+    border: dashed 4px var(--token5);
+}
+#token100{
+    background-color: var(--token100);
+    color: var(--text);
+    border: dashed 4px var(--text);
+}
+#token500{
+    background-color: var(--token500);
+    color: var(--text);
+    border: dashed 4px var(--token25);
+}
+
+.all-tokens {
+    border: dashed 4px var(--token100);
+}
+
+.bet-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* border: var(--text) solid 5px;
+    border-radius: 5px; */
+    padding: 3rem;
+}
 
 
 
-
-.betting-token:hover,
-.all-tokens:hover,
+.tokens-container div:hover,
 .reset-tokens:hover {
     opacity: .7;
 }
 
 .place-bets button {
-    margin-top: 1rem;
+    margin-top: .5rem;
 }
 
-
+.reset-tokens {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: .5rem;
+}
 
 .reset-tokens svg {
     border-radius: 50px;
@@ -60,8 +113,4 @@
     margin-bottom: .5rem;
 }
 
-.disabled {
-    display: block !important;
-    pointer-events: none; 
-    opacity: .5;
-}
+

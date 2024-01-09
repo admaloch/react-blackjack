@@ -38,13 +38,15 @@ export default function PlayerBets() {
 
     return (
         <div className='game-container place-bets'>
-            {isBetValid && <ResetBetsBtn currPlayerIndex={currPlayerIndex} />}
-            <h4>Place Bet: {playersArr[currPlayerIndex].name}</h4>
-            <h5>Current Bank: {`$${playersArr[currPlayerIndex].bank}`}</h5>
-            <h5>Min bit: {`$${playersArr[currPlayerIndex].minBet}`}</h5>
-            <h5>Current Bet: {`$${playersArr[currPlayerIndex].currBet}`}</h5>
-            <Tokens currPlayerIndex={currPlayerIndex} />
-            <PlaceBetBtn isBetValid={isBetValid} nextPlayerHandler={nextPlayerHandler} />
+            <div className="bet-container">
+                {isBetValid && <ResetBetsBtn currPlayerIndex={currPlayerIndex} />}
+                <h4>Place Bet: {playersArr[currPlayerIndex].name}</h4>
+                <h5>Current Bank: {`$${playersArr[currPlayerIndex].bank}`}</h5>
+                <h5>Min bit: {`$${playersArr[currPlayerIndex].minBet}`}</h5>
+                <h5>Current Bet: {`$${playersArr[currPlayerIndex].currBet}`}</h5>
+                <Tokens currPlayerIndex={currPlayerIndex} />
+                <PlaceBetBtn isBetValid={isBetValid} nextPlayerHandler={nextPlayerHandler} />
+            </div>
         </div>
     );
 }

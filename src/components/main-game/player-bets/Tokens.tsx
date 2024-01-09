@@ -19,6 +19,10 @@ export default function Tokens({ currPlayerIndex }: TokensProps) {
         dispatch(updatePlayer({ ...playersArr[currPlayerIndex], bank: 0, currBet: updatedBet, currTokens: updatedTokens }));
     }
 
+    const allTokensClass = playersArr[currPlayerIndex].bank > 0
+        ? "all-tokens"
+        : "all-tokens disabled"
+
 
     return (
         <div className="tokens-container">
@@ -26,11 +30,12 @@ export default function Tokens({ currPlayerIndex }: TokensProps) {
                 .map((item) => (
                     <Token key={item} number={item} currPlayerIndex={currPlayerIndex} />
                 ))}
-            {playersArr[currPlayerIndex].bank > 0 &&
+         
                 <div
                     onClick={allTokensHandler}
-                    className="all-tokens">All</div>
-            }
+                    className={allTokensClass}>All</div>
+            
+            
         </div>
     );
 }

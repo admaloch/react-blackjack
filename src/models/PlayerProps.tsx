@@ -24,6 +24,8 @@ export interface PlayerInterface {
     roundsWon: number;
 }
 
+
+
 export const emptyPlayerItem: PlayerInterface = {
     name: '',
     hand: {
@@ -36,9 +38,9 @@ export const emptyPlayerItem: PlayerInterface = {
     bank: 1000,
     currBet: 0,
     minBet: 5,
-    betDoubled: false,
+    isDoubleUp: false,
     isPlayerActive: true,
-    currTokens: [5, 10, 20, 50, 100, 500],
+    currTokens: [1, 5, 25, 50, 100, 500],
     roundsWon: 0,
 }
 

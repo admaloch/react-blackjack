@@ -19,11 +19,12 @@ export default function Token({ number, currPlayerIndex }: TokenProps) {
         const updatedTokens = updatePlayerTokens(updatedBank)
         dispatch(updatePlayer({ ...playersArr[currPlayerIndex], currBet: updatedBet, bank: updatedBank, currTokens: updatedTokens }));
     };
-    
+    const tokenId = `token${number}`
+
     return (
         <div
-        className="betting-token"
-        onClick={() => tokenClickHandler(number)}>
+            id={tokenId}
+            onClick={() => tokenClickHandler(number)}>
             {number}
         </div>
     );
