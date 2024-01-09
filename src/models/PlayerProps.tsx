@@ -3,25 +3,25 @@ export interface Hand {
     cardUrlVals: string[]
     cardNumVals: number[],
     cardSum: number,
+    isBlackjack: boolean;
 }
 
 export interface DealerObjInterface {
     name: string;
-    hand: Hand;
-    isBlackjack: boolean;
+
 }
 
-// interface BetsInterface {
-//     currBet: number;
-//     minBet: number;
-//     insuranceBet: number;
-
-// }
+interface BetsInterface {
+    currBet: number;
+    minBet: number;
+    insuranceBet: number;
+    splitBet: number
+}
 
 export interface PlayerInterface {
     name: string;
     hand: Hand;
-    isBlackjack: boolean;
+
     bank: number;
     currBet: number;
     minBet: number;
@@ -40,8 +40,9 @@ export const emptyPlayerItem: PlayerInterface = {
         cardUrlVals: [],
         cardNumVals: [],
         cardSum: 0,
+        isBlackjack: false,
     },
-    isBlackjack: false,
+
     bank: 1000,
     currBet: 0,
     minBet: 5,

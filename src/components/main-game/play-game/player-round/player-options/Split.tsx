@@ -33,6 +33,7 @@ export default function Split({playerIndex}: PlayerIndexProps) {
     //         }));
     //     }, 350);
     // }
+    
     return (
         <div className="player-btn-container">
             <button

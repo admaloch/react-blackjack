@@ -8,8 +8,8 @@ const initialState: DealerObjInterface = {
         cardUrlVals: [],
         cardNumVals: [],
         cardSum: 0,
-    },
-    isBlackjack: false,
+        isBlackjack: false,
+    }, 
 }
 
 const dealerObjSlice = createSlice({
