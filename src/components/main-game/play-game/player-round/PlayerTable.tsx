@@ -2,7 +2,8 @@ import Cards from '../display-cards/Cards';
 import './PlayerTable.css'
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../store/store';
-import PlayerIcons from './PlayerIcons';
+import PlayerOptions from './player-options/PlayerOptions';
+import PlayerDetails from './PlayerDetails';
 
 interface PlayerTableProps {
     playerIndex: number;
@@ -15,19 +16,13 @@ export default function PlayerTable({ playerIndex, endRound }: PlayerTableProps)
 
     return (
         <div className="player-table">
-            <PlayerIcons
+            <PlayerOptions
                 endRound={endRound}
                 playerIndex={playerIndex}
             />
             <h4>{currPlayer.name}</h4>
-            <div className="player-info">
-                <h5>Current Bank: {currPlayer.bank}</h5>
-                <h5>Current Bet: {currPlayer.currBet}</h5>
-                <h5>Card sum {currPlayer.hand.cardSum}</h5>
-            </div>
-            <Cards
-                cardUrlVals={currPlayer.hand.cardUrlVals}
-            />
+            <PlayerDetails playerIndex={playerIndex} />
+            <Cards cardUrlVals={currPlayer.hand.cardUrlVals} />
             {/* <ExitTable /> */}
         </div>
     )

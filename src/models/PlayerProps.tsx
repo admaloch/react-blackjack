@@ -18,7 +18,7 @@ export interface PlayerInterface {
     bank: number;
     currBet: number;
     minBet: number;
-    isDoubleUp: boolean;
+    isDoubleDown: boolean;
     isPlayerActive: boolean;
     currTokens: number[];
     roundsWon: number;
@@ -38,7 +38,7 @@ export const emptyPlayerItem: PlayerInterface = {
     bank: 1000,
     currBet: 0,
     minBet: 5,
-    isDoubleUp: false,
+    isDoubleDown: false,
     isPlayerActive: true,
     currTokens: [1, 5, 25, 50, 100, 500],
     roundsWon: 0,

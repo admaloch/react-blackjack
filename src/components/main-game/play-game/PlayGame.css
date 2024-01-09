@@ -42,7 +42,7 @@
 .player-table .icon-wrapper {
     position: absolute;
     display: flex;
-border: yellow solid 1px;
+    border: yellow solid 1px;
     right: 0;
     top: 0;
 
@@ -51,8 +51,8 @@ border: yellow solid 1px;
 
 
 .icon-wrapper .icon-container {
-position: relative;
-top: .3rem;
+    position: relative;
+    top: .3rem;
 }
 
 .draw-cards-icon,
@@ -69,8 +69,9 @@ top: .3rem;
 }
 
 .exit-table-icon svg {
- width: 40px;
+    width: 40px;
 }
+
 .draw-cards-icon {
     position: absolute;
     bottom: -.3rem;
@@ -86,6 +87,7 @@ top: .3rem;
     width: 20px;
     height: 20px;
 }
+
 .plus-icon {
     display: flex;
     justify-content: center;
@@ -142,10 +144,10 @@ top: .3rem;
     flex-direction: column;
     justify-self: center;
     align-items: center;
-    margin: .2rem .7rem .7rem .7rem ;
+    margin: .2rem .7rem .7rem .7rem;
 }
 
-.stay-btn {
+.stand-btn {
     position: absolute;
     top: .2em;
     right: .5rem;
@@ -156,11 +158,9 @@ top: .3rem;
     top: 0rem;
     display: flex;
     justify-content: center;
-   
+
 }
 
 .current-options button {
     margin: .2rem;
 }
-
-

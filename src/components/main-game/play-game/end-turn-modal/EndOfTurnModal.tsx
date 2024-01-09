@@ -22,7 +22,7 @@ export default function EndOfTurnModal({ playerIndex, isPlayerFinished, endRound
 
     useEffect(() => {
 
-        if (hand.cardSum > 21 || hand.cards.length === 2 && hand.cardSum === 21 || hand.cards.length === 3 && hand.cardSum < 21 && currPlayer.isDoubleUp) {
+        if (hand.cardSum > 21 || hand.cards.length === 2 && hand.cardSum === 21 || hand.cards.length === 3 && hand.cardSum < 21 && currPlayer.isDoubleDown) {
             setTimeout(() => {
                 endRound()
             }, 1000)
@@ -35,7 +35,7 @@ export default function EndOfTurnModal({ playerIndex, isPlayerFinished, endRound
         modalHeader = 'Bust!'
     } else if (hand.cards.length === 2 && hand.cardSum === 21) {
         modalHeader = 'Blackjack!'
-    } else if (hand.cards.length === 3 && hand.cardSum < 21 && currPlayer.isDoubleUp) {
+    } else if (hand.cards.length === 3 && hand.cardSum < 21 && currPlayer.isDoubleDown) {
         modalHeader = `${name} doubled up`
     } else {
         modalHeader = `${name} stands`
@@ -69,9 +69,9 @@ export default function EndOfTurnModal({ playerIndex, isPlayerFinished, endRound
         >
             <div className="end-turn-modal">
                 <h2>{modalHeader}</h2>
-                
+
                 <div className="end-turn-stats">
-                    {currPlayer.isDoubleUp
+                    {currPlayer.isDoubleDown
                         ? <h3>Doubled bet: {currPlayer.currBet}</h3>
                         : <h3>Bet: {currPlayer.currBet}</h3>
                     }
