@@ -28,6 +28,7 @@ export default function PlayerTable({ playerIndex, endRound }: PlayerTableProps)
             <Cards
                 cardUrlVals={currPlayer.hand.cardUrlVals}
             />
+            {/* <ExitTable /> */}
         </div>
     )
 }

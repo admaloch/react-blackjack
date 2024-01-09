@@ -101,7 +101,7 @@ top: .3rem;
 
 
 .curr-hand {
-    border: red solid 1px;
+    /* border: red solid 1px; */
 
     display: flex;
     justify-content: center;
@@ -151,7 +151,7 @@ top: .3rem;
     right: .5rem;
 }
 
-.other-options {
+.current-options {
     position: absolute;
     top: 0rem;
     display: flex;
@@ -159,7 +159,7 @@ top: .3rem;
    
 }
 
-.other-options button {
+.current-options button {
     margin: .2rem;
 }
 

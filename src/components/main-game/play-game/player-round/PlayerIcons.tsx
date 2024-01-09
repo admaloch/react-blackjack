@@ -4,9 +4,9 @@ import { updatePlayer } from "../../../../store/player-arr/playersArrSlice";
 import { useSelector } from 'react-redux';
 import { RootState } from "../../../../store/store";
 import drawCards from "../../draw-cards-hook/drawCards";
-import { ExitTableIconWithPopper } from "../../../UI/icons/ExitTableIconWithPopper";
 
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import ExitTable from "./ExitTable";
 
 interface PlayerIconsProps {
     playerIndex: number;
@@ -16,30 +16,36 @@ interface PlayerIconsProps {
 export default function PlayerIcons({ playerIndex, endRound }: PlayerIconsProps) {
     const deck = useSelector((state: RootState) => state.deck);
     const playersArr = useSelector((state: RootState) => state.playersArr);
+    const currPlayer = playersArr[playerIndex]
+    const { hand } = currPlayer
     const dispatch = useDispatch();
 
     const doubleUpStyle = {
-        display: playersArr[playerIndex].hand.cards.length > 2 ? 'none' : 'block',
+        display: hand.cards.length > 2 && currPlayer.bank >= currPlayer.currBet
+            ? 'none'
+            : 'block',
     };
 
+
+
     const drawCardsHandler = () => {
-        const newPlayerHand = drawCards(playersArr[playerIndex].hand, deck);
+        const newPlayerHand = drawCards(hand, deck);
         setTimeout(() => {
             dispatch(updatePlayer({
-                ...playersArr[playerIndex],
+                ...currPlayer,
                 hand: newPlayerHand,
             }));
         }, 250);
     }
 
     const doubleUpHandler = () => {
-        const newPlayerHand = drawCards(playersArr[playerIndex].hand, deck);
+        const newPlayerHand = drawCards(hand, deck);
         setTimeout(() => {
             dispatch(updatePlayer({
-                ...playersArr[playerIndex],
+                ...currPlayer,
                 hand: newPlayerHand,
-                currBet: playersArr[playerIndex].currBet * 2,
-                bank: playersArr[playerIndex].bank - playersArr[playerIndex].currBet,
+                currBet: currPlayer.currBet * 2,
+                bank: currPlayer.bank - currPlayer.currBet,
                 isDoubleUp: true,
             }));
         }, 350);
@@ -53,17 +59,12 @@ export default function PlayerIcons({ playerIndex, endRound }: PlayerIconsProps)
 
     return (
         <>
-            <div className="other-options">
+            <div className="current-options">
                 <div className="player-btn-container">
                     <button
                         style={doubleUpStyle}
                         onClick={doubleUpHandler}
                         className="game-btn double-btn">Double Down
-                    </button>
-                </div>
-                <div className="player-btn-container">
-                    <button
-                        className="game-btn insurance-btn">Insurance
                     </button>
                 </div>
             </div>
@@ -84,9 +85,7 @@ export default function PlayerIcons({ playerIndex, endRound }: PlayerIconsProps)
                 <DrawCardsIconWithPopper placement="top" />
             </div>
 
-            <div className="exit-table-icon">
-                <ExitTableIconWithPopper placement="top" />
-            </div>
+            <ExitTable />
         </>
     )
 }
