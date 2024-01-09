@@ -13,3 +13,21 @@
 .player-table h4 {
     padding: 0;
 }
+
+.player-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.split-card-preview {
+    position: absolute;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.split-card-preview img {
+width: 50px;
+}

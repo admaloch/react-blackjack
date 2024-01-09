@@ -6,11 +6,13 @@ interface CardsProps {
 
 export default function Cards({ cardUrlVals }: CardsProps) {
 
+    // console.log('cardUrls kare', cardUrlVals)
+
     return (
         <div className="curr-hand">
-            {cardUrlVals.map(card => (
+            {cardUrlVals.map((card, index) => (
                 <Card
-                    key={card}
+                    key={index}
                     cardUrlVal={card}
                 />
             ))}
