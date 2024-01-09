@@ -11,6 +11,13 @@ export interface DealerObjInterface {
     isBlackjack: boolean;
 }
 
+// interface BetsInterface {
+//     currBet: number;
+//     minBet: number;
+//     insuranceBet: number;
+
+// }
+
 export interface PlayerInterface {
     name: string;
     hand: Hand;
