@@ -3,10 +3,10 @@ import { updatePlayer } from '../../../../../store/player-arr/playersArrSlice';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../../store/store';
 import PlayerIndexProps from '../../../../../models/PlayerIndexProps';
-import drawCards from '../../../draw-cards-hook/drawCards';
 import { Hand } from '../../../../../models/PlayerProps';
-import { useEffect } from 'react';
 import { delay } from '../../../../../utils/Utility';
+
+
 
 export default function Split({ playerIndex, drawCardsRef }: PlayerIndexProps) {
   const dispatch = useDispatch();
@@ -33,7 +33,6 @@ export default function Split({ playerIndex, drawCardsRef }: PlayerIndexProps) {
       cardSum: hand.cardNumVals[1],
     };
 
-    // Update player with split details
     dispatch(
       updatePlayer({
         ...currPlayer,
@@ -46,8 +45,6 @@ export default function Split({ playerIndex, drawCardsRef }: PlayerIndexProps) {
     );
 
     await delay(1000);
-
-
     drawCardsRef.current.click()
 
   };

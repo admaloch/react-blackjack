@@ -17,6 +17,8 @@ export default function Player({ name }: PlayerProps) {
         dispatch(removePlayer({ name: name }))
     }
 
+    
+
     return (
         <li>
             {formattedName}

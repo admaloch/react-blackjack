@@ -1,28 +1,26 @@
-import { Hand } from "../../../models/PlayerProps";
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../store/store';
-// this function takes in the current hand obj, and number of cards to draw and updates the current hand -- there is also logic to update the ace value
+import { updatePlayer } from '../../../store/player-arr/playersArrSlice';
+import { updateDealer } from '../../../store/dealer-obj/dealerObjSlice';
+import { updateDeck } from '../../../store/deck/deckSlice';
+import { DealerObjInterface, Hand, PlayerInterface } from '../../../models/PlayerProps';
 
-export default function useDrawCards(playerHandInput: Hand, numCardsDrawn = 1) {
+const useDrawNewCard = (target: 'player' | 'dealer' = 'player', playerIndex?: number, split?: string) => {
+  const dispatch = useDispatch();
 
+  // Get necessary state from Redux
+  const playersArr = useSelector((state: RootState) => state.playersArr);
+  const dealerObj = useSelector((state: RootState) => state.dealerObj);
   const deck = useSelector((state: RootState) => state.deck);
 
-  const drawCards = (playerHand: Hand, numCards = 1) => {
-    if (!playerHand) {
-      return null;
-    }
-    let updatedPlayerHand = { ...playerHand }
-    for (let i = 0; i < numCards; i++) {
-      updatedPlayerHand = drawCard(updatedPlayerHand);
-    }
-    if (updatedPlayerHand.cardNumVals.includes(11)) {
-      // console.log('there is an ace')
-      updatedPlayerHand = changeAceVal(updatedPlayerHand);
-    }
-    return updatedPlayerHand;
-  };
+  let deckVals = {
+    deckIndex: 0,
+    suitIndex: 0,
+  }
 
-  const drawCard = (handInput: Hand) => {
+  // Helper function to draw and update a hand
+  const drawAndUpdateHand = (handInput: Hand) => {
     const handWithNewCards = { ...handInput };
     const suits = ['♦', '♣', '♥', '♠'];
     const urlSuits = ['D', 'S', 'H', 'S'];
@@ -31,10 +29,14 @@ export default function useDrawCards(playerHandInput: Hand, numCardsDrawn = 1) {
 
     while (!isValidCardDraw) {
       const suitIndex = Math.floor(Math.random() * 4);
-      const cardIndex = Math.floor(Math.random() * 14);
+      const cardIndex = Math.floor(Math.random() * 13);
       const numCardLeft = deck[cardIndex].suits[suitIndex];
 
       if (numCardLeft > 0) {
+        deckVals = {
+          deckIndex: cardIndex,
+          suitIndex: suitIndex,
+        }
         const newCard = `${deck[cardIndex].card}${suits[suitIndex]}`;
         const newCardVal = deck[cardIndex].value;
         const cardUrl = `${deck[cardIndex].card}${urlSuits[suitIndex]}`;
@@ -51,6 +53,7 @@ export default function useDrawCards(playerHandInput: Hand, numCardsDrawn = 1) {
           cardSum: handWithNewCards.cardSum + newCardVal,
         };
 
+
         isValidCardDraw = true;
         return updatedHand;
       }
@@ -59,8 +62,7 @@ export default function useDrawCards(playerHandInput: Hand, numCardsDrawn = 1) {
     return handWithNewCards;
   };
 
-
-
+  // Helper function to update Ace value in a hand
   const changeAceVal = (handInput: Hand) => {
     const handWithAlteredAceVals = { ...handInput };
     while (handWithAlteredAceVals.cardSum > 21) {
@@ -72,8 +74,56 @@ export default function useDrawCards(playerHandInput: Hand, numCardsDrawn = 1) {
     return handWithAlteredAceVals;
   };
 
+  // Helper function to update the Redux state
+  const updateState = (updatedValue: PlayerInterface | DealerObjInterface, isDealer?: boolean) => {
+    if (target === 'player' && playerIndex !== undefined) {
+      dispatch(updatePlayer({ ...playersArr[playerIndex], ...(updatedValue as PlayerInterface) }));
+    } else if (target === 'dealer' && isDealer) {
+      dispatch(updateDealer({ ...dealerObj, ...(updatedValue as DealerObjInterface) }));
+    }
+  };
 
-  return drawCards(playerHandInput, numCardsDrawn)
+  // Main function to draw a card and update the state
+  const drawAndHandleUpdate = () => {
+    let updatedValue: PlayerInterface | DealerObjInterface | undefined = undefined;
 
-}
+    if (target === 'player' && playerIndex !== undefined) {
+      const currPlayer = playersArr[playerIndex];
+      const updatedPlayerHand = split ? { ...currPlayer.splitHand } : { ...currPlayer.hand };
 
+      // Simulate drawing a card
+      const drawnHand = drawAndUpdateHand(updatedPlayerHand);
+
+      // Check if there is an Ace and update its value
+      if (drawnHand.cardNumVals.includes(11)) {
+        console.log('There is an Ace');
+        updatedValue = split
+          ? { ...currPlayer, splitHand: changeAceVal(drawnHand) }
+          : { ...currPlayer, hand: changeAceVal(drawnHand) };
+      } else {
+        updatedValue = split
+          ? { ...currPlayer, splitHand: drawnHand }
+          : { ...currPlayer, hand: drawnHand };
+      }
+    } else if (target === 'dealer') {
+      const updatedDealerHand = { ...dealerObj, ...drawAndUpdateHand(dealerObj) };
+
+      // Check if there is an Ace and update its value
+      if (updatedDealerHand.cardNumVals.includes(11)) {
+        console.log('There is an Ace');
+        updatedValue = { ...dealerObj, ...changeAceVal(updatedDealerHand) };
+      } else {
+        updatedValue = { ...dealerObj, ...updatedDealerHand };
+      }
+    }
+
+    if (updatedValue) {
+      updateState(updatedValue, target === 'dealer');
+      dispatch(updateDeck(updatedDeck));
+    }
+  };
+
+  return drawAndHandleUpdate;
+};
+
+export default useDrawNewCard;

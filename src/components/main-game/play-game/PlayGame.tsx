@@ -9,6 +9,7 @@ import PlayerTable from './player-round/PlayerTable';
 import EndOfTurnModal from './end-turn-modal/EndOfTurnModal';
 import './PlayGame.css'
 import drawCards from '../draw-cards-hook/drawCards';
+import drawNewCard from '../draw-cards-hook/drawNewCard';
 
 
 export default function PlayGame() {
@@ -36,7 +37,10 @@ export default function PlayGame() {
         setCurrPlayerIndex((prevIndex) => (prevIndex + 1) % playersArr.length);
     }
 
-
+    const testFunc = () => {
+        const updatedPlayer = drawNewCard(playersArr[currPlayerIndex], deck)
+        console.log(updatedPlayer)
+    }
 
 
     return (
@@ -47,6 +51,7 @@ export default function PlayGame() {
                     playerIndex={currPlayerIndex}
                     endRound={endRound}
                 />
+                <button onClick={testFunc}>test function</button>
             </div>
             <EndOfTurnModal
                 playerIndex={currPlayerIndex}
