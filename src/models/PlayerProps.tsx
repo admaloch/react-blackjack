@@ -6,7 +6,7 @@ export interface Hand {
     isBlackjack: boolean;
 }
 
-export interface DealerObjInterface {
+export interface DealerObjInterface extends Hand {
     name: string;
 
 }
@@ -49,6 +49,7 @@ export const emptyPlayerItem: PlayerInterface = {
     minBet: 5,
     insuranceBet: 0,
     splitBet: 0,
+    isPlayerSplit: false,
     isDoubleDown: false,
     isPlayerActive: true,
     currTokens: [1, 5, 25, 50, 100, 500],

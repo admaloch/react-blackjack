@@ -7,7 +7,7 @@ export default function PlayerStats() {
 
   const openModal = () => setIsModalOpen(true)
   const closeModal = () => setIsModalOpen(false)
-  console.log(isModalOpen)
+  // console.log(isModalOpen)
 
   return (
     <>

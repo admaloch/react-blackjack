@@ -7,7 +7,7 @@ import PlayerIndexProps from '../../../../../models/PlayerIndexProps';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { DrawCardsIconWithPopper } from '../../../../UI/icons/DrawCardsIconWithPopper';
 
-export default function DrawCards({ playerIndex }: PlayerIndexProps) {
+export default function DrawCards({ playerIndex, drawCardsRef }: PlayerIndexProps) {
     const deck = useSelector((state: RootState) => state.deck);
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const currPlayer = playersArr[playerIndex]
@@ -24,8 +24,12 @@ export default function DrawCards({ playerIndex }: PlayerIndexProps) {
         }, 250);
     }
 
+    
+
+
     return (
         <div
+            ref={drawCardsRef}
             onClick={drawCardsHandler}
             className="draw-cards-icon">
             <div className="plus-icon">

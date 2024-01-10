@@ -4,58 +4,60 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../../../../store/store';
 import PlayerIndexProps from '../../../../../models/PlayerIndexProps';
 import drawCards from '../../../draw-cards-hook/drawCards';
+import { Hand } from '../../../../../models/PlayerProps';
+import { useEffect } from 'react';
+import { delay } from '../../../../../utils/Utility';
 
-export default function Split({ playerIndex }: PlayerIndexProps) {
-    const dispatch = useDispatch();
-    const playersArr = useSelector((state: RootState) => state.playersArr);
-    const currPlayer = playersArr[playerIndex];
-    const { hand } = currPlayer;
-    const deck = useSelector((state: RootState) => state.deck);
+export default function Split({ playerIndex, drawCardsRef }: PlayerIndexProps) {
+  const dispatch = useDispatch();
+  const playersArr = useSelector((state: RootState) => state.playersArr);
+  const currPlayer = playersArr[playerIndex];
+  const { hand } = currPlayer;
+  const deck = useSelector((state: RootState) => state.deck);
 
-    const splitHandler = () => {
-        const mainHand = {
-            ...hand,
-            cards: [hand.cards[0]],
-            cardNumVals: [hand.cardNumVals[0]],
-            cardUrlVals: [hand.cardUrlVals[0]],
-        };
-        const splitHand = {
-            ...hand,
-            cards: [hand.cards[1]],
-            cardNumVals: [hand.cardNumVals[1]],
-            cardUrlVals: [hand.cardUrlVals[1]],
-        };
-        dispatch(
-            updatePlayer({
-                ...playersArr[playerIndex],
-                hand: mainHand,
-                splitHand: splitHand,
-                splitBet: currPlayer.currBet,
-                isPlayerSplit: true,
-                bank: currPlayer.bank - currPlayer.currBet,
-            })
-        );
 
-        // const newPlayerHand = drawCards(mainHand, deck);
-        // setTimeout(() => {
-        //     dispatch(
-        //         updatePlayer({
-        //             ...currPlayer,
-        //             hand: newPlayerHand,
-        //         })
-        //     );
-        // }, 5000);
+  const splitHandler = async () => {
+    const mainHand: Hand = {
+      ...hand,
+      cards: [hand.cards[0]],
+      cardNumVals: [hand.cardNumVals[0]],
+      cardUrlVals: [hand.cardUrlVals[0]],
+      cardSum: hand.cardNumVals[0],
     };
 
+    const splitHand: Hand = {
+      ...hand,
+      cards: [hand.cards[1]],
+      cardNumVals: [hand.cardNumVals[1]],
+      cardUrlVals: [hand.cardUrlVals[1]],
+      cardSum: hand.cardNumVals[1],
+    };
 
-
-
-
-    return (
-        <div className="player-btn-container">
-            <button className="game-btn split-btn" onClick={splitHandler}>
-                Split
-            </button>
-        </div>
+    // Update player with split details
+    dispatch(
+      updatePlayer({
+        ...currPlayer,
+        hand: mainHand,
+        splitHand: splitHand,
+        splitBet: currPlayer.currBet,
+        isPlayerSplit: true,
+        bank: currPlayer.bank - currPlayer.currBet,
+      })
     );
+
+    await delay(1000);
+
+
+    drawCardsRef.current.click()
+
+  };
+
+
+  return (
+    <div className="player-btn-container">
+      <button className="game-btn split-btn" onClick={splitHandler}>
+        Split
+      </button>
+    </div>
+  );
 }

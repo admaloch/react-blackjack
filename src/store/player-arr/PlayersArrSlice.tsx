@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { PlayerInterface } from "../../models/PlayerProps";
-import { Hand } from "../../models/PlayerProps";
 
 const initialState: PlayerInterface[] = [];
 

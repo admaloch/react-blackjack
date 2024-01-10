@@ -16,7 +16,7 @@ export default function useDrawCards(playerHandInput: Hand, numCardsDrawn = 1) {
       updatedPlayerHand = drawCard(updatedPlayerHand);
     }
     if (updatedPlayerHand.cardNumVals.includes(11)) {
-      console.log('there is an ace')
+      // console.log('there is an ace')
       updatedPlayerHand = changeAceVal(updatedPlayerHand);
     }
     return updatedPlayerHand;

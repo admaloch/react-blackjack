@@ -38,6 +38,7 @@ export default function PlayGame() {
 
 
 
+
     return (
         <div className='game-container play-round'>
             <div className="table">
@@ -54,6 +55,7 @@ export default function PlayGame() {
                 changeToNextPlayer={changeToNextPlayer}
                 endRound={endRound}
             />
+
         </div>
     );
 }

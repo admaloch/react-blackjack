@@ -17,11 +17,13 @@ export default function PlayerTable({ playerIndex, endRound }: PlayerTableProps)
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const currPlayer = playersArr[playerIndex]
 
-    let isSplitCardShown = false
+    // let isSplitCardShown = false
 
-    if (currPlayer.isPlayerSplit) {
-        isSplitCardShown = true
-    }
+    // if (currPlayer.isPlayerSplit) {
+    //     isSplitCardShown = true
+    // }
+
+
 
     return (
         <div className="player-table">
@@ -40,11 +42,13 @@ export default function PlayerTable({ playerIndex, endRound }: PlayerTableProps)
             <Cards
                 cardUrlVals={currPlayer.hand.cardUrlVals}
             />
-            {isSplitCardShown &&
+            {/* {playersArr[playerIndex].splitHand.cards.length > 0 &&
                 <SplitCardPreview
                     playerIndex={playerIndex}
                 />
-            }
+            } */}
+
+
 
             {/* <ExitTable /> */}
         </div>

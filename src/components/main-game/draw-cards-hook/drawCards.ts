@@ -11,7 +11,7 @@ const drawCards = (playerHand: Hand, deck: CardObjInterface[], numCards = 1) => 
         updatedPlayerHand = drawCard(updatedPlayerHand, deck);
     }
     if (updatedPlayerHand.cardNumVals.includes(11)) {
-        console.log('there is an ace')
+        // console.log('there is an ace')
         updatedPlayerHand = changeAceVal(updatedPlayerHand);
     }
     return updatedPlayerHand;

@@ -5,6 +5,7 @@ import DrawCards from "./DrawCards";
 import Split from "./Split";
 import { RootState } from "../../../../../store/store";
 import { useSelector } from 'react-redux';
+import { useRef } from "react";
 
 interface PlayerIconsProps {
     playerIndex: number;
@@ -16,18 +17,19 @@ interface PlayerIconsProps {
 export default function PlayerOptions({ playerIndex, endRound }: PlayerIconsProps) {
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const currPlayer = playersArr[playerIndex]
+    const drawCardsRef = useRef(null);
 
     return (
         <>
             <div className="current-options">
                 <DoubleDown playerIndex={playerIndex} />
-                {!currPlayer.isPlayerSplit &&
-                    <Split playerIndex={playerIndex} />
-                }
+
+                <Split drawCardsRef={drawCardsRef} playerIndex={playerIndex} />
+
 
             </div>
             <Stand endRound={endRound} />
-            <DrawCards playerIndex={playerIndex} />
+            <DrawCards drawCardsRef={drawCardsRef} playerIndex={playerIndex} />
             <ExitTable />
         </>
     )
