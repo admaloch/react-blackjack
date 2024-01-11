@@ -18,9 +18,11 @@ function App() {
   return (
     <>
      <CssBaseline />
+
       {isMenuShown && <GameMenu />}
       <Routes>
-        <Route path='/' element={<GameIntro />} />
+        {/* <Route path='/' element={<GameIntro />} /> */}
+        <Route path='/' element={<PlayGame />} />
         <Route path='/addPlayers' element={<AddPlayers />} />
         <Route path='/playGame' element={<StartRound />} />
         <Route path='/placeBets' element={<PlayerBets />} />

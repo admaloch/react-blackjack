@@ -63,7 +63,6 @@ const useDrawNewCard = (target: 'player' | 'dealer' = 'player', playerIndex?: nu
       dispatch(updateDeck(newDeck));
     }
   };
-
   return drawAndHandleUpdate;
 };
 

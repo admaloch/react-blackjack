@@ -39,9 +39,10 @@ export default function PlayGame() {
     }
 
     useEffect(() => {
-        console.log('test draw cards players', playersArr)
         console.log('test draw cards deck', deck)
     })
+
+
 
     return (
         <div className='game-container play-round'>

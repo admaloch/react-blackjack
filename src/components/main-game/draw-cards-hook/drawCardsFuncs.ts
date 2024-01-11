@@ -1,5 +1,6 @@
 import CardObjInterface from "../../../models/CardProps";
 import { Hand } from "../../../models/PlayerProps";
+import { updateDeck } from "../../../store/deck/deckSlice";
 
 interface DeckLocationInterface {
     cardIndex: number,
@@ -62,28 +63,10 @@ const changeAceVal = (handInput: Hand) => {
 };
 
 const updateDeckFromState = (deck: CardObjInterface[], cardIndex: number, suitIndex: number) => {
-    const updatedDeck = deck.map((card, index) => {
-        if (index === cardIndex) {
-            return {
-                ...card,
-                suits: [...card.suits],
-            };
-        }
-        return card;
-    });
-
-    // Ensure cardIndex and suitIndex are within valid ranges
-    if (cardIndex >= 0 && cardIndex < updatedDeck.length && suitIndex >= 0 && suitIndex < 4) {
-        updatedDeck[cardIndex].suits[suitIndex]--;
-
-        // Optional: Ensure suits count doesn't go below 0
-        if (updatedDeck[cardIndex].suits[suitIndex] < 0) {
-            updatedDeck[cardIndex].suits[suitIndex] = 0;
-        }
-    }
-
-    return updatedDeck;
-};
-
+    return deck.map((card, i) => i === cardIndex
+        ? { ...card, suits: card.suits.map((suit, i) => i === suitIndex ? suit - 1 : suit) }
+        : card
+    )
+}
 
 export { genCardLocationIndexes, drawAndUpdateHand, changeAceVal, updateDeckFromState }

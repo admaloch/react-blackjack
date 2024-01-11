@@ -6,9 +6,9 @@ export interface Hand {
     isBlackjack: boolean;
 }
 
-export interface DealerObjInterface extends Hand {
+export interface DealerObjInterface {
     name: string;
-
+    hand: Hand;
 }
 
 
