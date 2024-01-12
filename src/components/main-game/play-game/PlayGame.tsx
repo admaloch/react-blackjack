@@ -11,7 +11,7 @@ import './PlayGame.css'
 import drawCards from '../draw-cards-hook/drawCards';
 import playerDraw from '../draw-cards-hook/playerDraw';
 import useplayerDraw from '../draw-cards-hook/useDrawCards';
-
+import { delay } from '../../../utils/Utility';
 
 export default function PlayGame() {
     const dispatch = useDispatch();
@@ -25,22 +25,53 @@ export default function PlayGame() {
     const endRound = () => setisPlayerFinished(true)
     const startRound = () => setisPlayerFinished(false)
 
+    // useEffect(() => {
+    //     const initialDraw = async () => {
+    //         // if (currPlayerIndex === 0) {
+    //         //     const newDealerHand = drawCards(dealerObj.hand, deck, 2);
+    //         //     dispatch(updateDealerHand(newDealerHand));
+    //         // }
+
+    //         if (playersArr[currPlayerIndex].hand.cards.length < 2) {
+    //             await delay(1000);
+    //             playerDraw();
+    //             await delay(1000);
+    //             playerDraw();
+    //         }
+    //     };
+
+    //     initialDraw();
+    // }, [playersArr]);
+
+
+
+
+    const initialDraw = async (time) => {
+        await delay(time);
+        playerDraw();
+    }
+
+
+    // if (playersArr[currPlayerIndex].hand.cards.length === 0) {
+    //     initialDraw(1000)
+    // }
+
+    // if (playersArr[currPlayerIndex].hand.cards.length === 1) {
+    //     initialDraw(2000)
+
+    // }
+
+
     useEffect(() => {
-        if (currPlayerIndex === 0) {
-            const newDealerHand = drawCards(dealerObj.hand, deck, 2);
-            dispatch(updateDealerHand(newDealerHand));
-        }
-        const newPlayerHand = drawCards(playersArr[currPlayerIndex].hand, deck, 2);
-        dispatch(updatePlayer({ ...playersArr[currPlayerIndex], hand: newPlayerHand }));
-    }, [currPlayerIndex]);
+        console.log(playersArr[currPlayerIndex].hand.cards)
+    }, [playersArr])
+
 
     const changeToNextPlayer = () => {
         setCurrPlayerIndex((prevIndex) => (prevIndex + 1) % playersArr.length);
     }
 
-    useEffect(() => {
-        console.log('test draw cards deck', deck)
-    })
+
 
 
 
