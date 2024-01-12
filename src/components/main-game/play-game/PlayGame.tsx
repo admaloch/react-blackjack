@@ -9,8 +9,8 @@ import PlayerTable from './player-round/PlayerTable';
 import EndOfTurnModal from './end-turn-modal/EndOfTurnModal';
 import './PlayGame.css'
 import drawCards from '../draw-cards-hook/drawCards';
-import drawNewCard from '../draw-cards-hook/drawNewCard';
-import useDrawNewCard from '../draw-cards-hook/useDrawCards';
+import playerDraw from '../draw-cards-hook/playerDraw';
+import useplayerDraw from '../draw-cards-hook/useDrawCards';
 
 
 export default function PlayGame() {
@@ -21,7 +21,7 @@ export default function PlayGame() {
 
     const [currPlayerIndex, setCurrPlayerIndex] = useState(0);
     const [isPlayerFinished, setisPlayerFinished] = useState(false)
-    const drawNewCard = useDrawNewCard('player', currPlayerIndex);
+    const playerDraw = useplayerDraw('player', currPlayerIndex);
     const endRound = () => setisPlayerFinished(true)
     const startRound = () => setisPlayerFinished(false)
 
@@ -52,7 +52,7 @@ export default function PlayGame() {
                     playerIndex={currPlayerIndex}
                     endRound={endRound}
                 />
-                <button onClick={drawNewCard}>test function</button>
+                <button onClick={playerDraw}>test function</button>
             </div>
             <EndOfTurnModal
                 playerIndex={currPlayerIndex}
