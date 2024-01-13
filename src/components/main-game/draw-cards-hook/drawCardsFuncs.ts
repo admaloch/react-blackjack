@@ -1,6 +1,5 @@
 import CardObjInterface from "../../../models/CardProps";
 import { Hand } from "../../../models/PlayerProps";
-import { updateDeck } from "../../../store/deck/deckSlice";
 
 interface DeckLocationInterface {
     cardIndex: number,
@@ -9,6 +8,7 @@ interface DeckLocationInterface {
 
 // Helper function to draw and update a hand
 const genCardLocationIndexes = (deck: CardObjInterface[]): DeckLocationInterface => {
+    
     let deckLocationVals: DeckLocationInterface = {
         cardIndex: 0,
         suitIndex: 0,
@@ -26,11 +26,13 @@ const genCardLocationIndexes = (deck: CardObjInterface[]): DeckLocationInterface
             isCardLocationValid = true;
         }
     }
+    
     return deckLocationVals;
 };
 
 // Helper function to draw and update a hand
 const drawAndUpdateHand = (handInput: Hand, cardIndex: number, suitIndex: number, deck: CardObjInterface[]) => {
+    
     const handWithNewCards = { ...handInput };
     const suits = ['♦', '♣', '♥', '♠'];
     const urlSuits = ['D', 'S', 'H', 'S'];
@@ -47,11 +49,13 @@ const drawAndUpdateHand = (handInput: Hand, cardIndex: number, suitIndex: number
         cardUrlVals: updatedCardUrlVals,
         cardSum: handWithNewCards.cardSum + newCardVal,
     };
+
     return updatedHand;
 };
 
 // Helper function to update Ace value in a hand
 const changeAceVal = (handInput: Hand) => {
+    
     const handWithAlteredAceVals = { ...handInput };
     while (handWithAlteredAceVals.cardSum > 21) {
         const lastIndex = handWithAlteredAceVals.cardNumVals.lastIndexOf(11);

@@ -5,6 +5,8 @@ import { RootState } from '../../../../store/store';
 import PlayerOptions from './player-options/PlayerOptions';
 import PlayerDetails from './PlayerDetails';
 import SplitCardPreview from './player-options/SplitCardPreview';
+import { useEffect } from 'react';
+import useDrawCards from '../../draw-cards-hook/useDrawCards';
 
 interface PlayerTableProps {
     playerIndex: number;
@@ -14,14 +16,29 @@ interface PlayerTableProps {
 
 
 export default function PlayerTable({ playerIndex, endRound }: PlayerTableProps) {
+
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const currPlayer = playersArr[playerIndex]
+    const playerDraw = useDrawCards('player', playerIndex);
 
     // let isSplitCardShown = false
 
     // if (currPlayer.isPlayerSplit) {
     //     isSplitCardShown = true
     // }
+
+    useEffect(() => {
+        if (playersArr[playerIndex].hand.cards.length === 0) {
+            setTimeout(() => {
+                playerDraw()
+            }, 1200);
+        }
+        if (playersArr[playerIndex].hand.cards.length === 1) {
+            setTimeout(() => {
+                playerDraw()
+            }, 500);
+        }
+    }, [playersArr]);
 
 
 

@@ -17,13 +17,13 @@ const dealerObjSlice = createSlice({
     initialState,
     reducers: {
         updateDealer: (state, action) => {
-            state = action.payload
+            return { ...state, ...action.payload };
         },
         updateDealerHand: (state, action) => {
-            state.hand = action.payload
+            state.hand = action.payload;
         }
     },
-})
+});
 
 export const { updateDealer, updateDealerHand } = dealerObjSlice.actions
 

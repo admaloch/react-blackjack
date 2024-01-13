@@ -71,6 +71,7 @@ const playerArrSlice = createSlice({
             state.push(action.payload);
         },
         updatePlayer: (state, action: PayloadAction<PlayerInterface>) => {
+
             const index = state.findIndex(player => player.name === action.payload.name);
             if (index !== -1) {
                 state[index] = action.payload;
