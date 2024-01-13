@@ -1,19 +1,15 @@
-import { useDispatch } from 'react-redux';
-import { updatePlayer } from "../../../../../store/player-arr/playersArrSlice";
 import { useSelector } from 'react-redux';
 import { RootState } from "../../../../../store/store";
-import drawCards from "../../../draw-cards-hook/drawCards";
 import PlayerIndexProps from '../../../../../models/PlayerIndexProps';
-
-
+import useDrawCards from '../../../draw-cards-hook/useDrawCards';
+import { delay } from '../../../../../utils/Utility';
 
 export default function DoubleDown({playerIndex}: PlayerIndexProps) {
 
-    const deck = useSelector((state: RootState) => state.deck);
+    const playerDraw = useDrawCards('player', playerIndex);
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const currPlayer = playersArr[playerIndex]
     const { hand } = currPlayer
-    const dispatch = useDispatch();
 
     const doubleDownStyle = {
         display: hand.cards.length > 2 && currPlayer.bank >= currPlayer.currBet
@@ -21,17 +17,9 @@ export default function DoubleDown({playerIndex}: PlayerIndexProps) {
             : 'block',
     };
 
-    const doubleDownHandler = () => {
-        const newPlayerHand = drawCards(hand, deck);
-        setTimeout(() => {
-            dispatch(updatePlayer({
-                ...currPlayer,
-                hand: newPlayerHand,
-                currBet: currPlayer.currBet * 2,
-                bank: currPlayer.bank - currPlayer.currBet,
-                isDoubleDown: true,
-            }));
-        }, 350);
+    const doubleDownHandler = async () => {
+            await delay(250)
+            playerDraw()
     }
     
     return (

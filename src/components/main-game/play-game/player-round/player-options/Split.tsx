@@ -5,15 +5,15 @@ import { RootState } from '../../../../../store/store';
 import PlayerIndexProps from '../../../../../models/PlayerIndexProps';
 import { Hand } from '../../../../../models/PlayerProps';
 import { delay } from '../../../../../utils/Utility';
+import useDrawCards from '../../../draw-cards-hook/useDrawCards';
 
 
-
-export default function Split({ playerIndex, drawCardsRef }: PlayerIndexProps) {
+export default function Split({ playerIndex }: PlayerIndexProps) {
   const dispatch = useDispatch();
   const playersArr = useSelector((state: RootState) => state.playersArr);
   const currPlayer = playersArr[playerIndex];
   const { hand } = currPlayer;
-  const deck = useSelector((state: RootState) => state.deck);
+  const playerDraw = useDrawCards('player', playerIndex);
 
 
   const splitHandler = async () => {
@@ -45,7 +45,7 @@ export default function Split({ playerIndex, drawCardsRef }: PlayerIndexProps) {
     );
 
     await delay(1000);
-    drawCardsRef.current.click()
+    playerDraw()
 
   };
 
