@@ -31,12 +31,12 @@ export default function PlayerTable({ playerIndex, endRound }: PlayerTableProps)
         if (playersArr[playerIndex].hand.cards.length === 0) {
             setTimeout(() => {
                 playerDraw()
-            }, 1200);
+            }, 1500);
         }
         if (playersArr[playerIndex].hand.cards.length === 1) {
             setTimeout(() => {
                 playerDraw()
-            }, 500);
+            }, 1000);
         }
     }, [playersArr]);
 

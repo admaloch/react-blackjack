@@ -24,7 +24,7 @@ export default function DealerTable() {
       if (dealerObj.hand.cards.length === 1) {
           setTimeout(() => {
               dealerDraw()
-          }, 500);
+          }, 1000);
       }
   }, [dealerObj]);
 
