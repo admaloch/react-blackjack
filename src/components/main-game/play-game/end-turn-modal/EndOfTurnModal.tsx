@@ -22,7 +22,9 @@ export default function EndOfTurnModal({ playerIndex, isPlayerFinished, endRound
 
     useEffect(() => {
 
-        if (hand.cardSum > 21 || hand.cards.length === 2 && hand.cardSum === 21 || hand.cards.length === 3 && hand.cardSum < 21 && currPlayer.isDoubleDown) {
+        if (hand.cardSum > 21
+            || hand.cards.length === 2 && hand.cardSum === 21
+            || hand.cards.length === 3 && currPlayer.isDoubleDown) {
             setTimeout(() => {
                 endRound()
             }, 1000)

@@ -1,14 +1,19 @@
+import React from 'react';
+
 
 interface CardProp {
-    cardUrlVal: string;
+  cardUrlVal: string;
 }
 
-export default function Card({ cardUrlVal }: CardProp) {
-    const url = `https://deckofcardsapi.com/static/img/${cardUrlVal}.png`
-    
-    return (
-        <div className="player-card">
-            <img src={url} alt={`${cardUrlVal}-card`} />
-        </div>
-    )
-}
+const Card: React.FC<CardProp> = ({ cardUrlVal }) => {
+  const imagePath = `/src/assets/card-images/${cardUrlVal}.png`;
+
+
+  return (
+    <div className="player-card">
+      <img src={imagePath} alt={`${cardUrlVal}.png`} />
+    </div>
+  );
+};
+
+export default Card;

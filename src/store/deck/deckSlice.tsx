@@ -13,7 +13,7 @@ const initialState: CardObjInterface[] = [
   { card: '7', value: 7, suits: [6, 6, 6, 6] },
   { card: '8', value: 8, suits: [6, 6, 6, 6] },
   { card: '9', value: 9, suits: [6, 6, 6, 6] },
-  { card: '0', value: 10, suits: [6, 6, 6, 6] },
+  { card: '10', value: 10, suits: [6, 6, 6, 6] },
   { card: 'J', value: 10, suits: [6, 6, 6, 6] },
   { card: 'Q', value: 10, suits: [6, 6, 6, 6] },
   { card: 'K', value: 10, suits: [6, 6, 6, 6] },

@@ -17,6 +17,7 @@ export default function Split({ playerIndex }: PlayerIndexProps) {
 
 
   const splitHandler = async () => {
+    await delay(500);
     const mainHand: Hand = {
       ...hand,
       cards: [hand.cards[0]],
@@ -44,7 +45,7 @@ export default function Split({ playerIndex }: PlayerIndexProps) {
       })
     );
 
-    await delay(1000);
+    await delay(1500);
     playerDraw()
 
   };

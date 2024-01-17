@@ -5,6 +5,7 @@ import DealerTable from './dealer-round/DealerTable';
 import PlayerTable from './player-round/PlayerTable';
 import EndOfTurnModal from './end-turn-modal/EndOfTurnModal';
 import './PlayGame.css'
+// import useDrawCards from '../draw-cards-hook/useDrawCards';
 
 export default function PlayGame() {
 
@@ -12,6 +13,7 @@ export default function PlayGame() {
     const dealerObj = useSelector((state: RootState) => state.dealerObj);
     const [currPlayerIndex, setCurrPlayerIndex] = useState(0);
     const [isPlayerFinished, setisPlayerFinished] = useState(false)
+    // const playerDraw = useDrawCards('player', currPlayerIndex);
 
     const endRound = () => setisPlayerFinished(true)
     const startRound = () => setisPlayerFinished(false)
@@ -20,11 +22,7 @@ export default function PlayGame() {
         setCurrPlayerIndex((prevIndex) => (prevIndex + 1) % playersArr.length);
     }
 
-    useEffect(() => {
-        console.log(playersArr[currPlayerIndex].hand.cards, 'players arr')
-        // console.log(dealerObj.hand.cards, 'dealer obj')
 
-    }, [playersArr, dealerObj])
 
     return (
         <div className='game-container play-round'>
