@@ -1,6 +1,5 @@
 import Card from './Card'
 
-
 interface CardsProps {
     cardUrlVals: string[]
 }

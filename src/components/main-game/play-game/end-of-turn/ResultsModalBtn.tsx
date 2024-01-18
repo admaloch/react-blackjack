@@ -1,6 +1,8 @@
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import { RootState } from "../../../../store/store";
 import { delay } from "../../../../utils/Utility";
+import { updatePlayer } from "../../../../store/player-arr/playersArrSlice";
+import { useEffect } from "react";
 
 interface ResultsModalBtnProps {
     playerIndex: number;
@@ -11,7 +13,8 @@ interface ResultsModalBtnProps {
 export default function ResultsModalBtn({ playerIndex, startRound, changeToNextPlayer }: ResultsModalBtnProps) {
 
     const playersArr = useSelector((state: RootState) => state.playersArr);
-    const { splitHand, isPlayerSplit } = playersArr[playerIndex]
+    const { hand, splitHand, isPlayerSplit } = playersArr[playerIndex]
+    const dispatch = useDispatch();
 
     let modalButton: string = ''
     if (isPlayerSplit && splitHand.cards.length === 1) {
@@ -31,10 +34,21 @@ export default function ResultsModalBtn({ playerIndex, startRound, changeToNextP
             if (!isPlayerSplit || isPlayerSplit && splitHand.cards.length > 1) {
                 changeToNextPlayer()
             }
+            if (isPlayerSplit) handleSplitRoundResults()
         } else {
             modalButton = 'Begin dealer round'
         }
     };
+
+    const handleSplitRoundResults = () => {
+        const updateMainHand = { ...hand }
+        const updateSplitHand = { ...splitHand }
+        dispatch(updatePlayer({ ...playersArr[playerIndex], hand: updateSplitHand, splitHand: updateMainHand }));
+    }
+
+    useEffect(() => {
+        console.log('player ', playersArr[playerIndex])
+    })
 
     return (
         <button
