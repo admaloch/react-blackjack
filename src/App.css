@@ -6,6 +6,7 @@
 :root {
     --background: #000;
     --text: #ffffff;
+    --modal-overlay: rgba(0, 0, 0, .7);
     --color1: red;
 }
 
@@ -27,7 +28,7 @@
     /* line-height: 3rem; */
 }
 
-.game-btn{
+.game-btn {
     padding: .5rem 1.5rem;
     color: var(--text);
     border: var(--text) solid 2px;
@@ -39,15 +40,16 @@
 }
 
 .game-btn a {
-   color: var(--text);
-   text-decoration: none;
-   transition: .15s ease-in-out all;
+    color: var(--text);
+    text-decoration: none;
+    transition: .15s ease-in-out all;
 }
 
 .game-btn:hover,
 .game-btn:hover a {
     color: var(--background);
 }
+
 .game-btn:hover {
     background-color: var(--text);
     border: var(--background) solid 2px;
@@ -55,6 +57,6 @@
 
 .disabled {
     /* display: block !important; */
-    pointer-events: none; 
+    pointer-events: none;
     opacity: .5;
 }

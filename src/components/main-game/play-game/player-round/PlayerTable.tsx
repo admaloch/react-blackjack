@@ -7,7 +7,7 @@ import PlayerDetails from './PlayerDetails';
 import SplitCardPreview from './player-options/SplitCardPreview';
 import { useEffect } from 'react';
 import useDrawCards from '../../draw-cards-hook/useDrawCards';
-import { memo } from 'react';
+
 interface PlayerTableProps {
     playerIndex: number;
     endRound: () => void;
