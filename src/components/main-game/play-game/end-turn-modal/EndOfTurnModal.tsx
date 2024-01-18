@@ -2,6 +2,7 @@ import Modal from "../../../UI/modal/Modal";
 import { useSelector } from "react-redux"
 import { useEffect } from 'react';
 import { RootState } from "../../../../store/store";
+import { delay } from "../../../../utils/Utility";
 
 interface EndOfTurnModalProps {
     playerIndex: number;
@@ -21,15 +22,15 @@ export default function EndOfTurnModal({ playerIndex, isPlayerFinished, endRound
 
 
     useEffect(() => {
-        if (!currPlayer.isPlayerSplit || currPlayer.isPlayerSplit && splitHand.cards.length > 1) {
-            if (hand.cardSum > 21
-                || hand.cards.length === 2 && hand.cardSum === 21
-                || hand.cards.length === 3 && currPlayer.isDoubleDown) {
-                setTimeout(() => {
-                    endRound()
-                }, 1000)
-            }
+
+        if (hand.cardSum > 21
+            || hand.cards.length === 2 && hand.cardSum === 21
+            || hand.cards.length === 3 && currPlayer.isDoubleDown) {
+            setTimeout(() => {
+                endRound()
+            }, 1000)
         }
+
 
     }, [playersArr])
 
@@ -47,7 +48,7 @@ export default function EndOfTurnModal({ playerIndex, isPlayerFinished, endRound
     }
 
     let modalButton: string = ''
-    if (!currPlayer.isPlayerSplit || currPlayer.isPlayerSplit && splitHand.cards.length > 1) {
+    if (!currPlayer.isPlayerSplit || currPlayer.isPlayerSplit && splitHand.cards.length === 1) {
         modalButton = `Play other split hand`
     }
     else if (playersArr.length - 1 !== playerIndex) {
@@ -57,13 +58,19 @@ export default function EndOfTurnModal({ playerIndex, isPlayerFinished, endRound
     }
 
 
-    const nextPlayerHandler = () => {
+    const nextPlayerHandler = async () => {
         if (playersArr.length - 1 !== playerIndex) {
-            setTimeout(() => {
-                modalButton = `Begin ${playersArr[playerIndex + 1].name}'s turn`
-                startRound()
+            await delay(300)
+
+            modalButton = `Begin ${playersArr[playerIndex + 1].name}'s turn`
+            startRound()
+            if (!currPlayer.isPlayerSplit || currPlayer.isPlayerSplit && splitHand.cards.length > 1) {
                 changeToNextPlayer()
-            }, 300)
+            } else {
+                
+            }
+
+
         } else {
             modalButton = 'Begin dealer round'
         }
