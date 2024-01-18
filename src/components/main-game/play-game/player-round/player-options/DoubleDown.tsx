@@ -40,7 +40,7 @@ export default function DoubleDown({ playerIndex }: PlayerIndexProps) {
     if (currPlayer.isDoubleDown && currPlayer.hand.cards.length === 2) {
         setTimeout(() => {
             playerDraw()
-        }, 1000);
+        }, 500);
 
     }
 

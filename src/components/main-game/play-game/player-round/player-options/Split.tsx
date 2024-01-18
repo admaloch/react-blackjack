@@ -45,10 +45,14 @@ export default function Split({ playerIndex }: PlayerIndexProps) {
       })
     );
 
-    await delay(1500);
-    playerDraw()
+
 
   };
+  if (currPlayer.isPlayerSplit && currPlayer.hand.cards.length === 1) {
+    setTimeout(() => {
+      playerDraw()
+    }, 500);
+  }
 
 
   return (

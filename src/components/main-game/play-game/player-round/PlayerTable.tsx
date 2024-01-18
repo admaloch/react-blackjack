@@ -31,12 +31,12 @@ function PlayerTable({ playerIndex, endRound }: PlayerTableProps) {
         if (playersArr[playerIndex].hand.cards.length === 0) {
             setTimeout(() => {
                 playerDraw()
-            }, 1500);
+            }, 1200);
         }
         if (playersArr[playerIndex].hand.cards.length === 1) {
             setTimeout(() => {
                 playerDraw()
-            }, 1000);
+            }, 500);
         }
     }, [playersArr]);
 

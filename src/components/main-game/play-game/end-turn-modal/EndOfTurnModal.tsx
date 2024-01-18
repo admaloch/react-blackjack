@@ -15,23 +15,26 @@ export default function EndOfTurnModal({ playerIndex, isPlayerFinished, endRound
 
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const currPlayer = playersArr[playerIndex]
-    const { hand, name } = currPlayer
+    const { hand, name, splitHand } = currPlayer
 
 
 
 
     useEffect(() => {
-
-        if (hand.cardSum > 21
-            || hand.cards.length === 2 && hand.cardSum === 21
-            || hand.cards.length === 3 && currPlayer.isDoubleDown) {
-            setTimeout(() => {
-                endRound()
-            }, 1000)
+        if (!currPlayer.isPlayerSplit || currPlayer.isPlayerSplit && splitHand.cards.length > 1) {
+            if (hand.cardSum > 21
+                || hand.cards.length === 2 && hand.cardSum === 21
+                || hand.cards.length === 3 && currPlayer.isDoubleDown) {
+                setTimeout(() => {
+                    endRound()
+                }, 1000)
+            }
         }
+
     }, [playersArr])
 
     let modalHeader: string = ''
+
 
     if (hand.cardSum > 21) {
         modalHeader = 'Bust!'
@@ -44,8 +47,10 @@ export default function EndOfTurnModal({ playerIndex, isPlayerFinished, endRound
     }
 
     let modalButton: string = ''
-
-    if (playersArr.length - 1 !== playerIndex) {
+    if (!currPlayer.isPlayerSplit || currPlayer.isPlayerSplit && splitHand.cards.length > 1) {
+        modalButton = `Play other split hand`
+    }
+    else if (playersArr.length - 1 !== playerIndex) {
         modalButton = `Begin ${playersArr[playerIndex + 1].name}'s turn`
     } else {
         modalButton = 'Begin dealer round'
