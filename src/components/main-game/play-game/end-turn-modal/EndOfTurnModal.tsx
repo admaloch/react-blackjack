@@ -66,11 +66,7 @@ export default function EndOfTurnModal({ playerIndex, isPlayerFinished, endRound
             startRound()
             if (!currPlayer.isPlayerSplit || currPlayer.isPlayerSplit && splitHand.cards.length > 1) {
                 changeToNextPlayer()
-            } else {
-                
-            }
-
-
+            } 
         } else {
             modalButton = 'Begin dealer round'
         }
