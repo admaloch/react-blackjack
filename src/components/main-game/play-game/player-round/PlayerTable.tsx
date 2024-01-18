@@ -19,6 +19,7 @@ function PlayerTable({ playerIndex, endRound }: PlayerTableProps) {
 
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const currPlayer = playersArr[playerIndex]
+    const {splitHand} = currPlayer
     const playerDraw = useDrawCards('player', playerIndex);
 
     // let isSplitCardShown = false
@@ -40,6 +41,7 @@ function PlayerTable({ playerIndex, endRound }: PlayerTableProps) {
         }
     }, [playersArr]);
 
+    const handText = splitHand.cards.length === 1 ? '1st hand' : '2nd hand'
 
 
     return (
@@ -51,7 +53,7 @@ function PlayerTable({ playerIndex, endRound }: PlayerTableProps) {
             <div className="player-header">
                 <h4>{currPlayer.name}&nbsp;</h4>
                 {currPlayer.splitBet > 0 &&
-                    <h4> split: Round 1</h4>
+                    <h4> split: {handText}</h4>
                 }
             </div>
 
