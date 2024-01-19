@@ -2,12 +2,10 @@ import { useSelector } from 'react-redux';
 import { RootState } from "../../../../../store/store";
 import PlayerIndexProps from '../../../../../models/PlayerIndexProps';
 import useDrawCards from '../../../draw-cards-hook/useDrawCards';
-import { delay } from '../../../../../utils/Utility';
 import { useDispatch } from 'react-redux';
 import { updatePlayer } from '../../../../../store/player-arr/playersArrSlice';
 import { useEffect } from 'react';
-import DoubleDownBtn from './DoubleDownBtn';
-import drawCards from '../../../draw-cards-hook/drawCards';
+
 
 export default function DoubleDown({ playerIndex }: PlayerIndexProps) {
 
@@ -28,21 +26,14 @@ export default function DoubleDown({ playerIndex }: PlayerIndexProps) {
         dispatch(updatePlayer({ ...currPlayer, isDoubleDown: true }));
     }
 
-    // useEffect(() => {
-    //     async function drawAfterDoubleDown() {
-    //         await delay(1000)
-    //         playerDraw()
-    //     }
-    //     if (currPlayer.isDoubleDown && currPlayer.hand.cards.length === 2) {
-    //         drawAfterDoubleDown()
-    //     }
-    // }, [playersArr])
-    if (currPlayer.isDoubleDown && currPlayer.hand.cards.length === 2) {
-        setTimeout(() => {
-            playerDraw()
-        }, 500);
-
-    }
+    useEffect(() => {
+        if (currPlayer.isDoubleDown && currPlayer.hand.cards.length === 2) {
+            setTimeout(() => {
+                console.log('double down effect ran')
+                playerDraw()
+            }, 1000);
+        }
+    }, [playersArr, playerIndex])
 
 
     return (
@@ -52,10 +43,7 @@ export default function DoubleDown({ playerIndex }: PlayerIndexProps) {
                 onClick={doubleDownHandler}
                 className="game-btn double-btn">Double Down
             </button>
-            {/* <DoubleDownBtn
-            playerIndex={playerIndex}
-            isDoubleDownTrue={isDoubleDownTrue}
-            /> */}
+
 
         </div>
     )

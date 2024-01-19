@@ -29,12 +29,12 @@ function PlayerTable({ playerIndex, endRound }: PlayerTableProps) {
     // }
 
     useEffect(() => {
-        if (playersArr[playerIndex].hand.cards.length === 0) {
+        if (currPlayer.hand.cards.length === 0) {
             setTimeout(() => {
                 playerDraw()
             }, 1200);
         }
-        if (playersArr[playerIndex].hand.cards.length === 1) {
+        if (currPlayer.hand.cards.length === 1) {
             setTimeout(() => {
                 playerDraw()
             }, 500);

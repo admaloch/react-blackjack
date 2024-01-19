@@ -46,9 +46,7 @@ export default function ResultsModalBtn({ playerIndex, startRound, changeToNextP
         dispatch(updatePlayer({ ...playersArr[playerIndex], hand: updateSplitHand, splitHand: updateMainHand }));
     }
 
-    useEffect(() => {
-        console.log('player ', playersArr[playerIndex])
-    })
+
 
     return (
         <button

@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { RootState } from "../../../../store/store";
 import ResultsModalContents from "./ResultsModalContent";
 
+
 interface EndOfTurnResultsProps {
     playerIndex: number;
     isPlayerFinished: boolean;
@@ -23,11 +24,13 @@ export default function EndOfTurnResults({ playerIndex, isPlayerFinished, endRou
         if (hand.cardSum > 21
             || hand.cards.length === 2 && hand.cardSum === 21
             || hand.cards.length === 3 && currPlayer.isDoubleDown) {
+
+
             setTimeout(() => {
                 endRound()
             }, 1000)
         }
-    }, [playersArr])
+    }, [playersArr, playerIndex])
 
     return (
         <Modal
@@ -38,7 +41,7 @@ export default function EndOfTurnResults({ playerIndex, isPlayerFinished, endRou
                 playerIndex={playerIndex}
                 startRound={startRound}
                 changeToNextPlayer={changeToNextPlayer}
-   
+
 
             />
         </Modal>

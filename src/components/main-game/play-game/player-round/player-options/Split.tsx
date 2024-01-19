@@ -48,7 +48,8 @@ export default function Split({ playerIndex }: PlayerIndexProps) {
 
 
   };
-  if (currPlayer.isPlayerSplit && currPlayer.hand.cards.length === 1) {
+  if (currPlayer.isPlayerSplit
+    && currPlayer.hand.cards.length === 1) {
     setTimeout(() => {
       playerDraw()
     }, 500);
