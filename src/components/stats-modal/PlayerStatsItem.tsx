@@ -1,12 +1,13 @@
+import { PlayerInterface } from "../../models/PlayerProps"
 
 interface PlayerStatsItemProps {
-    name: string;
-    bank: number;
-    roundsWon: number;
+    player: PlayerInterface;
 }
 
-export default function PlayerStatsItem({ name, bank, roundsWon }: PlayerStatsItemProps) {
+export default function PlayerStatsItem({ player }: PlayerStatsItemProps) {
 
+    const { name, bank, roundsWon } = player
+    
     return (
         <li>
             {name}: Current Bank: {`$${bank}`}: Total Rounds Won: {roundsWon}

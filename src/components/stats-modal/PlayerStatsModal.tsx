@@ -27,9 +27,7 @@ export default function PlayerStatsModal({ closeModal, open }: PlayerStatsProps)
                     {playerDataArr.map((player) => (
                         <PlayerStatsItem
                             key={player.name}
-                            name={player.name}
-                            bank={player.bank}
-                            roundsWon={player.roundsWon}
+                            player={player}
                         />
                     ))}
                 </ul>
