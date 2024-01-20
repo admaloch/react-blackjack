@@ -32,6 +32,7 @@ function PlayerTable({ playerIndex, endRound }: PlayerTableProps) {
         }
     }, [hand, playerIndex, playerDraw]);
 
+    
     const handText = splitHand.cards.length === 1 ? '1st hand' : '2nd hand'
 
     return (
