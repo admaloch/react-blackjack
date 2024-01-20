@@ -2,7 +2,6 @@ import { useSelector, useDispatch } from "react-redux"
 import { RootState } from "../../../../store/store";
 import { delay } from "../../../../utils/Utility";
 import { updatePlayer } from "../../../../store/player-arr/playersArrSlice";
-import { useEffect } from "react";
 
 interface ResultsModalBtnProps {
     playerIndex: number;
@@ -13,7 +12,8 @@ interface ResultsModalBtnProps {
 export default function ResultsModalBtn({ playerIndex, startRound, changeToNextPlayer }: ResultsModalBtnProps) {
 
     const playersArr = useSelector((state: RootState) => state.playersArr);
-    const { hand, splitHand, isPlayerSplit } = playersArr[playerIndex]
+
+    const { hand, splitHand, isPlayerSplit, isDoubleDown } = playersArr[playerIndex]
     const dispatch = useDispatch();
 
     let modalButton: string = ''
@@ -27,23 +27,28 @@ export default function ResultsModalBtn({ playerIndex, startRound, changeToNextP
     }
 
     const nextPlayerHandler = async () => {
-        if (playersArr.length - 1 !== playerIndex) {
-            await delay(300)
-            modalButton = `Begin ${playersArr[playerIndex + 1].name}'s turn`
-            startRound()
-            if (!isPlayerSplit || isPlayerSplit && splitHand.cards.length > 1) {
-                changeToNextPlayer()
-            }
-            if (isPlayerSplit) handleSplitRoundResults()
+
+        if (splitHand.cards.length === 1 || playersArr.length - 1 !== playerIndex) {
+
+
+            setTimeout(() => {
+                if (!isPlayerSplit || isPlayerSplit && splitHand.cards.length > 1) {
+                    changeToNextPlayer()
+                }
+                if (isPlayerSplit) handleSplitRoundResults()
+                startRound()
+            }, 300);
         } else {
-            modalButton = 'Begin dealer round'
+            console.log('begin dealer round')
         }
+
+
     };
 
     const handleSplitRoundResults = () => {
         const updateMainHand = { ...hand }
         const updateSplitHand = { ...splitHand }
-        dispatch(updatePlayer({ ...playersArr[playerIndex], hand: updateSplitHand, splitHand: updateMainHand }));
+        dispatch(updatePlayer({ ...playersArr[playerIndex], hand: updateSplitHand, splitHand: updateMainHand, isDoubleDown: false }));
     }
 
 

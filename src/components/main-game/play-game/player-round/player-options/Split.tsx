@@ -5,7 +5,7 @@ import { RootState } from '../../../../../store/store';
 import PlayerIndexProps from '../../../../../models/PlayerIndexProps';
 import { Hand } from '../../../../../models/PlayerProps';
 import { delay } from '../../../../../utils/Utility';
-import useDrawCards from '../../../draw-cards-hook/useDrawCards';
+
 
 
 export default function Split({ playerIndex }: PlayerIndexProps) {
@@ -13,7 +13,7 @@ export default function Split({ playerIndex }: PlayerIndexProps) {
   const playersArr = useSelector((state: RootState) => state.playersArr);
   const currPlayer = playersArr[playerIndex];
   const { hand } = currPlayer;
-  const playerDraw = useDrawCards('player', playerIndex);
+
 
 
   const splitHandler = async () => {
@@ -44,17 +44,7 @@ export default function Split({ playerIndex }: PlayerIndexProps) {
         bank: currPlayer.bank - currPlayer.currBet,
       })
     );
-
-
-
   };
-  if (currPlayer.isPlayerSplit
-    && currPlayer.hand.cards.length === 1) {
-    setTimeout(() => {
-      playerDraw()
-    }, 500);
-  }
-
 
   return (
     <div className="player-btn-container">

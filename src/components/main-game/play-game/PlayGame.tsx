@@ -28,9 +28,11 @@ export default function PlayGame() {
     }
 
     useEffect(() => {
-        console.log('players ar ', playersArr)
+        console.log('curr player data ', playersArr[currPlayerIndex])
 
-    }, [playersArr])
+    }, [playersArr, currPlayerIndex])
+
+
 
     return (
         <div className='game-container play-round'>

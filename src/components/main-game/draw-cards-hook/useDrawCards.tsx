@@ -64,8 +64,8 @@ const useDrawCards = (target: 'player' | 'dealer' = 'player', playerIndex?: numb
       dispatch(updateDeck(newDeck));
     }
   };
-
   return drawAndHandleUpdate;
+
 };
 
 export default useDrawCards;
