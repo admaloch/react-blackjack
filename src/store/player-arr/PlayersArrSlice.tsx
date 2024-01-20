@@ -7,10 +7,10 @@ const initialState = [
     {
         name: 'Dave',
         hand: {
-            cards: [],
-            cardUrlVals: [],
-            cardNumVals: [],
-            cardSum: 0,
+            cards: ['6♣', '6♥'],
+            cardUrlVals: ['6C', '6H'],
+            cardNumVals: [6, 6],
+            cardSum: 12,
             isBlackjack: false,
         },
         splitHand: {

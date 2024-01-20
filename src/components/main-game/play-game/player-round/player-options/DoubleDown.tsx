@@ -12,7 +12,7 @@ export default function DoubleDown({ playerIndex }: PlayerIndexProps) {
     const playerDraw = usePlayerDrawCard(playerIndex)
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const currPlayer = playersArr[playerIndex]
-    const { hand, currBet, bank, isDoubleDown } = currPlayer
+    const { splitBet, hand, currBet, bank, isDoubleDown } = currPlayer
     const dispatch = useDispatch();
 
 
@@ -24,9 +24,27 @@ export default function DoubleDown({ playerIndex }: PlayerIndexProps) {
     };
 
     const doubleDownHandler = async () => {
-        dispatch(updatePlayer({ ...currPlayer, isDoubleDown: true, currBet: currBet * 2, bank: bank - currBet }));
-    }
-
+  
+        let updatedPlayer = { ...currPlayer };
+    
+        if (updatedPlayer.splitHand.cards.length < 2) {
+            updatedPlayer = {
+                ...updatedPlayer,
+                isDoubleDown: true,
+                currBet: currPlayer.currBet * 2,  
+                bank: currPlayer.bank - currPlayer.currBet,  
+            };
+        } else {
+            updatedPlayer = {
+                ...updatedPlayer,
+                isDoubleDown: true,
+                splitBet: currPlayer.splitBet * 2,  
+                bank: currPlayer.bank - currPlayer.splitBet,  
+            };
+        }
+        dispatch(updatePlayer(updatedPlayer));
+    };
+    
     useEffect(() => {
         if (isDoubleDown && hand.cards.length === 2) {
             setTimeout(() => {
@@ -34,7 +52,6 @@ export default function DoubleDown({ playerIndex }: PlayerIndexProps) {
             }, 300);
         }
     }, [isDoubleDown, hand, playerDraw])
-
 
     return (
         <div className="player-btn-container">
