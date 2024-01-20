@@ -1,8 +1,8 @@
 // useDealerDrawCards.ts
 import useDrawCards from './useDrawCards';
 
-const useDealerDrawCards = () => {
-    return useDrawCards('dealer');
+const useDealerDrawCard = () => {
+    return useDrawCards();
 };
 
-export default useDealerDrawCards;
+export default useDealerDrawCard;

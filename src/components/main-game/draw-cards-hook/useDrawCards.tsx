@@ -6,13 +6,16 @@ import { updateDeck } from '../../../store/deck/deckSlice';
 import { DealerObjInterface, PlayerInterface } from '../../../models/PlayerProps';
 import { genCardLocationIndexes, updateDeckFromState, drawAndUpdateHand, changeAceVal } from './drawCardsFuncs';
 
-const useDrawCards = (target: 'player' | 'dealer' = 'player', playerIndex?: number, split?: string) => {
+const useDrawCards = (playerIndex?: number) => {
   const dispatch = useDispatch();
 
   // Get necessary state from Redux
   const playersArr = useSelector((state: RootState) => state.playersArr);
   const dealerObj = useSelector((state: RootState) => state.dealerObj);
   const deck = useSelector((state: RootState) => state.deck);
+
+  // Determine the target automatically based on the presence of playerIndex
+  const target = playerIndex !== undefined ? 'player' : 'dealer';
 
   // Helper function to update the Redux state
   const updateState = (updatedValue: PlayerInterface | DealerObjInterface) => {
@@ -23,26 +26,22 @@ const useDrawCards = (target: 'player' | 'dealer' = 'player', playerIndex?: numb
     }
   };
 
-
   // Main function to draw a card and update the state
   const drawAndHandleUpdate = () => {
     let updatedValue: PlayerInterface | DealerObjInterface | undefined = undefined;
     const { cardIndex, suitIndex } = genCardLocationIndexes(deck);
+
     if (target === 'player' && playerIndex !== undefined) {
       const currPlayer = playersArr[playerIndex];
-      const updatedPlayerHand = split ? { ...currPlayer.splitHand } : { ...currPlayer.hand };
+      const updatedPlayerHand = { ...currPlayer.hand };
 
       // Simulate drawing a card
       const drawnHand = drawAndUpdateHand(updatedPlayerHand, cardIndex, suitIndex, deck);
       // Check if there is an Ace and update its value
       if (drawnHand.cardNumVals.includes(11)) {
-        updatedValue = split
-          ? { ...currPlayer, splitHand: changeAceVal(drawnHand) }
-          : { ...currPlayer, hand: changeAceVal(drawnHand) };
+        updatedValue = { ...currPlayer, hand: changeAceVal(drawnHand) };
       } else {
-        updatedValue = split
-          ? { ...currPlayer, splitHand: drawnHand }
-          : { ...currPlayer, hand: drawnHand };
+        updatedValue = { ...currPlayer, hand: drawnHand };
       }
     } else if (target === 'dealer') {
       const updatedDealerHand = { ...dealerObj.hand };
@@ -58,12 +57,12 @@ const useDrawCards = (target: 'player' | 'dealer' = 'player', playerIndex?: numb
 
     if (updatedValue) {
       updateState(updatedValue);
-      const newDeck = updateDeckFromState(deck, cardIndex, suitIndex)
+      const newDeck = updateDeckFromState(deck, cardIndex, suitIndex);
       dispatch(updateDeck(newDeck));
     }
   };
-  return drawAndHandleUpdate;
 
+  return drawAndHandleUpdate;
 };
 
 export default useDrawCards;

@@ -6,7 +6,7 @@ import PlayerOptions from './player-options/PlayerOptions';
 import PlayerDetails from './PlayerDetails';
 import SplitCardPreview from './player-options/SplitCardPreview';
 import { useEffect } from 'react';
-import useDrawCards from '../../draw-cards-hook/useDrawCards';
+import usePlayerDrawCard from '../../draw-cards-hook/usePlayerDrawCard';
 
 interface PlayerTableProps {
     playerIndex: number;
@@ -17,7 +17,7 @@ function PlayerTable({ playerIndex, endRound }: PlayerTableProps) {
 
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const { hand, splitHand, splitBet, name } = playersArr[playerIndex]
-    const playerDraw = useDrawCards('player', playerIndex);
+    const playerDraw = usePlayerDrawCard(playerIndex)
 
     useEffect(() => {
         if (hand.cards.length === 0 || hand.cards.length === 1) {
