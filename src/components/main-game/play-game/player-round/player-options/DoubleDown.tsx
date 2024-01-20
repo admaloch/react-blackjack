@@ -16,6 +16,7 @@ export default function DoubleDown({ playerIndex }: PlayerIndexProps) {
     const dispatch = useDispatch();
 
 
+
     const doubleDownStyle = {
         display: hand.cards.length > 2 && bank >= currBet
             ? 'none'
@@ -30,20 +31,20 @@ export default function DoubleDown({ playerIndex }: PlayerIndexProps) {
         if (isDoubleDown && hand.cards.length === 2) {
             setTimeout(() => {
                 playerDraw()
-            }, 1000);
+            }, 300);
         }
     }, [isDoubleDown, hand, playerDraw])
 
 
     return (
         <div className="player-btn-container">
-            <button
-                style={doubleDownStyle}
-                onClick={doubleDownHandler}
-                className="game-btn double-btn">Double Down
-            </button>
-
-
+            {hand.cards.length === 2 &&
+                <button
+                    style={doubleDownStyle}
+                    onClick={doubleDownHandler}
+                    className="game-btn double-btn">Double Down
+                </button>
+            }
         </div>
     )
 }

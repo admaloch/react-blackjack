@@ -14,7 +14,15 @@ export default function Split({ playerIndex }: PlayerIndexProps) {
   const currPlayer = playersArr[playerIndex];
   const { hand } = currPlayer;
 
+  let isCardRanksEqual = false
+  if (hand.cards.length === 2) {
+      const cardRanks = hand.cards.map(x => x.slice(0, 1))
+      if (cardRanks[0] === cardRanks[1] && currPlayer.splitHand.cards.length === 0) {
+          isCardRanksEqual = true
+      }
+  }
 
+  if(!isCardRanksEqual) return;
 
   const splitHandler = async () => {
     await delay(500);

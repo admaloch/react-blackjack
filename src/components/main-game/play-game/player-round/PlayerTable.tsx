@@ -21,15 +21,15 @@ function PlayerTable({ playerIndex, endRound }: PlayerTableProps) {
     const { hand, splitHand, splitBet, name } = playersArr[playerIndex]
     const playerDraw = usePlayerDrawCard(playerIndex)
 
-    // useEffect(() => {
-    //     if (dealerObj.hand.cards.length === 2) {
-    //         if (hand.cards.length === 0 || hand.cards.length === 1) {
-    //             setTimeout(() => {
-    //                 playerDraw()
-    //             }, 300);
-    //         }
-    //     }
-    // }, [hand, dealerObj, playerDraw]);
+    useEffect(() => {
+        if (dealerObj.hand.cards.length === 2) {
+            if (hand.cards.length === 0 || hand.cards.length === 1) {
+                setTimeout(() => {
+                    playerDraw()
+                }, 300);
+            }
+        }
+    }, [hand, dealerObj, playerDraw]);
 
     const handText = splitHand.cards.length === 1 ? '1st hand' : '2nd hand'
 
