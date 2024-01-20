@@ -31,13 +31,13 @@ export default function ResultsModalBtn({ playerIndex, startRound, changeToNextP
         if (splitHand.cards.length === 1 || playersArr.length - 1 !== playerIndex) {
 
 
-            setTimeout(() => {
-                if (!isPlayerSplit || isPlayerSplit && splitHand.cards.length > 1) {
-                    changeToNextPlayer()
-                }
-                if (isPlayerSplit) handleSplitRoundResults()
-                startRound()
-            }, 300);
+
+            if (!isPlayerSplit || isPlayerSplit && splitHand.cards.length > 1) {
+                changeToNextPlayer()
+            }
+            if (isPlayerSplit) handleSplitRoundResults()
+            startRound()
+
         } else {
             console.log('begin dealer round')
         }

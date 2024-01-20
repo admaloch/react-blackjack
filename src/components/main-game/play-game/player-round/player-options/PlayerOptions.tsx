@@ -19,10 +19,7 @@ export default function PlayerOptions({ playerIndex, endRound }: PlayerIconsProp
         <>
             <div className="current-options">
                 <DoubleDown playerIndex={playerIndex} />
-
                 <Split playerIndex={playerIndex} />
-
-
             </div>
             <Stand endRound={endRound} />
             <DrawCards playerIndex={playerIndex} />

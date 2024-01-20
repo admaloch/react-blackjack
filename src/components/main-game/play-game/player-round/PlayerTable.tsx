@@ -13,36 +13,26 @@ interface PlayerTableProps {
     endRound: () => void;
 }
 
-
-
 function PlayerTable({ playerIndex, endRound }: PlayerTableProps) {
 
     const playersArr = useSelector((state: RootState) => state.playersArr);
-    const currPlayer = playersArr[playerIndex]
-    const { splitHand } = currPlayer
+    const { hand, splitHand, splitBet, name } = playersArr[playerIndex]
     const playerDraw = useDrawCards('player', playerIndex);
 
-    // let isSplitCardShown = false
-
-    // if (currPlayer.isPlayerSplit) {
-    //     isSplitCardShown = true
-    // }
-
     useEffect(() => {
-        if (currPlayer.hand.cards.length === 0) {
+        if (hand.cards.length === 0) {
             setTimeout(() => {
                 playerDraw()
             }, 1200);
         }
-        if (currPlayer.hand.cards.length === 1) {
+        if (hand.cards.length === 1) {
             setTimeout(() => {
                 playerDraw()
             }, 500);
         }
-    }, [playersArr, playerIndex]);
+    }, [hand, playerIndex, playerDraw]);
 
     const handText = splitHand.cards.length === 1 ? '1st hand' : '2nd hand'
-
 
     return (
         <div className="player-table">
@@ -51,25 +41,21 @@ function PlayerTable({ playerIndex, endRound }: PlayerTableProps) {
                 playerIndex={playerIndex}
             />
             <div className="player-header">
-                <h4>{currPlayer.name}&nbsp;</h4>
-                {currPlayer.splitBet > 0 &&
+                <h4>{name}&nbsp;</h4>
+                {splitBet > 0 &&
                     <h4> split: {handText}</h4>
                 }
             </div>
 
             <PlayerDetails playerIndex={playerIndex} />
             <Cards
-                cardUrlVals={currPlayer.hand.cardUrlVals}
+                cardUrlVals={hand.cardUrlVals}
             />
             {playersArr[playerIndex].splitHand.cards.length > 0 &&
                 <SplitCardPreview
                     playerIndex={playerIndex}
                 />
             }
-
-
-
-            {/* <ExitTable /> */}
         </div>
     )
 }
