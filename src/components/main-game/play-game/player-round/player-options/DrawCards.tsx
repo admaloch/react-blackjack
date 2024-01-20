@@ -1,11 +1,11 @@
 import PlayerIndexProps from '../../../../../models/PlayerIndexProps';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { DrawCardsIconWithPopper } from '../../../../UI/icons/DrawCardsIconWithPopper';
-import useDrawCards from '../../../draw-cards-hook/useDrawCards';
 import { delay } from '../../../../../utils/Utility';
+import usePlayerDrawCard from '../../../draw-cards-hook/usePlayerDrawCard';
 export default function DrawCards({ playerIndex }: PlayerIndexProps) {
 
-    const playerDraw = useDrawCards('player', playerIndex);
+    const playerDraw = usePlayerDrawCard(playerIndex)
 
     const drawCardsHandler = async () => {
         await delay(200)

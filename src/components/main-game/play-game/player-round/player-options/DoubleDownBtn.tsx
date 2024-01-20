@@ -1,10 +1,7 @@
 import { useSelector } from 'react-redux';
 import { RootState } from "../../../../../store/store";
 import PlayerIndexProps from '../../../../../models/PlayerIndexProps';
-import useDrawCards from '../../../draw-cards-hook/useDrawCards';
-import { delay } from '../../../../../utils/Utility';
 import { updatePlayer } from '../../../../../store/player-arr/playersArrSlice';
-import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 export default function DoubleDownBtn({ playerIndex }: PlayerIndexProps) {

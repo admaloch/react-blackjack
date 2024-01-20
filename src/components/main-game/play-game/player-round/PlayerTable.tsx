@@ -16,18 +16,21 @@ interface PlayerTableProps {
 function PlayerTable({ playerIndex, endRound }: PlayerTableProps) {
 
     const playersArr = useSelector((state: RootState) => state.playersArr);
+    const dealerObj = useSelector((state: RootState) => state.dealerObj);
+
     const { hand, splitHand, splitBet, name } = playersArr[playerIndex]
     const playerDraw = usePlayerDrawCard(playerIndex)
 
     useEffect(() => {
-        if (hand.cards.length === 0 || hand.cards.length === 1) {
-            setTimeout(() => {
-                playerDraw()
-            }, 1200);
+        if (dealerObj.hand.cards.length === 2) {
+            if (hand.cards.length === 0 || hand.cards.length === 1) {
+                setTimeout(() => {
+                    playerDraw()
+                }, 300);
+            }
         }
-    }, [hand, playerDraw]);
 
-
+    }, [hand, dealerObj, playerDraw]);
 
     const handText = splitHand.cards.length === 1 ? '1st hand' : '2nd hand'
 

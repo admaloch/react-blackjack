@@ -1,23 +1,23 @@
 import { useSelector } from 'react-redux';
 import { RootState } from "../../../../../store/store";
 import PlayerIndexProps from '../../../../../models/PlayerIndexProps';
-import useDrawCards from '../../../draw-cards-hook/useDrawCards';
 import { useDispatch } from 'react-redux';
 import { updatePlayer } from '../../../../../store/player-arr/playersArrSlice';
 import { useEffect } from 'react';
+import usePlayerDrawCard from '../../../draw-cards-hook/usePlayerDrawCard';
 
 
 export default function DoubleDown({ playerIndex }: PlayerIndexProps) {
 
-    const playerDraw = useDrawCards('player', playerIndex);
+    const playerDraw = usePlayerDrawCard(playerIndex)
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const currPlayer = playersArr[playerIndex]
-    const { hand, currBet, bank } = currPlayer
+    const { hand, currBet, bank, isDoubleDown } = currPlayer
     const dispatch = useDispatch();
 
 
     const doubleDownStyle = {
-        display: hand.cards.length > 2 && currPlayer.bank >= currPlayer.currBet
+        display: hand.cards.length > 2 && bank >= currBet
             ? 'none'
             : 'block',
     };
@@ -27,12 +27,12 @@ export default function DoubleDown({ playerIndex }: PlayerIndexProps) {
     }
 
     useEffect(() => {
-        if (currPlayer.isDoubleDown && currPlayer.hand.cards.length === 2) {
+        if (isDoubleDown && hand.cards.length === 2) {
             setTimeout(() => {
                 playerDraw()
             }, 1000);
         }
-    }, [playersArr, playerIndex])
+    }, [isDoubleDown, hand, playerDraw])
 
 
     return (
