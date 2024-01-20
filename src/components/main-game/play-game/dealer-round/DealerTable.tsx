@@ -15,18 +15,18 @@ export default function DealerTable() {
 
 
 
-  useEffect(() => {
-    if (dealerObj.hand.cards.length === 0) {
-      setTimeout(() => {
-        dealerDraw()
-      }, 1000);
-    }
-    if (dealerObj.hand.cards.length === 1) {
-      setTimeout(() => {
-        dealerDraw()
-      }, 500);
-    }
-  }, [dealerObj]);
+  // useEffect(() => {
+  //   if (dealerObj.hand.cards.length === 0) {
+  //     setTimeout(() => {
+  //       dealerDraw()
+  //     }, 1000);
+  //   }
+  //   if (dealerObj.hand.cards.length === 1) {
+  //     setTimeout(() => {
+  //       dealerDraw()
+  //     }, 500);
+  //   }
+  // }, [dealerObj]);
 
 
 

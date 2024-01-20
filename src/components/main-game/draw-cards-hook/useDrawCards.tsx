@@ -14,8 +14,6 @@ const useDrawCards = (target: 'player' | 'dealer' = 'player', playerIndex?: numb
   const dealerObj = useSelector((state: RootState) => state.dealerObj);
   const deck = useSelector((state: RootState) => state.deck);
 
-
-
   // Helper function to update the Redux state
   const updateState = (updatedValue: PlayerInterface | DealerObjInterface) => {
     if (target === 'player' && playerIndex !== undefined) {

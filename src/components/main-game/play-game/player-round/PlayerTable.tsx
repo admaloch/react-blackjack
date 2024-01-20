@@ -20,19 +20,15 @@ function PlayerTable({ playerIndex, endRound }: PlayerTableProps) {
     const playerDraw = useDrawCards('player', playerIndex);
 
     useEffect(() => {
-        if (hand.cards.length === 0) {
+        if (hand.cards.length === 0 || hand.cards.length === 1) {
             setTimeout(() => {
                 playerDraw()
             }, 1200);
         }
-        if (hand.cards.length === 1) {
-            setTimeout(() => {
-                playerDraw()
-            }, 500);
-        }
-    }, [hand, playerIndex, playerDraw]);
+    }, [hand, playerDraw]);
 
-    
+
+
     const handText = splitHand.cards.length === 1 ? '1st hand' : '2nd hand'
 
     return (

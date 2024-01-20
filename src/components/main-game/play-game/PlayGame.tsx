@@ -25,6 +25,8 @@ export default function PlayGame() {
         dispatch(updatePlayer({ ...playersArr[currPlayerIndex], isDoubleDown: false }));
     }
 
+    
+
     useEffect(() => {
         console.log('curr player cards ', playersArr[currPlayerIndex].hand.cards)
     }, [playersArr, currPlayerIndex])
