@@ -27,9 +27,9 @@ export default function PlayGame() {
 
     
 
-    useEffect(() => {
-        console.log('curr player cards ', playersArr[currPlayerIndex].hand.cards)
-    }, [playersArr, currPlayerIndex])
+    // useEffect(() => {
+    //     console.log('curr player cards ', playersArr[currPlayerIndex].hand)
+    // }, [playersArr, currPlayerIndex])
 
     return (
         <div className='game-container play-round'>

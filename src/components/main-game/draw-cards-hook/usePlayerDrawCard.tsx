@@ -41,8 +41,6 @@ const usePlayerDrawCard = (playerIndex: number) => {
         const newDeck = updateDeckFromState(deck, cardIndex, suitIndex);
         dispatch(updateDeck(newDeck));
     }, [deck, dispatch, playerIndex, playersArr, updateState]);
-
-    console.log('player draw hook ran');
     return drawAndHandleUpdate;
 };
 
