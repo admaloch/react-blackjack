@@ -1,4 +1,4 @@
-import ExitTable from "../ExitTable";
+import ExitTable from "./ExitTable";
 import DoubleDown from "./DoubleDown";
 import Stand from "./Stand";
 import DrawCards from "./DrawCards";
@@ -18,11 +18,11 @@ export default function PlayerOptions({ playerIndex, endRound }: PlayerIconsProp
             <div className="current-options">
                 <DoubleDown playerIndex={playerIndex} />
                 <Split playerIndex={playerIndex} />
-                <Insurance playerIndex={playerIndex}/>
+                <Insurance playerIndex={playerIndex} />
             </div>
             <Stand playerIndex={playerIndex} endRound={endRound} />
             <DrawCards playerIndex={playerIndex} />
-            <ExitTable />
+            <ExitTable playerIndex={playerIndex}/>
         </>
     )
 }

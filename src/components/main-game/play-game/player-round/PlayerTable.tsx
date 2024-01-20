@@ -17,7 +17,6 @@ function PlayerTable({ playerIndex, endRound }: PlayerTableProps) {
 
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const dealerObj = useSelector((state: RootState) => state.dealerObj);
-
     const { hand, splitHand, splitBet, name } = playersArr[playerIndex]
     const playerDraw = usePlayerDrawCard(playerIndex)
 

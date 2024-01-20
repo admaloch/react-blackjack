@@ -47,6 +47,7 @@ export default function PlayGame() {
                 changeToNextPlayer={changeToNextPlayer}
                 endRound={endRound}
             />
+            
         </div>
     );
 }

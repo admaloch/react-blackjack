@@ -3,13 +3,15 @@ import dealerObjReducer from "./dealer-obj/dealerObjSlice";
 import playersArrReducer from "./player-arr/playersArrSlice";
 import gameDataReducer from "./game-data/GameDataSlice";
 import deckReducer from "./deck/deckSlice";
+import InactivePlayerReducer from "./inactive-players/InactivePlayersSlice";
 
 export const store = configureStore({
     reducer: {
         dealerObj: dealerObjReducer,
         playersArr: playersArrReducer,
         deck: deckReducer,
-        gameData: gameDataReducer
+        gameData: gameDataReducer,
+        inactivePlayers: InactivePlayerReducer,
     },
 })
 
