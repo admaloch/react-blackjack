@@ -29,7 +29,6 @@ function PlayerTable({ playerIndex, endRound }: PlayerTableProps) {
                 }, 300);
             }
         }
-
     }, [hand, dealerObj, playerDraw]);
 
     const handText = splitHand.cards.length === 1 ? '1st hand' : '2nd hand'

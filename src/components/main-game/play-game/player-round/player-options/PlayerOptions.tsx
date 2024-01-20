@@ -4,17 +4,12 @@ import Stand from "./Stand";
 import DrawCards from "./DrawCards";
 import Split from "./Split";
 
-
 interface PlayerIconsProps {
     playerIndex: number;
     endRound: () => void;
 }
 
-
-
 export default function PlayerOptions({ playerIndex, endRound }: PlayerIconsProps) {
-
-
     return (
         <>
             <div className="current-options">

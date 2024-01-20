@@ -22,16 +22,22 @@
 .player-table {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     height: 50%;
     width: 100%;
     position: relative;
+    
 
+}
+
+.dealer-table {
+    padding-top: 1rem;
 }
 
 .player-table {
     border-top: var(--text) solid 2px;
+    padding-top: 2.5rem;
 }
 
 .player-table svg {

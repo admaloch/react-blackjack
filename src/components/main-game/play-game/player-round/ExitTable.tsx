@@ -1,4 +1,3 @@
-import React from 'react'
 import { ExitTableIconWithPopper } from '../../../UI/icons/ExitTableIconWithPopper'
 
 export default function ExitTable() {
