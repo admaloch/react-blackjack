@@ -1,10 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { ExitTableIconWithPopper } from '../../../../UI/icons/ExitTableIconWithPopper'
-import { RootState } from '../../../../../store/store';
-import PlayerIndexProps from '../../../../../models/PlayerIndexProps';
-import { removePlayer } from '../../../../../store/player-arr/playersArrSlice';
-import { addInactivePlayer } from '../../../../../store/inactive-players/InactivePlayersSlice';
+import { ExitTableIconWithPopper } from '../../../../../UI/icons/ExitTableIconWithPopper'
+import { RootState } from '../../../../../../store/store';
+import PlayerIndexProps from '../../../../../../models/PlayerIndexProps';
+import { removePlayer } from '../../../../../../store/player-arr/playersArrSlice';
+import { addInactivePlayer } from '../../../../../../store/inactive-players/InactivePlayersSlice';
 import { useEffect } from 'react';
+import { delay } from '../../../../../../utils/Utility';
 
 export default function ExitTable({ playerIndex }: PlayerIndexProps) {
 
@@ -14,7 +15,8 @@ export default function ExitTable({ playerIndex }: PlayerIndexProps) {
 
     const dispatch = useDispatch();
 
-    const exitTableHandler = () => {
+    const exitTableHandler = async () => {
+        await delay(300)
         dispatch(removePlayer({ name: currPlayer.name }))
         dispatch(addInactivePlayer({ ...currPlayer }))
     }
@@ -25,10 +27,14 @@ export default function ExitTable({ playerIndex }: PlayerIndexProps) {
     }, [inactivePlayers, playersArr])
 
     return (
+        <>
         <div
             onClick={exitTableHandler}
             className="exit-table-icon">
             <ExitTableIconWithPopper placement="top" />
         </div>
+        Exit
+        </>
+        
     )
 }

@@ -7,6 +7,7 @@ import PlayerTable from './player-round/PlayerTable';
 import EndOfTurnResults from './end-of-turn/EndOfTurnResults';
 import { useDispatch } from "react-redux";
 import { updatePlayer } from '../../../store/player-arr/playersArrSlice';
+import LeaveTableModal from './player-round/player-options/exit-table/LeaveTableModal';
 
 export default function PlayGame() {
     const dispatch = useDispatch()
@@ -25,7 +26,7 @@ export default function PlayGame() {
         dispatch(updatePlayer({ ...playersArr[currPlayerIndex], isDoubleDown: false }));
     }
 
-    
+
 
     useEffect(() => {
         console.log('curr player ', playersArr[currPlayerIndex])
@@ -47,7 +48,13 @@ export default function PlayGame() {
                 changeToNextPlayer={changeToNextPlayer}
                 endRound={endRound}
             />
-            
+            {/* {playersArr.length !== 0 &&
+                <LeaveTableModal
+                    changeToNextPlayer={changeToNextPlayer}
+
+                />
+            } */}
+
         </div>
     );
 }
