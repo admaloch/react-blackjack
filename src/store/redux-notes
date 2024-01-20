@@ -8,12 +8,5 @@
 // dispatch(addPlayer({ ...emptyPlayerItem, name: formattedName }));
 
 
-for file in *_of_clubs*; do mv "$file" "${file//_of_clubs/C}"; done
-for file in *_of_spades*; do mv "$file" "${file//_of_spades/S}"; done
-for file in *_of_hearts*; do mv "$file" "${file//_of_hearts/H}"; done
-for file in *_of_diamonds*; do mv "$file" "${file//_of_diamonds/D}"; done
-for file in *A2*; do mv "$file" "${file//jack/J}"; done
-for file in *queen*; do mv "$file" "${file//queen/Q}"; done
-for file in *king*; do mv "$file" "${file//king/K}"; done
-for file in *2.svg*; do mv "$file" "${file//2/}"; done
+
 

@@ -4,10 +4,10 @@ import { DealerObjInterface } from "../../models/PlayerProps";
 const initialState: DealerObjInterface = {
     name: 'Dealer',
     hand: {
-        cards: [],
-        cardUrlVals: [],
-        cardNumVals: [],
-        cardSum: 0,
+        cards: ['A♣', '5♥'],
+        cardUrlVals: ['AC', '5H'],
+        cardNumVals: [11, 5],
+        cardSum: 16,
         isBlackjack: false,
     }, 
 }
