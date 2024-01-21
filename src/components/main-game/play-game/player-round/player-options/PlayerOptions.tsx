@@ -1,4 +1,4 @@
-import ExitTable from "./exit-table/ExitTable";
+import ExitTable from "./ExitTable";
 import DoubleDown from "./DoubleDown";
 import Stand from "./Stand";
 import DrawCards from "./DrawCards";

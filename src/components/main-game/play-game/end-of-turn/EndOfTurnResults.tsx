@@ -41,8 +41,6 @@ export default function EndOfTurnResults({ playerIndex, isPlayerFinished, endRou
                 playerIndex={playerIndex}
                 startRound={startRound}
                 changeToNextPlayer={changeToNextPlayer}
-
-
             />
         </Modal>
     )
