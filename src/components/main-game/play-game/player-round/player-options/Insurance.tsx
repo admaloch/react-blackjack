@@ -18,8 +18,10 @@ export default function Insurance({ playerIndex }: PlayerIndexProps) {
             || currPlayer.insuranceBet !== 0
             || currPlayer.splitBet !== 0
         ) {
-            return
+            return;
         }
+    } else {
+        return;
     }
 
 

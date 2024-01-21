@@ -1,34 +1,17 @@
-import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../../store/store';
-import { removePlayer } from '../../../../store/player-arr/playersArrSlice';
-import { addInactivePlayer } from '../../../../store/inactive-players/InactivePlayersSlice';
-import { updateIsGameActive } from '../../../../store/game-data/GameDataSlice';
 import { PlayerInterface } from '../../../../models/PlayerProps';
-import { delay } from '../../../../utils/Utility';
+import { useSelector } from 'react-redux';
 
 interface ExitTableBtnProps {
     playerIndex: number;
-    closeModal: () => void;
+    exitTableModalBtnHandler: () => void;
     playerWhoLeft: PlayerInterface;
 }
 
-export default function ExitTableBtn({ playerIndex, closeModal, playerWhoLeft }: ExitTableBtnProps) {
+export default function ExitTableBtn({ playerIndex, exitTableModalBtnHandler, playerWhoLeft }: ExitTableBtnProps) {
 
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const currPlayer = playersArr[playerIndex]
-
-    const dispatch = useDispatch();
-
-    const exitTableModalBtnHandler = async () => {
-        await delay(200)
-        closeModal()
-        if (playersArr.length > 1) {
-            dispatch(removePlayer({ name: playerWhoLeft.name }))
-            dispatch(addInactivePlayer({ ...playerWhoLeft }))
-        } else {
-            dispatch(updateIsGameActive());
-        }
-    };
 
     let modalBtnText = ''
     if (playersArr.length > 1) {

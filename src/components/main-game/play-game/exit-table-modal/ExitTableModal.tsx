@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import Modal from "../../../UI/modal/Modal";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
 import './ExitTable.css'
 import ExitTableBtn from "./ExitTableModalBtn";
 import PlayerIndexProps from "../../../../models/PlayerIndexProps";
 import { PlayerInterface } from "../../../../models/PlayerProps";
+import { removePlayer } from "../../../../store/player-arr/playersArrSlice";
+import { addInactivePlayer } from "../../../../store/inactive-players/InactivePlayersSlice";
+import { updateIsGameActive } from "../../../../store/game-data/GameDataSlice";
 
 
 export default function ExitTableModal({ playerIndex }: PlayerIndexProps) {
@@ -14,8 +17,7 @@ export default function ExitTableModal({ playerIndex }: PlayerIndexProps) {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const closeModal = () => setIsModalOpen(false)
     const [playerWhoLeft, setPlayerWhoLeft] = useState<PlayerInterface | null>(null);
-
-
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const playerLeftTable = playersArr.find(player => player.playerLeftTable);
@@ -25,6 +27,19 @@ export default function ExitTableModal({ playerIndex }: PlayerIndexProps) {
             setIsModalOpen(true);
         }
     }, [playersArr]);
+
+    const exitTableModalBtnHandler = async () => {
+        if (playerWhoLeft) {
+            closeModal()
+            if (playersArr.length > 1) {
+                dispatch(removePlayer({ name: playerWhoLeft.name }))
+                dispatch(addInactivePlayer({ ...playerWhoLeft }))
+            } else {
+                dispatch(updateIsGameActive());
+            }
+        }
+
+    };
 
     return (
         <Modal
@@ -39,9 +54,9 @@ export default function ExitTableModal({ playerIndex }: PlayerIndexProps) {
                         <li>Rounds won: {playerWhoLeft.roundsWon}</li>
                     </ul>
                     <ExitTableBtn
-                    playerWhoLeft={playerWhoLeft}
+                        exitTableModalBtnHandler={exitTableModalBtnHandler}
                         playerIndex={playerIndex}
-                        closeModal={closeModal}
+                        playerWhoLeft={playerWhoLeft}
                     />
                 </div>
             )}
