@@ -14,7 +14,7 @@ export default function ExitTable({ playerIndex }: PlayerIndexProps) {
 
     const exitTableHandler = async () => {
         await delay(300)
-        dispatch(updatePlayer({ ...currPlayer, isPlayerActive: false }))
+        dispatch(updatePlayer({ ...currPlayer, playerLeftTable: true }))
     }
 
 

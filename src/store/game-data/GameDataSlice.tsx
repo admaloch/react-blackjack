@@ -10,8 +10,8 @@ interface GameDataProps {
 const initialState: GameDataProps = {
   roundsPlayed: 1,
   isGameActive: false,
-  isMenuShown: false,
-  isPlayerStatsShown: false,
+  isMenuShown: true,
+  isPlayerStatsShown: true,
 }
 
 const deckSlice = createSlice({

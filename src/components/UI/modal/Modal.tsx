@@ -8,31 +8,26 @@ export interface ModalProps {
     closeModal: () => void;
     open: boolean;
 }
-export interface OpenModalProps {
-    openModal: () => void;
-}
 
 export interface MainModalProps extends ModalProps {
-    children: JSX.Element;
+    children: JSX.Element | null;
 }
 
-
 export default function Modal({ open, children, closeModal }: MainModalProps): JSX.Element | null {
-
-    const [isVisible, setIsVisible] = useState(false)
+    const [isVisible, setIsVisible] = useState(false);
 
     const closeModalHandler = () => {
-        setIsVisible(false)
+        setIsVisible(false);
         setTimeout(() => {
-            closeModal()
-        }, 1000)
-    }
+            closeModal();
+        }, 1000);
+    };
 
     useEffect(() => {
         if (open) {
-            setIsVisible(true)
+            setIsVisible(true);
         }
-    }, [open])
+    }, [open]);
 
     if (!open) return null;
 
@@ -40,19 +35,17 @@ export default function Modal({ open, children, closeModal }: MainModalProps): J
         <>
             <div
                 onClick={closeModalHandler}
-                className={isVisible ? "modal-overlay active" : "modal-overlay"} >
-            </div >
-            <div
-                className={isVisible ? "modal-container active" : "modal-container"}
-            >
+                className={isVisible ? "modal-overlay active" : "modal-overlay"}
+            ></div>
+            <div className={isVisible ? "modal-container active" : "modal-container"}>
                 <CloseIcon
                     onClick={closeModalHandler}
                     className='modal-close-icon'
-                    sx={{ position: 'absolute', top: 15, right: 15, fontSize: 25 }} />
-                {children}
+                    sx={{ position: 'absolute', top: 15, right: 15, fontSize: 25 }}
+                />
+                {children && children}
             </div>
         </>,
         document.getElementById('portal') as Element
     );
 }
-

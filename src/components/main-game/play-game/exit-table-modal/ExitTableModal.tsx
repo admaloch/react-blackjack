@@ -1,72 +1,51 @@
 import { useEffect, useState } from "react";
-import { updateIsGameActive } from "../../../../store/game-data/GameDataSlice";
 import Modal from "../../../UI/modal/Modal";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
-import { addInactivePlayer } from "../../../../store/inactive-players/InactivePlayersSlice";
-import { removePlayer } from "../../../../store/player-arr/playersArrSlice";
 import './exit-table-modal.css'
+import ExitTableBtn from "./ExitTableModalBtn";
+import PlayerIndexProps from "../../../../models/PlayerIndexProps";
+import { PlayerInterface } from "../../../../models/PlayerProps";
 
-interface LeaveTableModalProps {
-    changeToNextPlayer: () => void;
-    playerIndex: number;
-}
 
-export default function ExitTableModal({ changeToNextPlayer, playerIndex }: LeaveTableModalProps) {
+export default function ExitTableModal({ playerIndex }: PlayerIndexProps) {
+
     const playersArr = useSelector((state: RootState) => state.playersArr);
-    const currPlayer = playersArr[playerIndex]
-    const { isPlayerActive, name, bank, roundsWon } = currPlayer
-    const dispatch = useDispatch();
     const [isModalOpen, setIsModalOpen] = useState(false);
-
     const closeModal = () => setIsModalOpen(false)
+    const [playerWhoLeft, setPlayerWhoLeft] = useState<PlayerInterface | null>(null);
+
 
 
     useEffect(() => {
-        if (!isPlayerActive) {
+        const playerLeftTable = playersArr.find(player => player.playerLeftTable);
+        console.log('player left table', playerLeftTable)
+        if (playerLeftTable) {
+            setPlayerWhoLeft(playerLeftTable);
             setIsModalOpen(true);
         }
-    }, [isPlayerActive]);
-
-    const exitTableModalBtnHandler = () => {
-        setIsModalOpen(false);
-        if (playersArr.length > 1) {
-            dispatch(removePlayer({ name: currPlayer.name }))
-            dispatch(addInactivePlayer({ ...currPlayer }))
-            changeToNextPlayer();
-        } else {
-            dispatch(updateIsGameActive());
-        }
-    };
-
-    const reasonForLeaving = bank < 0
-        ? `${name} ran out of money and has left the table`
-        : `${name} left the table`
-
-    const modalButton = playersArr.length > 1
-        ? `Begin ${playersArr[playerIndex + 1].name}'s turn`
-        : "See final results"
-
-        
+    }, [playersArr]);
 
     return (
         <Modal
             closeModal={closeModal}
             open={isModalOpen}
         >
-            <div className="exit-table-modal">
-                <h2>{reasonForLeaving}</h2>
-                <ul>
-                    <li>Current bank: ${bank}</li>
-                    <li>Rounds won: {roundsWon}</li>
-                </ul>
+            {playerWhoLeft && (
+                <div className="exit-table-modal">
+                    <h2>{playerWhoLeft.name} left the table</h2>
+                    <ul>
+                        <li>Current bank: ${playerWhoLeft.bank}</li>
+                        <li>Rounds won: {playerWhoLeft.roundsWon}</li>
+                    </ul>
+                    <ExitTableBtn
+                    playerWhoLeft={playerWhoLeft}
+                        playerIndex={playerIndex}
+                        closeModal={closeModal}
+                    />
+                </div>
+            )}
 
-                <button
-                    onClick={exitTableModalBtnHandler}
-                    className="game-btn">
-                    {modalButton}
-                </button>
-            </div>
         </Modal>
     );
 }

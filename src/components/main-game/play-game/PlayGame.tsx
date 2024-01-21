@@ -50,7 +50,6 @@ export default function PlayGame() {
             />
             {playersArr.length !== 0 &&
                 <LeaveTableModal
-                    changeToNextPlayer={changeToNextPlayer}
                     playerIndex={currPlayerIndex}
                 />
             }

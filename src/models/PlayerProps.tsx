@@ -23,7 +23,7 @@ export interface PlayerInterface {
     splitBet: number;
     isPlayerSplit: boolean;
     isDoubleDown: boolean;
-    isPlayerActive: boolean;
+    playerLeftTable: boolean;
     currTokens: number[];
     roundsWon: number;
 }
@@ -51,7 +51,7 @@ export const emptyPlayerItem: PlayerInterface = {
     splitBet: 0,
     isPlayerSplit: false,
     isDoubleDown: false,
-    isPlayerActive: true,
+    playerLeftTable: false,
     currTokens: [1, 5, 25, 50, 100, 500],
     roundsWon: 0,
 }
