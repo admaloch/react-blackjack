@@ -1,3 +1,13 @@
+.exit-table-icon {
+    position: absolute;
+    bottom: -1rem;
+    left: .5rem;
+}
+
+.exit-table-icon svg {
+    width: 40px;
+}
+
 .exit-table-modal {
 
     width: 100%;

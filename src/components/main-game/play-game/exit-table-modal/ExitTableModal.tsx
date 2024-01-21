@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Modal from "../../../UI/modal/Modal";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
-import './exit-table-modal.css'
+import './ExitTable.css'
 import ExitTableBtn from "./ExitTableModalBtn";
 import PlayerIndexProps from "../../../../models/PlayerIndexProps";
 import { PlayerInterface } from "../../../../models/PlayerProps";

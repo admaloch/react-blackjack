@@ -40,10 +40,6 @@ export default function ExitTableBtn({ playerIndex, closeModal, playerWhoLeft }:
         modalBtnText = "See final results"
     }
 
-    // const modalButton = playersArr.length > 1
-    //     ? `Begin ${playersArr[playerIndex + 1].name}'s turn`
-    //     : "See final results"
-
     return (
         <button
             onClick={exitTableModalBtnHandler}

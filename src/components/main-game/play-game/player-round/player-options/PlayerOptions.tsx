@@ -1,9 +1,9 @@
-import ExitTable from "./ExitTable";
 import DoubleDown from "./DoubleDown";
 import Stand from "./Stand";
 import DrawCards from "./DrawCards";
 import Split from "./Split";
 import Insurance from "./Insurance";
+import ExitTableIcon from "../../exit-table-modal/ExitTableIcon";
 
 
 interface PlayerIconsProps {
@@ -22,7 +22,7 @@ export default function PlayerOptions({ playerIndex, endRound }: PlayerIconsProp
             </div>
             <Stand playerIndex={playerIndex} endRound={endRound} />
             <DrawCards playerIndex={playerIndex} />
-            <ExitTable playerIndex={playerIndex} />
+            <ExitTableIcon playerIndex={playerIndex} />
         </>
     )
 }
