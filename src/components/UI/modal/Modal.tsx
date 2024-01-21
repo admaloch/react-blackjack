@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import ReactDOM from 'react-dom';
 import './Modal.css';
-import CloseIcon from '@mui/icons-material/Close';
 
 export interface ModalProps {
     closeModal: () => void;
@@ -15,13 +14,12 @@ export interface MainModalProps extends ModalProps {
 }
 
 export default function Modal({ open, children, closeModal }: MainModalProps): JSX.Element | null {
+
     const [isVisible, setIsVisible] = useState(false);
 
     const closeModalHandler = () => {
         setIsVisible(false);
-        setTimeout(() => {
             closeModal();
-        }, 1000);
     };
 
     useEffect(() => {

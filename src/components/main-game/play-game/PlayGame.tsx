@@ -19,7 +19,7 @@ export default function PlayGame() {
         setisPlayerFinished(true)
     }
 
-    const startRound = () => setisPlayerFinished(false)
+    const makePlayerFinished = () => setisPlayerFinished(false)
 
     const changeToNextPlayer = () => {
         setCurrPlayerIndex((prevIndex) => (prevIndex + 1) % playersArr.length);
@@ -44,7 +44,7 @@ export default function PlayGame() {
             <EndOfTurnResults
                 playerIndex={currPlayerIndex}
                 isPlayerFinished={isPlayerFinished}
-                startRound={startRound}
+                makePlayerFinished={makePlayerFinished}
                 changeToNextPlayer={changeToNextPlayer}
                 endRound={endRound}
             />
