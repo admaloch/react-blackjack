@@ -5,7 +5,7 @@ import './ExitTable.css'
 import ExitTableBtn from "./ExitTableModalBtn";
 import { removePlayer } from "../../../../store/player-arr/playersArrSlice";
 import { addInactivePlayer } from "../../../../store/inactive-players/InactivePlayersSlice";
-import { updateIsGameActive } from "../../../../store/game-data/GameDataSlice";
+import { updateIsGameActive, updateIsPlayerRoundComplete } from "../../../../store/game-data/GameDataSlice";
 import { PlayerInterface } from "../../../../models/PlayerProps";
 
 interface ExitTableModalProps {
@@ -20,15 +20,23 @@ export default function ExitTableModal({ playerIndex, playerWhoLeft, closeModal,
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const dispatch = useDispatch();
 
+    const currPlayerName = playersArr[playerIndex].name
+    const lastPlayerName = playersArr[playersArr.length - 1].name
+
+
     const exitTableModalBtnHandler = async () => {
         if (playerWhoLeft) {
-            closeModal()
             if (playersArr.length > 1) {
-                dispatch(removePlayer({ name: playerWhoLeft.name }))
-                dispatch(addInactivePlayer({ ...playerWhoLeft }))
+                if (currPlayerName === lastPlayerName
+                    && currPlayerName === playerWhoLeft.name) {
+                    dispatch(updateIsPlayerRoundComplete())
+                }
             } else {
                 dispatch(updateIsGameActive());
             }
+            dispatch(removePlayer({ name: playerWhoLeft.name }))
+            dispatch(addInactivePlayer({ ...playerWhoLeft }))
+            closeModal()
         }
     };
 

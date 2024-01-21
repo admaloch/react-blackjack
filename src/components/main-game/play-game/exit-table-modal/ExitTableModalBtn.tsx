@@ -12,13 +12,18 @@ export default function ExitTableBtn({ playerIndex, exitTableModalBtnHandler, pl
 
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const currPlayer = playersArr[playerIndex]
+    const currPlayerName = currPlayer.name
+    const lastPlayerName = playersArr[playersArr.length - 1].name
+    const leftTableName = playerWhoLeft.name
 
     let modalBtnText = ''
     if (playersArr.length > 1) {
-        if (playerWhoLeft.name === currPlayer.name) {
+        if(currPlayerName === lastPlayerName && currPlayerName === leftTableName ) {
+            modalBtnText = "Begin dealer round"
+        } else if (currPlayerName !== lastPlayerName && currPlayerName === leftTableName ) {
             modalBtnText = `Begin ${playersArr[playerIndex + 1].name}'s turn`
         } else {
-            modalBtnText = `Continue ${currPlayer.name}'s turn`
+            modalBtnText = `Continue ${currPlayerName}'s turn`
         }
     } else {
         modalBtnText = "See final results"
