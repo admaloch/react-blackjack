@@ -18,7 +18,6 @@ interface ExitTableModalProps {
 export default function ExitTableModal({ playerIndex, playerWhoLeft, closeModal, isModalOpen }: ExitTableModalProps) {
 
     const playersArr = useSelector((state: RootState) => state.playersArr);
-
     const dispatch = useDispatch();
 
     const exitTableModalBtnHandler = async () => {
