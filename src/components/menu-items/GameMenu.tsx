@@ -1,6 +1,6 @@
 import './GameMenu.css'
 import PlayerStats from './PlayerStats'
-import QuitGame from './QuitGame'
+import QuitGame from './quit-game/QuitGame'
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 

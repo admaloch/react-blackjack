@@ -10,6 +10,7 @@ import { useSelector } from "react-redux"
 import { RootState } from './store/store'
 import PlayerBets from './components/main-game/player-bets/PlayerBets'
 import PlayGame from './components/main-game/play-game/PlayGame'
+import FinalResults from './components/final-results/FinalResults'
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
         <Route path='/playGame' element={<StartRound />} />
         <Route path='/placeBets' element={<PlayerBets />} />
         <Route path='/startRound' element={<PlayGame />} />
+        <Route path='/finalResults' element={<FinalResults />} />
       </Routes>
      
     </>
