@@ -17,13 +17,12 @@ export default function ExitTableIcon({ currPlayer }: ExitTableIconProps) {
     }
     
     return (
-        <>
+
             <div
                 onClick={exitTableHandler}
                 className="exit-table-icon">
                 <ExitTableIconWithPopper placement="top" />
             </div>
-        </>
-
+     
     )
 }

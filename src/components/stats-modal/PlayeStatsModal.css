@@ -40,3 +40,7 @@
     width: 20px;
     fill: var(--mainBackground);
 }
+
+.stats-modal-container .game-btn {
+    margin-top: .8rem;
+}

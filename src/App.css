@@ -60,3 +60,7 @@
     pointer-events: none;
     opacity: .5;
 }
+
+#icon-popper {
+    z-index: 200;
+}
