@@ -33,3 +33,14 @@
 .split-card-preview img {
 width: 50px;
 }
+
+.player-table .exit-table-icon {
+ 
+    position: absolute;
+    bottom: -1rem;
+    left: .5rem;
+}
+
+.player-table .exit-table-icon svg {
+    width: 40px;
+}

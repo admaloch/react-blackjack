@@ -11,6 +11,9 @@
 }
 .stats-modal-container li {
     list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .stats-modal-container h3,
@@ -26,4 +29,14 @@
 .stats-modal-container h4 {
     margin: .5rem 0;
     font-size: 1.3rem;
+}
+
+.stats-modal-container .exit-table-icon {
+    margin-top: .2rem;
+    margin-left: .5rem;
+}
+
+.stats-modal-container .exit-table-icon svg {
+    width: 20px;
+    fill: var(--mainBackground);
 }

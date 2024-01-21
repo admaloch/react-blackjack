@@ -10,7 +10,7 @@ interface PlayerStatsProps {
 }
 
 export default function PlayerStatsModal({ closeModal, open }: PlayerStatsProps) {
-    const playerDataArr = useSelector((state: RootState) => state.playersArr);
+    const playersArr = useSelector((state: RootState) => state.playersArr);
     const currRound = useSelector((state: RootState) => state.gameData.roundsPlayed);
 
 
@@ -24,7 +24,7 @@ export default function PlayerStatsModal({ closeModal, open }: PlayerStatsProps)
                 <h4>Current Round: {currRound}</h4>
 
                 <ul>
-                    {playerDataArr.map((player) => (
+                    {playersArr.map((player) => (
                         <PlayerStatsItem
                             key={player.name}
                             player={player}
