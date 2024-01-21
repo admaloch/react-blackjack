@@ -11,8 +11,8 @@ export default function PlayerStatsItem({ player }: PlayerStatsItemProps) {
 
     return (
         <li>
-            {name}: Current Bank: {`$${bank}`}: Total Rounds Won: {roundsWon}
             <ExitTableIcon currPlayer={player} />
+            {name}: Current Bank: {`$${bank}`}: Total Rounds Won: {roundsWon}
         </li>
     )
 }
