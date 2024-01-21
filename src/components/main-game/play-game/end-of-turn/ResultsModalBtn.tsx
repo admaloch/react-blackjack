@@ -27,11 +27,7 @@ export default function ResultsModalBtn({ playerIndex, startRound, changeToNextP
     }
 
     const nextPlayerHandler = async () => {
-
         if (splitHand.cards.length === 1 || playersArr.length - 1 !== playerIndex) {
-
-
-
             if (!isPlayerSplit || isPlayerSplit && splitHand.cards.length > 1) {
                 changeToNextPlayer()
             }
@@ -41,8 +37,6 @@ export default function ResultsModalBtn({ playerIndex, startRound, changeToNextP
         } else {
             console.log('begin dealer round')
         }
-
-
     };
 
     const handleSplitRoundResults = () => {

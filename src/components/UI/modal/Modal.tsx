@@ -7,6 +7,7 @@ import CloseIcon from '@mui/icons-material/Close';
 export interface ModalProps {
     closeModal: () => void;
     open: boolean;
+
 }
 
 export interface MainModalProps extends ModalProps {
@@ -38,11 +39,7 @@ export default function Modal({ open, children, closeModal }: MainModalProps): J
                 className={isVisible ? "modal-overlay active" : "modal-overlay"}
             ></div>
             <div className={isVisible ? "modal-container active" : "modal-container"}>
-                <CloseIcon
-                    onClick={closeModalHandler}
-                    className='modal-close-icon'
-                    sx={{ position: 'absolute', top: 15, right: 15, fontSize: 25 }}
-                />
+
                 {children && children}
             </div>
         </>,

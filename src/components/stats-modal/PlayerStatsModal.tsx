@@ -3,6 +3,7 @@ import { useSelector } from "react-redux"
 import { RootState } from "../../store/store"
 import PlayerStatsItem from './PlayerStatsItem';
 import './PlayeStatsModal.css'
+import { delay } from '../../utils/Utility';
 
 interface PlayerStatsProps {
     open: boolean;
@@ -13,6 +14,10 @@ export default function PlayerStatsModal({ closeModal, open }: PlayerStatsProps)
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const currRound = useSelector((state: RootState) => state.gameData.roundsPlayed);
 
+    const closeModalHandler = async () => {
+       await delay(200)
+        closeModal()
+    }
 
     return (
         <Modal
@@ -31,7 +36,9 @@ export default function PlayerStatsModal({ closeModal, open }: PlayerStatsProps)
                         />
                     ))}
                 </ul>
-                <div className="game-btn">
+                <div
+                    onClick={closeModalHandler}
+                    className="game-btn">
                     Return to game
                 </div>
 
