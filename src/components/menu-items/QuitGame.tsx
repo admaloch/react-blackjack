@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { QuitIconWithPopper } from "../UI/icons/QuitIconWithPopper";
 import { RootState } from "../../store/store";
 import { addInactivePlayers } from "../../store/inactive-players/InactivePlayersSlice";
+import { resetPlayersArr } from "../../store/player-arr/playersArrSlice";
+import { updateIsMenuShown } from "../../store/game-data/GameDataSlice";
 
 export default function QuitGame() {
   const playersArr = useSelector((state: RootState) => state.playersArr);
@@ -11,6 +13,8 @@ export default function QuitGame() {
 
   const quitGameHandler = () => {
     dispatch(addInactivePlayers(playersArr))
+    dispatch(resetPlayersArr())
+    dispatch(updateIsMenuShown());
     navigate("/finalResults");
   };
 

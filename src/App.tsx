@@ -16,6 +16,7 @@ function App() {
 
 
   const isMenuShown = useSelector((state: RootState) => state.gameData.isMenuShown);
+  
   return (
     <>
      <CssBaseline />

@@ -1,33 +1,47 @@
-import { NavLink } from 'react-router-dom'
-import Modal from '../UI/modal/Modal'
-import ExitTableBtn from '../main-game/play-game/exit-table-modal/ExitTableModalBtn'
+import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
+import FinalPlayerStats from './FinalPlayerStats';
+import { PlayerInterface } from '../../models/PlayerProps';
+import './FinalResults.css'
 
 export default function FinalResults() {
+  const inactivePlayers = useSelector((state: RootState) => state.inactivePlayers);
+  const gameData = useSelector((state: RootState) => state.gameData);
 
-  const exitGameHandler = () => {
-    <NavLink to="/playGame">Start Game</NavLink>
+  const navigate = useNavigate();
+
+  const resultsPageBtnHandler = () => {
+    navigate("/");
   }
 
   return (
-    <Modal
-      closeModal={exitGameHandler}
-      open={isModalOpen}
-    >
+    <div className="final-results game-container">
+      <div className="results-container">
+        <h2>Final results:</h2>
 
-      <div className="exit-table-modal">
-        <h2>{playerWhoLeft.name} left the table</h2>
+        <h3>Total rounds played: {gameData.roundsPlayed}</h3>
+        <h3>Player stats:</h3>
         <ul>
-          <li>Current bank: ${playerWhoLeft.bank}</li>
-          <li>Rounds won: {playerWhoLeft.roundsWon}</li>
+          {inactivePlayers.length > 0 &&
+            (inactivePlayers as PlayerInterface[]).map(player => (
+              <FinalPlayerStats
+                key={player.name}
+                player={player} />
+            ))
+          }
         </ul>
 
+
         <button
-          onClick={exitGameHandler}
+          onClick={resultsPageBtnHandler}
           className="game-btn">
           Return to main menu
         </button>
+
       </div>
 
-    </Modal>
+
+    </div>
   )
 }

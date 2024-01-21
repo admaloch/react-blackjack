@@ -30,7 +30,7 @@ const initialState = [
         playerLeftTable: false,
         currTokens: [1, 5, 25, 50, 100, 500],
         roundsWon: 0,
-    },{
+    }, {
         name: 'James',
         hand: {
             cards: [],
@@ -56,7 +56,7 @@ const initialState = [
         playerLeftTable: false,
         currTokens: [1, 5, 25, 50, 100, 500],
         roundsWon: 0,
-    },{
+    }, {
         name: 'Bill',
         hand: {
             cards: [],
@@ -97,22 +97,23 @@ const playerArrSlice = createSlice({
             state.push(action.payload);
         },
         updatePlayer: (state, action: PayloadAction<PlayerInterface>) => {
-
             const index = state.findIndex(player => player.name === action.payload.name);
             if (index !== -1) {
                 state[index] = action.payload;
             }
         },
-
         removePlayer: (state, action: PayloadAction<PlayerNameProps>) => {
             const index = state.findIndex(player => player.name === action.payload.name);
             if (index !== -1) {
                 state.splice(index, 1);
             }
         },
+        resetPlayersArr: (state) => {
+            state.splice(0, state.length, ...initialState);
+        },
     },
 });
 
-export const { addPlayer, updatePlayer, removePlayer } = playerArrSlice.actions;
+export const { addPlayer, updatePlayer, removePlayer, resetPlayersArr } = playerArrSlice.actions;
 
 export default playerArrSlice.reducer;
