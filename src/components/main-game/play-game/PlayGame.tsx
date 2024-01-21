@@ -7,7 +7,8 @@ import PlayerTable from './player-round/PlayerTable';
 import EndOfTurnResults from './end-of-turn/EndOfTurnResults';
 import { useDispatch } from "react-redux";
 import { updatePlayer } from '../../../store/player-arr/playersArrSlice';
-import LeaveTableModal from './exit-table-modal/ExitTableModal';
+import LeaveTableModal from './exit-table-modal/ExitTable';
+import ExitTable from './exit-table-modal/ExitTable';
 
 export default function PlayGame() {
     const dispatch = useDispatch()
@@ -49,7 +50,7 @@ export default function PlayGame() {
                 endRound={endRound}
             />
             {playersArr.length !== 0 &&
-                <LeaveTableModal
+                <ExitTable
                     playerIndex={currPlayerIndex}
                 />
             }

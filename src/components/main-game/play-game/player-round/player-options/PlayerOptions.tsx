@@ -16,6 +16,7 @@ interface PlayerIconsProps {
 
 
 export default function PlayerOptions({ playerIndex, endRound }: PlayerIconsProps) {
+    
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const currPlayer = playersArr[playerIndex]
 
