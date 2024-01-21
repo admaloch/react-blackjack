@@ -6,12 +6,12 @@ import { useSelector } from 'react-redux';
 interface EndOfTurnResultsProps {
     playerIndex: number;
     isPlayerFinished: boolean;
+    makePlayerNotFinished: () => void;
     makePlayerFinished: () => void;
-    endRound: () => void;
     changeToNextPlayer: () => void;
 }
 
-export default function EndOfTurnResults({ playerIndex, isPlayerFinished, endRound, makePlayerFinished, changeToNextPlayer }: EndOfTurnResultsProps) {
+export default function EndOfTurnResults({ playerIndex, isPlayerFinished, makePlayerFinished, makePlayerNotFinished, changeToNextPlayer }: EndOfTurnResultsProps) {
 
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const currPlayer = playersArr[playerIndex]
@@ -22,16 +22,16 @@ export default function EndOfTurnResults({ playerIndex, isPlayerFinished, endRou
             || hand.cards.length === 2 && hand.cardSum === 21
             || hand.cards.length === 3 && isDoubleDown) {
             setTimeout(() => {
-                endRound()
+                makePlayerFinished()
             }, 1000)
         }
-    }, [hand, isDoubleDown, endRound])
+    }, [hand, isDoubleDown, makePlayerFinished])
 
     return (
         <ResultsModal
             playerIndex={playerIndex}
             isPlayerFinished={isPlayerFinished}
-            makePlayerFinished={makePlayerFinished}
+            makePlayerNotFinished={makePlayerNotFinished}
             changeToNextPlayer={changeToNextPlayer}
         />
     )

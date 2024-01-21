@@ -7,7 +7,6 @@ import PlayerTable from './player-round/PlayerTable';
 import EndOfTurnResults from './end-of-turn/EndOfTurnResults';
 import { useDispatch } from "react-redux";
 import { updatePlayer } from '../../../store/player-arr/playersArrSlice';
-import LeaveTableModal from './exit-table-modal/ExitTable';
 import ExitTable from './exit-table-modal/ExitTable';
 
 export default function PlayGame() {
@@ -16,15 +15,16 @@ export default function PlayGame() {
     const [currPlayerIndex, setCurrPlayerIndex] = useState(0);
     const [isPlayerFinished, setisPlayerFinished] = useState(false)
 
-    const endRound = () => {
+    const makePlayerFinished = () => {
         setisPlayerFinished(true)
     }
 
-    const makePlayerFinished = () => setisPlayerFinished(false)
+    const makePlayerNotFinished = () => setisPlayerFinished(false)
 
     const changeToNextPlayer = () => {
         setCurrPlayerIndex((prevIndex) => (prevIndex + 1) % playersArr.length);
         dispatch(updatePlayer({ ...playersArr[currPlayerIndex], isDoubleDown: false }));
+        console.log('change to next player ran')
     }
 
 
@@ -39,15 +39,15 @@ export default function PlayGame() {
                 <DealerTable />
                 <PlayerTable
                     playerIndex={currPlayerIndex}
-                    endRound={endRound}
+                    makePlayerFinished={makePlayerFinished}
                 />
             </div>
             <EndOfTurnResults
                 playerIndex={currPlayerIndex}
                 isPlayerFinished={isPlayerFinished}
-                makePlayerFinished={makePlayerFinished}
+                makePlayerNotFinished={makePlayerNotFinished}
                 changeToNextPlayer={changeToNextPlayer}
-                endRound={endRound}
+                makePlayerFinished={makePlayerFinished}
             />
             {playersArr.length !== 0 &&
                 <ExitTable

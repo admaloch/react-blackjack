@@ -2,11 +2,11 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../../../store/store";
 
 interface StandProps {
-    endRound: () => void;
+    makePlayerFinished: () => void;
     playerIndex: number;
 }
 
-export default function Stand({ endRound, playerIndex }: StandProps) {
+export default function Stand({ makePlayerFinished, playerIndex }: StandProps) {
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const { isDoubleDown, hand } = playersArr[playerIndex]
 
@@ -24,7 +24,7 @@ export default function Stand({ endRound, playerIndex }: StandProps) {
 
     const standBtnHandler = () => {
         setTimeout(() => {
-            endRound()
+            makePlayerFinished()
         }, 350)
     }
 
