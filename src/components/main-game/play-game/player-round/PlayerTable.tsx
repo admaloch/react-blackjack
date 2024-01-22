@@ -10,10 +10,10 @@ import usePlayerDrawCard from '../../draw-cards-hook/usePlayerDrawCard';
 
 interface PlayerTableProps {
     playerIndex: number;
-    makePlayerFinished: () => void;
+    makeCurrPlayerFinished: () => void;
 }
 
-function PlayerTable({ playerIndex, makePlayerFinished }: PlayerTableProps) {
+function PlayerTable({ playerIndex, makeCurrPlayerFinished }: PlayerTableProps) {
 
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const dealerObj = useSelector((state: RootState) => state.dealerObj);
@@ -35,7 +35,7 @@ function PlayerTable({ playerIndex, makePlayerFinished }: PlayerTableProps) {
     return (
         <div className="player-table">
             <PlayerOptions
-                makePlayerFinished={makePlayerFinished}
+                makeCurrPlayerFinished={makeCurrPlayerFinished}
                 playerIndex={playerIndex}
             />
             <div className="player-header">

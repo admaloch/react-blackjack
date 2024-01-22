@@ -10,12 +10,12 @@ import { useSelector } from "react-redux";
 
 interface PlayerIconsProps {
     playerIndex: number;
-    makePlayerFinished: () => void;
+    makeCurrPlayerFinished: () => void;
 }
 
 
 
-export default function PlayerOptions({ playerIndex, makePlayerFinished }: PlayerIconsProps) {
+export default function PlayerOptions({ playerIndex, makeCurrPlayerFinished }: PlayerIconsProps) {
 
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const currPlayer = playersArr[playerIndex]
@@ -27,7 +27,7 @@ export default function PlayerOptions({ playerIndex, makePlayerFinished }: Playe
                 <Split playerIndex={playerIndex} />
                 <Insurance playerIndex={playerIndex} />
             </div>
-            <Stand playerIndex={playerIndex} makePlayerFinished={makePlayerFinished} />
+            <Stand playerIndex={playerIndex} makeCurrPlayerFinished={makeCurrPlayerFinished} />
             <DrawCards playerIndex={playerIndex} />
             <ExitTableIcon currPlayer={currPlayer} />
         </>

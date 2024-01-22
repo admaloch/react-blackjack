@@ -13,21 +13,16 @@ export default function PlayGame() {
     const dispatch = useDispatch()
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const [currPlayerIndex, setCurrPlayerIndex] = useState(0);
-    const [isPlayerFinished, setisPlayerFinished] = useState(false)
+    const [isCurrPlayerFinished, setIsCurrPlayerFinished] = useState(false)
 
-    const makePlayerFinished = () => {
-        setisPlayerFinished(true)
-    }
+    const makeCurrPlayerFinished = () => setIsCurrPlayerFinished(true)
 
-    const makePlayerNotFinished = () => setisPlayerFinished(false)
+    const makeCurrPlayerNotFinished = () => setIsCurrPlayerFinished(false)
 
     const changeToNextPlayer = () => {
         setCurrPlayerIndex((prevIndex) => (prevIndex + 1) % playersArr.length);
         dispatch(updatePlayer({ ...playersArr[currPlayerIndex], isDoubleDown: false }));
-        console.log('change to next player ran')
     }
-
-
 
     useEffect(() => {
         console.log('curr player ', playersArr[currPlayerIndex])
@@ -39,15 +34,15 @@ export default function PlayGame() {
                 <DealerTable />
                 <PlayerTable
                     playerIndex={currPlayerIndex}
-                    makePlayerFinished={makePlayerFinished}
+                    makeCurrPlayerFinished={makeCurrPlayerFinished}
                 />
             </div>
             <EndOfTurnResults
                 playerIndex={currPlayerIndex}
-                isPlayerFinished={isPlayerFinished}
-                makePlayerNotFinished={makePlayerNotFinished}
+                isCurrPlayerFinished={isCurrPlayerFinished}
+                makeCurrPlayerNotFinished={makeCurrPlayerNotFinished}
                 changeToNextPlayer={changeToNextPlayer}
-                makePlayerFinished={makePlayerFinished}
+                makeCurrPlayerFinished={makeCurrPlayerFinished}
             />
             {playersArr.length !== 0 &&
                 <ExitTable

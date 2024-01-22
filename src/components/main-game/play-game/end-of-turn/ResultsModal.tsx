@@ -7,12 +7,12 @@ import { updateIsPlayerRoundComplete } from "../../../../store/game-data/GameDat
 
 interface EndOfTurnResultsProps {
     playerIndex: number;
-    isPlayerFinished: boolean;
-    makePlayerNotFinished: () => void;
+    isCurrPlayerFinished: boolean;
+    makeCurrPlayerNotFinished: () => void;
     changeToNextPlayer: () => void;
 }
 
-export default function ResultsModal({ playerIndex, isPlayerFinished, makePlayerNotFinished, changeToNextPlayer }: EndOfTurnResultsProps) {
+export default function ResultsModal({ playerIndex, isCurrPlayerFinished, makeCurrPlayerNotFinished, changeToNextPlayer }: EndOfTurnResultsProps) {
 
     const dispatch = useDispatch()
     const playersArr = useSelector((state: RootState) => state.playersArr);
@@ -25,7 +25,7 @@ export default function ResultsModal({ playerIndex, isPlayerFinished, makePlayer
                 changeToNextPlayer()
             }
             if (isPlayerSplit) handleSplitRoundResults()
-            makePlayerNotFinished()
+            makeCurrPlayerNotFinished()
         } else {
             dispatch(updateIsPlayerRoundComplete())
             console.log('begin dealer round')
@@ -42,7 +42,7 @@ export default function ResultsModal({ playerIndex, isPlayerFinished, makePlayer
 
         <Modal
             closeModal={endResultsBtnHandler}
-            open={isPlayerFinished}
+            open={isCurrPlayerFinished}
         >
             <ResultsModalContents
                 playerIndex={playerIndex}

@@ -5,13 +5,13 @@ import { useSelector } from 'react-redux';
 
 interface EndOfTurnResultsProps {
     playerIndex: number;
-    isPlayerFinished: boolean;
-    makePlayerNotFinished: () => void;
-    makePlayerFinished: () => void;
+    isCurrPlayerFinished: boolean;
+    makeCurrPlayerNotFinished: () => void;
+    makeCurrPlayerFinished: () => void;
     changeToNextPlayer: () => void;
 }
 
-export default function EndOfTurnResults({ playerIndex, isPlayerFinished, makePlayerFinished, makePlayerNotFinished, changeToNextPlayer }: EndOfTurnResultsProps) {
+export default function EndOfTurnResults({ playerIndex, isCurrPlayerFinished, makeCurrPlayerFinished, makeCurrPlayerNotFinished, changeToNextPlayer }: EndOfTurnResultsProps) {
 
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const currPlayer = playersArr[playerIndex]
@@ -22,16 +22,16 @@ export default function EndOfTurnResults({ playerIndex, isPlayerFinished, makePl
             || hand.cards.length === 2 && hand.cardSum === 21
             || hand.cards.length === 3 && isDoubleDown) {
             setTimeout(() => {
-                makePlayerFinished()
+                makeCurrPlayerFinished()
             }, 1000)
         }
-    }, [hand, isDoubleDown, makePlayerFinished])
+    }, [hand, isDoubleDown, makeCurrPlayerFinished])
 
     return (
         <ResultsModal
             playerIndex={playerIndex}
-            isPlayerFinished={isPlayerFinished}
-            makePlayerNotFinished={makePlayerNotFinished}
+            isCurrPlayerFinished={isCurrPlayerFinished}
+            makeCurrPlayerNotFinished={makeCurrPlayerNotFinished}
             changeToNextPlayer={changeToNextPlayer}
         />
     )
