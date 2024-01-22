@@ -8,10 +8,12 @@ import EndOfTurnResults from './end-of-turn/EndOfTurnResults';
 import { useDispatch } from "react-redux";
 import { updatePlayer } from '../../../store/player-arr/playersArrSlice';
 import ExitTable from './exit-table-modal/ExitTable';
+import PlayerTableResults from './player-table-results/PlayerTableResults';
 
 export default function PlayGame() {
     const dispatch = useDispatch()
     const playersArr = useSelector((state: RootState) => state.playersArr);
+    const { isPlayerRoundActive } = useSelector((state: RootState) => state.gameData);
     const [currPlayerIndex, setCurrPlayerIndex] = useState(0);
     const [isCurrPlayerFinished, setIsCurrPlayerFinished] = useState(false)
 
@@ -32,10 +34,16 @@ export default function PlayGame() {
         <div className='game-container play-round'>
             <div className="table">
                 <DealerTable />
-                <PlayerTable
-                    playerIndex={currPlayerIndex}
-                    makeCurrPlayerFinished={makeCurrPlayerFinished}
-                />
+                {isPlayerRoundActive &&
+                    <PlayerTable
+                        playerIndex={currPlayerIndex}
+                        makeCurrPlayerFinished={makeCurrPlayerFinished}
+                    />
+                }
+                {!isPlayerRoundActive &&
+                    <PlayerTableResults />
+                }
+
             </div>
             <EndOfTurnResults
                 playerIndex={currPlayerIndex}

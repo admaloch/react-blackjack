@@ -5,7 +5,7 @@ interface GameDataProps {
   isGameActive: boolean;
   isMenuShown: boolean;
   isPlayerStatsShown: boolean;
-  isPlayerRoundComplete: boolean
+  isPlayerRoundActive: boolean
 }
 
 const initialState: GameDataProps = {
@@ -13,7 +13,7 @@ const initialState: GameDataProps = {
   isGameActive: false,
   isMenuShown: true,
   isPlayerStatsShown: true,
-  isPlayerRoundComplete: false,
+  isPlayerRoundActive: false,
 }
 
 const deckSlice = createSlice({
@@ -32,12 +32,12 @@ const deckSlice = createSlice({
     updateIsPlayerStatsShown: (state) => {
       state.isPlayerStatsShown = !state.isPlayerStatsShown;
     },
-    updateIsPlayerRoundComplete: (state) => {
-      state.isPlayerRoundComplete = !state.isPlayerRoundComplete;
+    updateIsPlayerRoundActive: (state) => {
+      state.isPlayerRoundActive = !state.isPlayerRoundActive;
     },
   },
 })
 
-export const { updateRoundsPlayed, updateIsGameActive, updateIsMenuShown, updateIsPlayerStatsShown, updateIsPlayerRoundComplete } = deckSlice.actions
+export const { updateRoundsPlayed, updateIsGameActive, updateIsMenuShown, updateIsPlayerStatsShown, updateIsPlayerRoundActive } = deckSlice.actions
 
 export default deckSlice.reducer

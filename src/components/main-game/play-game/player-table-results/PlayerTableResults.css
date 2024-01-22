@@ -1,0 +1,67 @@
+.player-table {
+    display: flex;
+
+   
+    align-items: center;
+    height: 50%;
+    width: 100%;
+    position: relative;
+    border-top: var(--text) solid 2px;
+    padding-top: 2.5rem;
+}
+
+.player-hands-results {
+width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+  
+}
+
+.player-hand {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.icons svg {
+    fill: white;
+}
+
+
+
+
+
+
+
+.player-table svg {
+    width: 5rem;
+    height: 5rem;
+}
+
+
+.curr-hand {
+    /* border: red solid 1px; */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* width: 100%; */
+    /* height: 100%; */
+}
+
+.curr-hand .player-card {
+    /* border: green solid 1px; */
+    /* max-width: 230px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: .2rem;
+}
+
+.curr-hand img {
+    max-width: 130px;
+}

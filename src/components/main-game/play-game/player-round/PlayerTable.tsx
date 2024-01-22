@@ -46,9 +46,7 @@ function PlayerTable({ playerIndex, makeCurrPlayerFinished }: PlayerTableProps) 
             </div>
 
             <PlayerDetails playerIndex={playerIndex} />
-            <Cards
-                cardUrlVals={hand.cardUrlVals}
-            />
+            <Cards cardUrlVals={hand.cardUrlVals}/>
             {playersArr[playerIndex].splitHand.cards.length > 0 &&
                 <SplitCardPreview
                     playerIndex={playerIndex}

@@ -8,6 +8,7 @@ import Tokens from './Tokens';
 import PlaceBetBtn from './PlaceBetBtn';
 import ResetBetsBtn from './ResetBetsBtn';
 import { useNavigate } from "react-router";
+import { updateIsPlayerRoundActive } from '../../../store/game-data/GameDataSlice';
 
 
 export default function PlayerBets() {
@@ -32,6 +33,7 @@ export default function PlayerBets() {
         if (playersArr.length - 1 !== currPlayerIndex) {
             setCurrPlayerIndex((prevIndex) => (prevIndex + 1) % playersArr.length);
         } else {
+            dispatch(updateIsPlayerRoundActive())
             navigate("/startRound");
         }
     };
