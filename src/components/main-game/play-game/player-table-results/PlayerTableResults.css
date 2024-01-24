@@ -29,6 +29,10 @@
     fill: white;
 }
 
+.player-results-table h2 {
+    
+}
+
 
 
 
@@ -60,5 +64,5 @@
 }
 
 .curr-player-hand img {
-    max-width: 80px;
+    max-width: 40px;
 }

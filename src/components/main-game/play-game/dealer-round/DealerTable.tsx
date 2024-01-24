@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../../../store/store';
 import Cards from '../display-cards/Cards';
 import useDealerDrawCard from '../../draw-cards-hook/useDealerDrawCard';
+import './DealerTable.css'
 
 const DealerTable: React.FC = () => {
   const dealerObj = useSelector((state: RootState) => state.dealerObj);
@@ -21,8 +22,11 @@ const DealerTable: React.FC = () => {
 
   return (
     <div className="dealer-table">
-      <h4>Dealer</h4>
+      <div className="dealer-hand">
+         <h4>Dealer</h4>
       <Cards cardUrlVals={dealerObj.hand.cardUrlVals} />
+      </div>
+     
     </div>
   );
 };

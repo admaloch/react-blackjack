@@ -1,11 +1,8 @@
 .table {
     width: 80%;
-    min-height: 80vh;
+    height: 80vh;
     border: var(--text) solid 2px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+
     border-radius: 5px;
 }
 
@@ -20,24 +17,19 @@
 
 .dealer-table,
 .player-table {
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
-    height: 50%;
+height: 50%;
+    
     width: 100%;
     position: relative;
     
 
 }
 
-.dealer-table {
-    padding-top: 1rem;
-}
+
 
 .player-table {
-    border-top: var(--text) solid 2px;
-    padding-top: 2.5rem;
+
+    /* padding-top: 2.5rem; */
 }
 
 .player-table svg {
