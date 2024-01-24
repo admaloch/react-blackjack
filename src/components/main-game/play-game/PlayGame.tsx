@@ -45,13 +45,16 @@ export default function PlayGame() {
                 }
 
             </div>
-            <EndOfTurnResults
-                playerIndex={currPlayerIndex}
-                isCurrPlayerFinished={isCurrPlayerFinished}
-                makeCurrPlayerNotFinished={makeCurrPlayerNotFinished}
-                changeToNextPlayer={changeToNextPlayer}
-                makeCurrPlayerFinished={makeCurrPlayerFinished}
-            />
+            {isPlayerRoundActive &&
+                <EndOfTurnResults
+                    playerIndex={currPlayerIndex}
+                    isCurrPlayerFinished={isCurrPlayerFinished}
+                    makeCurrPlayerNotFinished={makeCurrPlayerNotFinished}
+                    changeToNextPlayer={changeToNextPlayer}
+                    makeCurrPlayerFinished={makeCurrPlayerFinished}
+                />
+            }
+
             {playersArr.length !== 0 &&
                 <ExitTable
                     playerIndex={currPlayerIndex}

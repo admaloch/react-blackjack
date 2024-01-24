@@ -8,8 +8,8 @@ export default function PlayerTableResults() {
 
 
     return (
-        <div className="player-table">
-            <div className="player-hands-results">
+        <div className="player-results-table">
+            <div className="player-hand-results">
                 {playersArr.map(player => (
                     <PlayerHandResults
                         key={player.name}

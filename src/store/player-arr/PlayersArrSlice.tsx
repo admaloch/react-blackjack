@@ -2,16 +2,16 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { PlayerInterface } from "../../models/PlayerProps";
 
 // const initialState: PlayerInterface[] = [];
-
+// clubs (♣), diamonds (♦), hearts (♥), and spades (♠).x
 const initialState = [
     {
         name: 'Dave',
         hand: {
-            cards: [],
-            cardUrlVals: [],
-            cardNumVals: [],
-            cardSum: 0,
-            isBlackjack: false,
+            cards: ['A♣', 'K♦'],
+            cardUrlVals: ['AC', 'KD'],
+            cardNumVals: [11,10],
+            cardSum: 21,
+            isBlackjack: true,
         },
         splitHand: {
             cards: [],
@@ -33,10 +33,10 @@ const initialState = [
     }, {
         name: 'James',
         hand: {
-            cards: [],
-            cardUrlVals: [],
-            cardNumVals: [],
-            cardSum: 0,
+            cards: ['10♥', '8♠'],
+            cardUrlVals: ['10H', '8S'],
+            cardNumVals: [7,8],
+            cardSum: 15,
             isBlackjack: false,
         },
         splitHand: {
@@ -59,10 +59,36 @@ const initialState = [
     }, {
         name: 'Bill',
         hand: {
+            cards: ['5♣', '2♦','8♥', 'K♦'],
+            cardUrlVals: ['5C', '2D', '8H', 'KD'],
+            cardNumVals: [5, 2, 8, 10],
+            cardSum: 25,
+            isBlackjack: false,
+        },
+        splitHand: {
             cards: [],
             cardUrlVals: [],
             cardNumVals: [],
             cardSum: 0,
+            isBlackjack: false,
+        },
+        bank: 800,
+        currBet: 200,
+        minBet: 200,
+        insuranceBet: 0,
+        splitBet: 0,
+        isPlayerSplit: false,
+        isDoubleDown: false,
+        playerLeftTable: false,
+        currTokens: [1, 5, 25, 50, 100, 500],
+        roundsWon: 0,
+    }, {
+        name: 'Bill',
+        hand: {
+            cards: ['5♣', '2♦','8♥', 'K♦'],
+            cardUrlVals: ['5C', '2D', '8H', 'KD'],
+            cardNumVals: [5, 2, 8, 10],
+            cardSum: 25,
             isBlackjack: false,
         },
         splitHand: {

@@ -1,5 +1,5 @@
 import { PlayerInterface } from '../../../../models/PlayerProps'
-import PlayerHand from './PlayerHand';
+import Card from '../display-cards/Card';
 
 
 export interface PlayerProps {
@@ -11,11 +11,15 @@ export default function PlayerHandResults({ player }: PlayerProps) {
     return (
         <div className="player-hand">
             <h5>{player.name}</h5>
-            {player.hand.cardUrlVals.map(card => (
-                <PlayerHand
-                    card={card}
-                />
-            ))}
+            <div className="curr-player-hand">
+                {player.hand.cardUrlVals.map((card, index) => (
+                    <Card
+                        key={index}
+                        cardUrlVal={card}
+                    />
+                ))}
+            </div>
+
         </div>
     )
 }
