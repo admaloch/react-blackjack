@@ -8,6 +8,8 @@
     --text: #ffffff;
     --modal-overlay: rgba(0, 0, 0, .7);
     --color1: red;
+    --blackjack: green;
+    --bust: red;
 }
 
 
@@ -63,4 +65,12 @@
 
 #icon-popper {
     z-index: 200;
+}
+
+.blackjack {
+    color: var(--blackjack);
+}
+
+.bust {
+    color: var(--bust);
 }

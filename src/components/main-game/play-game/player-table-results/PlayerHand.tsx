@@ -1,13 +1,22 @@
-import React from 'react'
+import CardUrlValsProps from '../../../../models/CardUrlVals';
+import { PlayerInterface } from '../../../../models/PlayerProps'
+import Card from '../display-cards/Card';
 
-interface PlayerHandProps {
-    card: string;
+
+export interface PlayerProps {
+    player: PlayerInterface;
 }
 
-export default function PlayerHand({card}:PlayerHandProps) {
-    const imagePath = `/src/assets/card-images/${card}.png`;
+export default function PlayerHand({ cardUrlVals }: CardUrlValsProps) {
 
-  return (
-    <div>PlayerHand</div>
-  )
+    return (
+            <div className="curr-player-hand">
+                {cardUrlVals.map((card, index) => (
+                    <Card
+                        key={index}
+                        cardUrlVal={card}
+                    />
+                ))}
+            </div>  
+    )
 }

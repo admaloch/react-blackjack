@@ -12,7 +12,7 @@ export default function Insurance({ playerIndex }: PlayerIndexProps) {
     const dispatch = useDispatch()
 
     if (dealerObj.hand.cardNumVals.length === 2) {
-        if (dealerObj.hand.cardNumVals[0] !== 11
+        if (dealerObj.hand.cardNumVals[1] !== 11
             || hand.cards.length !== 2
             || hand.cards.length === 2 && hand.cardSum === 21
             || currPlayer.insuranceBet !== 0

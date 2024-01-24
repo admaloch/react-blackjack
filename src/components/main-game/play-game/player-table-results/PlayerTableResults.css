@@ -14,7 +14,8 @@
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-evenly;
-    align-items: center;
+    align-items: start;
+    margin-top: 1rem;
 
 }
 
@@ -29,8 +30,9 @@
     fill: white;
 }
 
-.player-results-table h2 {
-    
+.player-results-table p {
+    line-height: 12px;
+    font-size: .7rem;
 }
 
 
