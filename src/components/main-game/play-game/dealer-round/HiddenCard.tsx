@@ -4,21 +4,25 @@ import { RootState } from '../../../../store/store';
 import { useEffect, useState } from 'react';
 import { delay } from '../../../../utils/Utility';
 
-export default function HiddenCard() {
+interface HiddenCardProps {
+    isCardRevealed: boolean;
+    revealCard: () => void;
+}
+
+export default function HiddenCard({ isCardRevealed, revealCard }: HiddenCardProps) {
 
     const { isPlayerRoundActive } = useSelector((state: RootState) => state.gameData);
     const dealerObj = useSelector((state: RootState) => state.dealerObj);
     const { cards } = dealerObj.hand
-    const [isCardRevealed, setIsCardRevealed] = useState(false)
 
     useEffect(() => {
-        async function revealCard() {
+        async function showCardsFunc() {
             if (!isPlayerRoundActive && cards.length === 2) {
                 await delay(1000)
-                setIsCardRevealed(true)
+                revealCard()
             }
         }
-        revealCard()
+        showCardsFunc()
     }, [isPlayerRoundActive, cards]);
 
     const hiddenCardClass = isCardRevealed ? 'hidden-card hide-card' : 'hidden-card'
