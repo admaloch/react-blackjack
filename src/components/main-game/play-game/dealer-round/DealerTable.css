@@ -30,3 +30,19 @@ display: none;
 .hide-card {
     display: none;
 }
+
+.dealer-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.dealer-sum {
+    opacity: 0;
+    transition: opacity 0.5s ease; /* You can adjust the duration and timing function */
+}
+
+.dealer-sum.revealed {
+    opacity: 1;
+}
