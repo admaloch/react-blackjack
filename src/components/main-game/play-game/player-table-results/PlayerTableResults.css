@@ -68,3 +68,12 @@
 .curr-player-hand img {
     max-width: 40px;
 }
+
+.insurance-msg {
+
+    transition: all 1s ease;
+}
+
+.insurance-msg.revealed {
+    opacity: 1;
+}

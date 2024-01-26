@@ -67,10 +67,11 @@
     z-index: 200;
 }
 
-.blackjack {
+.win-color {
     color: var(--blackjack);
 }
 
-.bust {
+.lose-color {
     color: var(--bust);
 }
+
