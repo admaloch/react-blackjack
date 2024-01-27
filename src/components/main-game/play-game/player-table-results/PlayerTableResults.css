@@ -77,3 +77,9 @@
 .insurance-msg.revealed {
     opacity: 1;
 }
+
+.player-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

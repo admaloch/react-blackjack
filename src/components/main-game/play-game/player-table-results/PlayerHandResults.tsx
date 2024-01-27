@@ -1,29 +1,35 @@
 import { useState } from 'react';
 import { PlayerInterface } from '../../../../models/PlayerProps'
-import Card from '../display-cards/Card';
 import PlayerHand from './PlayerHand';
 import PlayerHandDetails from './PlayerHandDetails';
 import SplitHandDetails from './SplitHandDetails';
-
+import PlayerResultsHeader from './PlayerResultsHeader';
 
 export interface PlayerProps {
     player: PlayerInterface;
 }
 
 export default function PlayerHandResults({ player }: PlayerProps) {
-    const [isSplitHandRound, setIsSplitHandRound] = useState(false)
+    const [showSplitHand, setShowSplitHand] = useState(false)
 
-    const startSplitRound = () => setIsSplitHandRound(true)
+    const changeToSplitHand = setShowSplitHand(true)
+    const changeToMainHand = setShowSplitHand(false)
 
-    const { hand, name, splitHand } = player
+
+    const { hand } = player
     const { cardUrlVals } = hand
 
-    const showSplitHand = isSplitHandRound && splitHand.cards.length !== 0
-    const showMainHand = !isSplitHandRound || isSplitHandRound && splitHand.cards.length === 0
+
+
     return (
         <div className="player-hand">
-            <h4>{name}</h4>
-            {showMainHand && (
+            <PlayerResultsHeader
+                player={player}
+                changeToSplitHand={changeToSplitHand}
+                changeToMainHand={changeToMainHand}
+            />
+
+            {!showSplitHand && (
                 <>
                     <PlayerHandDetails player={player} />
                     <PlayerHand cardUrlVals={cardUrlVals} />

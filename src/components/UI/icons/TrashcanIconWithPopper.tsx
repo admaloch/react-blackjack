@@ -5,12 +5,9 @@ import IconProps from './IconWithPopperProps';
 export function TrashcanIconWithPopper({ placement = 'bottom' }: IconProps) {
     return (
         <IconWithPopper
-
             icon={(style) => <DeleteForeverIcon sx={style} />}
             text="Leave table"
             placement={placement}
-
-
         />
     );
 }

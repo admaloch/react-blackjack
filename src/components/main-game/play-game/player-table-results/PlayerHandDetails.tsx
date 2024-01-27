@@ -1,10 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { PlayerInterface } from '../../../../models/PlayerProps'
-import Card from '../display-cards/Card';
 import { RootState } from '../../../../store/store';
 import { updateIsInsuranceRoundComplete } from '../../../../store/game-data/GameDataSlice';
-import { useEffect, useState } from 'react';
-import { delay } from '../../../../utils/Utility';
+import { useEffect } from 'react';
 import InsuranceResults from './InsuranceResults';
 
 export interface PlayerProps {
@@ -12,12 +10,7 @@ export interface PlayerProps {
 }
 
 export default function PlayerHandDetails({ player }: PlayerProps) {
-    const { isDealerCardRevealed, isInsuranceRoundComplete } = useSelector((state: RootState) => state.gameData);
-    const [insuranceResults, setInsuranceResults] = useState({
-        msg: 'Insurance bet:',
-        class_: 'insurance-msg',
-        isComplete: false,
-    })
+
     const dispatch = useDispatch()
 
     const dealerObj = useSelector((state: RootState) => state.dealerObj);
@@ -32,13 +25,6 @@ export default function PlayerHandDetails({ player }: PlayerProps) {
     }, [dealerObj, dispatch])
 
     const isBlackjack = cardSum === 21 && cardUrlVals.length === 2 ? true : false
-
-
-
-
-
-
-
 
     return (
         <>

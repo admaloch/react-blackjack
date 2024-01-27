@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { PlayerInterface } from '../../../../models/PlayerProps'
-import Card from '../display-cards/Card';
 import { RootState } from '../../../../store/store';
 import { updateIsInsuranceRoundComplete } from '../../../../store/game-data/GameDataSlice';
 import { useEffect, useState } from 'react';
@@ -15,7 +14,6 @@ export default function InsuranceResults({ player }: PlayerProps) {
 
     const dealerObj = useSelector((state: RootState) => state.dealerObj);
     const dispatch = useDispatch()
-    const { insuranceBet } = player
     const { cardNumVals } = dealerObj.hand
 
     const { isDealerCardRevealed } = useSelector((state: RootState) => state.gameData);
@@ -25,11 +23,6 @@ export default function InsuranceResults({ player }: PlayerProps) {
         class_: 'insurance-msg',
         isComplete: false,
     })
-
-    const showInsuranceRes = insuranceBet !== 0
-        && isDealerCardRevealed
-        || insuranceResults.status !== ''
-        ? true : false
 
     useEffect(() => {
         async function changeInsuranceResults() {
@@ -78,13 +71,9 @@ export default function InsuranceResults({ player }: PlayerProps) {
     }, [insuranceResults, player, dispatch])
 
     useEffect(() => {
-        async function endInsuranceRound() {
-            await delay(1000)
-            if (insuranceResults.isComplete && player.insuranceBet === 0 && insuranceResults.status !== '') {
-                dispatch(updateIsInsuranceRoundComplete())
-            }
+        if (insuranceResults.isComplete && player.insuranceBet === 0 && insuranceResults.status !== '') {
+            dispatch(updateIsInsuranceRoundComplete())
         }
-        endInsuranceRound()
     }, [insuranceResults, dispatch, player])
 
     return (
