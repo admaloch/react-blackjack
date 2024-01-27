@@ -5,6 +5,7 @@ import { RootState } from '../../../../store/store';
 import { updateIsInsuranceRoundComplete } from '../../../../store/game-data/GameDataSlice';
 import { useEffect, useState } from 'react';
 import { delay } from '../../../../utils/Utility';
+import InsuranceResults from './InsuranceResults';
 
 export interface PlayerProps {
     player: PlayerInterface;
@@ -24,59 +25,31 @@ export default function PlayerHandDetails({ player }: PlayerProps) {
     const { hand, bank, currBet, insuranceBet } = player
     const { cardUrlVals, cardSum } = hand
 
-    // useEffect(() => {
-    //     async function completeInsuranceRound() {
-    //         if (isDealerCardRevealed && dealerObj.hand.cardNumVals[1] === 11) {
-    //             await delay(2000)
-    //             dispatch(updateIsInsuranceRoundComplete())
-    //         }
-    //     }
-    //     completeInsuranceRound()
-
-    // }, [isDealerCardRevealed, dealerObj.hand.cardNumVals, dispatch, dealerObj.hand.cards.length])
+    useEffect(() => {
+            if (dealerObj.hand.cardNumVals[1] !== 11) {
+                dispatch(updateIsInsuranceRoundComplete())
+            }
+    }, [dealerObj, dispatch])
 
     const isBlackjack = cardSum === 21 && cardUrlVals.length === 2 ? true : false
 
-    const showInsuranceRes = insuranceBet !== 0 && isDealerCardRevealed ? true : false
 
-    useEffect(() => {
-        async function changeInsuranceResults() {
-            await delay(1000)
-            if (isDealerCardRevealed) {
-                if (dealerObj.hand.cardNumVals[0] === 10 && dealerObj.hand.cardNumVals[1] === 11) {
-                    setInsuranceResults({
-                        msg: "Insurance bet: Won!",
-                        class_: 'insurance-msg win-color revealed',
-                        isComplete: true,
-                    })
 
-                } else {
-                    setInsuranceResults({
-                        msg: "Insurance bet: Lost!",
-                        class_: 'insurance-msg lose-color revealed',
-                        isComplete: true,
-                    })
-                }
-            }
-        }
-        changeInsuranceResults()
-    }, [isDealerCardRevealed, dealerObj.hand.cardNumVals])
-    
+
 
 
 
 
     return (
         <>
-
             <p>Bank: {bank}</p>
-            <p>Bet: {currBet}</p>
+            {currBet !== 0 &&
+                <p>Bet: {currBet}</p>
+            }
             {insuranceBet !== 0 &&
                 <p>Insurance: {insuranceBet}</p>
             }
-            {showInsuranceRes &&
-                <p className={insuranceResults.class_}>{insuranceResults.msg}</p>
-            }
+            <InsuranceResults player={player} />
             <p>Sum: {cardSum}</p>
             {isBlackjack &&
                 <p className='win-color'>BlackJack!</p>
@@ -84,10 +57,6 @@ export default function PlayerHandDetails({ player }: PlayerProps) {
             {cardSum > 21 &&
                 <p className='lose-color'>Bust!</p>
             }
-
-
         </>
-
-
     )
 }

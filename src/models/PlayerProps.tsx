@@ -20,6 +20,7 @@ export interface PlayerInterface {
     currBet: number;
     minBet: number;
     insuranceBet: number,
+    wonInsuranceRound: boolean;
     splitBet: number;
     isPlayerSplit: boolean;
     isDoubleDown: boolean;
@@ -48,6 +49,7 @@ export const emptyPlayerItem: PlayerInterface = {
     currBet: 0,
     minBet: 5,
     insuranceBet: 0,
+    wonInsuranceRound: false,
     splitBet: 0,
     isPlayerSplit: false,
     isDoubleDown: false,
