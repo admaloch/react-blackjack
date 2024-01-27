@@ -8,8 +8,10 @@ export interface PlayerProps {
 
 export default function SplitHandDetails({ player }: PlayerProps) {
 
-    const { splitHand, splitBet } = player
+    const { splitHand, splitBet, bank, currBet } = player
     const { cardSum, cardUrlVals } = splitHand
+
+
 
     const isBlackjack = cardSum === 21 && cardUrlVals.length === 2 ? true : false
 
@@ -18,13 +20,22 @@ export default function SplitHandDetails({ player }: PlayerProps) {
 
         <>
             <h5>Split hand</h5>
-            <p>Bet: {splitBet}</p>
+            <p>Bank: {bank}</p>
+            {currBet !== 0 &&
+                <p>Bet: {currBet}</p>
+            }
+            <p>Split bet: {splitBet}</p>
             <p>Sum: {cardSum}</p>
             {isBlackjack &&
                 <p className='blackjack'>BlackJack!</p>
             }
+
+            
+            {isBlackjack &&
+                <p className='win-color'>BlackJack!</p>
+            }
             {cardSum > 21 &&
-                <p className='bust'>Bust!</p>
+                <p className='lose-color'>Bust!</p>
             }
             <PlayerHand cardUrlVals={cardUrlVals} />
         </>

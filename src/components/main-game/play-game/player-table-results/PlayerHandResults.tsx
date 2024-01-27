@@ -10,10 +10,10 @@ export interface PlayerProps {
 }
 
 export default function PlayerHandResults({ player }: PlayerProps) {
-    const [showSplitHand, setShowSplitHand] = useState(false)
 
-    const changeToSplitHand = setShowSplitHand(true)
-    const changeToMainHand = setShowSplitHand(false)
+    const [showSplitHand, setShowSplitHand] = useState(false)
+    const changeToSplitHand = () => setShowSplitHand(true)
+    const changeToMainHand = () => setShowSplitHand(false)
 
 
     const { hand } = player
@@ -27,6 +27,8 @@ export default function PlayerHandResults({ player }: PlayerProps) {
                 player={player}
                 changeToSplitHand={changeToSplitHand}
                 changeToMainHand={changeToMainHand}
+                showSplitHand={showSplitHand}
+                
             />
 
             {!showSplitHand && (
