@@ -46,7 +46,7 @@ const initialState = [
             cardSum: 0,
             isBlackjack: false,
         },
-        bank: 800,
+        bank: 700,
         currBet: 200,
         minBet: 200,
         insuranceBet: 100,
