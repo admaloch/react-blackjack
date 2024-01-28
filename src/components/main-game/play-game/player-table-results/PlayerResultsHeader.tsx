@@ -12,7 +12,7 @@ export default function PlayerResultsHeader({ player, changeToMainHand, changeTo
                     <ShowMainHandIconWithPopper />
                 </div>
             }
-            <h4>{player.name}</h4>
+            <h3>{player.name}</h3>
             {isSplitHand && !showSplitHand &&
                 <div className="split-hand-icon" onClick={changeToSplitHand}>
                     <ShowSplitHandIconWithPopper />

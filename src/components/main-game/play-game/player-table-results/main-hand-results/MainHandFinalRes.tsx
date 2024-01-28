@@ -1,7 +1,8 @@
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MainHandItems from "./MainHandItems";
 import { PlayerInterfaceProps } from "../../../../../models/PlayerProps";
+import { delay } from "../../../../../utils/Utility";
 
 export interface FinalResultsState {
     mainResults: string;
@@ -9,8 +10,6 @@ export interface FinalResultsState {
 }
 
 export default function FinalPlayerResult({ player }: PlayerInterfaceProps) {
-
-
 
     const [finalResultsState, setFinalResultsState] = useState<FinalResultsState>({
         mainResults: '',
@@ -20,6 +19,17 @@ export default function FinalPlayerResult({ player }: PlayerInterfaceProps) {
     const updateFinalResults = (results: FinalResultsState) => {
         setFinalResultsState(results)
     }
+
+    // useEffect(() => {
+
+    //     async function updateHandsWithResults() {
+
+    //         if (finalResultsState.mainResults && !player.wonInsuranceRound) {
+    //             await delay(1000)
+    //             finalResultsState.mainResults
+    //         }
+    //     }
+    // }, [])
 
 
 

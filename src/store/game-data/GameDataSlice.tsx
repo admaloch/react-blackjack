@@ -9,6 +9,7 @@ interface GameDataProps {
   isDealerRoundActive: boolean;
   isDealerCardRevealed: boolean;
   isInsuranceRoundComplete: boolean;
+  isRoundResultsActive: boolean;
 }
 
 const initialState: GameDataProps = {
@@ -20,6 +21,7 @@ const initialState: GameDataProps = {
   isDealerCardRevealed: false,
   isInsuranceRoundComplete: false,
   isDealerRoundActive: true,
+  isRoundResultsActive: false,
 }
 
 const deckSlice = createSlice({
@@ -49,7 +51,7 @@ const deckSlice = createSlice({
       return {...state, isPlayerRoundActive: false, isDealerRoundActive: true}
     },
     endDealerRound: (state) => {
-      return {...state, isDealerRoundActive: false}
+      return {...state, isDealerRoundActive: false, isRoundResultsActive: true}
     },
     
     

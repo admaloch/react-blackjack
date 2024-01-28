@@ -32,7 +32,7 @@ export default function PlayerHandDetails({ player }: PlayerProps) {
     return (
         <>
             {player.splitHand.cards.length !== 0 &&
-                <h5>Main Hand:</h5>
+                <h4>Main Hand:</h4>
             }
             <p>Bank: {bank}</p>
             {currBet !== 0 &&

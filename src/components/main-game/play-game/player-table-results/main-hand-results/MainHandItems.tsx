@@ -14,7 +14,7 @@ interface MainHandItemsProps {
 export default function MainHandItems({ player, updateFinalResults, finalResultsState }: MainHandItemsProps) {
 
     const dealerObj = useSelector((state: RootState) => state.dealerObj);
-    const { isDealerRoundActive } = useSelector((state: RootState) => state.gameData);
+ 
 
 
 

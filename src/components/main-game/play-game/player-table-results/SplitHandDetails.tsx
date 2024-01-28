@@ -19,7 +19,7 @@ export default function SplitHandDetails({ player }: PlayerProps) {
     return (
 
         <>
-            <h5>Split hand</h5>
+            <h4>Split hand</h4>
             <p>Bank: {bank}</p>
             {currBet !== 0 &&
                 <p>Bet: {currBet}</p>
