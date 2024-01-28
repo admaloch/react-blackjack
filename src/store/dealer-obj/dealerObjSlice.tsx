@@ -4,13 +4,21 @@ import { DealerObjInterface } from "../../models/PlayerProps";
 const initialState: DealerObjInterface = {
     name: 'Dealer',
     hand: {
-        cards: ['K♦','A♥'],
+        cards: ['K♦', 'A♥'],
         cardUrlVals: ['KD', 'AH'],
         cardNumVals: [10, 11],
         cardSum: 21,
         isBlackjack: false,
-    }, 
+    },
 }
+
+// hand: {
+//     cards: ['K♦','A♥'],
+//     cardUrlVals: ['KD', 'AH'],
+//     cardNumVals: [10, 11],
+//     cardSum: 21,
+//     isBlackjack: false,
+// }, 
 
 const dealerObjSlice = createSlice({
     name: 'dealerObj',
