@@ -6,6 +6,7 @@ interface GameDataProps {
   isMenuShown: boolean;
   isPlayerStatsShown: boolean;
   isPlayerRoundActive: boolean;
+  isDealerRoundActive: boolean;
   isDealerCardRevealed: boolean;
   isInsuranceRoundComplete: boolean;
 }
@@ -18,6 +19,7 @@ const initialState: GameDataProps = {
   isPlayerRoundActive: false,
   isDealerCardRevealed: false,
   isInsuranceRoundComplete: false,
+  isDealerRoundActive: true,
 }
 
 const deckSlice = createSlice({
@@ -36,9 +38,22 @@ const deckSlice = createSlice({
     updateIsPlayerStatsShown: (state) => {
       state.isPlayerStatsShown = !state.isPlayerStatsShown;
     },
-    updateIsPlayerRoundActive: (state) => {
-      state.isPlayerRoundActive = !state.isPlayerRoundActive;
+ 
+    beginPlayerRound: (state) => {
+      return {...state, isPlayerRoundActive: true}
     },
+    endPlayerRound: (state) => {
+      return {...state, isPlayerRoundActive: false, isDealerRoundActive: true}
+    },
+    beginDealerRound: (state) => {
+      return {...state, isPlayerRoundActive: false, isDealerRoundActive: true}
+    },
+    endDealerRound: (state) => {
+      return {...state, isDealerRoundActive: false}
+    },
+    
+    
+  
     updateIsDealerCardRevealed: (state) => {
       state.isDealerCardRevealed = !state.isDealerCardRevealed;
     },
@@ -48,6 +63,6 @@ const deckSlice = createSlice({
   },
 })
 
-export const { updateRoundsPlayed, updateIsGameActive, updateIsMenuShown, updateIsPlayerStatsShown, updateIsPlayerRoundActive, updateIsDealerCardRevealed, updateIsInsuranceRoundComplete } = deckSlice.actions
+export const { updateRoundsPlayed, updateIsGameActive, updateIsMenuShown, updateIsPlayerStatsShown, updateIsDealerCardRevealed, updateIsInsuranceRoundComplete, beginPlayerRound, endPlayerRound, beginDealerRound, endDealerRound } = deckSlice.actions
 
 export default deckSlice.reducer

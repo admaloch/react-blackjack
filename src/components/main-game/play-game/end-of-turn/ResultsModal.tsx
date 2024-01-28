@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../../../../store/store";
 import ResultsModalContents from "./ResultsModalContent";
 import { updatePlayer } from "../../../../store/player-arr/playersArrSlice";
-import { updateIsPlayerRoundActive } from "../../../../store/game-data/GameDataSlice";
+import { beginDealerRound } from "../../../../store/game-data/GameDataSlice";
 
 interface EndOfTurnResultsProps {
     playerIndex: number;
@@ -27,7 +27,7 @@ export default function ResultsModal({ playerIndex, isCurrPlayerFinished, makeCu
             if (isPlayerSplit) handleSplitRoundResults()
             makeCurrPlayerNotFinished()
         } else {
-            dispatch(updateIsPlayerRoundActive())
+            dispatch(beginDealerRound())
             console.log('begin dealer round')
         }
     };

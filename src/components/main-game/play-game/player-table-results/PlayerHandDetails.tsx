@@ -14,15 +14,17 @@ export default function PlayerHandDetails({ player }: PlayerProps) {
     const dispatch = useDispatch()
 
     const dealerObj = useSelector((state: RootState) => state.dealerObj);
+    const { isInsuranceRoundComplete } = useSelector((state: RootState) => state.gameData);
 
     const { hand, bank, currBet, insuranceBet, splitBet } = player
     const { cardUrlVals, cardSum } = hand
 
     useEffect(() => {
-        if (dealerObj.hand.cardNumVals[1] !== 11) {
+
+        if (dealerObj.hand.cardNumVals[1] !== 11 && !isInsuranceRoundComplete) {
             dispatch(updateIsInsuranceRoundComplete())
         }
-    }, [dealerObj, dispatch])
+    }, [dealerObj, dispatch, isInsuranceRoundComplete])
 
     const isBlackjack = cardSum === 21 && cardUrlVals.length === 2 ? true : false
 

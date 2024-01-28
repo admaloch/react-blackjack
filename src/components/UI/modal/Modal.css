@@ -56,21 +56,21 @@
 
 @media screen and (min-width: 992px) {
   .modal-container {
-    --modal-width: 50%;
-    --modal-height: 40%;
+    --modal-width: 70%;
+    --modal-height: 60%;
   }
 }
 
 @media screen and (min-width: 1200px) {
   .modal-container {
-    --modal-width: 40%;
+    --modal-width: 50%;
     --modal-height: 40%;
   }
 }
 
 @media screen and (min-width: 1500px) {
   .modal-container {
-    --modal-width: 30%;
+    --modal-width: 40%;
     --modal-height: 30%;
   }
 }

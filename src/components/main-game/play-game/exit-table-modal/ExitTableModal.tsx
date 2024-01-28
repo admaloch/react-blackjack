@@ -5,7 +5,7 @@ import './ExitTable.css'
 import ExitTableBtn from "./ExitTableModalBtn";
 import { removePlayer } from "../../../../store/player-arr/playersArrSlice";
 import { addInactivePlayer } from "../../../../store/inactive-players/InactivePlayersSlice";
-import { updateIsGameActive, updateIsPlayerRoundActive } from "../../../../store/game-data/GameDataSlice";
+import { beginDealerRound, updateIsGameActive } from "../../../../store/game-data/GameDataSlice";
 import { PlayerInterface } from "../../../../models/PlayerProps";
 
 interface ExitTableModalProps {
@@ -29,7 +29,7 @@ export default function ExitTableModal({ playerIndex, playerWhoLeft, closeModal,
             if (playersArr.length > 1) {
                 if (currPlayerName === lastPlayerName
                     && currPlayerName === playerWhoLeft.name) {
-                    dispatch(updateIsPlayerRoundActive())
+                    dispatch(beginDealerRound())
                 }
             } else {
                 dispatch(updateIsGameActive());

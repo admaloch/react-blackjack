@@ -72,6 +72,7 @@ export default function InsuranceResults({ player }: PlayerProps) {
 
     useEffect(() => {
         if (insuranceResults.isComplete && player.insuranceBet === 0 && insuranceResults.status !== '') {
+           
             dispatch(updateIsInsuranceRoundComplete())
         }
     }, [insuranceResults, dispatch, player])

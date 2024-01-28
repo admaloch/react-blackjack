@@ -5,6 +5,7 @@ import { RootState } from '../../../../store/store';
 import Cards from '../display-cards/Cards';
 import useDealerDrawCard from '../../draw-cards-hook/useDealerDrawCard';
 import './DealerTable.css'
+import { endDealerRound } from '../../../../store/game-data/GameDataSlice';
 import HiddenCard from './HiddenCard';
 import { delay } from '../../../../utils/Utility';
 import DealerDetails from './DealerDetails';
@@ -14,7 +15,8 @@ const DealerTable: React.FC = () => {
   const dealerObj = useSelector((state: RootState) => state.dealerObj);
   const { isInsuranceRoundComplete } = useSelector((state: RootState) => state.gameData);
   const { cards, cardSum } = dealerObj.hand
-  const { isPlayerRoundActive, isDealerCardRevealed } = useSelector((state: RootState) => state.gameData);
+  const cardLength = cards.length
+  const { isPlayerRoundActive, isDealerCardRevealed, isDealerRoundActive } = useSelector((state: RootState) => state.gameData);
   const [isCardRevealed, setIsCardRevealed] = useState(false)
   const revealCard = () => setIsCardRevealed(true)
   // Use the same hook instance throughout the component
@@ -22,7 +24,7 @@ const DealerTable: React.FC = () => {
   const dispatch = useDispatch()
 
   // useEffect(() => {
-  //   if (cards.length === 0 || cards.length === 1) {
+  //   if (cardLength === 0 || cardLength === 1) {
   //     setTimeout(() => {
   //       dealerDraw();
   //     }, 300);
@@ -33,20 +35,26 @@ const DealerTable: React.FC = () => {
   //   if (isDealerCardRevealed && dealerObj.hand.cardNumVals[1] === 11) {
   //     dispatch(updateIsInsuranceRoundComplete())
   //   }
-  // }, [isDealerCardRevealed, dealerObj.hand.cardNumVals, dispatch, dealerObj.hand.cards.length])
+  // }, [isDealerCardRevealed, dealerObj.hand.cardNumVals, dispatch, cardLength])
+
+
 
   useEffect(() => {
     async function mainDealerDrawRound() {
+      await delay(1000)
       if (isDealerCardRevealed && cardSum < 17 && isInsuranceRoundComplete) {
-        await delay(2000)
         dealerDraw();
+      } else if (cardSum >= 17) {
+        dispatch(endDealerRound())
       }
     }
     mainDealerDrawRound()
-  }, [cardSum, dealerDraw, isDealerCardRevealed, isInsuranceRoundComplete]);
+  }, [cardSum, dealerDraw, isDealerCardRevealed, isInsuranceRoundComplete, isDealerRoundActive, dispatch]);
 
 
-
+  useEffect(() => {
+    console.log('test dealerRound active?', isDealerRoundActive)
+  }, [isDealerRoundActive])
 
 
   return (
