@@ -4,6 +4,7 @@ import { RootState } from '../../../../store/store';
 import { updateIsInsuranceRoundComplete } from '../../../../store/game-data/GameDataSlice';
 import { useEffect } from 'react';
 import InsuranceResults from './InsuranceResults';
+import FinalPlayerResult from './main-hand-results/MainHandFinalRes';
 
 export interface PlayerProps {
     player: PlayerInterface;
@@ -14,7 +15,7 @@ export default function PlayerHandDetails({ player }: PlayerProps) {
     const dispatch = useDispatch()
 
     const dealerObj = useSelector((state: RootState) => state.dealerObj);
-    const { isInsuranceRoundComplete } = useSelector((state: RootState) => state.gameData);
+    const { isInsuranceRoundComplete, isDealerRoundActive } = useSelector((state: RootState) => state.gameData);
 
     const { hand, bank, currBet, insuranceBet, splitBet } = player
     const { cardUrlVals, cardSum } = hand
@@ -51,6 +52,12 @@ export default function PlayerHandDetails({ player }: PlayerProps) {
             {cardSum > 21 &&
                 <p className='lose-color'>Bust!</p>
             }
+            {!isDealerRoundActive &&
+                <FinalPlayerResult
+                    player={player}
+                />
+            }
+
         </>
     )
 }

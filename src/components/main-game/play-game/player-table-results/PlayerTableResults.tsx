@@ -5,7 +5,7 @@ import PlayerHandResults from "./PlayerHandResults";
 
 export default function PlayerTableResults() {
     const playersArr = useSelector((state: RootState) => state.playersArr);
-
+    
 
     return (
         <div className="player-results-table">

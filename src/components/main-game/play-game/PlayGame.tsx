@@ -53,9 +53,9 @@ export default function PlayGame() {
                     makeCurrPlayerFinished={makeCurrPlayerFinished}
                 />
             }
-            {!isPlayerRoundActive && !isDealerRoundActive &&
+            {/* {!isPlayerRoundActive && !isDealerRoundActive &&
                 <EndOfRoundResults />
-            }
+            } */}
 
             {playersArr.length !== 0 &&
                 <ExitTable

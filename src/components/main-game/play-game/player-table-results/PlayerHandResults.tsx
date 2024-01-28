@@ -15,11 +15,8 @@ export default function PlayerHandResults({ player }: PlayerProps) {
     const changeToSplitHand = () => setShowSplitHand(true)
     const changeToMainHand = () => setShowSplitHand(false)
 
-
     const { hand } = player
     const { cardUrlVals } = hand
-
-
 
     return (
         <div className="player-hand">
@@ -28,7 +25,6 @@ export default function PlayerHandResults({ player }: PlayerProps) {
                 changeToSplitHand={changeToSplitHand}
                 changeToMainHand={changeToMainHand}
                 showSplitHand={showSplitHand}
-                
             />
 
             {!showSplitHand && (

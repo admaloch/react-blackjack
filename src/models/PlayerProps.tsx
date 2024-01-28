@@ -58,5 +58,9 @@ export const emptyPlayerItem: PlayerInterface = {
     roundsWon: 0,
 }
 
+export interface PlayerInterfaceProps {
+    player: PlayerInterface
+}
+
 
 
