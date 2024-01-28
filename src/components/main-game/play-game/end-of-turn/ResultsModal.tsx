@@ -28,7 +28,6 @@ export default function ResultsModal({ playerIndex, isCurrPlayerFinished, makeCu
             makeCurrPlayerNotFinished()
         } else {
             dispatch(beginDealerRound())
-            console.log('begin dealer round')
         }
     };
 

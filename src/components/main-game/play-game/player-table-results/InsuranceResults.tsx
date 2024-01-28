@@ -48,7 +48,6 @@ export default function InsuranceResults({ player }: PlayerProps) {
 
     useEffect(() => {
         async function updateInsuranceHand() {
-            console.log(player)
             await delay(1500)
             if (insuranceResults.isComplete && player.insuranceBet !== 0) {
                 if (insuranceResults.status === 'Won!') {

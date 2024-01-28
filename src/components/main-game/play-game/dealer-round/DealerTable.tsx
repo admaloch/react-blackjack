@@ -52,9 +52,7 @@ const DealerTable: React.FC = () => {
   }, [cardSum, dealerDraw, isDealerCardRevealed, isInsuranceRoundComplete, isDealerRoundActive, dispatch]);
 
 
-  useEffect(() => {
-    console.log('test dealerRound active?', isDealerRoundActive)
-  }, [isDealerRoundActive])
+
 
 
   return (

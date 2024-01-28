@@ -14,7 +14,7 @@ interface MainHandItemsProps {
 export default function MainHandItems({ player, updateFinalResults, finalResultsState }: MainHandItemsProps) {
 
     const dealerObj = useSelector((state: RootState) => state.dealerObj);
- 
+
 
 
 
@@ -51,17 +51,22 @@ export default function MainHandItems({ player, updateFinalResults, finalResults
     else if (finalResultsState.mainResults === 'Lost') winOrLoseStr = 'Dealer won!'
     else winOrLoseStr = "Push!"
 
-
-
+    let moneyWonOrLost: string = ''
+    if (finalResultsState.moneyWon !== 0) {
+        moneyWonOrLost = `Money earned: ${finalResultsState.moneyWon}`
+    } else if (finalResultsState.moneyLost !== 0) {
+        moneyWonOrLost = `Money lost: ${finalResultsState.moneyLost}`
+    }
 
     return (
         <>
             {finalResultsState.mainResults &&
                 <p>{winOrLoseStr}</p>
             }
-            {finalResultsState.bankChange !== 0 &&
-                <p>Money earned: $100</p>
+            {finalResultsState.moneyWon !== 0 && finalResultsState.moneyLost !== 0 &&
+                <p>{moneyWonOrLost}</p>
             }
+
         </>
 
     )
