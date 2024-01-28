@@ -8,11 +8,13 @@
 }
 
 .player-results-table h2 {
-    display: flex;
-    justify-content: center;
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
 }
+
 .player-results-table h4 {
-font-size: .9rem;
+    font-size: .9rem;
 }
 
 .player-hand-results {
@@ -23,7 +25,7 @@ font-size: .9rem;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: start;
-    margin-top: 1rem;
+    margin-top: 5rem;
 
 }
 
@@ -32,6 +34,13 @@ font-size: .9rem;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+
+}
+
+.emphasize {
+    border: var(--text) solid 1px ;
+    padding: .5rem;
+    border-radius: 10px;
 }
 
 .icons svg {

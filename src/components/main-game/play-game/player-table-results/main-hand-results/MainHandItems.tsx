@@ -29,6 +29,7 @@ export default function MainHandItems({ player, updateFinalResults, finalResults
             const dealerHasBJ = dealerObj.hand.cardSum === 21 && dealerObj.hand.cards.length === 2
             await delay(1500)
             if (finalResultsState.mainResults === '') {
+
                 if (dealerHasBJ && wonInsuranceRound) {
                     updateFinalResults({ ...finalResultsState, mainResults: 'Insured' })
                 } else if (playerHasBJ && !dealerHasBJ || !didPlayerBust && didDealerBust || !didPlayerBust && !didDealerBust && cardSum > dealerCardSum) {
@@ -42,6 +43,8 @@ export default function MainHandItems({ player, updateFinalResults, finalResults
         }
         updateState()
     }, [finalResultsState, dealerObj, player, updateFinalResults])
+
+
 
 
 

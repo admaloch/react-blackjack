@@ -19,6 +19,7 @@ export default function SplitHandDetails({ player }: PlayerProps) {
     return (
 
         <>
+            <PlayerHand cardUrlVals={cardUrlVals} />
             <h4>Split hand</h4>
             <p>Bank: {bank}</p>
             {currBet !== 0 &&
@@ -30,14 +31,14 @@ export default function SplitHandDetails({ player }: PlayerProps) {
                 <p className='blackjack'>BlackJack!</p>
             }
 
-            
+
             {isBlackjack &&
                 <p className='win-color'>BlackJack!</p>
             }
             {cardSum > 21 &&
                 <p className='lose-color'>Bust!</p>
             }
-            <PlayerHand cardUrlVals={cardUrlVals} />
+
         </>
 
     )

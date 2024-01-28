@@ -43,6 +43,7 @@ export default function PlayerHandDetails({ player }: PlayerProps) {
             }
    
             <InsuranceResults player={player} />
+            
             <p>Sum: {cardSum}</p>
             {isBlackjack &&
                 <p className='win-color'>BlackJack!</p>

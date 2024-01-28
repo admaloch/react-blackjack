@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../../store/store';
 import { useEffect, useState } from 'react';
 import { delay } from '../../../../utils/Utility';
@@ -11,8 +11,8 @@ export default function DealerDetails() {
         isInsuranceEval: false,
         isBlackjack: false,
     })
-
-    const { isDealerCardRevealed, isInsuranceRoundComplete } = useSelector((state: RootState) => state.gameData);
+    const dispatch = useDispatch()
+    const { isDealerCardRevealed, isInsuranceRoundComplete, isDealerRoundActive } = useSelector((state: RootState) => state.gameData);
     const dealerObj = useSelector((state: RootState) => state.dealerObj);
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const isPlayerInsured = playersArr.some(player => player.splitBet !== 0)
@@ -28,24 +28,27 @@ export default function DealerDetails() {
                 && setShowDealerData((prevDataState) => {
                     return { ...prevDataState, isBlackjack: true }
                 })
+
         }
         showBlackJack()
     }, [isDealerCardRevealed, cardUrlVals, cardSum])
 
     useEffect(() => {
         async function showIsInsuranceEval() {
-            await delay(1500)
 
-            isDealerCardRevealed && !isInsuranceRoundComplete && isPlayerInsured
-                ? setShowDealerData((prevDataState) => {
-                    return { ...prevDataState, isInsuranceEval: true }
-                })
-                : setShowDealerData((prevDataState) => {
-                    return { ...prevDataState, isInsuranceEval: false }
-                })
+            if (isDealerRoundActive) {
+                await delay(1500)
+                isDealerCardRevealed && isPlayerInsured
+                    ? setShowDealerData((prevDataState) => {
+                        return { ...prevDataState, isInsuranceEval: true }
+                    })
+                    : setShowDealerData((prevDataState) => {
+                        return { ...prevDataState, isInsuranceEval: false }
+                    })
+            }
         }
         showIsInsuranceEval()
-    }, [isPlayerInsured, isDealerCardRevealed, isInsuranceRoundComplete])
+    }, [isPlayerInsured, isDealerCardRevealed, isDealerRoundActive])
 
 
 
@@ -59,7 +62,7 @@ export default function DealerDetails() {
             {cardSum > 21 &&
                 <p className='lose-color'>Bust!</p>
             }
-            {showDealerData.isInsuranceEval &&
+            {!isInsuranceRoundComplete && showDealerData.isInsuranceEval &&
                 <p>Evaluating insurance bets...</p>
             }
 

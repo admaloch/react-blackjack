@@ -26,7 +26,7 @@ export default function InsuranceResults({ player }: PlayerProps) {
 
     useEffect(() => {
         async function changeInsuranceResults() {
-            await delay(1500)
+            await delay(3000)
             if (isDealerCardRevealed && player.insuranceBet !== 0) {
                 if (cardNumVals[0] === 10 && cardNumVals[1] === 11) {
                     setInsuranceResults({
@@ -79,7 +79,7 @@ export default function InsuranceResults({ player }: PlayerProps) {
     return (
         <>
             {insuranceResults.status !== '' &&
-                <p className={insuranceResults.class_}>Insurance bet: {insuranceResults.status}</p>
+                <p className={insuranceResults.class_}>Insurance {insuranceResults.status}</p>
             }
         </>
     )
