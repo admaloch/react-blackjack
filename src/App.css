@@ -10,6 +10,7 @@
     --color1: red;
     --blackjack: green;
     --bust: red;
+    --neutral: #ffbe0b;
 }
 
 
@@ -75,3 +76,15 @@
     color: var(--bust);
 }
 
+.stay-color {
+    color: var(--neutral);
+}
+
+.hide-item {
+    opacity: 0;
+    transition: opacity 0.5s ease; /* You can adjust the duration and timing function */
+}
+
+.reveal-item {
+    opacity: 1;
+}

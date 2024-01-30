@@ -15,7 +15,7 @@ export default function PlayerHandDetails({ player }: PlayerProps) {
     const dispatch = useDispatch()
 
     const dealerObj = useSelector((state: RootState) => state.dealerObj);
-    const { isInsuranceRoundComplete, isDealerRoundActive } = useSelector((state: RootState) => state.gameData);
+    const { isInsuranceRoundComplete, isDealerRoundActive, isSplitResultsActive, isRoundActive } = useSelector((state: RootState) => state.gameData);
 
     const { hand, bank, currBet, insuranceBet } = player
     const { cardUrlVals, cardSum } = hand
@@ -31,20 +31,20 @@ export default function PlayerHandDetails({ player }: PlayerProps) {
 
     return (
         <>
-            {player.splitHand.cards.length !== 0 &&
-                <h4>Main Hand:</h4>
-            }
+
             <p>Bank: {bank}</p>
             {currBet !== 0 &&
                 <p>Bet: {currBet}</p>
             }
+
+            {!isSplitResultsActive && isRoundActive &&
+                <p>Sum: {cardSum}</p>
+            }
             {insuranceBet !== 0 &&
                 <p>Insurance: {insuranceBet}</p>
             }
-   
+
             <InsuranceResults player={player} />
-            
-            <p>Sum: {cardSum}</p>
             {isBlackjack &&
                 <p className='win-color'>BlackJack!</p>
             }

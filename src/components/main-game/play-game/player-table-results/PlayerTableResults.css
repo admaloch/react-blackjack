@@ -32,25 +32,43 @@
 }
 
 .player-hand {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     padding: .2rem;
-    border: transparent solid 1px ;
+    border: transparent solid 1px;
+    border-radius: 10px;
+    transition: border 0.3s ease;
+    /* Added transition property */
+}
+
+.player-hand h4 {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    top: -1.5rem;
+    
+    /* min-width: 300px; */
+  
 }
 
 .emphasize {
-    border: var(--text) solid 1px ;
-    
-    border-radius: 10px;
+    border: var(--text) solid 1px;
+
 }
+
 .emphasize-win {
-    border: var(--blackjack) solid 1px ;
+    border: var(--blackjack) solid 1px;
 }
+
 .emphasize-lose {
-    border: var(--bust) solid 1px ;
+    border: var(--bust) solid 1px;
 }
+
 
 .icons svg {
     fill: white;

@@ -1,5 +1,5 @@
 .dealer-hand {
-    
+
     height: 100%;
     width: 100%;
     display: flex;
@@ -27,6 +27,7 @@ display: none;
     top: .2rem;
     left: .2rem;
 }
+
 .hide-card {
     display: none;
 }
@@ -38,11 +39,31 @@ display: none;
     align-items: center;
 }
 
+.dealer-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .dealer-sum {
     opacity: 0;
-    transition: opacity 0.5s ease; /* You can adjust the duration and timing function */
+    transition: opacity 0.5s ease;
+    /* You can adjust the duration and timing function */
 }
 
 .dealer-sum.revealed {
     opacity: 1;
+}
+
+.dealer-status {
+    display: flex;
+    flex-direction: column;
+
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+}
+
+.dealer-status-reverse {
+    flex-direction: column-reverse;
 }

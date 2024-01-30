@@ -49,27 +49,41 @@ export default function DealerDetails() {
         showIsInsuranceEval()
     }, [isPlayerInsured, isDealerCardRevealed, isDealerRoundActive])
 
+    let dealerHeaderText: string | JSX.Element = name;
+    if (!isDealerRoundActive && showDealerData.isBlackjack) {
+        dealerHeaderText = <h2 className=' win-color'>{name} BlackJack!</h2>
+    } else if (!isDealerRoundActive && cardSum > 21) {
+        dealerHeaderText = <h2 className=' lose-color'>{name} Bust!</h2>
+    } else if (!isDealerRoundActive && cardSum >= 17 && cardSum <= 21) {
+        dealerHeaderText = <h2 className=' stay-color'>{name} Stays</h2>
+    } else {
+        dealerHeaderText = <h2 className=''>{name}</h2>
+    }
 
+  
+
+    const revealInsuranceClass = !isInsuranceRoundComplete && showDealerData.isInsuranceEval
+        ? 'hide-item reveal-item' : 'hide-item'
+
+    const revealDrawCardsClass = isInsuranceRoundComplete && isDealerRoundActive
+        ? 'hide-item reveal-item' : 'hide-item'
+
+    const dealerStatusClass = isInsuranceRoundComplete
+        ? "dealer-status dealer-status-reverse"
+        : 'dealer-status'
 
     return (
         <div className="dealer-details">
-            <h2>{name}</h2>
-            <p className={`dealer-sum ${isDealerCardRevealed ? 'revealed' : ''}`}>Sum: {hand.cardSum}</p>
-            {!isDealerRoundActive && showDealerData.isBlackjack &&
-                <p className='win-color'>BlackJack!</p>
-            }
-            {!isDealerRoundActive && cardSum > 21 &&
-                <p className='lose-color'>Bust!</p>
-            }
-            {!isDealerRoundActive && cardSum >= 17 && cardSum <= 21 &&
-                <p>Dealer stays</p>
-            }
-            {!isInsuranceRoundComplete && showDealerData.isInsuranceEval &&
-                <p>Evaluating insurance bets...</p>
-            }
-            {isInsuranceRoundComplete && isDealerRoundActive &&
-                <p>Dealer drawing cards...</p>
-            }
+            {dealerHeaderText}
+            <p className={`hide-item ${isDealerCardRevealed ? 'reveal-item' : ''}`}>Sum: {hand.cardSum}</p>
+            <div className={dealerStatusClass}>
+                <h3 className={revealInsuranceClass}>Checking insurance bets...</h3>
+                <h3 className={revealDrawCardsClass}>Dealer drawing cards...</h3>
+
+
+            </div>
+
+
 
         </div>
     );

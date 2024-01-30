@@ -39,9 +39,11 @@ export default function PlayerHandResults({ player }: PlayerProps) {
 
     const isInsuranceRound = !isInsuranceRoundComplete && player.insuranceBet !== 0 && isDealerCardRevealed
 
+    const isSplitRound = isSplitResultsActive && player.splitHand.cards.length > 0 && isDealerCardRevealed
+
     useEffect(() => {
         async function updatePlayerClass() {
-            if (isInsuranceRound) {
+            if (isInsuranceRound ) {
                 await delay(1500)
                 setPlayerClass('player-hand emphasize')
             }
@@ -88,6 +90,8 @@ export default function PlayerHandResults({ player }: PlayerProps) {
             {showSplitHand &&
                 <SplitHandDetails player={player} />
             }
+           
+
         </div>
     )
 }
