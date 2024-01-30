@@ -22,8 +22,7 @@ export default function DealerDetails() {
 
     useEffect(() => {
         async function showBlackJack() {
-            await delay(500)
-
+            await delay(1000)
             cardSum === 21 && cardUrlVals.length === 2 && isDealerCardRevealed
                 && setShowDealerData((prevDataState) => {
                     return { ...prevDataState, isBlackjack: true }
@@ -56,14 +55,20 @@ export default function DealerDetails() {
         <div className="dealer-details">
             <h2>{name}</h2>
             <p className={`dealer-sum ${isDealerCardRevealed ? 'revealed' : ''}`}>Sum: {hand.cardSum}</p>
-            {showDealerData.isBlackjack &&
+            {!isDealerRoundActive && showDealerData.isBlackjack &&
                 <p className='win-color'>BlackJack!</p>
             }
-            {cardSum > 21 &&
+            {!isDealerRoundActive && cardSum > 21 &&
                 <p className='lose-color'>Bust!</p>
+            }
+            {!isDealerRoundActive && cardSum >= 17 && cardSum <= 21 &&
+                <p>Dealer stays</p>
             }
             {!isInsuranceRoundComplete && showDealerData.isInsuranceEval &&
                 <p>Evaluating insurance bets...</p>
+            }
+            {isInsuranceRoundComplete && isDealerRoundActive &&
+                <p>Dealer drawing cards...</p>
             }
 
         </div>

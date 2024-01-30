@@ -27,7 +27,7 @@ export default function MainHandItems({ player, updateFinalResults, finalResults
             const didPlayerBust = cardSum > 21
             const didDealerBust = dealerObj.hand.cardSum > 21
             const dealerHasBJ = dealerObj.hand.cardSum === 21 && dealerObj.hand.cards.length === 2
-            await delay(1500)
+            await delay(2500)
             if (finalResultsState.mainResults === '') {
 
                 if (dealerHasBJ && wonInsuranceRound) {

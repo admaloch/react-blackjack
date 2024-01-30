@@ -21,17 +21,23 @@ export default function PlayerTableResults() {
         }
     }, [isDealerRoundActive, isSplitResultsActive, dispatch, isPlayersSplit, isMainResultsActive])
 
+    useEffect(() => {
+        console.log('is main results is', isMainResultsActive)
+        console.log('is split results is', isSplitResultsActive)
+    }, [isSplitResultsActive, isMainResultsActive])
 
-
-    const mainOrSplitHeader = !isSplitResultsActive
-        ? 'Main hand results...'
-        : 'Split hand results...'
+    // const mainOrSplitHeader = isSplitResultsActive
+    //     ? 'Split hand results...'
+    //     : 'Main hand results...'
 
     return (
         <div className="player-results-table">
-            {isMainResultsActive &&
-                <h2>{mainOrSplitHeader}</h2>
-            }
+            <h2
+                style={isMainResultsActive ? { opacity: 1 } : { opacity: 0 }}>Main hand results...
+            </h2>
+            <h2
+                style={isSplitResultsActive ? { opacity: 1 } : { opacity: 0 }}>Split hand results...
+            </h2>
             <div className="player-hand-results">
                 {playersArr.map(player => (
                     <PlayerHandResults

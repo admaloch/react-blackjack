@@ -11,6 +11,8 @@
     position: absolute;
     top: 1rem;
     left: 1rem;
+    opacity: 0;
+    transition: 1s ease-in-out all;
 }
 
 .player-results-table h4 {
@@ -34,13 +36,20 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-
+    padding: .2rem;
+    border: transparent solid 1px ;
 }
 
 .emphasize {
     border: var(--text) solid 1px ;
-    padding: .5rem;
+    
     border-radius: 10px;
+}
+.emphasize-win {
+    border: var(--blackjack) solid 1px ;
+}
+.emphasize-lose {
+    border: var(--bust) solid 1px ;
 }
 
 .icons svg {

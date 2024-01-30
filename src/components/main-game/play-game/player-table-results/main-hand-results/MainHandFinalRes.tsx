@@ -36,9 +36,9 @@ export default function FinalPlayerResult({ player }: PlayerInterfaceProps) {
             const { cardSum, cardUrlVals } = hand
             const { mainResults, isComplete } = finalResultsState
             const playerHasBJ = cardSum === 21 && cardUrlVals.length === 2 ? true : false
-            await delay(1500)
-            if (mainResults && !wonInsuranceRound && !isComplete) {
 
+            if (mainResults && !wonInsuranceRound && !isComplete) {
+                await delay(2000)
 
                 let newBank = 0
                 let earnings = 0

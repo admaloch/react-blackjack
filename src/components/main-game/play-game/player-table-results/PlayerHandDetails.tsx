@@ -22,10 +22,10 @@ export default function PlayerHandDetails({ player }: PlayerProps) {
 
     useEffect(() => {
 
-        if (dealerObj.hand.cardNumVals[1] !== 11 && !isInsuranceRoundComplete) {
+        if (isDealerRoundActive && dealerObj.hand.cardNumVals[1] !== 11 && !isInsuranceRoundComplete) {
             dispatch(updateIsInsuranceRoundComplete())
         }
-    }, [dealerObj, dispatch, isInsuranceRoundComplete])
+    }, [dealerObj, dispatch, isInsuranceRoundComplete, isDealerRoundActive])
 
     const isBlackjack = cardSum === 21 && cardUrlVals.length === 2 ? true : false
 

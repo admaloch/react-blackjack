@@ -16,7 +16,7 @@ export default function InsuranceResults({ player }: PlayerProps) {
     const dispatch = useDispatch()
     const { cardNumVals } = dealerObj.hand
 
-    const { isDealerCardRevealed } = useSelector((state: RootState) => state.gameData);
+    const { isDealerCardRevealed, isDealerRoundActive } = useSelector((state: RootState) => state.gameData);
 
     const [insuranceResults, setInsuranceResults] = useState({
         status: '',
@@ -26,7 +26,7 @@ export default function InsuranceResults({ player }: PlayerProps) {
 
     useEffect(() => {
         async function changeInsuranceResults() {
-            await delay(3000)
+            await delay(4000)
             if (isDealerCardRevealed && player.insuranceBet !== 0) {
                 if (cardNumVals[0] === 10 && cardNumVals[1] === 11) {
                     setInsuranceResults({
@@ -48,7 +48,7 @@ export default function InsuranceResults({ player }: PlayerProps) {
 
     useEffect(() => {
         async function updateInsuranceHand() {
-            await delay(1500)
+            await delay(2500)
             if (insuranceResults.isComplete && player.insuranceBet !== 0) {
                 if (insuranceResults.status === 'Won!') {
                     dispatch(updatePlayer({
@@ -70,11 +70,11 @@ export default function InsuranceResults({ player }: PlayerProps) {
     }, [insuranceResults, player, dispatch])
 
     useEffect(() => {
-        if (insuranceResults.isComplete && player.insuranceBet === 0 && insuranceResults.status !== '') {
-           
+        if (isDealerRoundActive && insuranceResults.isComplete && player.insuranceBet === 0 && insuranceResults.status !== '') {
+
             dispatch(updateIsInsuranceRoundComplete())
         }
-    }, [insuranceResults, dispatch, player])
+    }, [insuranceResults, dispatch, player, isDealerRoundActive])
 
     return (
         <>

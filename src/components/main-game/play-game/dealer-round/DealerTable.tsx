@@ -41,7 +41,7 @@ const DealerTable: React.FC = () => {
 
   useEffect(() => {
     async function mainDealerDrawRound() {
-      await delay(1500)
+      await delay(2000)
       if (isDealerCardRevealed && cardSum < 17 && isInsuranceRoundComplete) {
         dealerDraw();
       } else if (cardSum >= 17 && isInsuranceRoundComplete) {
