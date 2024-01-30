@@ -21,10 +21,10 @@ export default function PlayerTableResults() {
         }
     }, [isDealerRoundActive, isSplitResultsActive, dispatch, isPlayersSplit, isMainResultsActive])
 
-    useEffect(() => {
-        console.log('is main results is', isMainResultsActive)
-        console.log('is split results is', isSplitResultsActive)
-    }, [isSplitResultsActive, isMainResultsActive])
+    // useEffect(() => {
+    //     console.log('is main results is', isMainResultsActive)
+    //     console.log('is split results is', isSplitResultsActive)
+    // }, [isSplitResultsActive, isMainResultsActive])
 
     // const mainOrSplitHeader = isSplitResultsActive
     //     ? 'Split hand results...'

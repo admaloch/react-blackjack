@@ -17,8 +17,6 @@ export default function PlayerHandResults({ player }: PlayerProps) {
     const [showSplitHand, setShowSplitHand] = useState(false)
     const [playerClass, setPlayerClass] = useState('player-hand')
 
-
-
     const changeToSplitHand = () => setShowSplitHand(true)
     const changeToMainHand = () => setShowSplitHand(false)
 
@@ -48,10 +46,7 @@ export default function PlayerHandResults({ player }: PlayerProps) {
             if (!isInsuranceRoundComplete && isDealerCardRevealed && !isDealerDrawing) {
                 await delay(1500)
                 setPlayerClass('player-hand emphasize')
-                if (player.insuranceBet === 0) {
-                   
-                    setPlayerClass('player-hand obscure-item')
-                }
+
             }
         }
         updatePlayerClass()
@@ -77,9 +72,7 @@ export default function PlayerHandResults({ player }: PlayerProps) {
         updatePlayerClass()
     }, [isInsuranceRoundComplete, isDealerCardRevealed, dealerSum, player.insuranceBet])
 
-    useEffect(() => {
-        console.log('is insurance complete', isInsuranceRoundComplete)
-    }, [isInsuranceRoundComplete])
+
 
     return (
         <div className={playerClass}>
