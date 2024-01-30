@@ -88,3 +88,7 @@
 .reveal-item {
     opacity: 1;
 }
+
+.obscure-item {
+    opacity: .5;
+}

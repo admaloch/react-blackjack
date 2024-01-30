@@ -43,13 +43,13 @@ export default function PlayerHandResults({ player }: PlayerProps) {
 
     useEffect(() => {
         async function updatePlayerClass() {
-            if (isInsuranceRound ) {
+            if (isInsuranceRound || isSplitRound) {
                 await delay(1500)
                 setPlayerClass('player-hand emphasize')
             }
         }
         updatePlayerClass()
-    }, [isInsuranceRound, dealerSum])
+    }, [isInsuranceRound, dealerSum, isSplitRound])
 
     useEffect(() => {
         async function updatePlayerClass() {
@@ -90,7 +90,7 @@ export default function PlayerHandResults({ player }: PlayerProps) {
             {showSplitHand &&
                 <SplitHandDetails player={player} />
             }
-           
+
 
         </div>
     )
