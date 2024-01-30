@@ -20,7 +20,7 @@ export default function PlayerHandResults({ player }: PlayerProps) {
     const changeToSplitHand = () => setShowSplitHand(true)
     const changeToMainHand = () => setShowSplitHand(false)
 
-    const { isSplitResultsActive, isInsuranceRoundComplete, isDealerCardRevealed } = useSelector((state: RootState) => state.gameData);
+    const { isSplitResultsActive, isInsuranceRoundComplete, isDealerCardRevealed, isDealerDrawing } = useSelector((state: RootState) => state.gameData);
     const dealerObj = useSelector((state: RootState) => state.dealerObj);
     const dealerSum = dealerObj.hand.cardSum
 
@@ -39,34 +39,40 @@ export default function PlayerHandResults({ player }: PlayerProps) {
 
     const isInsuranceRound = !isInsuranceRoundComplete && player.insuranceBet !== 0 && isDealerCardRevealed
 
-    const isSplitRound = isSplitResultsActive && player.splitHand.cards.length > 0 && isDealerCardRevealed
+    // const isSplitRound = isSplitResultsActive && player.splitHand.cards.length > 0 && isDealerCardRevealed
 
     useEffect(() => {
         async function updatePlayerClass() {
-            if (isInsuranceRound || isSplitRound) {
+            if (!isInsuranceRoundComplete && isDealerCardRevealed) {
                 await delay(1500)
                 setPlayerClass('player-hand emphasize')
+                if (player.insuranceBet === 0) {
+                    setPlayerClass('player-hand obscure-item')
+                }
             }
         }
         updatePlayerClass()
-    }, [isInsuranceRound, dealerSum, isSplitRound])
+    }, [isInsuranceRoundComplete, isDealerCardRevealed, player.insuranceBet])
 
     useEffect(() => {
         async function updatePlayerClass() {
 
-            if (isInsuranceRound) {
+            if (!isInsuranceRoundComplete && isDealerCardRevealed) {
                 await delay(4000)
-                if (dealerSum === 21) {
-                    setPlayerClass('player-hand emphasize emphasize-win')
-                } else if (dealerSum !== 21) {
-                    setPlayerClass('player-hand emphasize emphasize-lose')
+                if (player.insuranceBet !== 0) {
+                    if (dealerSum === 21) {
+                        setPlayerClass('player-hand emphasize emphasize-win')
+                    } else if (dealerSum !== 21) {
+                        setPlayerClass('player-hand emphasize emphasize-lose')
+                    }
                 }
+
             } else {
                 setPlayerClass('player-hand ')
             }
         }
         updatePlayerClass()
-    }, [isInsuranceRound, dealerSum])
+    }, [isInsuranceRoundComplete, isDealerCardRevealed, dealerSum, player.insuranceBet])
 
 
 

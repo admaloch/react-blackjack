@@ -8,6 +8,7 @@ interface GameDataProps {
   isPlayerRoundActive: boolean;
   isDealerRoundActive: boolean;
   isDealerCardRevealed: boolean;
+  isDealerDrawing: boolean;
   isInsuranceRoundComplete: boolean;
   isMainResultsActive: boolean;
   isSplitResultsActive: boolean;
@@ -21,6 +22,7 @@ const initialState: GameDataProps = {
   isPlayerStatsShown: true,
   isPlayerRoundActive: false,
   isDealerCardRevealed: false,
+  isDealerDrawing: false,
   isInsuranceRoundComplete: false,
   isDealerRoundActive: true,
   isMainResultsActive: false,
@@ -50,6 +52,10 @@ const deckSlice = createSlice({
     updateIsRoundActive: (state) => {
       state.isRoundActive = !state.isRoundActive;
     },
+    beginDealerDrawing: (state) => {
+      return {...state, isDealerDrawing: true}
+    },
+    
 
     beginPlayerRound: (state) => {
       return { ...state, isPlayerRoundActive: true }
@@ -61,7 +67,7 @@ const deckSlice = createSlice({
       return { ...state, isPlayerRoundActive: false, isDealerRoundActive: true }
     },
     endDealerRound: (state) => {
-      return { ...state, isDealerRoundActive: false, isMainResultsActive: true, }
+      return { ...state, isDealerRoundActive: false, isMainResultsActive: true, isDealerDrawing: false }
     },
     beginSplitRound: (state) => {
       return { ...state, isSplitResultsActive: true }
@@ -76,6 +82,6 @@ const deckSlice = createSlice({
   },
 })
 
-export const { updateRoundsPlayed, updateIsGameActive, updateIsMenuShown, updateIsPlayerStatsShown, updateIsDealerCardRevealed, updateIsInsuranceRoundComplete, beginPlayerRound, endPlayerRound, beginDealerRound, endDealerRound, endRoundResults, beginSplitRound, updateIsRoundActive } = deckSlice.actions
+export const { updateRoundsPlayed, updateIsGameActive, updateIsMenuShown, updateIsPlayerStatsShown, updateIsDealerCardRevealed, updateIsInsuranceRoundComplete, beginPlayerRound, endPlayerRound, beginDealerRound, endDealerRound, endRoundResults, beginSplitRound, updateIsRoundActive, beginDealerDrawing } = deckSlice.actions
 
 export default deckSlice.reducer

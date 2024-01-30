@@ -5,7 +5,7 @@ import { RootState } from '../../../../store/store';
 import Cards from '../display-cards/Cards';
 import useDealerDrawCard from '../../draw-cards-hook/useDealerDrawCard';
 import './DealerTable.css'
-import { endDealerRound } from '../../../../store/game-data/GameDataSlice';
+import { beginDealerDrawing, endDealerRound } from '../../../../store/game-data/GameDataSlice';
 import HiddenCard from './HiddenCard';
 import { delay } from '../../../../utils/Utility';
 import DealerDetails from './DealerDetails';
@@ -43,6 +43,7 @@ const DealerTable: React.FC = () => {
     async function mainDealerDrawRound() {
       await delay(2000)
       if (isDealerCardRevealed && cardSum < 17 && isInsuranceRoundComplete) {
+        dispatch(beginDealerDrawing())
         dealerDraw();
       } else if (cardSum >= 17 && isInsuranceRoundComplete) {
         dispatch(endDealerRound())
