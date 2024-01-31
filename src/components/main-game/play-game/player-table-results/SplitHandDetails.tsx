@@ -16,6 +16,9 @@ export default function SplitHandDetails({ player }: PlayerProps) {
     const isBlackjack = cardSum === 21 && cardUrlVals.length === 2 ? true : false
 
 
+    
+
+
     return (
 
         <>
