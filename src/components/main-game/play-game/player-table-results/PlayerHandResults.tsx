@@ -13,73 +13,67 @@ export interface PlayerProps {
 }
 
 export default function PlayerHandResults({ player }: PlayerProps) {
-
-    const [showSplitHand, setShowSplitHand] = useState(false)
-    const [playerClass, setPlayerClass] = useState('player-hand')
-
-
-
-    const changeToSplitHand = () => setShowSplitHand(true)
-    const changeToMainHand = () => setShowSplitHand(false)
-
-    const { isSplitResultsActive, isInsuranceRoundComplete, isDealerCardRevealed, isDealerDrawing } = useSelector((state: RootState) => state.gameData);
-    const dealerObj = useSelector((state: RootState) => state.dealerObj);
-    const dealerSum = dealerObj.hand.cardSum
-
-    useEffect(() => {
-        async function splitHandChangeHandler() {
-            if (player.splitHand.cards.length > 0 && isSplitResultsActive) {
-                await delay(5000)
-                changeToSplitHand()
-            }
-        }
-        splitHandChangeHandler()
-    }, [isSplitResultsActive, player])
+    const [showSplitHand, setShowSplitHand] = useState(false);
+    const [playerClass, setPlayerClass] = useState('player-hand');
 
     const { hand } = player
     const { cardUrlVals } = hand
 
-    const isInsuranceRound = !isInsuranceRoundComplete && player.insuranceBet !== 0 && isDealerCardRevealed
+    const changeToSplitHand = () => setShowSplitHand(true);
+    const changeToMainHand = () => setShowSplitHand(false);
 
-    // const isSplitRound = isSplitResultsActive && player.splitHand.cards.length > 0 && isDealerCardRevealed
+    const { isSplitResultsActive, isInsuranceRoundComplete, isDealerCardRevealed } = useSelector(
+        (state: RootState) => state.gameData
+    );
+    const dealerObj = useSelector((state: RootState) => state.dealerObj);
+    const dealerSum = dealerObj.hand.cardSum;
 
     useEffect(() => {
-        async function updatePlayerClass() {
-            if (!isInsuranceRoundComplete && isDealerCardRevealed && !isDealerDrawing) {
-                await delay(1500)
-                setPlayerClass('player-hand emphasize')
-                if (player.insuranceBet === 0) {
-                   
-                    setPlayerClass('player-hand obscure-item')
-                }
+        async function splitHandChangeHandler() {
+            if (player.splitHand.cards.length > 0 && isSplitResultsActive) {
+                await delay(5000);
+                changeToSplitHand();
             }
         }
-        updatePlayerClass()
-    }, [isInsuranceRoundComplete, isDealerCardRevealed, player.insuranceBet, isDealerDrawing])
+        splitHandChangeHandler();
+    }, [isSplitResultsActive, player]);
 
     useEffect(() => {
-        async function updatePlayerClass() {
-
+        async function updatePlayerClassAsync() {
             if (!isInsuranceRoundComplete && isDealerCardRevealed) {
-                await delay(4000)
+
+                if (player.insuranceBet !== 0) {
+                    await delay(1500);
+                    setPlayerClass('player-hand emphasize');
+                }
+                else if (player.insuranceBet === 0) {
+                    setPlayerClass('player-hand obscure-item');
+                }
+
+
+            }
+        }
+        updatePlayerClassAsync();
+    }, [isInsuranceRoundComplete, isDealerCardRevealed, player.insuranceBet]);
+
+    useEffect(() => {
+        async function updatePlayerClassAsync() {
+            if (!isInsuranceRoundComplete && isDealerCardRevealed) {
+                await delay(4000);
                 if (player.insuranceBet !== 0) {
                     if (dealerSum === 21) {
-                        setPlayerClass('player-hand emphasize emphasize-win')
+                        setPlayerClass('player-hand emphasize emphasize-win');
                     } else if (dealerSum !== 21) {
-                        setPlayerClass('player-hand emphasize emphasize-lose')
+                        setPlayerClass('player-hand emphasize emphasize-lose');
                     }
                 }
-
             } else {
-                setPlayerClass('player-hand ')
+                setPlayerClass('player-hand');
+
             }
         }
-        updatePlayerClass()
-    }, [isInsuranceRoundComplete, isDealerCardRevealed, dealerSum, player.insuranceBet])
-
-    useEffect(() => {
-        console.log('is insurance complete', isInsuranceRoundComplete)
-    }, [isInsuranceRoundComplete])
+        updatePlayerClassAsync();
+    }, [isInsuranceRoundComplete, isDealerCardRevealed, dealerSum, player.insuranceBet]);
 
     return (
         <div className={playerClass}>
@@ -94,15 +88,10 @@ export default function PlayerHandResults({ player }: PlayerProps) {
                 <>
                     <PlayerHand cardUrlVals={cardUrlVals} />
                     <PlayerHandDetails player={player} />
-
                 </>
             )}
 
-            {showSplitHand &&
-                <SplitHandDetails player={player} />
-            }
-
-
+            {showSplitHand && <SplitHandDetails player={player} />}
         </div>
-    )
+    );
 }
