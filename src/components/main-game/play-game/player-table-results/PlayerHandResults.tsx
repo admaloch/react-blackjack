@@ -16,6 +16,10 @@ export default function PlayerHandResults({ player }: PlayerProps) {
     const [showSplitHand, setShowSplitHand] = useState(false);
     const [playerClass, setPlayerClass] = useState('player-hand');
 
+    const updatePlayerClass = (str) => {
+        setPlayerClass(str)
+    }
+
     const { hand } = player
     const { cardUrlVals } = hand
 
@@ -91,7 +95,11 @@ export default function PlayerHandResults({ player }: PlayerProps) {
                 </>
             )}
 
-            {showSplitHand && <SplitHandDetails player={player} />}
+            {showSplitHand &&
+                <SplitHandDetails
+                    player={player}
+                    updatePlayerClass={updatePlayerClass}
+                />}
         </div>
     );
 }

@@ -50,7 +50,7 @@ const initialState = [
         bank: 700,
         currBet: 200,
         minBet: 200,
-        insuranceBet: 100,
+        insuranceBet: 0,
         wonInsuranceRound: false,
         splitBet: 0,
         isPlayerSplit: false,

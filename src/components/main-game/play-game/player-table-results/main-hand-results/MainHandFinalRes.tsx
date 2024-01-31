@@ -7,6 +7,7 @@ import { updatePlayer } from "../../../../../store/player-arr/playersArrSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { beginSplitRound, endRoundResults } from "../../../../../store/game-data/GameDataSlice";
 import { RootState } from "../../../../../store/store";
+
 export interface FinalResultsState {
     mainResults: string;
     moneyWon: number;
@@ -61,7 +62,7 @@ export default function FinalPlayerResult({ player }: PlayerInterfaceProps) {
             }
         }
         updateHandsWithResults()
-    }, [finalResultsState])
+    }, [finalResultsState, dispatch, player])
 
 
 

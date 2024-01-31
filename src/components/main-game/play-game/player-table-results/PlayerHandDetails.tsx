@@ -29,6 +29,17 @@ export default function PlayerHandDetails({ player }: PlayerProps) {
 
     const isBlackjack = cardSum === 21 && cardUrlVals.length === 2 ? true : false
 
+    let bjOrBustItem: React.ReactNode = '';
+    if (isBlackjack) {
+        bjOrBustItem = <p className='win-color'>BlackJack!</p>;
+      } else if (cardSum > 21) {
+        bjOrBustItem = <p className='lose-color'>Bust!</p>;
+      } else {
+        bjOrBustItem = <p className='stay-color'>Stay!</p>;
+
+      }
+      
+
     return (
         <>
 
@@ -44,13 +55,10 @@ export default function PlayerHandDetails({ player }: PlayerProps) {
                 <p>Insurance: {insuranceBet}</p>
             }
 
+
+
             <InsuranceResults player={player} />
-            {isBlackjack &&
-                <p className='win-color'>BlackJack!</p>
-            }
-            {cardSum > 21 &&
-                <p className='lose-color'>Bust!</p>
-            }
+            {bjOrBustItem}
             {!isDealerRoundActive &&
                 <FinalPlayerResult
                     player={player}
