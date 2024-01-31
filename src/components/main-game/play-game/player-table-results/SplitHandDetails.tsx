@@ -38,23 +38,7 @@ export default function SplitHandDetails({ player, updatePlayerClass }: PlayerPr
     const isBlackjack = cardSum === 21 && cardUrlVals.length === 2 ? true : false
 
 
-    useEffect(() => {
-        async function updatePlayerClassAsync() {
-            if (isSplitResultsActive) {
-
-                if (cards.length !== 0) {
-                    await delay(1500);
-                    updatePlayerClass('player-hand emphasize');
-                }
-                else if (cards.length === 0) {
-                    updatePlayerClass('player-hand obscure-item');
-                }
-
-
-            }
-        }
-        updatePlayerClassAsync();
-    }, [isSplitResultsActive, cards, updatePlayerClass]);
+    
 
     useEffect(() =>{
         console.log('player', player)

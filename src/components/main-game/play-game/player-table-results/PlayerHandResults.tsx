@@ -35,7 +35,7 @@ export default function PlayerHandResults({ player }: PlayerProps) {
     useEffect(() => {
         async function splitHandChangeHandler() {
             if (player.splitHand.cards.length > 0 && isSplitResultsActive) {
-                await delay(5000);
+                await delay(1500);
                 changeToSplitHand();
             }
         }
@@ -43,7 +43,7 @@ export default function PlayerHandResults({ player }: PlayerProps) {
     }, [isSplitResultsActive, player]);
 
     useEffect(() => {
-        async function updatePlayerClassAsync() {
+        async function emphasizeInuranceBetHand() {
             if (!isInsuranceRoundComplete && isDealerCardRevealed) {
 
                 if (player.insuranceBet !== 0) {
@@ -57,11 +57,11 @@ export default function PlayerHandResults({ player }: PlayerProps) {
 
             }
         }
-        updatePlayerClassAsync();
+        emphasizeInuranceBetHand();
     }, [isInsuranceRoundComplete, isDealerCardRevealed, player.insuranceBet]);
 
     useEffect(() => {
-        async function updatePlayerClassAsync() {
+        async function updateInsuranceHandColor() {
             if (!isInsuranceRoundComplete && isDealerCardRevealed) {
                 await delay(4000);
                 if (player.insuranceBet !== 0) {
@@ -76,8 +76,24 @@ export default function PlayerHandResults({ player }: PlayerProps) {
 
             }
         }
-        updatePlayerClassAsync();
+        updateInsuranceHandColor();
     }, [isInsuranceRoundComplete, isDealerCardRevealed, dealerSum, player.insuranceBet]);
+
+    useEffect(() => {
+        async function emphasizeSplitHand() {
+            if (isSplitResultsActive) {
+                await delay(2500);
+                if (player.splitHand.cards.length !== 0) {
+
+                    updatePlayerClass('player-hand emphasize');
+                }
+                else if (player.splitHand.cards.length === 0) {
+                    updatePlayerClass('player-hand obscure-item');
+                }
+            }
+        }
+        emphasizeSplitHand();
+    }, [isSplitResultsActive, player.splitHand.cards, updatePlayerClass]);
 
     return (
         <div className={playerClass}>
