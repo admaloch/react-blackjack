@@ -15,11 +15,6 @@ export default function MainHandItems({ player, updateFinalResults, finalResults
 
     const dealerObj = useSelector((state: RootState) => state.dealerObj);
 
-const 
-
-
-    useEffect(() => {
-        async function updateState() {
             const dealerCardSum = dealerObj.hand.cardSum
             const { hand, wonInsuranceRound, currBet } = player
             const { cardSum, cardUrlVals } = hand
@@ -27,23 +22,28 @@ const
             const didPlayerBust = cardSum > 21
             const didDealerBust = dealerObj.hand.cardSum > 21
             const dealerHasBJ = dealerObj.hand.cardSum === 21 && dealerObj.hand.cards.length === 2
-            await delay(2500)
+
+
+    useEffect(() => {
+        function updateState() {
+
+
             if (finalResultsState.mainResults === '') {
 
                 if (dealerHasBJ && wonInsuranceRound) {
                     updateFinalResults({ ...finalResultsState, mainResults: 'Insured' })
                 } else if (playerHasBJ && !dealerHasBJ || !didPlayerBust && didDealerBust || !didPlayerBust && !didDealerBust && cardSum > dealerCardSum) {
                     const winnings = playerHasBJ ? currBet * 1.5 : currBet
-                    updateFinalResults({ ...finalResultsState, mainResults: 'Won', moneyWon: winnings })
+                    updateFinalResults({ ...finalResultsState, mainResults: 'Won'})
                 } else if (!playerHasBJ && dealerHasBJ || didPlayerBust && !didDealerBust || !didPlayerBust && !didDealerBust && cardSum < dealerCardSum) {
-                    updateFinalResults({ ...finalResultsState, mainResults: 'Lost', moneyLost: currBet })
+                    updateFinalResults({ ...finalResultsState, mainResults: 'Lost' })
                 } else {
                     updateFinalResults({ ...finalResultsState, mainResults: 'Push' })
                 }
             }
         }
         updateState()
-    }, [finalResultsState, dealerObj, player, updateFinalResults])
+    }, [finalResultsState, updateFinalResults, cardSum, currBet, dealerCardSum, dealerHasBJ, didDealerBust, didPlayerBust, playerHasBJ, wonInsuranceRound])
 
 
 
@@ -56,10 +56,11 @@ const
     else winOrLoseStr = "Push!"
 
     let moneyWonOrLost: string = ''
-    if (finalResultsState.moneyWon !== 0) {
-        moneyWonOrLost = `Money earned: ${finalResultsState.moneyWon}`
+    if (finalResultsState.mainResults === 'Won') {
+        const winnings = playerHasBJ ? currBet * 1.5 : currBet
+        moneyWonOrLost = `Money earned: ${winnings}`
     } else if (finalResultsState.moneyLost !== 0) {
-        moneyWonOrLost = `Money lost: ${finalResultsState.moneyLost}`
+        moneyWonOrLost = `Money lost: ${currBet}`
     }
 
     useEffect(() => {
