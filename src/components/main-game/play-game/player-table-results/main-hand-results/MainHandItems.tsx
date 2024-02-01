@@ -15,13 +15,13 @@ export default function MainHandItems({ player, updateFinalResults, finalResults
 
     const dealerObj = useSelector((state: RootState) => state.dealerObj);
 
-
+const 
 
 
     useEffect(() => {
         async function updateState() {
             const dealerCardSum = dealerObj.hand.cardSum
-            const { hand, wonInsuranceRound } = player
+            const { hand, wonInsuranceRound, currBet } = player
             const { cardSum, cardUrlVals } = hand
             const playerHasBJ = cardSum === 21 && cardUrlVals.length === 2 ? true : false
             const didPlayerBust = cardSum > 21
@@ -33,9 +33,10 @@ export default function MainHandItems({ player, updateFinalResults, finalResults
                 if (dealerHasBJ && wonInsuranceRound) {
                     updateFinalResults({ ...finalResultsState, mainResults: 'Insured' })
                 } else if (playerHasBJ && !dealerHasBJ || !didPlayerBust && didDealerBust || !didPlayerBust && !didDealerBust && cardSum > dealerCardSum) {
-                    updateFinalResults({ ...finalResultsState, mainResults: 'Won' })
+                    const winnings = playerHasBJ ? currBet * 1.5 : currBet
+                    updateFinalResults({ ...finalResultsState, mainResults: 'Won', moneyWon: winnings })
                 } else if (!playerHasBJ && dealerHasBJ || didPlayerBust && !didDealerBust || !didPlayerBust && !didDealerBust && cardSum < dealerCardSum) {
-                    updateFinalResults({ ...finalResultsState, mainResults: 'Lost' })
+                    updateFinalResults({ ...finalResultsState, mainResults: 'Lost', moneyLost: currBet })
                 } else {
                     updateFinalResults({ ...finalResultsState, mainResults: 'Push' })
                 }
@@ -61,6 +62,10 @@ export default function MainHandItems({ player, updateFinalResults, finalResults
         moneyWonOrLost = `Money lost: ${finalResultsState.moneyLost}`
     }
 
+    useEffect(() => {
+        console.log(finalResultsState)
+    }, [finalResultsState])
+
     return (
         <>
             {finalResultsState.mainResults &&
@@ -69,7 +74,6 @@ export default function MainHandItems({ player, updateFinalResults, finalResults
             {finalResultsState.moneyWon !== 0 && finalResultsState.moneyLost !== 0 &&
                 <p>{moneyWonOrLost}</p>
             }
-
         </>
 
     )

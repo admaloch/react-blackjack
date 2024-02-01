@@ -38,70 +38,69 @@ export default function SplitHandDetails({ player, updatePlayerClass }: PlayerPr
     const isBlackjack = cardSum === 21 && cardUrlVals.length === 2 ? true : false
 
 
-    
 
-    useEffect(() =>{
-        console.log('player', player)
-    }, [player])
 
-    // useEffect(() => {
-    //     async function updatePlayerClassAsync() {
-    //         if (isSplitResultsActive) {
-    //             await delay(4000);
-    //             if (cards.length !== 0) {
-    //                 if (dealerSum === 21) {
-    //                     updatePlayerClass('player-hand emphasize emphasize-win');
-    //                 } else if (dealerSum !== 21) {
-    //                     updatePlayerClass('player-hand emphasize emphasize-lose');
-    //                 }
-    //             }
-    //         } else {
-    //             updatePlayerClass('player-hand');
 
-    //         }
-    //     }
-    //     updatePlayerClassAsync();
-    // }, [isSplitResultsActive, cards, dealerSum, updatePlayerClass]);
 
-    // useEffect(() => {
-    //     async function updateSplitHand() {
-    //         const { splitHand, wonInsuranceRound, bank, splitBet } = player
-    //         const { cardSum, cardUrlVals } = splitHand
-    //         const { mainResults, isComplete } = finalSplitResults
-    //         const playerHasBJ = cardSum === 21 && cardUrlVals.length === 2 ? true : false
 
-    //         if (mainResults && !wonInsuranceRound && !isComplete) {
-    //             await delay(2000)
 
-    //             let newBank = 0
-    //             let earnings = 0
-    //             let loss = 0
-    //             if (mainResults === 'Won') {
-    //                 newBank = playerHasBJ ? bank + (splitBet * 2.5) : bank + (splitBet * 2)
-    //                 earnings = newBank - bank
-    //             } else if (mainResults === 'Push') {
-    //                 newBank = bank + splitBet
-    //             } else {
-    //                 newBank = bank
-    //                 loss = splitBet
-    //             }
-    //             dispatch(updatePlayer({ ...player, bank: newBank, splitBet: 0 }))
-    //             setFinalSplitResults((prevState) => {
-    //                 return { ...prevState, moneyWon: earnings, moneyLost: loss, isComplete: true }
-    //             })
-    //             // dispatch(endRoundResults())
+    useEffect(() => {
+        const { splitHand, bank, splitBet } = player
+        const { cardSum, cardUrlVals } = splitHand
+        const { mainResults, isComplete } = finalSplitResults
+        const playerHasBJ = cardSum === 21 && cardUrlVals.length === 2 ? true : false
+        async function updateSplitHandResults() {
 
-    //         }
-    //     }
-    //     // updateHandsWithResults()
-    // }, [finalSplitResults, dispatch, player])
+            if (isSplitResultsActive && !isComplete) {
+
+                await delay(2000)
+                let newBank = 0
+                let earnings = 0
+                let loss = 0
+                if (mainResults === 'Won') {
+                    newBank = playerHasBJ ? bank + (splitBet * 2.5) : bank + (splitBet * 2)
+                    earnings = newBank - bank
+                } else if (mainResults === 'Push') {
+                    newBank = bank + splitBet
+                } else {
+                    newBank = bank
+                    loss = splitBet
+                }
+                dispatch(updatePlayer({ ...player, bank: newBank, splitBet: 0 }))
+                setFinalSplitResults((prevState) => {
+                    return { ...prevState, moneyWon: earnings, moneyLost: loss, isComplete: true }
+                })
+                // dispatch(endRoundResults())
+            }
+        }
+        updateSplitHandResults()
+    }, [finalSplitResults, dispatch, player, isSplitResultsActive])
+
+    useEffect(() => {
+        async function updatePlayerWinOrLoseStyle() {
+            if (isSplitResultsActive) {
+                await delay(4000);
+                if (cards.length !== 0) {
+                    if (dealerSum === 21) {
+                        updatePlayerClass('player-hand emphasize emphasize-win');
+                    } else if (dealerSum !== 21) {
+                        updatePlayerClass('player-hand emphasize emphasize-lose');
+                    }
+                }
+            } else {
+                updatePlayerClass('player-hand');
+
+            }
+        }
+        //     updatePlayerWinOrLoseStyle();
+    }, [isSplitResultsActive, cards, dealerSum, updatePlayerClass]);
 
 
     return (
 
         <>
             <PlayerHand cardUrlVals={cardUrlVals} />
-            <h4>Split hand</h4>
+
             <p>Bank: {bank}</p>
             {splitBet !== 0 &&
                 <p>Bet: {splitBet}</p>

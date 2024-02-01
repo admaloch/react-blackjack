@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { PlayerInterface } from '../../../../models/PlayerProps'
 import PlayerHand from './PlayerHand';
 import PlayerHandDetails from './PlayerHandDetails';
@@ -16,9 +16,9 @@ export default function PlayerHandResults({ player }: PlayerProps) {
     const [showSplitHand, setShowSplitHand] = useState(false);
     const [playerClass, setPlayerClass] = useState('player-hand');
 
-    const updatePlayerClass = (str) => {
-        setPlayerClass(str)
-    }
+    const updatePlayerClass = useCallback((str: string) => {
+        setPlayerClass(str);
+    }, [setPlayerClass]);
 
     const { hand } = player
     const { cardUrlVals } = hand
@@ -84,10 +84,8 @@ export default function PlayerHandResults({ player }: PlayerProps) {
             if (isSplitResultsActive) {
                 await delay(2500);
                 if (player.splitHand.cards.length !== 0) {
-
                     updatePlayerClass('player-hand emphasize');
-                }
-                else if (player.splitHand.cards.length === 0) {
+                } else if (player.splitHand.cards.length === 0) {
                     updatePlayerClass('player-hand obscure-item');
                 }
             }
@@ -111,7 +109,7 @@ export default function PlayerHandResults({ player }: PlayerProps) {
                 </>
             )}
 
-            {showSplitHand &&
+            {showSplitHand && player.splitHand.cards.length > 0 &&
                 <SplitHandDetails
                     player={player}
                     updatePlayerClass={updatePlayerClass}
