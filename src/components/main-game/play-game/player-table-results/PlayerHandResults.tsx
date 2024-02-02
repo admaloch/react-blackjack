@@ -53,8 +53,6 @@ export default function PlayerHandResults({ player }: PlayerProps) {
                 else if (player.insuranceBet === 0) {
                     setPlayerClass('player-hand obscure-item');
                 }
-
-
             }
         }
         emphasizeInuranceBetHand();
@@ -73,7 +71,6 @@ export default function PlayerHandResults({ player }: PlayerProps) {
                 }
             } else {
                 setPlayerClass('player-hand');
-
             }
         }
         updateInsuranceHandColor();

@@ -34,9 +34,9 @@ export default function MainHandItems({ player, updateFinalResults, finalResults
                     updateFinalResults({ ...finalResultsState, mainResults: 'Insured' })
                 } else if (playerHasBJ && !dealerHasBJ || !didPlayerBust && didDealerBust || !didPlayerBust && !didDealerBust && cardSum > dealerCardSum) {
                     const winnings = playerHasBJ ? currBet * 1.5 : currBet
-                    updateFinalResults({ ...finalResultsState, mainResults: 'Won'})
+                    updateFinalResults({ ...finalResultsState, mainResults: 'Won', moneyWon: winnings})
                 } else if (!playerHasBJ && dealerHasBJ || didPlayerBust && !didDealerBust || !didPlayerBust && !didDealerBust && cardSum < dealerCardSum) {
-                    updateFinalResults({ ...finalResultsState, mainResults: 'Lost' })
+                    updateFinalResults({ ...finalResultsState, mainResults: 'Lost', moneyLost: currBet })
                 } else {
                     updateFinalResults({ ...finalResultsState, mainResults: 'Push' })
                 }
@@ -59,7 +59,7 @@ export default function MainHandItems({ player, updateFinalResults, finalResults
     if (finalResultsState.mainResults === 'Won') {
         const winnings = playerHasBJ ? currBet * 1.5 : currBet
         moneyWonOrLost = `Money earned: ${winnings}`
-    } else if (finalResultsState.moneyLost !== 0) {
+    } else if (finalResultsState.mainResults === 'Lost') {
         moneyWonOrLost = `Money lost: ${currBet}`
     }
 

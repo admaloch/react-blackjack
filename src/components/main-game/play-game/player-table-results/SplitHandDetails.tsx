@@ -14,72 +14,66 @@ export interface PlayerProps {
 }
 
 export default function SplitHandDetails({ player, updatePlayerClass }: PlayerProps) {
+ 
 
+    const { splitHand, splitBet, bank } = player;
+    const { cardSum, cardUrlVals, cards } = splitHand;
 
-    const { splitHand, splitBet, bank } = player
-    const { cardSum, cardUrlVals, cards } = splitHand
-
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     const [finalSplitResults, setFinalSplitResults] = useState<FinalResultsState>({
         mainResults: '',
         moneyWon: 0,
         moneyLost: 0,
         isComplete: false,
-    })
+    });
 
-    const { isSplitResultsActive } = useSelector(
-        (state: RootState) => state.gameData
-    );
-    const dealerSum = useSelector(
-        (state: RootState) => state.dealerObj.hand.cardSum
-    );
+    const { isSplitResultsActive } = useSelector((state: RootState) => state.gameData);
+    const dealerSum = useSelector((state: RootState) => state.dealerObj.hand.cardSum);
 
-    const isBlackjack = cardSum === 21 && cardUrlVals.length === 2 ? true : false
-
-
-
-
-
-
-
+    const isBlackjack = cardSum === 21 && cardUrlVals.length === 2;
 
     useEffect(() => {
-        const { splitHand, bank, splitBet } = player
-        const { cardSum, cardUrlVals } = splitHand
-        const { mainResults, isComplete } = finalSplitResults
-        const playerHasBJ = cardSum === 21 && cardUrlVals.length === 2 ? true : false
+        const { splitHand, bank, splitBet } = player;
+        const { cardSum, cardUrlVals } = splitHand;
+        const { mainResults, isComplete } = finalSplitResults;
+        const playerHasBJ = cardSum === 21 && cardUrlVals.length === 2;
+
         async function updateSplitHandResults() {
-
             if (isSplitResultsActive && !isComplete) {
+                await delay(2000);
+                let newBank = 0;
+                let earnings = 0;
+                let loss = 0;
 
-                await delay(2000)
-                let newBank = 0
-                let earnings = 0
-                let loss = 0
                 if (mainResults === 'Won') {
-                    newBank = playerHasBJ ? bank + (splitBet * 2.5) : bank + (splitBet * 2)
-                    earnings = newBank - bank
+                    newBank = playerHasBJ ? bank + splitBet * 2.5 : bank + splitBet * 2;
+                    earnings = newBank - bank;
                 } else if (mainResults === 'Push') {
-                    newBank = bank + splitBet
+                    newBank = bank + splitBet;
                 } else {
-                    newBank = bank
-                    loss = splitBet
+                    newBank = bank;
+                    loss = splitBet;
                 }
-                dispatch(updatePlayer({ ...player, bank: newBank, splitBet: 0 }))
-                setFinalSplitResults((prevState) => {
-                    return { ...prevState, moneyWon: earnings, moneyLost: loss, isComplete: true }
-                })
-                // dispatch(endRoundResults())
+
+                dispatch(updatePlayer({ ...player, bank: newBank, splitBet: 0 }));
+                setFinalSplitResults((prevState) => ({
+                    ...prevState,
+                    moneyWon: earnings,
+                    moneyLost: loss,
+                    isComplete: true,
+                }));
             }
         }
-        updateSplitHandResults()
-    }, [finalSplitResults, dispatch, player, isSplitResultsActive])
+
+        updateSplitHandResults();
+    }, [finalSplitResults, dispatch, player, isSplitResultsActive]);
 
     useEffect(() => {
         async function updatePlayerWinOrLoseStyle() {
             if (isSplitResultsActive) {
                 await delay(4000);
+
                 if (cards.length !== 0) {
                     if (dealerSum === 21) {
                         updatePlayerClass('player-hand emphasize emphasize-win');
@@ -89,37 +83,23 @@ export default function SplitHandDetails({ player, updatePlayerClass }: PlayerPr
                 }
             } else {
                 updatePlayerClass('player-hand');
-
             }
         }
-        //     updatePlayerWinOrLoseStyle();
+
+        updatePlayerWinOrLoseStyle();
     }, [isSplitResultsActive, cards, dealerSum, updatePlayerClass]);
 
-
     return (
-
         <>
             <PlayerHand cardUrlVals={cardUrlVals} />
 
             <p>Bank: {bank}</p>
-            {splitBet !== 0 &&
-                <p>Bet: {splitBet}</p>
-            }
+            {splitBet !== 0 && <p>Bet: {splitBet}</p>}
             <p>Split bet: {splitBet}</p>
             <p>Sum: {cardSum}</p>
-            {isBlackjack &&
-                <p className='blackjack'>BlackJack!</p>
-            }
 
-
-            {isBlackjack &&
-                <p className='win-color'>BlackJack!</p>
-            }
-            {cardSum > 21 &&
-                <p className='lose-color'>Bust!</p>
-            }
-
+            {isBlackjack && <p className="blackjack win-color">BlackJack!</p>}
+            {cardSum > 21 && <p className="lose-color">Bust!</p>}
         </>
-
-    )
+    );
 }

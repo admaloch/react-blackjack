@@ -32,13 +32,13 @@ export default function PlayerHandDetails({ player }: PlayerProps) {
     let bjOrBustItem: React.ReactNode = '';
     if (isBlackjack) {
         bjOrBustItem = <p className='win-color'>BlackJack!</p>;
-      } else if (cardSum > 21) {
+    } else if (cardSum > 21) {
         bjOrBustItem = <p className='lose-color'>Bust!</p>;
-      } else {
+    } else {
         bjOrBustItem = <p className='stay-color'>Stay!</p>;
 
-      }
-      
+    }
+
 
     return (
         <>
