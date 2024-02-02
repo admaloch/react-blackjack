@@ -9,7 +9,7 @@ const initialState = [
         hand: {
             cards: ['A♣', 'K♦'],
             cardUrlVals: ['AC', 'KD'],
-            cardNumVals: [11,10],
+            cardNumVals: [11, 10],
             cardSum: 21,
             isBlackjack: true,
         },
@@ -28,6 +28,12 @@ const initialState = [
         splitBet: 0,
         isPlayerSplit: false,
         isDoubleDown: false,
+        roundResults: {
+            mainResults: '',
+            moneyWon: 0,
+            moneyLost: 0,
+            isComplete: false,
+        },
         playerLeftTable: false,
         currTokens: [1, 5, 25, 50, 100, 500],
         roundsWon: 0,
@@ -36,7 +42,7 @@ const initialState = [
         hand: {
             cards: ['10♥', '8♠'],
             cardUrlVals: ['10H', '8S'],
-            cardNumVals: [7,8],
+            cardNumVals: [7, 8],
             cardSum: 15,
             isBlackjack: false,
         },
@@ -55,13 +61,19 @@ const initialState = [
         splitBet: 0,
         isPlayerSplit: false,
         isDoubleDown: false,
+        roundResults: {
+            mainResults: '',
+            moneyWon: 0,
+            moneyLost: 0,
+            isComplete: false,
+        },
         playerLeftTable: false,
         currTokens: [1, 5, 25, 50, 100, 500],
         roundsWon: 0,
     }, {
         name: 'Bill',
         hand: {
-            cards: ['5♣', '2♦','8♥', 'K♦'],
+            cards: ['5♣', '2♦', '8♥', 'K♦'],
             cardUrlVals: ['5C', '2D', '8H', 'KD'],
             cardNumVals: [5, 2, 8, 10],
             cardSum: 25,
@@ -82,13 +94,19 @@ const initialState = [
         splitBet: 0,
         isPlayerSplit: false,
         isDoubleDown: false,
+        roundResults: {
+            mainResults: '',
+            moneyWon: 0,
+            moneyLost: 0,
+            isComplete: false,
+        },
         playerLeftTable: false,
         currTokens: [1, 5, 25, 50, 100, 500],
         roundsWon: 0,
     }, {
         name: 'Seth',
         hand: {
-            cards: ['5♣', '2♦','8♥', 'K♦'],
+            cards: ['5♣', '2♦', '8♥', 'K♦'],
             cardUrlVals: ['5C', '2D', '8H', 'KD'],
             cardNumVals: [5, 2, 8, 10],
             cardSum: 25,
@@ -97,7 +115,7 @@ const initialState = [
         splitHand: {
             cards: ['5♣', 'K♦', '8♥'],
             cardUrlVals: ['5C', 'KD', '8H'],
-            cardNumVals: [5,10, 8],
+            cardNumVals: [5, 10, 8],
             cardSum: 23,
             isBlackjack: false,
         },
@@ -109,13 +127,19 @@ const initialState = [
         splitBet: 200,
         isPlayerSplit: false,
         isDoubleDown: false,
+        roundResults: {
+            mainResults: '',
+            moneyWon: 0,
+            moneyLost: 0,
+            isComplete: false,
+        },
         playerLeftTable: false,
         currTokens: [1, 5, 25, 50, 100, 500],
         roundsWon: 0,
     }, {
         name: 'John',
         hand: {
-            cards: ['5♣', '2♦','8♥', 'K♦'],
+            cards: ['5♣', '2♦', '8♥', 'K♦'],
             cardUrlVals: ['5C', '2D', '8H', 'KD'],
             cardNumVals: [5, 2, 8, 10],
             cardSum: 25,
@@ -136,6 +160,12 @@ const initialState = [
         splitBet: 0,
         isPlayerSplit: false,
         isDoubleDown: false,
+        roundResults: {
+            mainResults: '',
+            moneyWon: 0,
+            moneyLost: 0,
+            isComplete: false,
+        },
         playerLeftTable: false,
         currTokens: [1, 5, 25, 50, 100, 500],
         roundsWon: 0,
@@ -159,6 +189,7 @@ const playerArrSlice = createSlice({
                 state[index] = action.payload;
             }
         },
+       
         removePlayer: (state, action: PayloadAction<PlayerNameProps>) => {
             const index = state.findIndex(player => player.name === action.payload.name);
             if (index !== -1) {

@@ -6,6 +6,13 @@ export interface Hand {
     isBlackjack: boolean;
 }
 
+export interface RoundResultsProps {
+    mainResults: string,
+    moneyWon: number,
+    moneyLost: number,
+    isComplete: boolean,
+}
+
 export interface DealerObjInterface {
     name: string;
     hand: Hand;
@@ -27,6 +34,7 @@ export interface PlayerInterface {
     playerLeftTable: boolean;
     currTokens: number[];
     roundsWon: number;
+    roundResults: RoundResultsProps
 }
 
 export const emptyPlayerItem: PlayerInterface = {
@@ -54,6 +62,12 @@ export const emptyPlayerItem: PlayerInterface = {
     isPlayerSplit: false,
     isDoubleDown: false,
     playerLeftTable: false,
+    roundResults: {
+        mainResults: '',
+        moneyWon: 0,
+        moneyLost: 0,
+        isComplete: false,
+    },
     currTokens: [1, 5, 25, 50, 100, 500],
     roundsWon: 0,
 }

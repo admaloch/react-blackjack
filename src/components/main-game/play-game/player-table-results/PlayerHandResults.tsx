@@ -13,6 +13,7 @@ export interface PlayerProps {
 }
 
 export default function PlayerHandResults({ player }: PlayerProps) {
+
     const [showSplitHand, setShowSplitHand] = useState(false);
     const [playerClass, setPlayerClass] = useState('player-hand');
 
@@ -59,7 +60,7 @@ export default function PlayerHandResults({ player }: PlayerProps) {
     }, [isInsuranceRoundComplete, isDealerCardRevealed, player.insuranceBet]);
 
     useEffect(() => {
-        async function updateInsuranceHandColor() {
+        async function changeInsuranceEmphasisColor() {
             if (!isInsuranceRoundComplete && isDealerCardRevealed) {
                 await delay(4000);
                 if (player.insuranceBet !== 0) {
@@ -73,7 +74,7 @@ export default function PlayerHandResults({ player }: PlayerProps) {
                 setPlayerClass('player-hand');
             }
         }
-        updateInsuranceHandColor();
+        changeInsuranceEmphasisColor();
     }, [isInsuranceRoundComplete, isDealerCardRevealed, dealerSum, player.insuranceBet]);
 
     useEffect(() => {
