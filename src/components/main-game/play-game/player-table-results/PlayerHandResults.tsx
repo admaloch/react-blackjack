@@ -44,7 +44,7 @@ export default function PlayerHandResults({ player }: PlayerProps) {
     }, [isSplitResultsActive, player]);
 
     useEffect(() => {
-        async function emphasizeInuranceBetHand() {
+        async function emphasizeInsuranceBetHand() {
             if (!isInsuranceRoundComplete && isDealerCardRevealed) {
 
                 if (player.insuranceBet !== 0) {
@@ -56,7 +56,7 @@ export default function PlayerHandResults({ player }: PlayerProps) {
                 }
             }
         }
-        emphasizeInuranceBetHand();
+        emphasizeInsuranceBetHand();
     }, [isInsuranceRoundComplete, isDealerCardRevealed, player.insuranceBet]);
 
     useEffect(() => {

@@ -5,20 +5,19 @@ import { updateIsInsuranceRoundComplete } from '../../../../store/game-data/Game
 import { useEffect } from 'react';
 import InsuranceResults from './insurance/InsuranceResults';
 import FinalPlayerResult from './main-hand-results/MainHandFinalRes';
-import Insurance from './insurance/Insurance';
 
 export interface PlayerProps {
     player: PlayerInterface;
 }
 
-export default function PlayerHandDetails({ player }: PlayerProps) {
+export default function Insurance({ player }: PlayerProps) {
 
     const dispatch = useDispatch()
 
     const dealerObj = useSelector((state: RootState) => state.dealerObj);
     const { isInsuranceRoundComplete, isDealerRoundActive, isSplitResultsActive, isRoundActive } = useSelector((state: RootState) => state.gameData);
 
-    const { hand, bank, currBet } = player
+    const { hand, bank, currBet, insuranceBet } = player
     const { cardUrlVals, cardSum } = hand
 
     useEffect(() => {
@@ -28,42 +27,21 @@ export default function PlayerHandDetails({ player }: PlayerProps) {
         }
     }, [dealerObj, dispatch, isInsuranceRoundComplete, isDealerRoundActive])
 
-    const isBlackjack = cardSum === 21 && cardUrlVals.length === 2 ? true : false
 
-    let bjOrBustItem: React.ReactNode = '';
-    if (isBlackjack) {
-        bjOrBustItem = <p className='win-color'>BlackJack!</p>;
-    } else if (cardSum > 21) {
-        bjOrBustItem = <p className='lose-color'>Bust!</p>;
-    } else {
-        bjOrBustItem = <p className='stay-color'>Stay!</p>;
-
-    }
+ 
 
 
     return (
         <>
 
-            <p>Bank: {bank}</p>
-            {currBet !== 0 &&
-                <p>Bet: {currBet}</p>
+      
+
+            {insuranceBet !== 0 &&
+                <p>Insurance: {insuranceBet}</p>
             }
 
-
-
-
-            {!isSplitResultsActive && isRoundActive &&
-                <p>Sum: {cardSum}</p>
-            }
-            <Insurance player={player} />
-
-            {bjOrBustItem}
-            {
-                !isDealerRoundActive &&
-                <FinalPlayerResult
-                    player={player}
-                />
-            }
+            <InsuranceResults player={player} />
+          
 
         </>
     )
