@@ -1,13 +1,14 @@
 import { DealerObjInterface, PlayerInterface } from "../../models/PlayerProps";
 
 interface BjBustOrStayProps {
-    playerInput: PlayerInterface | DealerObjInterface;
+    player: PlayerInterface;
+    mainOrSplit: string;
 }
 
-export default function BjBustOrStay({ playerInput }: BjBustOrStayProps) {
+export default function BjBustOrStay({ player, mainOrSplit= 'main' }: BjBustOrStayProps) {
 
-
-    const { cardUrlVals, cardSum } = playerInput.hand
+    const currentHand = mainOrSplit === 'main' ? player.hand : player.splitHand
+    const { cardUrlVals, cardSum } = currentHand
 
     const isBlackjack = cardSum === 21 && cardUrlVals.length === 2 ? true : false
 
@@ -22,5 +23,5 @@ export default function BjBustOrStay({ playerInput }: BjBustOrStayProps) {
     }
 
 
-    return <div>{ resultsString }</div> 
+    return <div>{resultsString}</div>
 }

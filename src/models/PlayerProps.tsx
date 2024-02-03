@@ -9,8 +9,6 @@ export interface Hand {
 export interface RoundResultsProps {
     mainResults: string,
     splitResults: string,
-    moneyWon: number,
-    moneyLost: number,
     isComplete: boolean,
 }
 
@@ -24,6 +22,7 @@ export interface PlayerInterface {
     name: string;
     hand: Hand;
     splitHand: Hand;
+    beginningRoundBank: number;
     bank: number;
     currBet: number;
     minBet: number;
@@ -55,6 +54,7 @@ export const emptyPlayerItem: PlayerInterface = {
         isBlackjack: false,
     },
     bank: 1000,
+    beginningRoundBank: 1000,
     currBet: 0,
     minBet: 5,
     insuranceBet: 0,
@@ -66,8 +66,6 @@ export const emptyPlayerItem: PlayerInterface = {
     roundResults: {
         mainResults: '',
         splitResults: '',
-        moneyWon: 0,
-        moneyLost: 0,
         isComplete: false,
     },
     currTokens: [1, 5, 25, 50, 100, 500],

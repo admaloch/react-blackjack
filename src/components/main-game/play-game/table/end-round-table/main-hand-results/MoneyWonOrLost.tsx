@@ -10,7 +10,7 @@ export default function MoneyWonOrLost({ player }: PlayerInterfaceProps) {
 
     useEffect(() => {
         async function updateHandsWithResults() {
-            const { hand, wonInsuranceRound, bank, currBet, roundResults } = player
+            const { hand, splitHand, wonInsuranceRound, bank, currBet, roundResults } = player
             const { cardSum, cardUrlVals } = hand
             const { mainResults, isComplete } = roundResults
             const playerHasBJ = cardSum === 21 && cardUrlVals.length === 2 ? true : false
@@ -18,18 +18,13 @@ export default function MoneyWonOrLost({ player }: PlayerInterfaceProps) {
             if (mainResults && !wonInsuranceRound && !isComplete) {
                 await delay(2000)
                 let newBank = 0
-                let winnings = 0
-                let losses = 0
-                if (mainResults === 'Won') {
-                    newBank = playerHasBJ ? bank + (currBet * 2.5) : bank + (currBet * 2)
-                    winnings = playerHasBJ ? currBet * 1.5 : currBet
-                } else if (mainResults === 'Push') {
-                    newBank = bank + currBet
-                } else {
-                    newBank = bank
-                    losses = currBet
-                }
-                const newRoundResObj = { ...roundResults, isComplete: true, moneyWon: winnings, moneyLost: losses }
+                if (mainResults === 'Won') newBank = playerHasBJ ? bank + (currBet * 2.5) : bank + (currBet * 2)
+                else if (mainResults === 'Push') newBank = bank + currBet
+                else newBank = bank
+
+                const isRoundComplete = splitHand.cards.length === 0 ? true : false
+
+                const newRoundResObj = { ...roundResults, isComplete: isRoundComplete }
                 dispatch(updatePlayer({ ...player, bank: newBank, currBet: 0, roundResults: newRoundResObj }))
                 dispatch(endRoundResults())
             }
@@ -37,18 +32,19 @@ export default function MoneyWonOrLost({ player }: PlayerInterfaceProps) {
         updateHandsWithResults()
     }, [dispatch, player])
 
-    const { mainResults, moneyLost, moneyWon } = player.roundResults
+    const { bank, beginningRoundBank } = player
+    const { mainResults } = player.roundResults
 
     let moneyWonOrLost: string = ''
     if (mainResults === 'Won') {
-        moneyWonOrLost = `Money earned: ${moneyWon}`
+        moneyWonOrLost = `Money earned: ${bank - beginningRoundBank}`
     } else if (mainResults === 'Lost') {
-        moneyWonOrLost = `Money lost: ${moneyLost}`
+        moneyWonOrLost = `Money lost: ${beginningRoundBank - bank}`
     }
 
     return (
         <>
-            {moneyWon !== 0 && moneyLost !== 0 &&
+            {moneyWonOrLost !== '' &&
                 <p>{moneyWonOrLost}</p>
             }
         </>

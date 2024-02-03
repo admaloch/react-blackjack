@@ -9,7 +9,7 @@ import playerWonOrLostFunc from "../../../../../../utils/playerWonOrLostFunc";
 export default function WinOrLoseStr({ player }: PlayerInterfaceProps) {
     const dispatch = useDispatch()
     const dealerObj = useSelector((state: RootState) => state.dealerObj);
-    const {isSplitResultsActive} = useSelector((state: RootState) => state.gameData);
+    const { isSplitResultsActive } = useSelector((state: RootState) => state.gameData);
     const { roundResults, name } = player
     const { mainResults } = roundResults
 
@@ -28,7 +28,8 @@ export default function WinOrLoseStr({ player }: PlayerInterfaceProps) {
     let winOrLoseStr: string = ''
     if (mainResults === 'Won') winOrLoseStr = `${name} won!`
     else if (mainResults === 'Lost') winOrLoseStr = 'Dealer won!'
-    else winOrLoseStr = "Push!"
+    else if (mainResults === 'Push') winOrLoseStr = 'Push!'
+    else winOrLoseStr = ""
 
 
     return (

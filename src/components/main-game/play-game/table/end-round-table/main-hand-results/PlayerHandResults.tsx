@@ -22,16 +22,19 @@ export default function PlayerHandResults({ player }: PlayerProps) {
     }, [setPlayerClass]);
 
     const { hand } = player
+    const { mainResults, splitResults } = player.roundResults
     const { cardUrlVals } = hand
 
     const changeToSplitHand = () => setShowSplitHand(true);
     const changeToMainHand = () => setShowSplitHand(false);
 
-    const { isSplitResultsActive, isInsuranceRoundComplete, isDealerCardRevealed } = useSelector(
+    const { isSplitResultsActive, isInsuranceRoundComplete, isDealerCardRevealed, } = useSelector(
         (state: RootState) => state.gameData
     );
     const dealerObj = useSelector((state: RootState) => state.dealerObj);
     const dealerSum = dealerObj.hand.cardSum;
+
+
 
     useEffect(() => {
         async function splitHandChangeHandler() {
@@ -68,10 +71,9 @@ export default function PlayerHandResults({ player }: PlayerProps) {
                 await delay(4000);
 
                 if (!isSplitResultsActive && dealerSum === 21 && player.insuranceBet !== 0 ||
-                    isSplitResultsActive && player.splitHand.cards.length !== 0) {
+                    isSplitResultsActive && splitResults === 'Won') {
                     setPlayerClass('player-hand emphasize emphasize-win');
-                } else if (!isSplitResultsActive && dealerSum !== 21 && player.insuranceBet !== 0 ||
-                    isSplitResultsActive && player.splitHand.cards.length === 0) {
+                } else if (!isSplitResultsActive && dealerSum !== 21 && player.insuranceBet !== 0 || isSplitResultsActive && splitResults === 'Lost') {
                     setPlayerClass('player-hand emphasize emphasize-lose');
                 }
 
@@ -80,7 +82,7 @@ export default function PlayerHandResults({ player }: PlayerProps) {
             }
         }
         changeInsuranceEmphasisColor();
-    }, [isInsuranceRoundComplete, isDealerCardRevealed, dealerSum, player.insuranceBet, isSplitResultsActive, player.splitHand.cards.length]);
+    }, [isInsuranceRoundComplete, isDealerCardRevealed, dealerSum, player.insuranceBet, isSplitResultsActive, player.splitHand.cards.length, splitResults]);
 
 
 
