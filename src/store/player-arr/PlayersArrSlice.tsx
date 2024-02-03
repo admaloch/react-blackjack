@@ -30,6 +30,7 @@ const initialState = [
         isDoubleDown: false,
         roundResults: {
             mainResults: '',
+            splitResults: '',
             moneyWon: 0,
             moneyLost: 0,
             isComplete: false,
@@ -63,6 +64,7 @@ const initialState = [
         isDoubleDown: false,
         roundResults: {
             mainResults: '',
+            splitResults: '',
             moneyWon: 0,
             moneyLost: 0,
             isComplete: false,
@@ -96,6 +98,7 @@ const initialState = [
         isDoubleDown: false,
         roundResults: {
             mainResults: '',
+            splitResults: '',
             moneyWon: 0,
             moneyLost: 0,
             isComplete: false,
@@ -129,6 +132,7 @@ const initialState = [
         isDoubleDown: false,
         roundResults: {
             mainResults: '',
+            splitResults: '',
             moneyWon: 0,
             moneyLost: 0,
             isComplete: false,
@@ -152,16 +156,17 @@ const initialState = [
             cardSum: 0,
             isBlackjack: false,
         },
-        bank: 800,
+        bank: 700,
         currBet: 200,
         minBet: 200,
-        insuranceBet: 0,
+        insuranceBet: 100,
         wonInsuranceRound: false,
         splitBet: 0,
         isPlayerSplit: false,
         isDoubleDown: false,
         roundResults: {
             mainResults: '',
+            splitResults: '',
             moneyWon: 0,
             moneyLost: 0,
             isComplete: false,
@@ -189,7 +194,7 @@ const playerArrSlice = createSlice({
                 state[index] = action.payload;
             }
         },
-       
+
         removePlayer: (state, action: PayloadAction<PlayerNameProps>) => {
             const index = state.findIndex(player => player.name === action.payload.name);
             if (index !== -1) {

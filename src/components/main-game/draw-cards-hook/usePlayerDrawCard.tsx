@@ -6,6 +6,7 @@ import { updateDeck } from '../../../store/deck/deckSlice';
 import { PlayerInterface } from '../../../models/PlayerProps';
 import { genCardLocationIndexes, updateDeckFromState, drawAndUpdateHand, changeAceVal } from './drawCardsFuncs';
 import { useCallback } from 'react';
+
 const usePlayerDrawCard = (playerIndex: number) => {
     const dispatch = useDispatch();
     const playersArr = useSelector((state: RootState) => state.playersArr);
@@ -41,6 +42,7 @@ const usePlayerDrawCard = (playerIndex: number) => {
         const newDeck = updateDeckFromState(deck, cardIndex, suitIndex);
         dispatch(updateDeck(newDeck));
     }, [deck, dispatch, playerIndex, playersArr, updateState]);
+    
     return drawAndHandleUpdate;
 };
 

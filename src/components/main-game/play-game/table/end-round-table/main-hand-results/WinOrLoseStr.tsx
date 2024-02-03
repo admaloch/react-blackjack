@@ -4,42 +4,26 @@ import { PlayerInterfaceProps, RoundResultsProps } from "../../../../../../model
 import { useEffect } from "react";
 import { delay } from "../../../../../../utils/Utility";
 import { updatePlayer } from "../../../../../../store/player-arr/playersArrSlice";
+import playerWonOrLostFunc from "../../../../../../utils/playerWonOrLostFunc";
 
 export default function WinOrLoseStr({ player }: PlayerInterfaceProps) {
     const dispatch = useDispatch()
     const dealerObj = useSelector((state: RootState) => state.dealerObj);
+    const {isSplitResultsActive} = useSelector((state: RootState) => state.gameData);
     const { roundResults, name } = player
     const { mainResults } = roundResults
 
     useEffect(() => {
         async function updateWinOrLose() {
-            const { hand, wonInsuranceRound, roundResults } = player
-            const { cardSum, cardUrlVals } = hand
-            const { mainResults } = roundResults
-            const playerHasBJ = cardSum === 21 && cardUrlVals.length === 2 ? true : false
-            const dealerCardSum = dealerObj.hand.cardSum
-            const didPlayerBust = cardSum > 21
-            const didDealerBust = dealerObj.hand.cardSum > 21
-            const dealerHasBJ = dealerObj.hand.cardSum === 21 && dealerObj.hand.cards.length === 2
-
-            if (mainResults === '') {
+            if ( roundResults.mainResults === '') {
                 await delay(1500)
-                let winOrLoseStr = ''
-                if (dealerHasBJ && wonInsuranceRound) {
-                    winOrLoseStr = 'Insured'
-                } else if (playerHasBJ && !dealerHasBJ || !didPlayerBust && didDealerBust || !didPlayerBust && !didDealerBust && cardSum > dealerCardSum) {
-                    winOrLoseStr = 'Won'
-                } else if (!playerHasBJ && dealerHasBJ || didPlayerBust && !didDealerBust || !didPlayerBust && !didDealerBust && cardSum < dealerCardSum) {
-                    winOrLoseStr = 'Lost'
-                } else {
-                    winOrLoseStr = 'Push'
-                }
-                const newRoundResults: RoundResultsProps = { ...roundResults, mainResults: winOrLoseStr, moneyWon: 0, moneyLost: 0, isComplete: false }
+                const winOrLoseStr = playerWonOrLostFunc(player, dealerObj, 'main')
+                const newRoundResults: RoundResultsProps = { ...roundResults, mainResults: winOrLoseStr }
                 dispatch(updatePlayer({ ...player, roundResults: newRoundResults }))
             }
         }
         updateWinOrLose()
-    }, [dealerObj.hand.cardSum, dealerObj.hand.cards.length, dispatch, player])
+    }, [dealerObj, dispatch, player, roundResults])
 
     let winOrLoseStr: string = ''
     if (mainResults === 'Won') winOrLoseStr = `${name} won!`

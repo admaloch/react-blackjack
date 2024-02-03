@@ -69,25 +69,6 @@ export default function SplitHandDetails({ player, updatePlayerClass }: PlayerPr
         updateSplitHandResults();
     }, [finalSplitResults, dispatch, player, isSplitResultsActive]);
 
-    useEffect(() => {
-        async function updatePlayerWinOrLoseStyle() {
-            if (isSplitResultsActive) {
-                await delay(4000);
-
-                if (cards.length !== 0) {
-                    if (dealerSum === 21) {
-                        updatePlayerClass('player-hand emphasize emphasize-win');
-                    } else if (dealerSum !== 21) {
-                        updatePlayerClass('player-hand emphasize emphasize-lose');
-                    }
-                }
-            } else {
-                updatePlayerClass('player-hand');
-            }
-        }
-
-        updatePlayerWinOrLoseStyle();
-    }, [isSplitResultsActive, cards, dealerSum, updatePlayerClass]);
 
     return (
         <>

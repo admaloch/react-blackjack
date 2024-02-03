@@ -18,6 +18,8 @@ export default function Insurance({ player }: PlayerProps) {
 
     const { insuranceBet } = player
 
+    
+
     useEffect(() => {
         if (isDealerRoundActive && dealerObj.hand.cardNumVals[1] !== 11 && !isInsuranceRoundComplete) {
             dispatch(updateIsInsuranceRoundComplete())

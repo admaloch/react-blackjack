@@ -8,6 +8,7 @@ export interface Hand {
 
 export interface RoundResultsProps {
     mainResults: string,
+    splitResults: string,
     moneyWon: number,
     moneyLost: number,
     isComplete: boolean,
@@ -64,6 +65,7 @@ export const emptyPlayerItem: PlayerInterface = {
     playerLeftTable: false,
     roundResults: {
         mainResults: '',
+        splitResults: '',
         moneyWon: 0,
         moneyLost: 0,
         isComplete: false,
