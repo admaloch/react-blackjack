@@ -1,12 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../../store/store";
-import './EndRoundPlayerResults.css'
-import PlayerHandResults from "./PlayerHandResults";
+import './EndRoundTable.css'
+import PlayerHandResults from "./main-hand-results/PlayerHandResults";
 import { useEffect } from "react";
 import { beginSplitRound, endRoundResults } from "../../../../../store/game-data/GameDataSlice";
+import TableHeader from "./TableHeader";
 
-export default function EndRoundPlayerResults() {
-    
+export default function EndRoundTable() {
+
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const { isMainResultsActive, isDealerRoundActive, isSplitResultsActive } = useSelector((state: RootState) => state.gameData);
     const dispatch = useDispatch()
@@ -22,20 +23,9 @@ export default function EndRoundPlayerResults() {
         }
     }, [isDealerRoundActive, isSplitResultsActive, dispatch, isPlayersSplit, isMainResultsActive])
 
-
-
-    // const mainOrSplitHeader = isSplitResultsActive
-    //     ? 'Split hand results...'
-    //     : 'Main hand results...'
-
     return (
         <div className="player-results-table">
-            <h2
-                style={isMainResultsActive ? { opacity: 1 } : { opacity: 0 }}>Main hand results...
-            </h2>
-            <h2
-                style={isSplitResultsActive ? { opacity: 1 } : { opacity: 0 }}>Split hand results...
-            </h2>
+            <TableHeader />
             <div className="player-hand-results">
                 {playersArr.map(player => (
                     <PlayerHandResults

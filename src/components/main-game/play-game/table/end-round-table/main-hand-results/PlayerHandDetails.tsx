@@ -1,9 +1,9 @@
 import { useSelector } from 'react-redux';
-import { PlayerInterface } from '../../../../../models/PlayerProps'
-import { RootState } from '../../../../../store/store';
-import FinalPlayerResult from './main-hand-results/MainHandFinalRes';
-import Insurance from './insurance/Insurance';
-import BjBustOrStay from '../../../../bj-bust-stay/BjBustOrStay';
+import { PlayerInterface } from '../../../../../../models/PlayerProps'
+import { RootState } from '../../../../../../store/store';
+import FinalPlayerResult from './MainHandFinalRes';
+import Insurance from '../insurance/Insurance';
+import BjBustOrStay from '../../../../../bj-bust-stay/BjBustOrStay';
 
 export interface PlayerProps {
     player: PlayerInterface;

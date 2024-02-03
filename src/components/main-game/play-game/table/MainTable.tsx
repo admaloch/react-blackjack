@@ -1,8 +1,8 @@
 import DealerTable from './dealer-table/DealerTable'
 import PlayerTable from './player-table/PlayerTable'
-import EndRoundPlayerResults from './end-round-table/EndRoundPlayerResults'
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../store/store';
+import EndRoundTable from './end-round-table/EndRoundTable';
 
 interface MainTableProps {
     playerIndex: number;
@@ -21,7 +21,7 @@ export default function MainTable({ playerIndex, makeCurrPlayerFinished }: MainT
                     makeCurrPlayerFinished={makeCurrPlayerFinished}
                 />
             }
-            {!isPlayerRoundActive && <EndRoundPlayerResults />}
+            {!isPlayerRoundActive && <EndRoundTable />}
         </div>
     )
 }
