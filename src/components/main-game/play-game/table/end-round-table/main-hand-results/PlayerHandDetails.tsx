@@ -24,7 +24,7 @@ export default function PlayerHandDetails({ player }: PlayerProps) {
                 <p>Sum: {cardSum}</p>
             }
             <Insurance player={player} />
-            <BjBustOrStay player={player} />
+            <BjBustOrStay player={player} mainOrSplit='main' />
             {!isDealerRoundActive &&
                 <FinalPlayerResult player={player} />}
         </>

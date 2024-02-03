@@ -56,7 +56,8 @@ export default function PlayerHandResults({ player }: PlayerProps) {
                     setPlayerClass('player-hand emphasize');
                 }
                 else if (!isSplitResultsActive && player.insuranceBet === 0
-                    || !isSplitResultsActive && player.splitHand.cards.length === 0) {
+                    || isSplitResultsActive && player.splitHand.cards.length === 0) {
+                        
                     setPlayerClass('player-hand obscure-item');
                 }
 
@@ -76,7 +77,6 @@ export default function PlayerHandResults({ player }: PlayerProps) {
                 } else if (!isSplitResultsActive && dealerSum !== 21 && player.insuranceBet !== 0 || isSplitResultsActive && splitResults === 'Lost') {
                     setPlayerClass('player-hand emphasize emphasize-lose');
                 }
-
             } else {
                 setPlayerClass('player-hand');
             }

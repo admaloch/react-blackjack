@@ -15,8 +15,8 @@ export default function WinOrLoseStr({ player }: PlayerInterfaceProps) {
 
     useEffect(() => {
         async function updateWinOrLose() {
-            if ( roundResults.mainResults === '') {
-                await delay(1500)
+            if (roundResults.mainResults === '') {
+                await delay(2000)
                 const winOrLoseStr = playerWonOrLostFunc(player, dealerObj, 'main')
                 const newRoundResults: RoundResultsProps = { ...roundResults, mainResults: winOrLoseStr }
                 dispatch(updatePlayer({ ...player, roundResults: newRoundResults }))
@@ -34,7 +34,7 @@ export default function WinOrLoseStr({ player }: PlayerInterfaceProps) {
 
     return (
         <>
-            {mainResults !== '' &&
+            {winOrLoseStr !== '' &&
                 <p>{winOrLoseStr}</p>
             }
         </>

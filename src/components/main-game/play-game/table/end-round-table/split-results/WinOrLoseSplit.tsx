@@ -10,29 +10,35 @@ export default function WinOrLoseSplit({ player }: PlayerInterfaceProps) {
 
     const dispatch = useDispatch()
     const dealerObj = useSelector((state: RootState) => state.dealerObj);
+    // const playersArr = useSelector((state: RootState) => state.playersArr);
     const { isSplitResultsActive } = useSelector((state: RootState) => state.gameData);
     const { roundResults, name } = player
-    const { mainResults } = roundResults
+    const { splitResults } = roundResults
 
     useEffect(() => {
         async function updateWinOrLose() {
             if (isSplitResultsActive && roundResults.splitResults === '') {
-                await delay(3000)
+                await delay(1500)
                 const winOrLoseStr = playerWonOrLostFunc(player, dealerObj, 'split')
-                const newRoundResults: RoundResultsProps = { ...roundResults, mainResults: winOrLoseStr }
+                console.log(winOrLoseStr)
+                const newRoundResults: RoundResultsProps = { ...roundResults, splitResults: winOrLoseStr }
                 dispatch(updatePlayer({ ...player, roundResults: newRoundResults }))
             }
         }
         updateWinOrLose()
     }, [dealerObj, dispatch, isSplitResultsActive, player, roundResults])
 
+
+
     let winOrLoseStr: string = ''
-    if (mainResults === 'Won') winOrLoseStr = `${name} won!`
-    else if (mainResults === 'Lost') winOrLoseStr = 'Dealer won!'
-    else winOrLoseStr = "Push!"
+    if (splitResults === 'Won') winOrLoseStr = `${name} won!`
+    else if (splitResults === 'Lost') winOrLoseStr = 'Dealer won!'
+    else if (splitResults === 'Push') winOrLoseStr = 'Dealer won!'
+    else winOrLoseStr = ''
 
 
-    return (
+
+    return winOrLoseStr && (
         <p>{winOrLoseStr}</p>
-    )
+    );
 }

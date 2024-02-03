@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { delay } from "../../../../../../utils/Utility";
 import { updatePlayer } from "../../../../../../store/player-arr/playersArrSlice";
 import { endRoundResults } from "../../../../../../store/game-data/GameDataSlice";
+import { current } from "@reduxjs/toolkit";
 
 export default function MoneyWonOrLost({ player }: PlayerInterfaceProps) {
     const dispatch = useDispatch()
@@ -32,7 +33,7 @@ export default function MoneyWonOrLost({ player }: PlayerInterfaceProps) {
         updateHandsWithResults()
     }, [dispatch, player])
 
-    const { bank, beginningRoundBank } = player
+    const { bank, beginningRoundBank, currBet } = player
     const { mainResults } = player.roundResults
 
     let moneyWonOrLost: string = ''
@@ -44,7 +45,7 @@ export default function MoneyWonOrLost({ player }: PlayerInterfaceProps) {
 
     return (
         <>
-            {moneyWonOrLost !== '' &&
+            {moneyWonOrLost !== '' && currBet === 0 &&
                 <p>{moneyWonOrLost}</p>
             }
         </>
