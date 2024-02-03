@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { PlayerInterface } from '../../../../../models/PlayerProps'
-import { RootState } from '../../../../../store/store';
-import { updateIsInsuranceRoundComplete } from '../../../../../store/game-data/GameDataSlice';
+import { PlayerInterface } from '../../../../../../models/PlayerProps'
+import { RootState } from '../../../../../../store/store';
+import { updateIsInsuranceRoundComplete } from '../../../../../../store/game-data/GameDataSlice';
 import { useEffect, useState } from 'react';
-import { delay } from '../../../../../utils/Utility';
-import { updatePlayer } from '../../../../../store/player-arr/playersArrSlice';
+import { delay } from '../../../../../../utils/Utility';
+import { updatePlayer } from '../../../../../../store/player-arr/playersArrSlice';
 
 export interface PlayerProps {
     player: PlayerInterface;

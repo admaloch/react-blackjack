@@ -1,12 +1,12 @@
-import Cards from '../display-cards/Cards';
+import Cards from '../../display-cards/Cards';
 import './PlayerTable.css'
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../../store/store';
+import { RootState } from '../../../../../store/store';
 import PlayerOptions from './player-options/PlayerOptions';
 import PlayerDetails from './PlayerDetails';
 import SplitCardPreview from './player-options/SplitCardPreview';
 import { useEffect } from 'react';
-import usePlayerDrawCard from '../../draw-cards-hook/usePlayerDrawCard';
+import usePlayerDrawCard from '../../../draw-cards-hook/usePlayerDrawCard';
 
 interface PlayerTableProps {
     playerIndex: number;
@@ -46,7 +46,7 @@ function PlayerTable({ playerIndex, makeCurrPlayerFinished }: PlayerTableProps) 
             </div>
 
             <PlayerDetails playerIndex={playerIndex} />
-            <Cards cardUrlVals={hand.cardUrlVals}/>
+            <Cards cardUrlVals={hand.cardUrlVals} />
             {playersArr[playerIndex].splitHand.cards.length > 0 &&
                 <SplitCardPreview
                     playerIndex={playerIndex}

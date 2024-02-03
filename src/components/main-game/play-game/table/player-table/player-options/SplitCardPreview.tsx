@@ -1,7 +1,7 @@
-import PlayerIndexProps from "../../../../../models/PlayerIndexProps";
-import { RootState } from "../../../../../store/store";
+import PlayerIndexProps from "../../../../../../models/PlayerIndexProps";
+import { RootState } from "../../../../../../store/store";
 import { useSelector } from "react-redux";
-import Card from "../../display-cards/Card";
+import Card from "../../../display-cards/Card";
 
 export default function SplitCardPreview({ playerIndex }: PlayerIndexProps) {
     const playersArr = useSelector((state: RootState) => state.playersArr);

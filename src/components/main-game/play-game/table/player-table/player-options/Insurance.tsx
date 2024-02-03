@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../../../store/store";
-import { updatePlayer } from "../../../../../store/player-arr/playersArrSlice";
-import PlayerIndexProps from "../../../../../models/PlayerIndexProps";
-import { delay } from "../../../../../utils/Utility";
+import { RootState } from "../../../../../../store/store";
+import { updatePlayer } from "../../../../../../store/player-arr/playersArrSlice";
+import PlayerIndexProps from "../../../../../../models/PlayerIndexProps";
+import { delay } from "../../../../../../utils/Utility";
 
 export default function Insurance({ playerIndex }: PlayerIndexProps) {
     const playersArr = useSelector((state: RootState) => state.playersArr);

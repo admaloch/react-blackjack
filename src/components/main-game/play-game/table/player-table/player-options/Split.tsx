@@ -1,10 +1,10 @@
 import { useDispatch } from 'react-redux';
-import { updatePlayer } from '../../../../../store/player-arr/playersArrSlice';
+import { updatePlayer } from '../../../../../../store/player-arr/playersArrSlice';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../../../store/store';
-import PlayerIndexProps from '../../../../../models/PlayerIndexProps';
-import { Hand } from '../../../../../models/PlayerProps';
-import { delay } from '../../../../../utils/Utility';
+import { RootState } from '../../../../../../store/store';
+import PlayerIndexProps from '../../../../../../models/PlayerIndexProps';
+import { Hand } from '../../../../../../models/PlayerProps';
+import { delay } from '../../../../../../utils/Utility';
 
 
 
@@ -16,13 +16,13 @@ export default function Split({ playerIndex }: PlayerIndexProps) {
 
   let isCardRanksEqual = false
   if (hand.cards.length === 2) {
-      const cardRanks = hand.cards.map(x => x.slice(0, 1))
-      if (cardRanks[0] === cardRanks[1] && currPlayer.splitHand.cards.length === 0) {
-          isCardRanksEqual = true
-      }
+    const cardRanks = hand.cards.map(x => x.slice(0, 1))
+    if (cardRanks[0] === cardRanks[1] && currPlayer.splitHand.cards.length === 0) {
+      isCardRanksEqual = true
+    }
   }
 
-  if(!isCardRanksEqual) return;
+  if (!isCardRanksEqual) return;
 
   const splitHandler = async () => {
     await delay(500);

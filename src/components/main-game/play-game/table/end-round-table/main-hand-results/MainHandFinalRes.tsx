@@ -1,4 +1,4 @@
-import { PlayerInterfaceProps } from "../../../../../models/PlayerProps";
+import { PlayerInterfaceProps } from "../../../../../../models/PlayerProps";
 import WinOrLoseStr from "./WinOrLoseStr";
 import MoneyWonOrLost from "./MoneyWonOrLost";
 

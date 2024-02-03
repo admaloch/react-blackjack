@@ -1,10 +1,10 @@
 import { useSelector } from 'react-redux';
-import backOfCardImg from '../../../../assets/card-images/BACK.png';
-import { RootState } from '../../../../store/store';
+import backOfCardImg from '../../../../../assets/card-images/BACK.png'
+import { RootState } from '../../../../../store/store';
 import { useEffect } from 'react';
-import { delay } from '../../../../utils/Utility';
+import { delay } from '../../../../../utils/Utility';
 import { useDispatch } from 'react-redux';
-import { updateIsDealerCardRevealed } from '../../../../store/game-data/GameDataSlice';
+import { updateIsDealerCardRevealed } from '../../../../../store/game-data/GameDataSlice';
 
 
 

@@ -3,8 +3,8 @@ import Stand from "./Stand";
 import DrawCards from "./DrawCards";
 import Split from "./Split";
 import Insurance from "./Insurance";
-import ExitTableIcon from "../../exit-table-modal/ExitTableIcon";
-import { RootState } from "../../../../../store/store";
+import ExitTableIcon from "../../../exit-table-modal/ExitTableIcon";
+import { RootState } from "../../../../../../store/store";
 import { useSelector } from "react-redux";
 
 

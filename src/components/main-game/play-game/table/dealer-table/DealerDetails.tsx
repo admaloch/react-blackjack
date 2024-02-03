@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../../../store/store';
+import { RootState } from '../../../../../store/store';
 import { useEffect, useState } from 'react';
-import { delay } from '../../../../utils/Utility';
+import { delay } from '../../../../../utils/Utility';
 
 
 
@@ -60,7 +60,7 @@ export default function DealerDetails() {
         dealerHeaderText = <h2 className=''>{name}</h2>
     }
 
-  
+
 
     const revealInsuranceClass = !isInsuranceRoundComplete && showDealerData.isInsuranceEval
         ? 'hide-item reveal-item' : 'hide-item'

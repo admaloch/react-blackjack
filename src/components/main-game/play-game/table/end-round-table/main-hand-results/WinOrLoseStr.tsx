@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../../../store/store";
-import { PlayerInterfaceProps, RoundResultsProps } from "../../../../../models/PlayerProps";
+import { RootState } from "../../../../../../store/store";
+import { PlayerInterfaceProps, RoundResultsProps } from "../../../../../../models/PlayerProps";
 import { useEffect } from "react";
-import { delay } from "../../../../../utils/Utility";
-import { updatePlayer } from "../../../../../store/player-arr/playersArrSlice";
+import { delay } from "../../../../../../utils/Utility";
+import { updatePlayer } from "../../../../../../store/player-arr/playersArrSlice";
 
 export default function WinOrLoseStr({ player }: PlayerInterfaceProps) {
     const dispatch = useDispatch()

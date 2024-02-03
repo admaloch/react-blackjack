@@ -1,9 +1,9 @@
 import { useSelector } from 'react-redux';
-import { RootState } from "../../../../../store/store";
-import PlayerIndexProps from '../../../../../models/PlayerIndexProps';
+import { RootState } from "../../../../../../store/store";
+import PlayerIndexProps from '../../../../../../models/PlayerIndexProps';
 
 import { useEffect } from 'react';
-import usePlayerDrawCard from '../../../draw-cards-hook/usePlayerDrawCard';
+import usePlayerDrawCard from '../../../../draw-cards-hook/usePlayerDrawCard';
 import DoubleDownBtn from './DoubleDownBtn';
 
 
@@ -13,7 +13,7 @@ export default function DoubleDown({ playerIndex }: PlayerIndexProps) {
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const currPlayer = playersArr[playerIndex]
     const { hand, isDoubleDown } = currPlayer
-   
+
 
 
     useEffect(() => {
@@ -27,7 +27,7 @@ export default function DoubleDown({ playerIndex }: PlayerIndexProps) {
     return (
         <div className="player-btn-container">
             {hand.cards.length === 2 &&
-             <DoubleDownBtn playerIndex={playerIndex}/>
+                <DoubleDownBtn playerIndex={playerIndex} />
             }
         </div>
     )

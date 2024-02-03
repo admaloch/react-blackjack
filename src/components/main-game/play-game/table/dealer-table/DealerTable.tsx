@@ -1,15 +1,15 @@
 // DealerTable.tsx
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../../../store/store';
-import Cards from '../display-cards/Cards';
-import useDealerDrawCard from '../../draw-cards-hook/useDealerDrawCard';
+import { RootState } from '../../../../../store/store';
+import Cards from '../../display-cards/Cards';
+import useDealerDrawCard from '../../../draw-cards-hook/useDealerDrawCard';
 import './DealerTable.css'
-import { beginDealerDrawing, endDealerRound } from '../../../../store/game-data/GameDataSlice';
+import { beginDealerDrawing, endDealerRound } from '../../../../../store/game-data/GameDataSlice';
 import HiddenCard from './HiddenCard';
-import { delay } from '../../../../utils/Utility';
+import { delay } from '../../../../../utils/Utility';
 import DealerDetails from './DealerDetails';
-import { updateIsInsuranceRoundComplete } from '../../../../store/game-data/GameDataSlice';
+import { updateIsInsuranceRoundComplete } from '../../../../../store/game-data/GameDataSlice';
 
 const DealerTable: React.FC = () => {
   const dealerObj = useSelector((state: RootState) => state.dealerObj);

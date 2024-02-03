@@ -1,9 +1,9 @@
 import { useDispatch } from "react-redux";
-import { PlayerInterfaceProps } from "../../../../../models/PlayerProps";
+import { PlayerInterfaceProps } from "../../../../../../models/PlayerProps";
 import { useEffect } from "react";
-import { delay } from "../../../../../utils/Utility";
-import { updatePlayer } from "../../../../../store/player-arr/playersArrSlice";
-import { endRoundResults } from "../../../../../store/game-data/GameDataSlice";
+import { delay } from "../../../../../../utils/Utility";
+import { updatePlayer } from "../../../../../../store/player-arr/playersArrSlice";
+import { endRoundResults } from "../../../../../../store/game-data/GameDataSlice";
 
 export default function MoneyWonOrLost({ player }: PlayerInterfaceProps) {
     const dispatch = useDispatch()

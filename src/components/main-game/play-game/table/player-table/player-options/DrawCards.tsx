@@ -1,10 +1,10 @@
-import PlayerIndexProps from '../../../../../models/PlayerIndexProps';
+import PlayerIndexProps from '../../../../../../models/PlayerIndexProps';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import { DrawCardsIconWithPopper } from '../../../../UI/icons/DrawCardsIconWithPopper';
-import { delay } from '../../../../../utils/Utility';
-import usePlayerDrawCard from '../../../draw-cards-hook/usePlayerDrawCard';
+import { DrawCardsIconWithPopper } from '../../../../../UI/icons/DrawCardsIconWithPopper';
+import { delay } from '../../../../../../utils/Utility';
+import usePlayerDrawCard from '../../../../draw-cards-hook/usePlayerDrawCard';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../../../store/store';
+import { RootState } from '../../../../../../store/store';
 
 export default function DrawCards({ playerIndex }: PlayerIndexProps) {
 

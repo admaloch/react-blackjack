@@ -1,14 +1,14 @@
 import { useSelector } from 'react-redux';
-import { RootState } from "../../../../../store/store";
-import PlayerIndexProps from '../../../../../models/PlayerIndexProps';
+import { RootState } from "../../../../../../store/store";
+import PlayerIndexProps from '../../../../../../models/PlayerIndexProps';
 import { useDispatch } from 'react-redux';
-import { updatePlayer } from '../../../../../store/player-arr/playersArrSlice';
+import { updatePlayer } from '../../../../../../store/player-arr/playersArrSlice';
 
 export default function DoubleDownBtn({ playerIndex }: PlayerIndexProps) {
 
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const currPlayer = playersArr[playerIndex]
-    const {  hand, currBet, bank } = currPlayer
+    const { hand, currBet, bank } = currPlayer
     const dispatch = useDispatch();
 
     const doubleDownStyle = {

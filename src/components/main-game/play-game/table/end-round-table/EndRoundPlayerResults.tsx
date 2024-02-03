@@ -1,11 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../../store/store";
+import { RootState } from "../../../../../store/store";
 import './EndRoundPlayerResults.css'
 import PlayerHandResults from "./PlayerHandResults";
 import { useEffect } from "react";
-import { beginSplitRound, endRoundResults } from "../../../../store/game-data/GameDataSlice";
+import { beginSplitRound, endRoundResults } from "../../../../../store/game-data/GameDataSlice";
 
 export default function EndRoundPlayerResults() {
+    
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const { isMainResultsActive, isDealerRoundActive, isSplitResultsActive } = useSelector((state: RootState) => state.gameData);
     const dispatch = useDispatch()
@@ -21,10 +22,7 @@ export default function EndRoundPlayerResults() {
         }
     }, [isDealerRoundActive, isSplitResultsActive, dispatch, isPlayersSplit, isMainResultsActive])
 
-    // useEffect(() => {
-    //     console.log('is main results is', isMainResultsActive)
-    //     console.log('is split results is', isSplitResultsActive)
-    // }, [isSplitResultsActive, isMainResultsActive])
+
 
     // const mainOrSplitHeader = isSplitResultsActive
     //     ? 'Split hand results...'

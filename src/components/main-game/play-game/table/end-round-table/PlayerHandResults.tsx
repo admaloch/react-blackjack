@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useState } from 'react';
-import { PlayerInterface } from '../../../../models/PlayerProps'
+import { PlayerInterface } from '../../../../../models/PlayerProps'
 import PlayerHand from './PlayerHand';
 import PlayerHandDetails from './PlayerHandDetails';
 import SplitHandDetails from './SplitHandDetails';
 import PlayerResultsHeader from './PlayerResultsHeader';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../../store/store';
-import { delay } from '../../../../utils/Utility';
+import { RootState } from '../../../../../store/store';
+import { delay } from '../../../../../utils/Utility';
 
 export interface PlayerProps {
     player: PlayerInterface;

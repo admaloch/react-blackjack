@@ -1,5 +1,5 @@
-import PlayerIndexProps from '../../../../models/PlayerIndexProps';
-import { RootState } from '../../../../store/store';
+import PlayerIndexProps from '../../../../../models/PlayerIndexProps';
+import { RootState } from '../../../../../store/store';
 import { useSelector } from 'react-redux';
 
 

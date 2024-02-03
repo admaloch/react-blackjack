@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { PlayerInterface } from '../../../../models/PlayerProps'
+import { PlayerInterface } from '../../../../../models/PlayerProps'
 import PlayerHand from './PlayerHand';
-import { RootState } from '../../../../store/store';
+import { RootState } from '../../../../../store/store';
 import { useEffect, useState } from 'react';
-import { delay } from '../../../../utils/Utility';
+import { delay } from '../../../../../utils/Utility';
 import { FinalResultsState } from './main-hand-results/MainHandFinalRes';
-import { updatePlayer } from '../../../../store/player-arr/playersArrSlice';
+import { updatePlayer } from '../../../../../store/player-arr/playersArrSlice';
 
 
 export interface PlayerProps {
@@ -14,7 +14,7 @@ export interface PlayerProps {
 }
 
 export default function SplitHandDetails({ player, updatePlayerClass }: PlayerProps) {
- 
+
 
     const { splitHand, splitBet, bank } = player;
     const { cardSum, cardUrlVals, cards } = splitHand;

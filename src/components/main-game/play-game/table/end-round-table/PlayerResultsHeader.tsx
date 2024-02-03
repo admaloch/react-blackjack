@@ -1,5 +1,5 @@
-import { ShowMainHandIconWithPopper } from "../../../UI/icons/ShowMainHandIconWithPopper"
-import { ShowSplitHandIconWithPopper } from "../../../UI/icons/ShowSplitHandIconWithPopper"
+import { ShowMainHandIconWithPopper } from "../../../../UI/icons/ShowMainHandIconWithPopper"
+import { ShowSplitHandIconWithPopper } from "../../../../UI/icons/ShowSplitHandIconWithPopper"
 
 export default function PlayerResultsHeader({ player, changeToMainHand, changeToSplitHand, showSplitHand }) {
 
