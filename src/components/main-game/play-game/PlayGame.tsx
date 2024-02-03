@@ -1,20 +1,21 @@
 import './PlayGame.css'
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store/store';
-import { useEffect, useState } from 'react';
-import DealerTable from './dealer-round/DealerTable';
-import PlayerTable from './player-round/PlayerTable';
-import EndOfTurnResults from './end-of-turn/EndOfTurnResults';
+import {  useState } from 'react';
+import DealerTable from './dealer-table/DealerTable';
+import PlayerTable from './player-table/PlayerTable';
+import EndOfTurnResults from './end-of-turn-modal/EndOfTurnResults';
 import { useDispatch } from "react-redux";
 import { updatePlayer } from '../../../store/player-arr/playersArrSlice';
 import ExitTable from './exit-table-modal/ExitTable';
-import PlayerTableResults from './player-table-results/PlayerTableResults';
-import EndOfRoundResults from './end-of-round-results/EndOfRoundResults';
+
+import EndRoundPlayerResults from './end-round-results/EndRoundPlayerResults';
 
 export default function PlayGame() {
+
     const dispatch = useDispatch()
     const playersArr = useSelector((state: RootState) => state.playersArr);
-    const { isPlayerRoundActive, isDealerRoundActive } = useSelector((state: RootState) => state.gameData);
+    const { isPlayerRoundActive } = useSelector((state: RootState) => state.gameData);
     const [currPlayerIndex, setCurrPlayerIndex] = useState(0);
     const [isCurrPlayerFinished, setIsCurrPlayerFinished] = useState(false)
 
@@ -40,9 +41,8 @@ export default function PlayGame() {
                     />
                 }
                 {!isPlayerRoundActive &&
-                    <PlayerTableResults />
+                    <EndRoundPlayerResults />
                 }
-
             </div>
             {isPlayerRoundActive &&
                 <EndOfTurnResults

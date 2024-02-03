@@ -1,10 +1,10 @@
 import { useSelector } from 'react-redux';
-import './EndOfRoundResults.css'
+import './RoundResultsModal.css'
 import Modal from '../../../UI/modal/Modal';
 import EndOfRoundDealerResults from './EndOfRoundDealerResults';
 import EndOfRoundPlayerResults from './EndOfRoundPlayerResults';
 import { RootState } from '../../../../store/store';
-export default function EndOfRoundResults() {
+export default function RoundResultsModal() {
 
 
     const {isDealerRoundActive} = useSelector((state: RootState) => state.gameData);

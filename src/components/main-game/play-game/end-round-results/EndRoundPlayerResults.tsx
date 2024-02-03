@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
-import './PlayerTableResults.css'
+import './EndRoundPlayerResults.css'
 import PlayerHandResults from "./PlayerHandResults";
 import { useEffect } from "react";
 import { beginSplitRound, endRoundResults } from "../../../../store/game-data/GameDataSlice";
 
-export default function PlayerTableResults() {
+export default function EndRoundPlayerResults() {
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const { isMainResultsActive, isDealerRoundActive, isSplitResultsActive } = useSelector((state: RootState) => state.gameData);
     const dispatch = useDispatch()
