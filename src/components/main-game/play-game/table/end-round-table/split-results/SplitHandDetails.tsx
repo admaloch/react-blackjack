@@ -1,12 +1,13 @@
-import { useDispatch, useSelector } from 'react-redux';
 import { PlayerInterface } from '../../../../../../models/PlayerProps'
 import PlayerHand from '../main-hand-results/PlayerHand';
-import { RootState } from '../../../../../../store/store';
-import { useEffect } from 'react';
-import { delay } from '../../../../../../utils/Utility';
-import { updatePlayer } from '../../../../../../store/player-arr/playersArrSlice';
+
 import WinOrLoseSplit from './WinOrLoseSplit';
 import BjBustOrStay from '../../../../../bj-bust-stay/BjBustOrStay';
+import { useEffect } from 'react';
+import { delay } from '../../../../../../utils/Utility';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../../../../../store/store';
+import { endSplitRound } from '../../../../../../store/game-data/GameDataSlice';
 
 
 export interface PlayerProps {
@@ -14,46 +15,84 @@ export interface PlayerProps {
     updatePlayerClass: (str: string) => void;
 }
 
-export default function SplitHandDetails({ player }: PlayerProps) {
+export default function SplitHandDetails({ player, updatePlayerClass }: PlayerProps) {
+    const dispatch = useDispatch()
+    const { hand } = player
+    const { splitResults, isComplete } = player.roundResults
+    const { cardUrlVals } = hand
 
+
+
+    const { isSplitResultsActive, isInsuranceRoundComplete, isDealerCardRevealed, } = useSelector(
+        (state: RootState) => state.gameData
+    );
+
+
+
+    useEffect(() => {
+        async function emphasizeInsuranceBetHand() {
+
+
+            if (isSplitResultsActive && player.splitHand.cards.length !== 0) {
+                updatePlayerClass('player-hand emphasize');
+            }
+            else if (!isSplitResultsActive && player.insuranceBet === 0) {
+                updatePlayerClass('player-hand obscure-item');
+            }
+
+
+        }
+        emphasizeInsuranceBetHand();
+    }, [isDealerCardRevealed, isInsuranceRoundComplete, isSplitResultsActive, player.insuranceBet, player.splitHand.cards.length, updatePlayerClass]);
+
+    useEffect(() => {
+        async function changeInsuranceEmphasisColor() {
+            if (isSplitResultsActive) {
+
+
+                if (splitResults === 'Won') {
+                    updatePlayerClass('player-hand emphasize emphasize-win');
+                } else if (isSplitResultsActive && splitResults === 'Lost') {
+                    updatePlayerClass('player-hand emphasize emphasize-lose');
+                }
+
+            } else {
+                updatePlayerClass('player-hand');
+            }
+        }
+        changeInsuranceEmphasisColor();
+    }, [isSplitResultsActive, splitResults, updatePlayerClass, dispatch]);
+
+
+
+
+    useEffect(() => {
+        console.log('player', player)
+    }, [player])
 
     const { splitHand, splitBet, bank } = player;
-    const { cardSum, cardUrlVals } = splitHand;
+    const { cardSum } = splitHand;
 
-    const dispatch = useDispatch();
-    const { isSplitResultsActive } = useSelector((state: RootState) => state.gameData);
-    const { roundResults } = player
-    const { splitResults, isComplete } = roundResults
+
 
 
 
     const isBlackjack = cardSum === 21 && cardUrlVals.length === 2;
 
 
+    // useEffect(() => {
+    //     async function endTableRound() {
+    //         if (isSplitResultsActive && isComplete) {
+    //             await delay(3000)
+    //             dispatch(endSplitRound())
+    //         }
+    //     }
+    //     endTableRound()
 
-    useEffect(() => {
-        async function updateHandsWithResults() {
-            const { hand, bank, splitBet, roundResults } = player
-            const { cardSum, cardUrlVals } = hand
-            const { splitResults } = roundResults
-            const playerHasBJ = cardSum === 21 && cardUrlVals.length === 2 ? true : false
+    // }, [dispatch, isComplete, isSplitResultsActive])
 
-            if (isSplitResultsActive && roundResults.splitResults !== '') {
-                await delay(1500)
-                let newBank = 0
-                if (splitResults === 'Won') newBank = playerHasBJ
-                    ? bank + (splitBet * 2.5)
-                    : bank + (splitBet * 2)
-                else if (splitResults === 'Push') newBank = bank + splitBet
-                else newBank = bank
 
-                const newRoundResObj = { ...roundResults, isComplete: true }
-                dispatch(updatePlayer({ ...player, bank: newBank, splitBet: 0, roundResults: newRoundResObj }))
-                // dispatch(endRoundResults())
-            }
-        }
-        updateHandsWithResults()
-    }, [dispatch, isSplitResultsActive, player])
+
 
 
 

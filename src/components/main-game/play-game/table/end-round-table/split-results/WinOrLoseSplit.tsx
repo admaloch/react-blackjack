@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { delay } from '../../../../../../utils/Utility';
 import playerWonOrLostFunc from '../../../../../../utils/playerWonOrLostFunc';
 import { PlayerInterfaceProps, RoundResultsProps } from '../../../../../../models/PlayerProps';
@@ -14,6 +14,30 @@ export default function WinOrLoseSplit({ player }: PlayerInterfaceProps) {
     const { isSplitResultsActive } = useSelector((state: RootState) => state.gameData);
     const { roundResults, name } = player
     const { splitResults } = roundResults
+
+    useEffect(() => {
+        async function updateHandsWithResults() {
+            const { hand, bank, splitBet, roundResults } = player
+            const { cardSum, cardUrlVals } = hand
+            const { splitResults } = roundResults
+            const playerHasBJ = cardSum === 21 && cardUrlVals.length === 2 ? true : false
+
+            if (isSplitResultsActive && roundResults.splitResults !== '') {
+                await delay(1500)
+                let newBank = 0
+                if (splitResults === 'Won') newBank = playerHasBJ
+                    ? bank + (splitBet * 2.5)
+                    : bank + (splitBet * 2)
+                else if (splitResults === 'Push') newBank = bank + splitBet
+                else newBank = bank
+
+                const newRoundResObj = { ...roundResults, isComplete: true }
+                dispatch(updatePlayer({ ...player, bank: newBank, splitBet: 0, roundResults: newRoundResObj }))
+                // dispatch(endRoundResults())
+            }
+        }
+        updateHandsWithResults()
+    }, [dispatch, isSplitResultsActive, player])
 
     useEffect(() => {
         async function updateWinOrLose() {

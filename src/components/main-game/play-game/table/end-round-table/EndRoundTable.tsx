@@ -3,8 +3,9 @@ import { RootState } from "../../../../../store/store";
 import './EndRoundTable.css'
 import PlayerHandResults from "./main-hand-results/PlayerHandResults";
 import { useEffect } from "react";
-import { beginSplitRound, endRoundResults } from "../../../../../store/game-data/GameDataSlice";
+import { beginSplitRound, endRoundResults, endSplitRound } from "../../../../../store/game-data/GameDataSlice";
 import TableHeader from "./TableHeader";
+import { delay } from "../../../../../utils/Utility";
 
 export default function EndRoundTable() {
 
@@ -22,6 +23,8 @@ export default function EndRoundTable() {
             }
         }
     }, [isDealerRoundActive, isSplitResultsActive, dispatch, isPlayersSplit, isMainResultsActive])
+
+
 
     return (
         <div className="player-results-table">

@@ -22,7 +22,7 @@ export default function PlayerHandResults({ player }: PlayerProps) {
     }, [setPlayerClass]);
 
     const { hand } = player
-    const { mainResults, splitResults } = player.roundResults
+    const { splitResults } = player.roundResults
     const { cardUrlVals } = hand
 
     const changeToSplitHand = () => setShowSplitHand(true);
@@ -50,14 +50,12 @@ export default function PlayerHandResults({ player }: PlayerProps) {
         async function emphasizeInsuranceBetHand() {
             if (!isInsuranceRoundComplete && isDealerCardRevealed || isSplitResultsActive) {
 
-                if (!isSplitResultsActive && player.insuranceBet !== 0
-                    || isSplitResultsActive && player.splitHand.cards.length !== 0) {
+                if (!isSplitResultsActive && player.insuranceBet !== 0) {
                     await delay(1500);
                     setPlayerClass('player-hand emphasize');
                 }
-                else if (!isSplitResultsActive && player.insuranceBet === 0
-                    || isSplitResultsActive && player.splitHand.cards.length === 0) {
-                        
+                else if (!isSplitResultsActive && player.insuranceBet === 0) {
+
                     setPlayerClass('player-hand obscure-item');
                 }
 
@@ -71,10 +69,9 @@ export default function PlayerHandResults({ player }: PlayerProps) {
             if (!isInsuranceRoundComplete && isDealerCardRevealed || isSplitResultsActive) {
                 await delay(4000);
 
-                if (!isSplitResultsActive && dealerSum === 21 && player.insuranceBet !== 0 ||
-                    isSplitResultsActive && splitResults === 'Won') {
+                if (!isSplitResultsActive && dealerSum === 21 && player.insuranceBet !== 0) {
                     setPlayerClass('player-hand emphasize emphasize-win');
-                } else if (!isSplitResultsActive && dealerSum !== 21 && player.insuranceBet !== 0 || isSplitResultsActive && splitResults === 'Lost') {
+                } else if (!isSplitResultsActive && dealerSum !== 21 && player.insuranceBet !== 0) {
                     setPlayerClass('player-hand emphasize emphasize-lose');
                 }
             } else {
