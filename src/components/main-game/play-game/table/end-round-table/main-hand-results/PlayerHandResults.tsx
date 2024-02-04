@@ -23,7 +23,7 @@ export default function PlayerHandResults({ player }: PlayerProps) {
     }, [setPlayerClass]);
 
     const { hand } = player
-    const { splitResults } = player.roundResults
+    const { splitResults, mainResults } = player.roundResults
     const { cardUrlVals } = hand
 
     const changeToSplitHand = () => setShowSplitHand(true);
@@ -52,7 +52,7 @@ export default function PlayerHandResults({ player }: PlayerProps) {
 
     useEffect(() => {
         async function emphasizeInsuranceBetHand() {
-            if (isRoundActive && !isInsuranceRoundComplete && isDealerCardRevealed) {
+            if (!isInsuranceRoundComplete && isRoundActive && isDealerCardRevealed) {
                 await delay(1500);
                 if (player.insuranceBet !== 0) {
                     setPlayerClass('player-hand emphasize');
@@ -60,6 +60,11 @@ export default function PlayerHandResults({ player }: PlayerProps) {
                     setPlayerClass('player-hand obscure-item');
                 }
             }
+            if (isInsuranceRoundComplete) {
+                setPlayerClass('player-hand');
+
+            }
+
         }
         emphasizeInsuranceBetHand();
     }, [isInsuranceRoundComplete, isDealerCardRevealed, player.insuranceBet, isSplitResultsActive, player.splitHand.cards.length, isRoundActive]);
