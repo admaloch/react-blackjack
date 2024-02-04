@@ -47,28 +47,39 @@ export default function PlayerHandResults({ player }: PlayerProps) {
     }, [isSplitResultsActive, player]);
 
     useEffect(() => {
+        let isMounted = true; // Flag to track whether the component is mounted
+      
         async function emphasizeInsuranceBetHand() {
-            if (!isInsuranceRoundComplete && isDealerCardRevealed || isSplitResultsActive) {
-
-                if (!isSplitResultsActive && player.insuranceBet !== 0) {
-                    await delay(1500);
-                    setPlayerClass('player-hand emphasize');
-                }
-                else if (!isSplitResultsActive && player.insuranceBet === 0) {
-
-                    setPlayerClass('player-hand obscure-item');
-                }
-
+          if (!isInsuranceRoundComplete && isDealerCardRevealed || isSplitResultsActive) {
+            if (!isSplitResultsActive && player.insuranceBet !== 0) {
+              await delay(1500);
+              // Check if the component is still mounted before updating state
+              if (isMounted) {
+                setPlayerClass('player-hand emphasize');
+              }
+            } else if (!isSplitResultsActive && player.insuranceBet === 0) {
+              // Check if the component is still mounted before updating state
+              if (isMounted) {
+                setPlayerClass('player-hand obscure-item');
+              }
             }
+          }
         }
+      
         emphasizeInsuranceBetHand();
-    }, [isInsuranceRoundComplete, isDealerCardRevealed, player.insuranceBet, isSplitResultsActive, player.splitHand.cards.length]);
+      
+        // Cleanup function
+        return () => {
+          isMounted = false; // Set the flag to false when the component unmounts
+        };
+      }, [isInsuranceRoundComplete, isDealerCardRevealed, player.insuranceBet, isSplitResultsActive, player.splitHand.cards.length]);
+      
 
     useEffect(() => {
         async function changeInsuranceEmphasisColor() {
+            
             if (!isInsuranceRoundComplete && isDealerCardRevealed || isSplitResultsActive) {
                 await delay(4000);
-
                 if (!isSplitResultsActive && dealerSum === 21 && player.insuranceBet !== 0) {
                     setPlayerClass('player-hand emphasize emphasize-win');
                 } else if (!isSplitResultsActive && dealerSum !== 21 && player.insuranceBet !== 0) {
@@ -81,7 +92,41 @@ export default function PlayerHandResults({ player }: PlayerProps) {
         changeInsuranceEmphasisColor();
     }, [isInsuranceRoundComplete, isDealerCardRevealed, dealerSum, player.insuranceBet, isSplitResultsActive, player.splitHand.cards.length, splitResults]);
 
+    useEffect(() => {
+        async function emphasizeSplitBetHand() {
 
+            if (isSplitResultsActive) {
+                
+                if (isSplitResultsActive && player.splitHand.cards.length !== 0) {
+                    updatePlayerClass('player-hand emphasize');
+                }
+                if (isSplitResultsActive && player.splitHand.cards.length === 0) {
+                    updatePlayerClass('player-hand obscure-item');
+                }
+            } else{
+               updatePlayerClass('player-hand'); 
+            } 
+
+
+
+        }
+        emphasizeSplitBetHand();
+    }, [isDealerCardRevealed, isInsuranceRoundComplete, isSplitResultsActive, player.insuranceBet, player.splitHand.cards.length, updatePlayerClass]);
+
+    useEffect(() => {
+        async function changeSplitEmphasisColor() {
+            if (isSplitResultsActive) {
+                if (splitResults === 'Won') {
+                    updatePlayerClass('player-hand emphasize emphasize-win');
+                } else if (isSplitResultsActive && splitResults === 'Lost') {
+                    updatePlayerClass('player-hand emphasize emphasize-lose');
+                }
+            } else {
+                updatePlayerClass('player-hand');
+            }
+        }
+        changeSplitEmphasisColor();
+    }, [isSplitResultsActive, splitResults, updatePlayerClass]);
 
     return (
         <div className={playerClass}>

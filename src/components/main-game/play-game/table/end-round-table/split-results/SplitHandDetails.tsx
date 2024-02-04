@@ -29,46 +29,43 @@ export default function SplitHandDetails({ player, updatePlayerClass }: PlayerPr
 
 
 
-    useEffect(() => {
-        async function emphasizeInsuranceBetHand() {
+    // useEffect(() => {
+    //     async function emphasizeSplitBetHand() {
 
-
-            if (isSplitResultsActive && player.splitHand.cards.length !== 0) {
-                updatePlayerClass('player-hand emphasize');
-            }
-            else if (!isSplitResultsActive && player.insuranceBet === 0) {
-                updatePlayerClass('player-hand obscure-item');
-            }
-
-
-        }
-        emphasizeInsuranceBetHand();
-    }, [isDealerCardRevealed, isInsuranceRoundComplete, isSplitResultsActive, player.insuranceBet, player.splitHand.cards.length, updatePlayerClass]);
-
-    useEffect(() => {
-        async function changeInsuranceEmphasisColor() {
-            if (isSplitResultsActive) {
-
-
-                if (splitResults === 'Won') {
-                    updatePlayerClass('player-hand emphasize emphasize-win');
-                } else if (isSplitResultsActive && splitResults === 'Lost') {
-                    updatePlayerClass('player-hand emphasize emphasize-lose');
-                }
-
-            } else {
-                updatePlayerClass('player-hand');
-            }
-        }
-        changeInsuranceEmphasisColor();
-    }, [isSplitResultsActive, splitResults, updatePlayerClass, dispatch]);
+    //         if (isSplitResultsActive) {
+    //             if (isSplitResultsActive && player.splitHand.cards.length !== 0) {
+    //                 updatePlayerClass('player-hand emphasize');
+    //             }
+    //              if (isSplitResultsActive && player.splitHand.cards.length === 0) {
+    //                 updatePlayerClass('player-hand obscure-item');
+    //             }
+    //         } else updatePlayerClass('player-hand');
 
 
 
+    //     }
+    //     emphasizeSplitBetHand();
+    // }, [isDealerCardRevealed, isInsuranceRoundComplete, isSplitResultsActive, player.insuranceBet, player.splitHand.cards.length, updatePlayerClass]);
 
-    useEffect(() => {
-        console.log('player', player)
-    }, [player])
+    // useEffect(() => {
+    //     async function changeSplitEmphasisColor() {
+    //         if (isSplitResultsActive) {
+    //             if (splitResults === 'Won') {
+    //                 updatePlayerClass('player-hand emphasize emphasize-win');
+    //             } else if (isSplitResultsActive && splitResults === 'Lost') {
+    //                 updatePlayerClass('player-hand emphasize emphasize-lose');
+    //             }
+    //         } else {
+    //             updatePlayerClass('player-hand');
+    //         }
+    //     }
+    //     changeSplitEmphasisColor();
+    // }, [isSplitResultsActive, splitResults, updatePlayerClass]);
+
+
+
+
+
 
     const { splitHand, splitBet, bank } = player;
     const { cardSum } = splitHand;
