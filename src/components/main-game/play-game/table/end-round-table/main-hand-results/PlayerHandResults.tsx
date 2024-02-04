@@ -97,13 +97,16 @@ export default function PlayerHandResults({ player }: PlayerProps) {
 
     useEffect(() => {
         async function emphasizeInsuranceBetHand() {
-            if (!isInsuranceRoundComplete && isDealerCardRevealed || isSplitResultsActive) {
+            if (!isInsuranceRoundComplete && isDealerCardRevealed) {
                 if (!isSplitResultsActive && player.insuranceBet !== 0) {
                     await delay(1500);
                     setPlayerClass('player-hand emphasize');
                 }
                 else if (!isSplitResultsActive && player.insuranceBet === 0) {
                     setPlayerClass('player-hand obscure-item');
+                } else {
+                    setPlayerClass('player-hand');
+
                 }
             }
         }
