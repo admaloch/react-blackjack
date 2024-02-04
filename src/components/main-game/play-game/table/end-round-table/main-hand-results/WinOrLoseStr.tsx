@@ -9,13 +9,13 @@ import playerWonOrLostFunc from "../../../../../../utils/playerWonOrLostFunc";
 export default function WinOrLoseStr({ player }: PlayerInterfaceProps) {
     const dispatch = useDispatch()
     const dealerObj = useSelector((state: RootState) => state.dealerObj);
-    const { isSplitResultsActive } = useSelector((state: RootState) => state.gameData);
+    const { isSplitResultsActive, isRoundActive } = useSelector((state: RootState) => state.gameData);
     const { roundResults, name } = player
     const { mainResults } = roundResults
 
     useEffect(() => {
         async function updateWinOrLose() {
-            if (roundResults.mainResults === '') {
+            if (isRoundActive && roundResults.mainResults === '') {
                 await delay(2000)
                 const winOrLoseStr = playerWonOrLostFunc(player, dealerObj, 'main')
                 const newRoundResults: RoundResultsProps = { ...roundResults, mainResults: winOrLoseStr }
@@ -23,7 +23,7 @@ export default function WinOrLoseStr({ player }: PlayerInterfaceProps) {
             }
         }
         updateWinOrLose()
-    }, [dealerObj, dispatch, player, roundResults])
+    }, [dealerObj, dispatch, player, roundResults, isRoundActive])
 
     let winOrLoseStr: string = ''
     if (mainResults === 'Won') winOrLoseStr = `${name} won!`

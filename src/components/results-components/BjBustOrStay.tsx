@@ -1,4 +1,4 @@
-import { DealerObjInterface, PlayerInterface } from "../../models/PlayerProps";
+import { PlayerInterface } from "../../models/PlayerProps";
 
 interface BjBustOrStayProps {
     player: PlayerInterface;

@@ -1,114 +1,33 @@
 import { PlayerInterface } from '../../../../../../models/PlayerProps'
 import PlayerHand from '../main-hand-results/PlayerHand';
-
-import WinOrLoseSplit from './WinOrLoseSplit';
-import BjBustOrStay from '../../../../../bj-bust-stay/BjBustOrStay';
-import { useEffect } from 'react';
-import { delay } from '../../../../../../utils/Utility';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../../../../../store/store';
-import { endSplitRound } from '../../../../../../store/game-data/GameDataSlice';
-
+import BjBustOrStay from '../../../../../results-components/BjBustOrStay';
+import SplitMoneyEarnedOrLost from './SplitMoneyEarnedOrLost';
+import SplitWinOrLoseStr from './SplitWinOrLoseStr';
 
 export interface PlayerProps {
     player: PlayerInterface;
     updatePlayerClass: (str: string) => void;
 }
 
-export default function SplitHandDetails({ player, updatePlayerClass }: PlayerProps) {
-    const dispatch = useDispatch()
+export default function SplitHandDetails({ player }: PlayerProps) {
     const { hand } = player
-    const { splitResults, isComplete } = player.roundResults
+    const { isComplete } = player.roundResults
     const { cardUrlVals } = hand
-
-
-
-    const { isSplitResultsActive, isInsuranceRoundComplete, isDealerCardRevealed, } = useSelector(
-        (state: RootState) => state.gameData
-    );
-
-
-
-    // useEffect(() => {
-    //     async function emphasizeSplitBetHand() {
-
-    //         if (isSplitResultsActive) {
-    //             if (isSplitResultsActive && player.splitHand.cards.length !== 0) {
-    //                 updatePlayerClass('player-hand emphasize');
-    //             }
-    //              if (isSplitResultsActive && player.splitHand.cards.length === 0) {
-    //                 updatePlayerClass('player-hand obscure-item');
-    //             }
-    //         } else updatePlayerClass('player-hand');
-
-
-
-    //     }
-    //     emphasizeSplitBetHand();
-    // }, [isDealerCardRevealed, isInsuranceRoundComplete, isSplitResultsActive, player.insuranceBet, player.splitHand.cards.length, updatePlayerClass]);
-
-    // useEffect(() => {
-    //     async function changeSplitEmphasisColor() {
-    //         if (isSplitResultsActive) {
-    //             if (splitResults === 'Won') {
-    //                 updatePlayerClass('player-hand emphasize emphasize-win');
-    //             } else if (isSplitResultsActive && splitResults === 'Lost') {
-    //                 updatePlayerClass('player-hand emphasize emphasize-lose');
-    //             }
-    //         } else {
-    //             updatePlayerClass('player-hand');
-    //         }
-    //     }
-    //     changeSplitEmphasisColor();
-    // }, [isSplitResultsActive, splitResults, updatePlayerClass]);
-
-
-
-
-
-
     const { splitHand, splitBet, bank } = player;
     const { cardSum } = splitHand;
-
-
-
-
-
     const isBlackjack = cardSum === 21 && cardUrlVals.length === 2;
-
-
-    // useEffect(() => {
-    //     async function endTableRound() {
-    //         if (isSplitResultsActive && isComplete) {
-    //             await delay(3000)
-    //             dispatch(endSplitRound())
-    //         }
-    //     }
-    //     endTableRound()
-
-    // }, [dispatch, isComplete, isSplitResultsActive])
-
-
-
-
-
-
 
     return (
         <>
             <PlayerHand cardUrlVals={cardUrlVals} />
-
             <p>Bank: {bank}</p>
             {splitBet !== 0 && <p>Split bet: {splitBet}</p>}
-
-            {!isComplete &&
-                <p>Sum: {cardSum}</p>
-            }
-
+            {!isComplete &&<p>Sum: {cardSum}</p>}
             <BjBustOrStay player={player} mainOrSplit='split' />
             {isBlackjack && <p className="blackjack win-color">BlackJack!</p>}
             {cardSum > 21 && <p className="lose-color">Bust!</p>}
-            <WinOrLoseSplit player={player} />
+            <SplitWinOrLoseStr player={player} />
+            <SplitMoneyEarnedOrLost player={player} />
         </>
     );
 }

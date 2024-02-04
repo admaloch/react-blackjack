@@ -7,6 +7,7 @@ import PlayerResultsHeader from './PlayerResultsHeader';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../../../store/store';
 import { delay } from '../../../../../../utils/Utility';
+import { beginSplitRound } from '../../../../../../store/game-data/GameDataSlice';
 
 export interface PlayerProps {
     player: PlayerInterface;
@@ -28,7 +29,7 @@ export default function PlayerHandResults({ player }: PlayerProps) {
     const changeToSplitHand = () => setShowSplitHand(true);
     const changeToMainHand = () => setShowSplitHand(false);
 
-    const { isSplitResultsActive, isInsuranceRoundComplete, isDealerCardRevealed, } = useSelector(
+    const { isSplitResultsActive, isInsuranceRoundComplete, isDealerCardRevealed, isRoundActive } = useSelector(
         (state: RootState) => state.gameData
     );
     const dealerObj = useSelector((state: RootState) => state.dealerObj);
@@ -40,87 +41,37 @@ export default function PlayerHandResults({ player }: PlayerProps) {
     useEffect(() => {
         async function splitHandChangeHandler() {
             if (player.splitHand.cards.length > 0 && isSplitResultsActive) {
-                await delay(1500);
+                await delay(1500)
                 changeToSplitHand();
             }
         }
         splitHandChangeHandler();
     }, [isSplitResultsActive, player]);
 
-    // useEffect(() => {
-    //     async function emphasizeInsuranceBetHand() {
 
-    //         if (!isInsuranceRoundComplete && isDealerCardRevealed && !isSplitResultsActive) {
-    //             if (!mainResults) {
-
-    //                 if (!isSplitResultsActive && player.insuranceBet !== 0) {
-    //                     await delay(1500);
-    //                     setPlayerClass('player-hand emphasize');
-    //                 } else if (player.insuranceBet === 0) {
-    //                     setPlayerClass('player-hand obscure-item');
-    //                 } else {
-    //                     setPlayerClass('player-hand');
-    //                 }
-    //             } else {
-    //                 if (player.insuranceBet !== 0) {
-    //                     await delay(4000)
-    //                     dealerSum === 21
-    //                         ? setPlayerClass('player-hand emphasize emphasize-win')
-    //                         : setPlayerClass('player-hand emphasize emphasize-lose')
-    //                 }
-    //             }
-    //         } else if (isSplitResultsActive) {
-    //             if (!splitResults) {
-    //                 if (player.splitHand.cards.length !== 0) {
-    //                     setPlayerClass('player-hand emphasize');
-    //                 } else if (player.splitHand.cards.length === 0) {
-    //                     setPlayerClass('player-hand obscure-item');
-    //                 } else {
-    //                     setPlayerClass('player-hand ');
-    //                 }
-    //             } else {
-    //                 if (splitResults === 'Won') {
-    //                     setPlayerClass('player-hand emphasize emphasize-win');
-    //                 } else if (splitResults === 'Lost') {
-    //                     setPlayerClass('player-hand emphasize emphasize-lose');
-    //                 }
-    //             }
-    //         }
-    //     }
-    //     emphasizeInsuranceBetHand();
-    // }, [dealerSum, isDealerCardRevealed, isInsuranceRoundComplete, isSplitResultsActive, player.insuranceBet, player.splitHand.cards.length, splitResults, updatePlayerClass, mainResults]);
-
-    // useEffect(()=>{
-    //     console.log(mainResults)
-    //     console.log(splitResults)
-    // }, [mainResults, splitResults])
 
     useEffect(() => {
         async function emphasizeInsuranceBetHand() {
-            if (!isInsuranceRoundComplete && isDealerCardRevealed) {
-                if (!isSplitResultsActive && player.insuranceBet !== 0) {
-                    await delay(1500);
+            if (isRoundActive && !isInsuranceRoundComplete && isDealerCardRevealed) {
+                await delay(1500);
+                if (player.insuranceBet !== 0) {
                     setPlayerClass('player-hand emphasize');
-                }
-                else if (!isSplitResultsActive && player.insuranceBet === 0) {
+                } else if (player.insuranceBet === 0) {
                     setPlayerClass('player-hand obscure-item');
-                } else {
-                    setPlayerClass('player-hand');
-
                 }
             }
         }
         emphasizeInsuranceBetHand();
-    }, [isInsuranceRoundComplete, isDealerCardRevealed, player.insuranceBet, isSplitResultsActive, player.splitHand.cards.length]);
+    }, [isInsuranceRoundComplete, isDealerCardRevealed, player.insuranceBet, isSplitResultsActive, player.splitHand.cards.length, isRoundActive]);
 
     useEffect(() => {
         async function changeInsuranceEmphasisColor() {
 
-            if (!isInsuranceRoundComplete && isDealerCardRevealed || isSplitResultsActive) {
+            if (isRoundActive && !isInsuranceRoundComplete && isDealerCardRevealed) {
                 await delay(4000);
-                if (!isSplitResultsActive && dealerSum === 21 && player.insuranceBet !== 0) {
+                if (dealerSum === 21 && player.insuranceBet !== 0) {
                     setPlayerClass('player-hand emphasize emphasize-win');
-                } else if (!isSplitResultsActive && dealerSum !== 21 && player.insuranceBet !== 0) {
+                } else if (dealerSum !== 21 && player.insuranceBet !== 0) {
                     setPlayerClass('player-hand emphasize emphasize-lose');
                 }
             } else {
@@ -128,35 +79,34 @@ export default function PlayerHandResults({ player }: PlayerProps) {
             }
         }
         changeInsuranceEmphasisColor();
-    }, [isInsuranceRoundComplete, isDealerCardRevealed, dealerSum, player.insuranceBet, isSplitResultsActive, player.splitHand.cards.length, splitResults]);
+    }, [isInsuranceRoundComplete, isDealerCardRevealed, dealerSum, player.insuranceBet, isSplitResultsActive, player.splitHand.cards.length, splitResults, isRoundActive]);
 
     useEffect(() => {
         async function emphasizeSplitBetHand() {
 
-            if (isSplitResultsActive) {
-
-                if (isSplitResultsActive && player.splitHand.cards.length !== 0) {
+            if (isRoundActive && isSplitResultsActive) {
+                await delay(1500)
+                if (player.splitHand.cards.length !== 0) {
                     updatePlayerClass('player-hand emphasize');
                 }
-                else if (isSplitResultsActive && player.splitHand.cards.length === 0) {
+                else if (player.splitHand.cards.length === 0) {
                     updatePlayerClass('player-hand obscure-item');
                 }
-            } else{
-               updatePlayerClass('player-hand'); 
-            } 
+            }
 
 
 
         }
         emphasizeSplitBetHand();
-    }, [isDealerCardRevealed, isInsuranceRoundComplete, isSplitResultsActive, player.insuranceBet, player.splitHand.cards.length, updatePlayerClass]);
+    }, [isDealerCardRevealed, isInsuranceRoundComplete, isSplitResultsActive, player.insuranceBet, player.splitHand.cards.length, updatePlayerClass, isRoundActive]);
 
     useEffect(() => {
         async function changeSplitEmphasisColor() {
-            if (isSplitResultsActive) {
+            if (isRoundActive && isSplitResultsActive) {
+
                 if (splitResults === 'Won') {
                     updatePlayerClass('player-hand emphasize emphasize-win');
-                } else if (isSplitResultsActive && splitResults === 'Lost') {
+                } else if (splitResults === 'Lost') {
                     updatePlayerClass('player-hand emphasize emphasize-lose');
                 }
             } else {
@@ -164,7 +114,9 @@ export default function PlayerHandResults({ player }: PlayerProps) {
             }
         }
         changeSplitEmphasisColor();
-    }, [isSplitResultsActive, splitResults, updatePlayerClass]);
+    }, [isSplitResultsActive, splitResults, updatePlayerClass, isRoundActive]);
+
+
 
     return (
         <div className={playerClass}>

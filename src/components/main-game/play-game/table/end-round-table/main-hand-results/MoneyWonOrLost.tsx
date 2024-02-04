@@ -1,13 +1,14 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { PlayerInterfaceProps } from "../../../../../../models/PlayerProps";
 import { useEffect } from "react";
 import { delay } from "../../../../../../utils/Utility";
 import { updatePlayer } from "../../../../../../store/player-arr/playersArrSlice";
 import { endRoundResults } from "../../../../../../store/game-data/GameDataSlice";
-import { current } from "@reduxjs/toolkit";
+import { RootState } from "../../../../../../store/store";
 
 export default function MoneyWonOrLost({ player }: PlayerInterfaceProps) {
     const dispatch = useDispatch()
+    const { isRoundActive } = useSelector((state: RootState) => state.gameData);
 
     useEffect(() => {
         async function updateHandsWithResults() {
@@ -16,7 +17,7 @@ export default function MoneyWonOrLost({ player }: PlayerInterfaceProps) {
             const { mainResults, isComplete } = roundResults
             const playerHasBJ = cardSum === 21 && cardUrlVals.length === 2 ? true : false
 
-            if (mainResults && !wonInsuranceRound && !isComplete) {
+            if (isRoundActive && mainResults && !wonInsuranceRound && !isComplete) {
                 await delay(2000)
                 let newBank = 0
                 if (mainResults === 'Won') newBank = playerHasBJ ? bank + (currBet * 2.5) : bank + (currBet * 2)
@@ -31,7 +32,7 @@ export default function MoneyWonOrLost({ player }: PlayerInterfaceProps) {
             }
         }
         updateHandsWithResults()
-    }, [dispatch, player])
+    }, [dispatch, player, isRoundActive])
 
     const { bank, beginningRoundBank, currBet } = player
     const { mainResults } = player.roundResults
@@ -45,7 +46,7 @@ export default function MoneyWonOrLost({ player }: PlayerInterfaceProps) {
 
     return (
         <>
-            {moneyWonOrLost !== '' && currBet === 0 &&
+            {moneyWonOrLost !== '' && isRoundActive &&
                 <p>{moneyWonOrLost}</p>
             }
         </>
