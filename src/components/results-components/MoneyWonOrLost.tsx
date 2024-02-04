@@ -1,20 +1,20 @@
 
-import {  PlayerInterfaceProps } from '../../models/PlayerProps';
+import { PlayerInterfaceProps } from '../../models/PlayerProps';
 
-export default function MoneyWonOrLost({player}: PlayerInterfaceProps) {
+export default function MoneyWonOrLost({ player }: PlayerInterfaceProps) {
 
     const { bank, beginningRoundBank } = player
-    const { splitResults } = player.roundResults
 
     let moneyWonOrLostStr: string = ''
-
-    if (splitResults === 'Won') {
+    if (bank > beginningRoundBank) {
         moneyWonOrLostStr = `Money earned: ${bank - beginningRoundBank}`
-    } else if (splitResults === 'Lost') {
+    } else if (bank < beginningRoundBank) {
         moneyWonOrLostStr = `Money lost: ${beginningRoundBank - bank}`
     } else {
-        moneyWonOrLostStr = ''
+        moneyWonOrLostStr = 'Broke even'
     }
+
+
 
     return (
         <p>{moneyWonOrLostStr}</p>

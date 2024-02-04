@@ -20,7 +20,7 @@ export default function SplitMoneyEarnedOrLost({ player }: PlayerInterfaceProps)
             const playerHasBJ = cardSum === 21 && cardUrlVals.length === 2 ? true : false
 
             if (isRoundActive && roundResults.splitResults) {
-                await delay(3000)
+                await delay(2000)
                 console.log('this ran')
                 let newBank = 0
                 if (splitResults === 'Won') newBank = playerHasBJ
@@ -37,7 +37,7 @@ export default function SplitMoneyEarnedOrLost({ player }: PlayerInterfaceProps)
         updateHandsWithResults()
     }, [dispatch, isRoundActive, player])
 
-    return ( !isRoundActive &&
-            <MoneyWonOrLost player={player} />
+    return (!isRoundActive &&
+        <MoneyWonOrLost player={player} />
     );
 }

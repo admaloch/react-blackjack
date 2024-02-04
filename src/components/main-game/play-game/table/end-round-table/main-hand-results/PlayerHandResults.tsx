@@ -7,7 +7,7 @@ import PlayerResultsHeader from './PlayerResultsHeader';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../../../store/store';
 import { delay } from '../../../../../../utils/Utility';
-import { beginSplitRound } from '../../../../../../store/game-data/GameDataSlice';
+
 
 export interface PlayerProps {
     player: PlayerInterface;
@@ -23,7 +23,7 @@ export default function PlayerHandResults({ player }: PlayerProps) {
     }, [setPlayerClass]);
 
     const { hand } = player
-    const { splitResults, mainResults } = player.roundResults
+    const { splitResults } = player.roundResults
     const { cardUrlVals } = hand
 
     const changeToSplitHand = () => setShowSplitHand(true);
@@ -138,7 +138,12 @@ export default function PlayerHandResults({ player }: PlayerProps) {
                 <SplitHandDetails
                     player={player}
                     updatePlayerClass={updatePlayerClass}
-                />}
+                />
+            }
+            {/* {!isRoundActive &&
+                < MoneyWonOrLost player={player} />
+            } */}
+
         </div>
     );
 }

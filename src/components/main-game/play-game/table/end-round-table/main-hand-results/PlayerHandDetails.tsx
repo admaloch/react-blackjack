@@ -1,9 +1,10 @@
 import { useSelector } from 'react-redux';
 import { PlayerInterface } from '../../../../../../models/PlayerProps'
 import { RootState } from '../../../../../../store/store';
-import FinalPlayerResult from './MainHandFinalRes';
 import Insurance from '../insurance/Insurance';
-import BjBustOrStay from '../../../../../bj-bust-stay/BjBustOrStay';
+import BjBustOrStay from '../../../../../results-components/BjBustOrStay';
+import WinOrLoseStr from './WinOrLoseStr';
+import EarningsOrLosses from './EarningsOrLosses';
 
 export interface PlayerProps {
     player: PlayerInterface;
@@ -25,8 +26,12 @@ export default function PlayerHandDetails({ player }: PlayerProps) {
             }
             <Insurance player={player} />
             <BjBustOrStay player={player} mainOrSplit='main' />
-            {!isDealerRoundActive &&
-                <FinalPlayerResult player={player} />}
+
+
+            <WinOrLoseStr player={player} />
+            <EarningsOrLosses player={player} />
+
+
         </>
     )
 }

@@ -11,8 +11,7 @@
     position: absolute;
     top: 1rem;
     left: 1rem;
-    opacity: 0;
-    transition: 1s ease-in-out all;
+
 }
 
 .player-results-table h4 {

@@ -3,7 +3,7 @@ import { RootState } from "../../../../../store/store";
 import './EndRoundTable.css'
 import PlayerHandResults from "./main-hand-results/PlayerHandResults";
 import { useEffect } from "react";
-import { beginSplitRound, endRoundResults, endSplitRound, updateIsRoundActive } from "../../../../../store/game-data/GameDataSlice";
+import { beginSplitRound, updateIsRoundActive } from "../../../../../store/game-data/GameDataSlice";
 import TableHeader from "./TableHeader";
 import { delay } from "../../../../../utils/Utility";
 
