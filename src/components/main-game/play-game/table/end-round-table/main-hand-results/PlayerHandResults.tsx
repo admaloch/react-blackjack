@@ -52,6 +52,7 @@ export default function PlayerHandResults({ player }: PlayerProps) {
 
     //         if (!isInsuranceRoundComplete && isDealerCardRevealed && !isSplitResultsActive) {
     //             if (!mainResults) {
+
     //                 if (!isSplitResultsActive && player.insuranceBet !== 0) {
     //                     await delay(1500);
     //                     setPlayerClass('player-hand emphasize');
@@ -74,6 +75,8 @@ export default function PlayerHandResults({ player }: PlayerProps) {
     //                     setPlayerClass('player-hand emphasize');
     //                 } else if (player.splitHand.cards.length === 0) {
     //                     setPlayerClass('player-hand obscure-item');
+    //                 } else {
+    //                     setPlayerClass('player-hand ');
     //                 }
     //             } else {
     //                 if (splitResults === 'Won') {
@@ -86,6 +89,11 @@ export default function PlayerHandResults({ player }: PlayerProps) {
     //     }
     //     emphasizeInsuranceBetHand();
     // }, [dealerSum, isDealerCardRevealed, isInsuranceRoundComplete, isSplitResultsActive, player.insuranceBet, player.splitHand.cards.length, splitResults, updatePlayerClass, mainResults]);
+
+    // useEffect(()=>{
+    //     console.log(mainResults)
+    //     console.log(splitResults)
+    // }, [mainResults, splitResults])
 
     useEffect(() => {
         async function emphasizeInsuranceBetHand() {

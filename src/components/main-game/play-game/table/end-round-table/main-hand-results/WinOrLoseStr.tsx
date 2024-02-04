@@ -14,29 +14,16 @@ export default function WinOrLoseStr({ player }: PlayerInterfaceProps) {
     const { mainResults } = roundResults
 
     useEffect(() => {
-        let isMounted = true; // Variable to track if the component is still mounted
-      
         async function updateWinOrLose() {
-          if (roundResults.mainResults === '') {
-            await delay(2000);
-      
-            // Check if the component is still mounted before updating state
-            if (isMounted) {
-              const winOrLoseStr = playerWonOrLostFunc(player, dealerObj, 'main');
-              const newRoundResults: RoundResultsProps = { ...roundResults, mainResults: winOrLoseStr };
-              dispatch(updatePlayer({ ...player, roundResults: newRoundResults }));
+            if (roundResults.mainResults === '') {
+                await delay(2000)
+                const winOrLoseStr = playerWonOrLostFunc(player, dealerObj, 'main')
+                const newRoundResults: RoundResultsProps = { ...roundResults, mainResults: winOrLoseStr }
+                dispatch(updatePlayer({ ...player, roundResults: newRoundResults }))
             }
-          }
         }
-      
-        updateWinOrLose();
-      
-        // Cleanup function
-        return () => {
-          isMounted = false; // Set to false when the component is unmounted
-        };
-      }, [dealerObj, dispatch, player, roundResults]);
-      
+        updateWinOrLose()
+    }, [dealerObj, dispatch, player, roundResults])
 
     let winOrLoseStr: string = ''
     if (mainResults === 'Won') winOrLoseStr = `${name} won!`
