@@ -16,41 +16,70 @@ export default function WinOrLoseSplit({ player }: PlayerInterfaceProps) {
     const { splitResults } = roundResults
 
     useEffect(() => {
+        let isMounted = true; // Variable to track if the component is still mounted
+      
         async function updateHandsWithResults() {
-            const { hand, bank, splitBet, roundResults } = player
-            const { cardSum, cardUrlVals } = hand
-            const { splitResults } = roundResults
-            const playerHasBJ = cardSum === 21 && cardUrlVals.length === 2 ? true : false
-
-            if (isSplitResultsActive && roundResults.splitResults !== '') {
-                await delay(1500)
-                let newBank = 0
-                if (splitResults === 'Won') newBank = playerHasBJ
-                    ? bank + (splitBet * 2.5)
-                    : bank + (splitBet * 2)
-                else if (splitResults === 'Push') newBank = bank + splitBet
-                else newBank = bank
-
-                const newRoundResObj = { ...roundResults, isComplete: true }
-                dispatch(updatePlayer({ ...player, bank: newBank, splitBet: 0, roundResults: newRoundResObj }))
-                // dispatch(endRoundResults())
+          const { hand, bank, splitBet, roundResults } = player;
+          const { cardSum, cardUrlVals } = hand;
+          const { splitResults } = roundResults;
+          const playerHasBJ = cardSum === 21 && cardUrlVals.length === 2;
+      
+          if (isSplitResultsActive && roundResults.splitResults !== '') {
+            await delay(1500);
+      
+            // Check if the component is still mounted before updating state
+            if (isMounted) {
+              let newBank = 0;
+      
+              if (splitResults === 'Won') {
+                newBank = playerHasBJ ? bank + (splitBet * 2.5) : bank + (splitBet * 2);
+              } else if (splitResults === 'Push') {
+                newBank = bank + splitBet;
+              } else {
+                newBank = bank;
+              }
+      
+              const newRoundResObj = { ...roundResults, isComplete: true };
+              dispatch(updatePlayer({ ...player, bank: newBank, splitBet: 0, roundResults: newRoundResObj }));
+              // dispatch(endRoundResults())
             }
+          }
         }
-        updateHandsWithResults()
-    }, [dispatch, isSplitResultsActive, player])
+      
+        updateHandsWithResults();
+      
+        // Cleanup function
+        return () => {
+          isMounted = false; // Set to false when the component is unmounted
+        };
+      }, [dispatch, isSplitResultsActive, player]);
+      
 
-    useEffect(() => {
+      useEffect(() => {
+        let isMounted = true; // Variable to track if the component is still mounted
+      
         async function updateWinOrLose() {
-            if (isSplitResultsActive && roundResults.splitResults === '') {
-                await delay(1500)
-                const winOrLoseStr = playerWonOrLostFunc(player, dealerObj, 'split')
-                console.log(winOrLoseStr)
-                const newRoundResults: RoundResultsProps = { ...roundResults, splitResults: winOrLoseStr }
-                dispatch(updatePlayer({ ...player, roundResults: newRoundResults }))
+          if (isSplitResultsActive && roundResults.splitResults === '') {
+            await delay(1500);
+      
+            // Check if the component is still mounted before updating state
+            if (isMounted) {
+              const winOrLoseStr = playerWonOrLostFunc(player, dealerObj, 'split');
+              console.log(winOrLoseStr);
+              const newRoundResults: RoundResultsProps = { ...roundResults, splitResults: winOrLoseStr };
+              dispatch(updatePlayer({ ...player, roundResults: newRoundResults }));
             }
+          }
         }
-        updateWinOrLose()
-    }, [dealerObj, dispatch, isSplitResultsActive, player, roundResults])
+      
+        updateWinOrLose();
+      
+        // Cleanup function
+        return () => {
+          isMounted = false; // Set to false when the component is unmounted
+        };
+      }, [dealerObj, dispatch, isSplitResultsActive, player, roundResults]);
+      
 
 
 

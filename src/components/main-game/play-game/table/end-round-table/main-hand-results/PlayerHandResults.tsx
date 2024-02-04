@@ -22,7 +22,7 @@ export default function PlayerHandResults({ player }: PlayerProps) {
     }, [setPlayerClass]);
 
     const { hand } = player
-    const { splitResults } = player.roundResults
+    const { splitResults, mainResults } = player.roundResults
     const { cardUrlVals } = hand
 
     const changeToSplitHand = () => setShowSplitHand(true);
@@ -36,6 +36,7 @@ export default function PlayerHandResults({ player }: PlayerProps) {
 
 
 
+
     useEffect(() => {
         async function splitHandChangeHandler() {
             if (player.splitHand.cards.length > 0 && isSplitResultsActive) {
@@ -46,38 +47,64 @@ export default function PlayerHandResults({ player }: PlayerProps) {
         splitHandChangeHandler();
     }, [isSplitResultsActive, player]);
 
+    // useEffect(() => {
+    //     async function emphasizeInsuranceBetHand() {
+
+    //         if (!isInsuranceRoundComplete && isDealerCardRevealed && !isSplitResultsActive) {
+    //             if (!mainResults) {
+    //                 if (!isSplitResultsActive && player.insuranceBet !== 0) {
+    //                     await delay(1500);
+    //                     setPlayerClass('player-hand emphasize');
+    //                 } else if (player.insuranceBet === 0) {
+    //                     setPlayerClass('player-hand obscure-item');
+    //                 } else {
+    //                     setPlayerClass('player-hand');
+    //                 }
+    //             } else {
+    //                 if (player.insuranceBet !== 0) {
+    //                     await delay(4000)
+    //                     dealerSum === 21
+    //                         ? setPlayerClass('player-hand emphasize emphasize-win')
+    //                         : setPlayerClass('player-hand emphasize emphasize-lose')
+    //                 }
+    //             }
+    //         } else if (isSplitResultsActive) {
+    //             if (!splitResults) {
+    //                 if (player.splitHand.cards.length !== 0) {
+    //                     setPlayerClass('player-hand emphasize');
+    //                 } else if (player.splitHand.cards.length === 0) {
+    //                     setPlayerClass('player-hand obscure-item');
+    //                 }
+    //             } else {
+    //                 if (splitResults === 'Won') {
+    //                     setPlayerClass('player-hand emphasize emphasize-win');
+    //                 } else if (splitResults === 'Lost') {
+    //                     setPlayerClass('player-hand emphasize emphasize-lose');
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     emphasizeInsuranceBetHand();
+    // }, [dealerSum, isDealerCardRevealed, isInsuranceRoundComplete, isSplitResultsActive, player.insuranceBet, player.splitHand.cards.length, splitResults, updatePlayerClass, mainResults]);
+
     useEffect(() => {
-        let isMounted = true; // Flag to track whether the component is mounted
-      
         async function emphasizeInsuranceBetHand() {
-          if (!isInsuranceRoundComplete && isDealerCardRevealed || isSplitResultsActive) {
-            if (!isSplitResultsActive && player.insuranceBet !== 0) {
-              await delay(1500);
-              // Check if the component is still mounted before updating state
-              if (isMounted) {
-                setPlayerClass('player-hand emphasize');
-              }
-            } else if (!isSplitResultsActive && player.insuranceBet === 0) {
-              // Check if the component is still mounted before updating state
-              if (isMounted) {
-                setPlayerClass('player-hand obscure-item');
-              }
+            if (!isInsuranceRoundComplete && isDealerCardRevealed || isSplitResultsActive) {
+                if (!isSplitResultsActive && player.insuranceBet !== 0) {
+                    await delay(1500);
+                    setPlayerClass('player-hand emphasize');
+                }
+                else if (!isSplitResultsActive && player.insuranceBet === 0) {
+                    setPlayerClass('player-hand obscure-item');
+                }
             }
-          }
         }
-      
         emphasizeInsuranceBetHand();
-      
-        // Cleanup function
-        return () => {
-          isMounted = false; // Set the flag to false when the component unmounts
-        };
-      }, [isInsuranceRoundComplete, isDealerCardRevealed, player.insuranceBet, isSplitResultsActive, player.splitHand.cards.length]);
-      
+    }, [isInsuranceRoundComplete, isDealerCardRevealed, player.insuranceBet, isSplitResultsActive, player.splitHand.cards.length]);
 
     useEffect(() => {
         async function changeInsuranceEmphasisColor() {
-            
+
             if (!isInsuranceRoundComplete && isDealerCardRevealed || isSplitResultsActive) {
                 await delay(4000);
                 if (!isSplitResultsActive && dealerSum === 21 && player.insuranceBet !== 0) {
@@ -96,11 +123,11 @@ export default function PlayerHandResults({ player }: PlayerProps) {
         async function emphasizeSplitBetHand() {
 
             if (isSplitResultsActive) {
-                
+
                 if (isSplitResultsActive && player.splitHand.cards.length !== 0) {
                     updatePlayerClass('player-hand emphasize');
                 }
-                if (isSplitResultsActive && player.splitHand.cards.length === 0) {
+                else if (isSplitResultsActive && player.splitHand.cards.length === 0) {
                     updatePlayerClass('player-hand obscure-item');
                 }
             } else{
