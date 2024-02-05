@@ -14,7 +14,6 @@ export default function SplitHandDetails({ player }: PlayerProps) {
     const { isComplete } = player.roundResults
     const { cardUrlVals, cardSum } = player.splitHand
 
-    const isBlackjack = cardSum === 21 && cardUrlVals.length === 2;
 
     return (
         <>
@@ -23,8 +22,6 @@ export default function SplitHandDetails({ player }: PlayerProps) {
             {splitBet !== 0 && <p>Split bet: {splitBet}</p>}
             {!isComplete && <p>Sum: {cardSum}</p>}
             <BjBustOrStay player={player} mainOrSplit='split' />
-            {isBlackjack && <p className="blackjack win-color">BlackJack!</p>}
-            {cardSum > 21 && <p className="lose-color">Bust!</p>}
             <SplitWinOrLoseStr player={player} />
             <SplitMoneyEarnedOrLost player={player} />
         </>

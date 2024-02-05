@@ -21,7 +21,7 @@
     flex-direction: row;
     justify-content: space-evenly;
     align-items: start;
-    margin-top: 5rem;
+    margin-top: 4.5rem;
 
 }
 
@@ -61,6 +61,12 @@
 
 .emphasize-lose {
     border: var(--bust) solid 1px;
+}
+.emphasize-lose {
+    border: var(--bust) solid 1px;
+}
+.emphasize-push {
+    border: var(--neutral) solid 1px;
 }
 
 

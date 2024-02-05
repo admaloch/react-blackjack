@@ -34,7 +34,7 @@ export default function SplitWinOrLoseStr({ player }: PlayerInterfaceProps) {
     let winOrLoseStr: string = ''
     if (splitResults === 'Won') winOrLoseStr = `${name} won!`
     else if (splitResults === 'Lost') winOrLoseStr = 'Dealer won!'
-    else if (splitResults === 'Push') winOrLoseStr = 'Dealer won!'
+    else if (splitResults === 'Push') winOrLoseStr = 'Push!'
     else winOrLoseStr = ''
 
 

@@ -24,11 +24,11 @@ export default function PlayerHandResults({ player }: PlayerProps) {
         setPlayerClass(str);
     }, [setPlayerClass]);
 
-    const { isSplitResultsActive, isInsuranceRoundComplete, isDealerCardRevealed, isDealerDrawing } = useSelector(
+    const { isSplitResultsActive, isInsuranceRoundComplete, isDealerCardRevealed, isDealerDrawing, isMainResultsActive } = useSelector(
         (state: RootState) => state.gameData
     );
-    const { hand } = player
-    const { splitResults } = player.roundResults
+    const { hand, wonInsuranceRound } = player
+    const { splitResults, mainResults } = player.roundResults
     const { cardUrlVals } = hand
     const dealerSum = useSelector((state: RootState) => state.dealerObj.hand.cardSum);
 
@@ -50,6 +50,24 @@ export default function PlayerHandResults({ player }: PlayerProps) {
                         setPlayerClass('player-hand emphasize emphasize-win');
                     } else if (dealerSum !== 21 && player.insuranceBet !== 0) {
                         setPlayerClass('player-hand emphasize emphasize-lose');
+                    }
+                } else if (isMainResultsActive) { //main results
+                    if (mainResults === '') {
+                        await delay(500);
+                        if (!wonInsuranceRound) {
+
+                            updatePlayerClass('player-hand emphasize');
+                        } else {
+                            updatePlayerClass('player-hand obscure-item');
+                        }
+                    } else if (mainResults !== '' && !wonInsuranceRound) {
+                        if (mainResults === 'Won') {
+                            updatePlayerClass('player-hand emphasize emphasize-win');
+                        } else if (mainResults === 'Lost') {
+                            updatePlayerClass('player-hand emphasize emphasize-lose');
+                        } else if (mainResults === 'Push') {
+                            updatePlayerClass('player-hand emphasize emphasize-push');
+                        } 
                     }
                 } else if (isSplitResultsActive) { // split win or loss
                     if (splitResults === '') {
@@ -76,7 +94,7 @@ export default function PlayerHandResults({ player }: PlayerProps) {
 
         return () => { isMounted = false; };
 
-    }, [dealerSum, isDealerCardRevealed, isDealerDrawing, isInsuranceRoundComplete, isSplitResultsActive, player.insuranceBet, player.splitHand.cards.length, splitResults, updatePlayerClass]);
+    }, [dealerSum, isDealerCardRevealed, isDealerDrawing, isInsuranceRoundComplete, isSplitResultsActive, player.insuranceBet, player.splitHand.cards.length, splitResults, updatePlayerClass, isMainResultsActive, mainResults, wonInsuranceRound]);
 
     return (
         <div className={playerClass}>

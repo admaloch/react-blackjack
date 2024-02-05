@@ -28,6 +28,7 @@ const DealerTable: React.FC = () => {
 
 
   // useEffect(() => {
+
   //   if (cardLength === 0 || cardLength === 1) {
   //     setTimeout(() => {
   //       dealerDraw();
@@ -46,20 +47,19 @@ const DealerTable: React.FC = () => {
   }, [playerHasInsurance, isDealerCardRevealed, dispatch, isInsuranceRoundComplete])
 
 
-  useEffect(() => {
-    console.log('is insurance round complete = ', isInsuranceRoundComplete)
-  }, [isInsuranceRoundComplete])
 
 
   useEffect(() => {
     let isMounted = true;
     async function mainDealerDrawRound() {
       if (isMounted) {
-        await delay(2000);
+        
         if (isDealerCardRevealed && cardSum < 17 && isInsuranceRoundComplete) {
+          await delay(2000);
           dispatch(beginDealerDrawing());
           dealerDraw();
         } else if (cardSum >= 17 && isInsuranceRoundComplete) {
+          await delay(3000);
           dispatch(endDealerRound());
         }
       }

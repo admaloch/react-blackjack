@@ -6,7 +6,7 @@ import { useEffect } from "react";
 export default function PlayerResults({ player }) {
   const dealerObj = useSelector((state: RootState) => state.dealerObj);
   const dealerCardSum = dealerObj.hand.cardSum
-  const { name, hand, splitBet, splitHand, wonInsuranceRound } = player
+  const { name, hand, splitHand, wonInsuranceRound } = player
   const { cardSum, cardUrlVals } = hand
 
   const playerHasBJ = cardSum === 21 && cardUrlVals.length === 2 ? true : false
