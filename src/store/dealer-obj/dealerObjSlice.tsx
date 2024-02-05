@@ -9,10 +9,10 @@ interface DealerState {
 const initialState: DealerObjInterface = {
     name: 'Dealer',
     hand: {
-        cards: ['10♦', 'A♥'],
-        cardUrlVals: ['10D', 'AH'],
-        cardNumVals: [10, 11],
-        cardSum: 21,
+        cards: ['3♦', 'A♥'],
+        cardUrlVals: ['3D', 'AH'],
+        cardNumVals: [3, 11],
+        cardSum: 14,
         isBlackjack: false,
     },
 }

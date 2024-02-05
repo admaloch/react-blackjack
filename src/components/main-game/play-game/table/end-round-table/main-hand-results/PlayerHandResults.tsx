@@ -29,7 +29,7 @@ export default function PlayerHandResults({ player }: PlayerProps) {
     const changeToSplitHand = () => setShowSplitHand(true);
     const changeToMainHand = () => setShowSplitHand(false);
 
-    const { isSplitResultsActive, isInsuranceRoundComplete, isDealerCardRevealed, isRoundActive } = useSelector(
+    const { isSplitResultsActive, isInsuranceRoundComplete, isDealerCardRevealed, isRoundActive, isMainResultsActive, isDealerDrawing } = useSelector(
         (state: RootState) => state.gameData
     );
     const dealerObj = useSelector((state: RootState) => state.dealerObj);
@@ -51,76 +51,54 @@ export default function PlayerHandResults({ player }: PlayerProps) {
 
 
     useEffect(() => {
-        async function emphasizeInsuranceBetHand() {
-            if (!isInsuranceRoundComplete && isRoundActive && isDealerCardRevealed) {
-                await delay(1500);
-                if (player.insuranceBet !== 0) {
-                    setPlayerClass('player-hand emphasize');
-                } else if (player.insuranceBet === 0) {
-                    setPlayerClass('player-hand obscure-item');
+        // use delays to emphasise player item then color red or green if they win or lose
+        let isMounted = true;
+        async function winOrLoseEmphasis() {
+            if (isMounted) {
+                // insurance win or loss
+                if (!isInsuranceRoundComplete && isDealerCardRevealed && !isDealerDrawing) {
+                    if (player.insuranceBet !== 0) {
+                        await delay(1500);
+                        setPlayerClass('player-hand emphasize');
+                    } else if (player.insuranceBet === 0) {
+                        setPlayerClass('player-hand obscure-item');
+                    }
+                    await delay(2500);
+                    if (dealerSum === 21 && player.insuranceBet !== 0) {
+                        setPlayerClass('player-hand emphasize emphasize-win');
+                    } else if (dealerSum !== 21 && player.insuranceBet !== 0) {
+                        setPlayerClass('player-hand emphasize emphasize-lose');
+                    }
+                } else if (isSplitResultsActive) { // split win or loss
+                    if (splitResults === '') {
+                        await delay(1500);
+                        if (player.splitHand.cards.length !== 0) {
+                            updatePlayerClass('player-hand emphasize');
+                        } else if (player.splitHand.cards.length === 0) {
+                            updatePlayerClass('player-hand obscure-item');
+                        }
+                    } else if (splitResults !== '') {
+                        if (splitResults === 'Won') {
+                            updatePlayerClass('player-hand emphasize emphasize-win');
+                        } else if (splitResults === 'Lost') {
+                            updatePlayerClass('player-hand emphasize emphasize-lose');
+                        }
+                    }
+                } else {
+                    updatePlayerClass('player-hand');
                 }
             }
-            if (isInsuranceRoundComplete) {
-                setPlayerClass('player-hand');
-
-            }
-
         }
-        emphasizeInsuranceBetHand();
-    }, [isInsuranceRoundComplete, isDealerCardRevealed, player.insuranceBet, isSplitResultsActive, player.splitHand.cards.length, isRoundActive]);
+        winOrLoseEmphasis();
+        return () => {
+            isMounted = false;
+        };
+    }, [dealerSum, isDealerCardRevealed, isDealerDrawing, isInsuranceRoundComplete, isSplitResultsActive, player.insuranceBet, player.splitHand.cards.length, splitResults, updatePlayerClass]);
 
     useEffect(() => {
-        async function changeInsuranceEmphasisColor() {
-
-            if (isRoundActive && !isInsuranceRoundComplete && isDealerCardRevealed) {
-                await delay(4000);
-                if (dealerSum === 21 && player.insuranceBet !== 0) {
-                    setPlayerClass('player-hand emphasize emphasize-win');
-                } else if (dealerSum !== 21 && player.insuranceBet !== 0) {
-                    setPlayerClass('player-hand emphasize emphasize-lose');
-                }
-            } else {
-                setPlayerClass('player-hand');
-            }
-        }
-        changeInsuranceEmphasisColor();
-    }, [isInsuranceRoundComplete, isDealerCardRevealed, dealerSum, player.insuranceBet, isSplitResultsActive, player.splitHand.cards.length, splitResults, isRoundActive]);
-
-    useEffect(() => {
-        async function emphasizeSplitBetHand() {
-
-            if (isRoundActive && isSplitResultsActive) {
-                await delay(1500)
-                if (player.splitHand.cards.length !== 0) {
-                    updatePlayerClass('player-hand emphasize');
-                }
-                else if (player.splitHand.cards.length === 0) {
-                    updatePlayerClass('player-hand obscure-item');
-                }
-            }
-
-
-
-        }
-        emphasizeSplitBetHand();
-    }, [isDealerCardRevealed, isInsuranceRoundComplete, isSplitResultsActive, player.insuranceBet, player.splitHand.cards.length, updatePlayerClass, isRoundActive]);
-
-    useEffect(() => {
-        async function changeSplitEmphasisColor() {
-            if (isRoundActive && isSplitResultsActive) {
-
-                if (splitResults === 'Won') {
-                    updatePlayerClass('player-hand emphasize emphasize-win');
-                } else if (splitResults === 'Lost') {
-                    updatePlayerClass('player-hand emphasize emphasize-lose');
-                }
-            } else {
-                updatePlayerClass('player-hand');
-            }
-        }
-        changeSplitEmphasisColor();
-    }, [isSplitResultsActive, splitResults, updatePlayerClass, isRoundActive]);
-
+        console.log(player)
+        console.log(dealerObj)
+    }, [player, dealerObj])
 
 
     return (
@@ -145,9 +123,6 @@ export default function PlayerHandResults({ player }: PlayerProps) {
                     updatePlayerClass={updatePlayerClass}
                 />
             }
-            {/* {!isRoundActive &&
-                < MoneyWonOrLost player={player} />
-            } */}
 
         </div>
     );

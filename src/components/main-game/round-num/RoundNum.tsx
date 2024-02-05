@@ -3,7 +3,7 @@ import { RootState } from "../../../store/store"
 import './RoundNum.css'
 import { delay } from "../../../utils/Utility";
 import { useNavigate } from "react-router";
-import { updateIsRoundActive } from "../../../store/game-data/GameDataSlice";
+import { beginNewRound } from "../../../store/game-data/GameDataSlice";
 
 export default function StartRound() {
     const dispatch = useDispatch()
@@ -12,7 +12,7 @@ export default function StartRound() {
 
     async function playGame() {
         await delay(1000)
-        dispatch(updateIsRoundActive())
+        dispatch(beginNewRound())
         navigate("/placeBets");
     }
     playGame()

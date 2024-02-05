@@ -5,7 +5,7 @@ import { RootState } from '../../../../../store/store';
 import Cards from '../../display-cards/Cards';
 import useDealerDrawCard from '../../../draw-cards-hook/useDealerDrawCard';
 import './DealerTable.css'
-import { beginDealerDrawing, endDealerRound } from '../../../../../store/game-data/GameDataSlice';
+import { beginDealerDrawing, beginInsuranceRound, endDealerRound, endInsuranceRound } from '../../../../../store/game-data/GameDataSlice';
 import HiddenCard from './HiddenCard';
 import { delay } from '../../../../../utils/Utility';
 import DealerDetails from './DealerDetails';
@@ -13,6 +13,7 @@ import { updateIsInsuranceRoundComplete } from '../../../../../store/game-data/G
 
 const DealerTable: React.FC = () => {
   const dealerObj = useSelector((state: RootState) => state.dealerObj);
+  const playersArr = useSelector((state: RootState) => state.playersArr);
   const { isInsuranceRoundComplete } = useSelector((state: RootState) => state.gameData);
   const { cards, cardSum } = dealerObj.hand
   const cardLength = cards.length
@@ -22,6 +23,9 @@ const DealerTable: React.FC = () => {
   // Use the same hook instance throughout the component
   const dealerDraw = useDealerDrawCard()
   const dispatch = useDispatch()
+
+  const playerHasInsurance = playersArr.some(x => x.insuranceBet !== 0)
+
 
   // useEffect(() => {
   //   if (cardLength === 0 || cardLength === 1) {
@@ -36,6 +40,16 @@ const DealerTable: React.FC = () => {
   //     dispatch(updateIsInsuranceRoundComplete())
   //   }
   // }, [isDealerCardRevealed, dealerObj.hand.cardNumVals, dispatch, cardLength])
+
+  useEffect(() => {
+    if (playerHasInsurance && isDealerCardRevealed) {
+      dispatch(beginInsuranceRound())
+    } else if (!isInsuranceRoundComplete && !playerHasInsurance) {
+      dispatch(endInsuranceRound())
+    }
+  }, [playerHasInsurance, isDealerCardRevealed, dispatch, isInsuranceRoundComplete])
+
+
 
 
 
