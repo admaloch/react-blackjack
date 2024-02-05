@@ -12,25 +12,29 @@ export default function EarningsOrLosses({ player }: PlayerInterfaceProps) {
     const { isRoundActive, isMainResultsActive } = useSelector((state: RootState) => state.gameData);
 
     useEffect(() => {
+        let isMounted = true
         async function updateHandsWithResults() {
-            const { hand, splitHand, wonInsuranceRound, bank, currBet, roundResults } = player
-            const { cardSum, cardUrlVals } = hand
-            const { mainResults, isComplete } = roundResults
-            const playerHasBJ = cardSum === 21 && cardUrlVals.length === 2 ? true : false
-
-            if (isMainResultsActive && mainResults && !wonInsuranceRound && !isComplete) {
-                await delay(2000)
-                let newBank = 0
-                if (mainResults === 'Won') newBank = playerHasBJ ? bank + (currBet * 2.5) : bank + (currBet * 2)
-                else if (mainResults === 'Push') newBank = bank + currBet
-                else newBank = bank
-                const isRoundComplete = splitHand.cards.length === 0 ? true : false
-                const newRoundResObj = { ...roundResults, isComplete: isRoundComplete }
-                dispatch(updatePlayer({ ...player, bank: newBank, currBet: 0, roundResults: newRoundResObj }))
-                dispatch(endRoundResults())
+            if (isMounted) {
+                const { hand, splitHand, wonInsuranceRound, bank, currBet, roundResults } = player
+                const { cardSum, cardUrlVals } = hand
+                const { mainResults, isComplete } = roundResults
+                const playerHasBJ = cardSum === 21 && cardUrlVals.length === 2 ? true : false
+                if (isMainResultsActive && mainResults && !wonInsuranceRound && !isComplete) {
+                    await delay(2000)
+                    let newBank = 0
+                    if (mainResults === 'Won') newBank = playerHasBJ ? bank + (currBet * 2.5) : bank + (currBet * 2)
+                    else if (mainResults === 'Push') newBank = bank + currBet
+                    else newBank = bank
+                    const isRoundComplete = splitHand.cards.length === 0 ? true : false
+                    const newRoundResObj = { ...roundResults, isComplete: isRoundComplete }
+                    dispatch(updatePlayer({ ...player, bank: newBank, currBet: 0, roundResults: newRoundResObj }))
+                    dispatch(endRoundResults())
+                }
             }
         }
         updateHandsWithResults()
+        return () => { isMounted = false }
+
     }, [dispatch, player, isRoundActive, isMainResultsActive])
 
 
