@@ -26,12 +26,14 @@ export default function AddPlayers() {
 
             {playerDataArr.length > 0 &&
                 <div className="start-game-btn">
-                    <button
-                        onClick={btnHandler}
-                        className="game-btn"
-                    >
-                        <NavLink to="/playGame">Start Game</NavLink>
-                    </button>
+                    <NavLink to="/playGame">
+                        <button
+                            onClick={btnHandler}
+                            className="game-btn"
+                        >
+                            Start Game
+                        </button>
+                    </NavLink>
                 </div>
             }
         </div>

@@ -91,9 +91,7 @@ export default function PlayerHandResults({ player }: PlayerProps) {
             }
         }
         winOrLoseEmphasis();
-
         return () => { isMounted = false; };
-
     }, [dealerSum, isDealerCardRevealed, isDealerDrawing, isInsuranceRoundComplete, isSplitResultsActive, player.insuranceBet, player.splitHand.cards.length, splitResults, updatePlayerClass, isMainResultsActive, mainResults, wonInsuranceRound]);
 
     return (

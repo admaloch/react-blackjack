@@ -17,19 +17,21 @@ export default function PlayerBets() {
     const navigate = useNavigate();
 
     const playersArr = useSelector((state: RootState) => state.playersArr);
+
     const [currPlayerIndex, setCurrPlayerIndex] = useState(0);
     const [isBetValid, setIsBetValid] = useState(false);
+    const player = playersArr[currPlayerIndex]
 
     useEffect(() => {
-        if (playersArr[currPlayerIndex].currBet > playersArr[currPlayerIndex].minBet) {
+        if (player.currBet >= player.minBet) {
             setIsBetValid(true);
         } else {
             setIsBetValid(false);
         }
-    }, [playersArr, currPlayerIndex]);
+    }, [player]);
 
     const nextPlayerHandler = () => {
-        dispatch(updatePlayer({ ...playersArr[currPlayerIndex], minBet: playersArr[currPlayerIndex].currBet }));
+        dispatch(updatePlayer({ ...player, minBet: player.currBet }));
         if (playersArr.length - 1 !== currPlayerIndex) {
             setCurrPlayerIndex((prevIndex) => (prevIndex + 1) % playersArr.length);
         } else {
@@ -38,14 +40,22 @@ export default function PlayerBets() {
         }
     };
 
+   
+
+
+    useEffect(() => {
+        console.log(player)
+    }, [player])
+
     return (
         <div className='game-container place-bets'>
+
             <div className="bet-container">
                 {isBetValid && <ResetBetsBtn currPlayerIndex={currPlayerIndex} />}
-                <h4>Place Bet: {playersArr[currPlayerIndex].name}</h4>
-                <h5>Current Bank: {`$${playersArr[currPlayerIndex].bank}`}</h5>
-                <h5>Min bit: {`$${playersArr[currPlayerIndex].minBet}`}</h5>
-                <h5>Current Bet: {`$${playersArr[currPlayerIndex].currBet}`}</h5>
+                <h4>Place Bet: {player.name}</h4>
+                <h5>Current Bank: {`$${player.bank}`}</h5>
+                <h5>Min bit: {`$${player.minBet}`}</h5>
+                <h5>Current Bet: {`$${player.currBet}`}</h5>
                 <Tokens currPlayerIndex={currPlayerIndex} />
                 <PlaceBetBtn isBetValid={isBetValid} nextPlayerHandler={nextPlayerHandler} />
             </div>

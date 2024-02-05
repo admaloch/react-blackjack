@@ -12,7 +12,7 @@ export interface PlayerProps {
 
 export default function PlayerHandDetails({ player }: PlayerProps) {
 
-    const { isDealerRoundActive, isSplitResultsActive, isRoundActive } = useSelector((state: RootState) => state.gameData);
+    const { isSplitResultsActive, isRoundActive } = useSelector((state: RootState) => state.gameData);
 
     const { hand, bank, currBet } = player
     const { cardSum } = hand

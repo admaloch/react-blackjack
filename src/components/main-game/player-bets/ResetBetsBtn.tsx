@@ -13,11 +13,13 @@ export default function ResetBetsBtn({ currPlayerIndex }: ResetBetsBtnProps) {
 
     const dispatch = useDispatch();
     const playersArr = useSelector((state: RootState) => state.playersArr);
+    const player = playersArr[currPlayerIndex]
 
     const resetHandler = () => {
-        const updatedBank = playersArr[currPlayerIndex].bank + playersArr[currPlayerIndex].currBet
-        const updatedTokens = updatePlayerTokens(updatedBank)
-        dispatch(updatePlayer({ ...playersArr[currPlayerIndex], bank: updatedBank, currBet: 0, currTokens: updatedTokens }));
+        const currBank = player.bank + player.currBet - player.minBet
+        
+        const updatedTokens = updatePlayerTokens(currBank)
+        dispatch(updatePlayer({ ...player, bank: currBank, currBet: player.minBet, currTokens: updatedTokens }));
     };
 
     return (

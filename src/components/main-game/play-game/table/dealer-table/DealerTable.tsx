@@ -12,6 +12,7 @@ import DealerDetails from './DealerDetails';
 import { updateIsInsuranceRoundComplete } from '../../../../../store/game-data/GameDataSlice';
 
 const DealerTable: React.FC = () => {
+
   const dealerObj = useSelector((state: RootState) => state.dealerObj);
   const playersArr = useSelector((state: RootState) => state.playersArr);
   const { isInsuranceRoundComplete } = useSelector((state: RootState) => state.gameData);
@@ -27,14 +28,21 @@ const DealerTable: React.FC = () => {
   const playerHasInsurance = playersArr.some(x => x.insuranceBet !== 0)
 
 
-  // useEffect(() => {
 
-  //   if (cardLength === 0 || cardLength === 1) {
-  //     setTimeout(() => {
-  //       dealerDraw();
-  //     }, 300);
-  //   }
-  // }, [cards, dealerDraw]);
+
+  useEffect(() => {
+    let isMounted = true
+    async function initDealerDraw() {
+      if (isMounted) {
+        if (cardLength === 0 || cardLength === 1) {
+          await delay(300)
+          dealerDraw();
+        }
+      }
+    }
+    initDealerDraw()
+    return () => { isMounted = false }
+  }, [cards, dealerDraw, cardLength]);
 
 
 
@@ -53,7 +61,7 @@ const DealerTable: React.FC = () => {
     let isMounted = true;
     async function mainDealerDrawRound() {
       if (isMounted) {
-        
+
         if (isDealerCardRevealed && cardSum < 17 && isInsuranceRoundComplete) {
           await delay(2000);
           dispatch(beginDealerDrawing());

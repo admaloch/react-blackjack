@@ -21,12 +21,17 @@ export default function WinOrLoseStr({ player }: PlayerInterfaceProps) {
                     await delay(2000)
                     const winOrLoseStr = playerWonOrLostFunc(player, dealerObj, 'main')
                     const newRoundResults: RoundResultsProps = { ...roundResults, mainResults: winOrLoseStr }
-                    dispatch(updatePlayer({ ...player, roundResults: newRoundResults }))
+                    const isRoundWonChanged = winOrLoseStr === 'Won' ? player.roundsWon + 1 : player.roundsWon
+                    dispatch(updatePlayer({
+                        ...player,
+                        roundResults: newRoundResults,
+                        roundsWon: isRoundWonChanged,
+                    }))
                 }
             }
         }
         updateWinOrLose()
-        return  () => {isMounted = false}
+        return () => { isMounted = false }
     }, [dealerObj, dispatch, player, roundResults, isRoundActive, isMainResultsActive])
 
     let winOrLoseStr: string = ''
@@ -35,13 +40,7 @@ export default function WinOrLoseStr({ player }: PlayerInterfaceProps) {
     else if (mainResults === 'Push') winOrLoseStr = 'Push!'
     else winOrLoseStr = ""
 
-
-    return (
-        <>
-            {winOrLoseStr !== '' &&
-                <p>{winOrLoseStr}</p>
-            }
-        </>
-
+    return (winOrLoseStr !== '' &&
+        <p>{winOrLoseStr}</p>
     )
 }

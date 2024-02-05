@@ -18,8 +18,8 @@ interface GameDataProps {
 const initialState: GameDataProps = {
   roundsPlayed: 1,
   isGameActive: false,
-  isMenuShown: true,
-  isPlayerStatsShown: true,
+  isMenuShown: false,
+  isPlayerStatsShown: false,
   isPlayerRoundActive: false,
   isDealerCardRevealed: false,
   isDealerDrawing: false,
@@ -34,7 +34,7 @@ const deckSlice = createSlice({
   name: 'game-data',
   initialState,
   reducers: {
-    updateRoundsPlayed: (state) => {
+    increaseRoundsPlayed: (state) => {
       state.roundsPlayed += 1;
     },
     updateIsGameActive: (state) => {
@@ -100,6 +100,6 @@ const deckSlice = createSlice({
   },
 })
 
-export const { updateRoundsPlayed, updateIsGameActive, updateIsMenuShown, updateIsPlayerStatsShown, updateIsDealerCardRevealed, updateIsInsuranceRoundComplete, beginPlayerRound, endPlayerRound, beginDealerRound, endDealerRound, endRoundResults, beginSplitRound, beginDealerDrawing, endSplitRound, beginNewRound, endCurrentRound, beginInsuranceRound, endInsuranceRound } = deckSlice.actions
+export const { increaseRoundsPlayed, updateIsGameActive, updateIsMenuShown, updateIsPlayerStatsShown, updateIsDealerCardRevealed, updateIsInsuranceRoundComplete, beginPlayerRound, endPlayerRound, beginDealerRound, endDealerRound, endRoundResults, beginSplitRound, beginDealerDrawing, endSplitRound, beginNewRound, endCurrentRound, beginInsuranceRound, endInsuranceRound } = deckSlice.actions
 
 export default deckSlice.reducer

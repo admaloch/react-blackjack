@@ -23,7 +23,12 @@ export default function SplitWinOrLoseStr({ player }: PlayerInterfaceProps) {
                     await delay(1500)
                     const winOrLoseStr = playerWonOrLostFunc(player, dealerObj, 'split')
                     const newRoundResults: RoundResultsProps = { ...roundResults, splitResults: winOrLoseStr }
-                    dispatch(updatePlayer({ ...player, roundResults: newRoundResults }))
+                    const isRoundWonChanged = winOrLoseStr === 'Won' ? player.roundsWon + 1 : player.roundsWon
+                    dispatch(updatePlayer({
+                        ...player,
+                        roundResults: newRoundResults,
+                        roundsWon: isRoundWonChanged,
+                    }))
                 }
             }
         }
