@@ -4,8 +4,9 @@ import './EndRoundTable.css'
 import PlayerHandResults from "./main-hand-results/PlayerHandResults";
 import { useEffect } from "react";
 import { beginSplitRound, endCurrentRound } from "../../../../../store/game-data/GameDataSlice";
-import TableHeader from "./TableHeader";
+import TableHeader from "./table-header/TableHeader";
 import { delay } from "../../../../../utils/Utility";
+import NextRoundBtn from "./final-results/NextRoundBtn";
 
 export default function EndRoundTable() {
 
@@ -13,10 +14,6 @@ export default function EndRoundTable() {
     const { isMainResultsActive, isDealerRoundActive, isSplitResultsActive, isRoundActive } = useSelector((state: RootState) => state.gameData);
     const dispatch = useDispatch()
     const isPlayersSplit = playersArr.some(x => x.splitHand.cards.length > 0)
-
-    const { isInsuranceRoundComplete, isDealerDrawing } = useSelector(
-        (state: RootState) => state.gameData
-    );
 
     useEffect(() => {
         async function splitOrEnd() {
@@ -32,20 +29,9 @@ export default function EndRoundTable() {
         splitOrEnd()
     }, [isDealerRoundActive, isSplitResultsActive, dispatch, isPlayersSplit, isMainResultsActive, isRoundActive])
 
-    useEffect(() => {
-        // isRoundActive && console.log('isRoundActive is', isRoundActive)
-        // console.log('isInsuranceRoundComplete is', isInsuranceRoundComplete)
-        isRoundActive && console.log('isDealerDrawing is', isDealerDrawing)
-        // isRoundActive && console.log('isMainResultsActive is', isMainResultsActive)
-        // isRoundActive && console.log('isSplitResultsActive is', isSplitResultsActive)
-    }, [isInsuranceRoundComplete, isDealerDrawing, isMainResultsActive, isSplitResultsActive, isRoundActive])
-
     return (
         <div className="player-results-table">
-            {isRoundActive &&
-                <TableHeader />
-            }
-
+            <TableHeader />
             <div className="player-hand-results">
                 {playersArr.map(player => (
                     <PlayerHandResults
@@ -54,6 +40,7 @@ export default function EndRoundTable() {
                     />
                 ))}
             </div>
+            {!isRoundActive && <NextRoundBtn />}
         </div>
     )
 }

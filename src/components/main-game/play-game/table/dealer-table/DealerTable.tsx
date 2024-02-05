@@ -46,7 +46,9 @@ const DealerTable: React.FC = () => {
   }, [playerHasInsurance, isDealerCardRevealed, dispatch, isInsuranceRoundComplete])
 
 
-
+  useEffect(() => {
+    console.log('is insurance round complete = ', isInsuranceRoundComplete)
+  }, [isInsuranceRoundComplete])
 
 
   useEffect(() => {

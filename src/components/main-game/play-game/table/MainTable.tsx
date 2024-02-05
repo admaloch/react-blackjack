@@ -22,6 +22,7 @@ export default function MainTable({ playerIndex, makeCurrPlayerFinished }: MainT
                 />
             }
             {!isPlayerRoundActive && <EndRoundTable />}
+
         </div>
     )
 }
