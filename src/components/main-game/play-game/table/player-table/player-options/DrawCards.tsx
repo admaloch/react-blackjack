@@ -32,9 +32,7 @@ export default function DrawCards({ playerIndex }: PlayerIndexProps) {
         <div
             onClick={drawCardsHandler}
             className={drawCardClass}>
-            <div className="plus-icon">
-                <AddCircleOutlineIcon />
-            </div>
+            
             <DrawCardsIconWithPopper placement="top" />
         </div>
     )

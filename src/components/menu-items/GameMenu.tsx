@@ -1,5 +1,5 @@
-import './GameMenu.css'
-import PlayerStats from './PlayerStats'
+import './GameMenu.css';
+import PlayerStats from './PlayerStats';
 import QuitGame from './QuitGame';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
@@ -9,8 +9,14 @@ export default function GameMenu() {
 
     return (
         <div className="game-menu">
-            {isPlayerStatsShown && <PlayerStats />}
-            <QuitGame />
+            <div className="menu-container">
+                 <h3>Blackjack</h3>
+            <div className="menu-icons">
+                {isPlayerStatsShown && <PlayerStats />}
+                <QuitGame />
+            </div>
+            </div>
+           
         </div>
-    )
+    );
 }

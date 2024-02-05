@@ -2,7 +2,7 @@
     width: 80%;
     height: 80vh;
     border: var(--text) solid 2px;
-
+    background-color: var(--table-background);
     border-radius: 5px;
 }
 
@@ -17,19 +17,19 @@
 
 .dealer-table,
 .player-table {
-height: 50%;
-    
+    height: 50%;
+
     width: 100%;
     position: relative;
-    
+
 
 }
 
 
 
 .player-table {
-
-    /* padding-top: 2.5rem; */
+    border-top: var(--text) solid 2px;
+    padding-top: 2.5rem;
 }
 
 .player-table svg {
@@ -40,7 +40,6 @@ height: 50%;
 .player-table .icon-wrapper {
     position: absolute;
     display: flex;
-    border: yellow solid 1px;
     right: 0;
     top: 0;
 
@@ -144,9 +143,11 @@ height: 50%;
 }
 
 .current-options {
+    width: 100%;
     position: absolute;
     top: 0rem;
     display: flex;
+    justify-content: center;
     justify-content: center;
 
 }

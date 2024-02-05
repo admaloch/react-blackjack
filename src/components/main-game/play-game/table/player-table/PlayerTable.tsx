@@ -43,7 +43,7 @@ function PlayerTable({ playerIndex, makeCurrPlayerFinished }: PlayerTableProps) 
                 playerIndex={playerIndex}
             />
             <div className="player-header">
-                <h4>{name}&nbsp;</h4>
+                <h2>{name}&nbsp;</h2>
                 {splitBet > 0 &&
                     <h4> split: {handText}</h4>
                 }
