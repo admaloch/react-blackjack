@@ -9,20 +9,24 @@ import playerWonOrLostFunc from "../../../../../../utils/playerWonOrLostFunc";
 export default function WinOrLoseStr({ player }: PlayerInterfaceProps) {
     const dispatch = useDispatch()
     const dealerObj = useSelector((state: RootState) => state.dealerObj);
-    const { isSplitResultsActive, isRoundActive, isMainResultsActive } = useSelector((state: RootState) => state.gameData);
+    const { isRoundActive, isMainResultsActive } = useSelector((state: RootState) => state.gameData);
     const { roundResults, name } = player
     const { mainResults } = roundResults
 
     useEffect(() => {
+        let isMounted = true
         async function updateWinOrLose() {
-            if (isMainResultsActive && isRoundActive && roundResults.mainResults === '') {
-                await delay(2000)
-                const winOrLoseStr = playerWonOrLostFunc(player, dealerObj, 'main')
-                const newRoundResults: RoundResultsProps = { ...roundResults, mainResults: winOrLoseStr }
-                dispatch(updatePlayer({ ...player, roundResults: newRoundResults }))
+            if (isMounted) {
+                if (isMainResultsActive && isRoundActive && roundResults.mainResults === '') {
+                    await delay(2000)
+                    const winOrLoseStr = playerWonOrLostFunc(player, dealerObj, 'main')
+                    const newRoundResults: RoundResultsProps = { ...roundResults, mainResults: winOrLoseStr }
+                    dispatch(updatePlayer({ ...player, roundResults: newRoundResults }))
+                }
             }
         }
         updateWinOrLose()
+        return  () => {isMounted = false}
     }, [dealerObj, dispatch, player, roundResults, isRoundActive, isMainResultsActive])
 
     let winOrLoseStr: string = ''

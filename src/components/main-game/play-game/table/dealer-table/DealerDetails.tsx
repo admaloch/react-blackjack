@@ -21,33 +21,32 @@ export default function DealerDetails() {
 
 
     useEffect(() => {
+        let isMounted = true;
         async function showBlackJack() {
-            await delay(1000)
-            cardSum === 21 && cardUrlVals.length === 2 && isDealerCardRevealed
-                && setShowDealerData((prevDataState) => {
-                    return { ...prevDataState, isBlackjack: true }
-                })
-
-        }
-        showBlackJack()
-    }, [isDealerCardRevealed, cardUrlVals, cardSum])
-
-    useEffect(() => {
-        async function showIsInsuranceEval() {
-
-            if (isDealerRoundActive) {
-                await delay(1500)
-                isDealerCardRevealed && isPlayerInsured
-                    ? setShowDealerData((prevDataState) => {
-                        return { ...prevDataState, isInsuranceEval: true }
-                    })
-                    : setShowDealerData((prevDataState) => {
-                        return { ...prevDataState, isInsuranceEval: false }
-                    })
+            if (isMounted) {
+                await delay(1000);
+                cardSum === 21 && cardUrlVals.length === 2 && isDealerCardRevealed
+                    && setShowDealerData((prevDataState) => ({ ...prevDataState, isBlackjack: true }));
             }
         }
-        showIsInsuranceEval()
-    }, [isPlayerInsured, isDealerCardRevealed, isDealerRoundActive])
+        showBlackJack();
+        return () => { isMounted = false };
+    }, [isDealerCardRevealed, cardUrlVals, cardSum]);
+
+    useEffect(() => {
+        let isMounted = true;
+        async function showIsInsuranceEval() {
+            if (isMounted && isDealerRoundActive) {
+                await delay(1500);
+                isDealerCardRevealed && isPlayerInsured
+                    ? setShowDealerData((prevDataState) => ({ ...prevDataState, isInsuranceEval: true }))
+                    : setShowDealerData((prevDataState) => ({ ...prevDataState, isInsuranceEval: false }));
+            }
+        }
+        showIsInsuranceEval();
+        return () => { isMounted = false };
+    }, [isPlayerInsured, isDealerCardRevealed, isDealerRoundActive]);
+
 
     let dealerHeaderText: string | JSX.Element = name;
     if (!isDealerRoundActive && showDealerData.isBlackjack) {

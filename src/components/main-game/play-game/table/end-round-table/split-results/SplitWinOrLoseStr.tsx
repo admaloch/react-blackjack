@@ -16,15 +16,19 @@ export default function SplitWinOrLoseStr({ player }: PlayerInterfaceProps) {
     const { splitResults } = roundResults
 
     useEffect(() => {
+        let isMounted = true
         async function updateWinOrLose() {
-            if (isRoundActive && roundResults.splitResults === '') {
-                await delay(1500)
-                const winOrLoseStr = playerWonOrLostFunc(player, dealerObj, 'split')
-                const newRoundResults: RoundResultsProps = { ...roundResults, splitResults: winOrLoseStr }
-                dispatch(updatePlayer({ ...player, roundResults: newRoundResults }))
+            if (isMounted) {
+                if (isRoundActive && roundResults.splitResults === '') {
+                    await delay(1500)
+                    const winOrLoseStr = playerWonOrLostFunc(player, dealerObj, 'split')
+                    const newRoundResults: RoundResultsProps = { ...roundResults, splitResults: winOrLoseStr }
+                    dispatch(updatePlayer({ ...player, roundResults: newRoundResults }))
+                }
             }
         }
         updateWinOrLose()
+        return () => { isMounted = false }
     }, [dealerObj, dispatch, isSplitResultsActive, player, roundResults, isRoundActive])
 
     let winOrLoseStr: string = ''
@@ -35,6 +39,6 @@ export default function SplitWinOrLoseStr({ player }: PlayerInterfaceProps) {
 
 
     return winOrLoseStr && (
-       <p>{winOrLoseStr}</p>
+        <p>{winOrLoseStr}</p>
     );
 }

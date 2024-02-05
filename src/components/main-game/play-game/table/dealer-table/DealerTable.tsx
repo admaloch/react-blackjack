@@ -35,11 +35,7 @@ const DealerTable: React.FC = () => {
   //   }
   // }, [cards, dealerDraw]);
 
-  // useEffect(() => {
-  //   if (isDealerCardRevealed && dealerObj.hand.cardNumVals[1] === 11) {
-  //     dispatch(updateIsInsuranceRoundComplete())
-  //   }
-  // }, [isDealerCardRevealed, dealerObj.hand.cardNumVals, dispatch, cardLength])
+
 
   useEffect(() => {
     if (playerHasInsurance && isDealerCardRevealed) {
@@ -54,17 +50,22 @@ const DealerTable: React.FC = () => {
 
 
   useEffect(() => {
+    let isMounted = true;
     async function mainDealerDrawRound() {
-      await delay(2000)
-      if (isDealerCardRevealed && cardSum < 17 && isInsuranceRoundComplete) {
-        dispatch(beginDealerDrawing())
-        dealerDraw();
-      } else if (cardSum >= 17 && isInsuranceRoundComplete) {
-        dispatch(endDealerRound())
+      if (isMounted) {
+        await delay(2000);
+        if (isDealerCardRevealed && cardSum < 17 && isInsuranceRoundComplete) {
+          dispatch(beginDealerDrawing());
+          dealerDraw();
+        } else if (cardSum >= 17 && isInsuranceRoundComplete) {
+          dispatch(endDealerRound());
+        }
       }
     }
-    mainDealerDrawRound()
+    mainDealerDrawRound();
+    return () => { isMounted = false };
   }, [cardSum, dealerDraw, isDealerCardRevealed, isInsuranceRoundComplete, isDealerRoundActive, dispatch]);
+
 
 
 

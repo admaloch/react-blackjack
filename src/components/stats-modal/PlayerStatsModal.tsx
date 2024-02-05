@@ -15,7 +15,7 @@ export default function PlayerStatsModal({ closeModal, open }: PlayerStatsProps)
     const currRound = useSelector((state: RootState) => state.gameData.roundsPlayed);
 
     const closeModalHandler = async () => {
-       await delay(200)
+        await delay(200)
         closeModal()
     }
 

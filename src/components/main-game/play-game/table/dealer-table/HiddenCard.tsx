@@ -16,13 +16,17 @@ export default function HiddenCard() {
     const { cards } = dealerObj.hand
 
     useEffect(() => {
+        let isMounted = true
         async function showCardsFunc() {
-            if (!isPlayerRoundActive && cards.length === 2) {
-                await delay(1500)
-                dispatch(updateIsDealerCardRevealed())
+            if (isMounted) {
+                if (!isPlayerRoundActive && cards.length === 2) {
+                    await delay(1500)
+                    dispatch(updateIsDealerCardRevealed())
+                }
             }
         }
         showCardsFunc()
+        return ()=>{isMounted = false}
     }, [isPlayerRoundActive, cards, dispatch]);
 
     const hiddenCardClass = isDealerCardRevealed ? 'hidden-card hide-card' : 'hidden-card'
