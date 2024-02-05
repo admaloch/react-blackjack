@@ -47,12 +47,15 @@ const DealerTable: React.FC = () => {
 
 
   useEffect(() => {
-    if (playerHasInsurance && isDealerCardRevealed) {
-      dispatch(beginInsuranceRound())
-    } else if (!isInsuranceRoundComplete && !playerHasInsurance) {
-      dispatch(endInsuranceRound())
+    if (isDealerRoundActive) {
+      if (playerHasInsurance && isDealerCardRevealed) {
+        dispatch(beginInsuranceRound())
+      } else if (!isInsuranceRoundComplete && !playerHasInsurance) {
+        dispatch(endInsuranceRound())
+      }
     }
-  }, [playerHasInsurance, isDealerCardRevealed, dispatch, isInsuranceRoundComplete])
+
+  }, [playerHasInsurance, isDealerCardRevealed, dispatch, isInsuranceRoundComplete, isDealerRoundActive])
 
 
 
@@ -61,15 +64,18 @@ const DealerTable: React.FC = () => {
     let isMounted = true;
     async function mainDealerDrawRound() {
       if (isMounted) {
-
-        if (isDealerCardRevealed && cardSum < 17 && isInsuranceRoundComplete) {
-          await delay(2000);
-          dispatch(beginDealerDrawing());
-          dealerDraw();
-        } else if (cardSum >= 17 && isInsuranceRoundComplete) {
-          await delay(3000);
-          dispatch(endDealerRound());
+        if (isDealerRoundActive) {
+          if (isDealerCardRevealed && cardSum < 17 && isInsuranceRoundComplete) {
+            await delay(2000);
+            dispatch(beginDealerDrawing());
+            dealerDraw();
+          } else if (cardSum >= 17 && isInsuranceRoundComplete) {
+            await delay(3000);
+            dispatch(endDealerRound());
+          }
         }
+
+
       }
     }
     mainDealerDrawRound();

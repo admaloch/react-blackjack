@@ -43,9 +43,7 @@ export default function PlayerBets() {
    
 
 
-    useEffect(() => {
-        console.log(player)
-    }, [player])
+ 
 
     return (
         <div className='game-container place-bets'>

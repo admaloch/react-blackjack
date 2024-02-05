@@ -14,7 +14,7 @@ interface PlayerTableProps {
 }
 
 function PlayerTable({ playerIndex, makeCurrPlayerFinished }: PlayerTableProps) {
-
+    const gameData = useSelector((state: RootState) => state.gameData);
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const dealerObj = useSelector((state: RootState) => state.dealerObj);
     const { hand, splitHand, splitBet, name } = playersArr[playerIndex]
@@ -31,6 +31,10 @@ function PlayerTable({ playerIndex, makeCurrPlayerFinished }: PlayerTableProps) 
     }, [hand, dealerObj, playerDraw]);
 
     const handText = splitHand.cards.length === 1 ? '1st hand' : '2nd hand'
+
+    useEffect(() => {
+        console.log(gameData)
+    }, [gameData])
 
     return (
         <div className="player-table">

@@ -10,7 +10,7 @@ interface MainTableProps {
 }
 
 export default function MainTable({ playerIndex, makeCurrPlayerFinished }: MainTableProps) {
-    const { isPlayerRoundActive } = useSelector((state: RootState) => state.gameData);
+    const { isPlayerRoundActive, isDealerRoundActive } = useSelector((state: RootState) => state.gameData);
 
     return (
         <div className="table">
@@ -21,7 +21,7 @@ export default function MainTable({ playerIndex, makeCurrPlayerFinished }: MainT
                     makeCurrPlayerFinished={makeCurrPlayerFinished}
                 />
             }
-            {!isPlayerRoundActive && <EndRoundTable />}
+            {isDealerRoundActive && <EndRoundTable />}
 
         </div>
     )

@@ -3,7 +3,75 @@ import { PlayerInterface } from "../../models/PlayerProps";
 
 // const initialState: PlayerInterface[] = [];
 // clubs (♣), diamonds (♦), hearts (♥), and spades (♠).x
-const initialState: PlayerInterface[] = []
+const initialState = [
+    {
+        name: 'Dave',
+        hand: {
+            cards: [],
+            cardUrlVals: [],
+            cardNumVals: [],
+            cardSum: 0,
+            isBlackjack: true,
+        },
+        splitHand: {
+            cards: [],
+            cardUrlVals: [],
+            cardNumVals: [],
+            cardSum: 0,
+            isBlackjack: false,
+        },
+        bank: 800,
+        beginningRoundBank: 1000,
+        currBet: 100,
+        minBet: 100,
+        insuranceBet: 0,
+        wonInsuranceRound: false,
+        splitBet: 0,
+        isPlayerSplit: false,
+        isDoubleDown: false,
+        roundResults: {
+            mainResults: '',
+            splitResults: '',
+            isComplete: false,
+        },
+        playerLeftTable: false,
+        currTokens: [1, 5, 25, 50, 100, 500],
+        roundsWon: 0,
+    }, {
+        name: 'James',
+        hand: {
+            cards: [],
+            cardUrlVals: [],
+            cardNumVals: [],
+            cardSum: 0,
+            isBlackjack: false,
+        },
+        splitHand: {
+            cards: [],
+            cardUrlVals: [],
+            cardNumVals: [],
+            cardSum: 0,
+            isBlackjack: false,
+        },
+        bank: 800,
+        beginningRoundBank: 1000,
+        currBet: 200,
+        minBet: 200,
+        insuranceBet: 0,
+        wonInsuranceRound: false,
+        splitBet: 0,
+        isPlayerSplit: false,
+        isDoubleDown: false,
+        roundResults: {
+            mainResults: '',
+            splitResults: '',
+            isComplete: false,
+        },
+        playerLeftTable: false,
+        currTokens: [1, 5, 25, 50, 100, 500],
+        roundsWon: 0,
+    }
+]
 
 interface PlayerNameProps {
     name: string;

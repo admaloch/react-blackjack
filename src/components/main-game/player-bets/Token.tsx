@@ -17,7 +17,7 @@ export default function Token({ number, currPlayerIndex }: TokenProps) {
         const updatedBet = playersArr[currPlayerIndex].currBet + input
         const updatedBank = playersArr[currPlayerIndex].bank - input
         const updatedTokens = updatePlayerTokens(updatedBank)
-        dispatch(updatePlayer({ ...playersArr[currPlayerIndex], currBet: updatedBet, bank: updatedBank, currTokens: updatedTokens }));
+        dispatch(updatePlayer({ ...playersArr[currPlayerIndex], currBet: updatedBet, bank: updatedBank, beginningRoundBank: updatedBank, currTokens: updatedTokens }));
     };
     const tokenId = `token${number}`
 
