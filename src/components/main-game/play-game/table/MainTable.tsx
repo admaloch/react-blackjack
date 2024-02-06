@@ -3,6 +3,7 @@ import PlayerTable from './player-table/PlayerTable'
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../store/store';
 import EndRoundTable from './end-round-table/EndRoundTable';
+import { useEffect } from 'react';
 
 interface MainTableProps {
     playerIndex: number;
@@ -10,7 +11,20 @@ interface MainTableProps {
 }
 
 export default function MainTable({ playerIndex, makeCurrPlayerFinished }: MainTableProps) {
-    const { isPlayerRoundActive, isDealerRoundActive } = useSelector((state: RootState) => state.gameData);
+    const { isPlayerRoundActive } = useSelector((state: RootState) => state.gameData);
+    const gameData = useSelector((state: RootState) => state.gameData);
+
+    const playersArr = useSelector((state: RootState) => state.playersArr);
+
+    const player = playersArr[playerIndex]
+
+
+    useEffect(() => {
+        if (player) {
+            console.log(`${player.name}`, player)
+        }
+
+    }, [player])
 
     return (
         <div className="table">
@@ -21,7 +35,7 @@ export default function MainTable({ playerIndex, makeCurrPlayerFinished }: MainT
                     makeCurrPlayerFinished={makeCurrPlayerFinished}
                 />
             }
-            {isDealerRoundActive && <EndRoundTable />}
+            {!isPlayerRoundActive && <EndRoundTable />}
 
         </div>
     )

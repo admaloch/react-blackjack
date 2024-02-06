@@ -32,9 +32,7 @@ function PlayerTable({ playerIndex, makeCurrPlayerFinished }: PlayerTableProps) 
 
     const handText = splitHand.cards.length === 1 ? '1st hand' : '2nd hand'
 
-    useEffect(() => {
-        console.log(gameData)
-    }, [gameData])
+
 
     return (
         <div className="player-table">
@@ -45,7 +43,7 @@ function PlayerTable({ playerIndex, makeCurrPlayerFinished }: PlayerTableProps) 
             <div className="player-header">
                 <h2>{name}&nbsp;</h2>
                 {splitBet > 0 &&
-                    <h4> split: {handText}</h4>
+                    <h2> split: {handText}</h2>
                 }
             </div>
 

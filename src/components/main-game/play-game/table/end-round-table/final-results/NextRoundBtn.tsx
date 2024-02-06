@@ -4,11 +4,12 @@ import './NextRoundBtn.css';
 import { updateAllPlayers } from '../../../../../../store/player-arr/playersArrSlice';
 import { PlayerInterface } from '../../../../../../models/PlayerProps';
 import { delay } from '../../../../../../utils/Utility';
-import { increaseRoundsPlayed } from '../../../../../../store/game-data/GameDataSlice';
+import { increaseRoundsPlayed, updateGameObj } from '../../../../../../store/game-data/GameDataSlice';
 import { useNavigate } from 'react-router';
 
 export default function NextRoundBtn() {
     const { roundsPlayed } = useSelector((state: RootState) => state.gameData);
+    const gameData = useSelector((state: RootState) => state.gameData);
     const playersArr = useSelector((state: RootState) => state.playersArr);
 
     const dispatch = useDispatch();
@@ -16,7 +17,15 @@ export default function NextRoundBtn() {
 
     const endGameHandler = async () => {
         await delay(300)
-        dispatch(increaseRoundsPlayed());
+        dispatch(updateGameObj(
+            {
+                ...gameData,
+                roundsPlayed: gameData.roundsPlayed + 1,
+                isDealerCardRevealed: false,
+                isInsuranceRoundComplete: false,
+                isRoundActive: true,
+            }
+        ));
         const updatedPlayersArr = playersArr.map((player: PlayerInterface) => {
             return {
                 ...player,

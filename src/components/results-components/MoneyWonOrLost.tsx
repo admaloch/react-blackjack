@@ -7,9 +7,9 @@ export default function MoneyWonOrLost({ player }: PlayerInterfaceProps) {
 
     let moneyWonOrLostStr: string = ''
     if (bank > beginningRoundBank) {
-        moneyWonOrLostStr = `Money earned: ${bank - beginningRoundBank}`
+        moneyWonOrLostStr = `Money earned: $${bank - beginningRoundBank}`
     } else if (bank < beginningRoundBank) {
-        moneyWonOrLostStr = `Money lost: ${beginningRoundBank - bank}`
+        moneyWonOrLostStr = `Money lost: $${beginningRoundBank - bank}`
     } else {
         moneyWonOrLostStr = 'Broke even'
     }

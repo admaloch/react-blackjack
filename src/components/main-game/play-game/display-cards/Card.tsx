@@ -8,6 +8,8 @@ interface CardProp {
 const Card: React.FC<CardProp> = ({ cardUrlVal }) => {
   const imagePath = `/src/assets/card-images/${cardUrlVal}.png`;
 
+  
+
 
   return (
     <div className="player-card">

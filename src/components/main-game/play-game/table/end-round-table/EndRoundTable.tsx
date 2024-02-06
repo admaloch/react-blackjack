@@ -11,7 +11,9 @@ import NextRoundBtn from "./final-results/NextRoundBtn";
 export default function EndRoundTable() {
 
     const playersArr = useSelector((state: RootState) => state.playersArr);
+
     const { isMainResultsActive, isDealerRoundActive, isSplitResultsActive, isRoundActive } = useSelector((state: RootState) => state.gameData);
+   
     const dispatch = useDispatch()
     const isPlayersSplit = playersArr.some(x => x.splitHand.cards.length > 0)
 
@@ -28,6 +30,8 @@ export default function EndRoundTable() {
         }
         splitOrEnd()
     }, [isDealerRoundActive, isSplitResultsActive, dispatch, isPlayersSplit, isMainResultsActive, isRoundActive])
+
+
 
     return (
         <div className="player-results-table">

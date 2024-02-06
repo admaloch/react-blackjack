@@ -17,10 +17,12 @@ export default function SplitHandDetails({ player }: PlayerProps) {
 
     return (
         <>
+        
             <PlayerHand cardUrlVals={cardUrlVals} />
+            <p>Sum: {cardSum}</p>
             <p>Bank: {bank}</p>
             {splitBet !== 0 && <p>Split bet: {splitBet}</p>}
-            {!isComplete && <p>Sum: {cardSum}</p>}
+            
             <BjBustOrStay player={player} mainOrSplit='split' />
             <SplitWinOrLoseStr player={player} />
             <SplitMoneyEarnedOrLost player={player} />

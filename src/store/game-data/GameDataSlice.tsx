@@ -34,6 +34,9 @@ const deckSlice = createSlice({
   name: 'game-data',
   initialState,
   reducers: {
+    updateGameObj: (_, action) => {
+      return action.payload;
+    },
     increaseRoundsPlayed: (state) => {
       state.roundsPlayed += 1;
     },
@@ -49,20 +52,20 @@ const deckSlice = createSlice({
     updateIsDealerCardRevealed: (state) => {
       state.isDealerCardRevealed = !state.isDealerCardRevealed;
     },
-  
-  
+
+
 
     beginDealerDrawing: (state) => {
-      return {...state, isDealerDrawing: true}
+      return { ...state, isDealerDrawing: true }
     },
     beginNewRound: (state) => {
-      return {...state, isRoundActive: true}
+      return { ...state, isRoundActive: true }
     },
     endCurrentRound: (state) => {
-      return {...state, isRoundActive: false}
+      return { ...state, isRoundActive: false }
     },
 
-  
+
 
     beginPlayerRound: (state) => {
       return { ...state, isPlayerRoundActive: true }
@@ -85,8 +88,8 @@ const deckSlice = createSlice({
     endSplitRound: (state) => {
       return { ...state, isSplitResultsActive: false }
     },
-    
-   
+
+
 
     updateIsInsuranceRoundComplete: (state) => {
       state.isInsuranceRoundComplete = !state.isInsuranceRoundComplete;
@@ -100,6 +103,6 @@ const deckSlice = createSlice({
   },
 })
 
-export const { increaseRoundsPlayed, updateIsGameActive, updateIsMenuShown, updateIsPlayerStatsShown, updateIsDealerCardRevealed, updateIsInsuranceRoundComplete, beginPlayerRound, endPlayerRound, beginDealerRound, endDealerRound, endRoundResults, beginSplitRound, beginDealerDrawing, endSplitRound, beginNewRound, endCurrentRound, beginInsuranceRound, endInsuranceRound } = deckSlice.actions
+export const { increaseRoundsPlayed, updateIsGameActive, updateIsMenuShown, updateIsPlayerStatsShown, updateIsDealerCardRevealed, updateIsInsuranceRoundComplete, beginPlayerRound, endPlayerRound, beginDealerRound, endDealerRound, endRoundResults, beginSplitRound, beginDealerDrawing, endSplitRound, beginNewRound, endCurrentRound, beginInsuranceRound, endInsuranceRound, updateGameObj } = deckSlice.actions
 
 export default deckSlice.reducer

@@ -12,12 +12,20 @@ interface TokenProps {
 export default function Token({ number, currPlayerIndex }: TokenProps) {
     const dispatch = useDispatch();
     const playersArr = useSelector((state: RootState) => state.playersArr);
+    const player = playersArr[currPlayerIndex]
+    const { currBet, bank } = player
+
+
+
 
     const tokenClickHandler = (input: number) => {
-        const updatedBet = playersArr[currPlayerIndex].currBet + input
-        const updatedBank = playersArr[currPlayerIndex].bank - input
-        const updatedTokens = updatePlayerTokens(updatedBank)
-        dispatch(updatePlayer({ ...playersArr[currPlayerIndex], currBet: updatedBet, bank: updatedBank, beginningRoundBank: updatedBank, currTokens: updatedTokens }));
+        dispatch(updatePlayer({
+            ...player,
+            currBet: currBet + input,
+            bank: bank - input,
+            beginningRoundBank: bank - input,
+            currTokens: updatePlayerTokens(bank - input)
+        }));
     };
     const tokenId = `token${number}`
 

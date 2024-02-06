@@ -19,11 +19,12 @@ export default function PlayerHandDetails({ player }: PlayerProps) {
 
     return (
         <>
+        <p>Sum: {cardSum}</p>
             <p>Bank: {bank}</p>
             {currBet !== 0 && <p>Bet: {currBet}</p>}
-            {!isSplitResultsActive && isRoundActive &&
-                <p>Sum: {cardSum}</p>
-            }
+           
+                
+           
             <Insurance player={player} />
             <BjBustOrStay player={player} mainOrSplit='main' />
 
