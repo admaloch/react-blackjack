@@ -26,10 +26,12 @@ export default function HiddenCard() {
             }
         }
         showCardsFunc()
-        return ()=>{isMounted = false}
+        return () => { isMounted = false }
     }, [isPlayerRoundActive, cards, dispatch]);
 
-    const hiddenCardClass = isDealerCardRevealed ? 'hidden-card hide-card' : 'hidden-card'
+    const hiddenCardClass = isDealerCardRevealed
+        ? 'back-of-card hide-card '
+        : 'back-of-card reveal-card'
 
     return (
         <img className={hiddenCardClass} src={backOfCardImg} alt="Back of Card" />
