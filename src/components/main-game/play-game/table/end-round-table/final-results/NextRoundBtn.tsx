@@ -54,6 +54,7 @@ export default function NextRoundBtn() {
                     splitResults: '',
                     isComplete: false,
                 },
+                beginningRoundBank: player.bank,
             };
         });
 

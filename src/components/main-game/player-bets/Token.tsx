@@ -23,7 +23,6 @@ export default function Token({ number, currPlayerIndex }: TokenProps) {
             ...player,
             currBet: currBet + input,
             bank: bank - input,
-            beginningRoundBank: bank - input,
             currTokens: updatePlayerTokens(bank - input)
         }));
     };

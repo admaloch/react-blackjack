@@ -24,17 +24,22 @@ export default function ResultsModal({ playerIndex, isCurrPlayerFinished, makeCu
             if (!isPlayerSplit || isPlayerSplit && splitHand.cards.length > 1) {
                 changeToNextPlayer()
             }
-            if (isPlayerSplit) handleSplitRoundResults()
+            handleSplitRoundResults()
             makeCurrPlayerNotFinished()
-        } else {
+            
+        }else if (splitHand.cards.length === 1){
+            handleSplitRoundResults()
+        }
+         else {
+            handleSplitRoundResults()
             dispatch(beginDealerRound())
         }
     };
 
     const handleSplitRoundResults = () => {
-        const updateMainHand = { ...hand }
-        const updateSplitHand = { ...splitHand }
-        dispatch(updatePlayer({ ...playersArr[playerIndex], hand: updateSplitHand, splitHand: updateMainHand, isDoubleDown: false }));
+        const updatedSplitHand = { ...hand }
+        const updatedMainHand = { ...splitHand }
+        dispatch(updatePlayer({ ...playersArr[playerIndex], hand: updatedMainHand, splitHand: updatedSplitHand, isDoubleDown: false }));
     }
 
     return (
