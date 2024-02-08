@@ -5,18 +5,19 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 
 export default function GameMenu() {
-    const isPlayerStatsShown = useSelector((state: RootState) => state.gameData.isPlayerStatsShown);
-
+    const gameData = useSelector((state: RootState) => state.gameData);
+    const { isPlayerStatsShown, roundsPlayed } = gameData
     return (
         <div className="game-menu">
             <div className="menu-container">
-                 <h3>Blackjack</h3>
-            <div className="menu-icons">
-                {isPlayerStatsShown && <PlayerStats />}
-                <QuitGame />
+                <h2>Blackjack</h2>
+                <h3>Round {roundsPlayed}</h3>
+                <div className="menu-icons">
+                    {isPlayerStatsShown && <PlayerStats />}
+                    <QuitGame />
+                </div>
             </div>
-            </div>
-           
+
         </div>
     );
 }

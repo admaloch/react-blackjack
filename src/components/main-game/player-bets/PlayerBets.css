@@ -79,9 +79,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* border: var(--text) solid 5px;
-    border-radius: 5px; */
-    padding: 3rem;
+    border: var(--text) solid 2px;
+    border-radius: 5px;
+    padding: 5rem 3rem 3rem 3rem;
 }
 
 
@@ -100,7 +100,7 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: .5rem;
+    top: 2rem;
 }
 
 .reset-tokens svg {

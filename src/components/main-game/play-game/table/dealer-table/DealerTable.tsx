@@ -9,7 +9,6 @@ import { beginDealerDrawing, beginInsuranceRound, endDealerRound, endInsuranceRo
 import HiddenCard from './HiddenCard';
 import { delay } from '../../../../../utils/Utility';
 import DealerDetails from './DealerDetails';
-import { updateIsInsuranceRoundComplete } from '../../../../../store/game-data/GameDataSlice';
 
 const DealerTable: React.FC = () => {
 
@@ -18,8 +17,8 @@ const DealerTable: React.FC = () => {
   const { isInsuranceRoundComplete } = useSelector((state: RootState) => state.gameData);
   const { cards, cardSum } = dealerObj.hand
   const cardLength = cards.length
-  const { isPlayerRoundActive, isDealerCardRevealed, isDealerRoundActive } = useSelector((state: RootState) => state.gameData);
-  const [isCardRevealed, setIsCardRevealed] = useState(false)
+  const {  isDealerCardRevealed, isDealerRoundActive } = useSelector((state: RootState) => state.gameData);
+  const [ setIsCardRevealed] = useState(false)
   const revealCard = () => setIsCardRevealed(true)
   // Use the same hook instance throughout the component
   const dealerDraw = useDealerDrawCard()
