@@ -1,15 +1,23 @@
 import { NavLink } from 'react-router-dom';
 import './GameIntro.css';
-import { useDispatch } from 'react-redux';
-import { updateIsGameActive, updateIsMenuShown } from '../../store/game-data/GameDataSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateGameObj} from '../../store/game-data/GameDataSlice';
+import { RootState } from '../../store/store';
 
 export default function GameIntro() {
+  const gameData = useSelector((state: RootState) => state.gameData);
 
   const dispatch = useDispatch();
 
   const btnHandler = () => {
-    dispatch(updateIsGameActive());
-    dispatch(updateIsMenuShown());
+    dispatch(updateGameObj(
+      {
+        ...gameData,
+        isGameActive: true,
+        isAddPlayersRound: true,
+        isGameIntro: false,
+      }
+    ))
   }
 
   return (

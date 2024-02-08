@@ -8,16 +8,15 @@ import Tokens from './Tokens';
 import PlaceBetBtn from './PlaceBetBtn';
 import ResetBetsBtn from './ResetBetsBtn';
 import { useNavigate } from "react-router";
-import { beginPlayerRound } from '../../../store/game-data/GameDataSlice';
+import { updateGameObj } from '../../../store/game-data/GameDataSlice';
 
 
 export default function PlayerBets() {
 
+    const gameData = useSelector((state: RootState) => state.gameData);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
     const playersArr = useSelector((state: RootState) => state.playersArr);
-
     const [currPlayerIndex, setCurrPlayerIndex] = useState(0);
     const [isBetValid, setIsBetValid] = useState(false);
     const player = playersArr[currPlayerIndex]
@@ -35,19 +34,20 @@ export default function PlayerBets() {
         if (playersArr.length - 1 !== currPlayerIndex) {
             setCurrPlayerIndex((prevIndex) => (prevIndex + 1) % playersArr.length);
         } else {
-            dispatch(beginPlayerRound())
+            dispatch(updateGameObj(
+                {
+                    ...gameData,
+                    isBetRoundActive: false,
+                    isPlayerRoundActive: true,
+                    isRoundActive: true
+                }
+            ))
             navigate("/startRound");
         }
     };
 
-   
-
-
- 
-
     return (
         <div className='game-container place-bets'>
-
             <div className="bet-container">
                 {isBetValid && <ResetBetsBtn currPlayerIndex={currPlayerIndex} />}
                 <h4>Place Bet: {player.name}</h4>

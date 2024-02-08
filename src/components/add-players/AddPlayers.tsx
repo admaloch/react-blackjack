@@ -6,13 +6,22 @@ import PlayerList from "./PlayerList"
 import { NavLink } from "react-router-dom";
 
 import { useDispatch } from 'react-redux';
-import { updateIsPlayerStatsShown } from '../../store/game-data/GameDataSlice';
+import { updateGameObj, updateIsPlayerStatsShown } from '../../store/game-data/GameDataSlice';
 
 
 export default function AddPlayers() {
+
+    const gameData = useSelector((state: RootState) => state.gameData);
+
     const dispatch = useDispatch();
     const btnHandler = () => {
-        dispatch(updateIsPlayerStatsShown());
+        dispatch(updateGameObj(
+            {
+                ...gameData,
+                isAddPlayersRound: false,
+                isBetRoundActive: true,
+            }
+        ))
     }
     const playerDataArr = useSelector((state: RootState) => state.playersArr);
 

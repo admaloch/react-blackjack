@@ -3,8 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 interface GameDataProps {
   roundsPlayed: number;
   isGameActive: boolean;
-  isMenuShown: boolean;
-  isPlayerStatsShown: boolean;
+  isGameIntro: boolean;
+  isBetRoundActive: boolean;
+  isAddPlayersRound: boolean;
   isPlayerRoundActive: boolean;
   isDealerRoundActive: boolean;
   isDealerCardRevealed: boolean;
@@ -18,8 +19,9 @@ interface GameDataProps {
 const initialState: GameDataProps = {
   roundsPlayed: 1,
   isGameActive: false,
-  isMenuShown: false,
-  isPlayerStatsShown: false,
+  isGameIntro: true,
+  isAddPlayersRound: false,
+  isBetRoundActive: false,
   isPlayerRoundActive: false,
   isDealerCardRevealed: false,
   isDealerDrawing: false,
@@ -43,12 +45,8 @@ const deckSlice = createSlice({
     updateIsGameActive: (state) => {
       state.isGameActive = !state.isGameActive;
     },
-    updateIsMenuShown: (state) => {
-      state.isMenuShown = !state.isMenuShown;
-    },
-    updateIsPlayerStatsShown: (state) => {
-      state.isPlayerStatsShown = !state.isPlayerStatsShown;
-    },
+
+
     updateIsDealerCardRevealed: (state) => {
       state.isDealerCardRevealed = !state.isDealerCardRevealed;
     },
@@ -103,6 +101,6 @@ const deckSlice = createSlice({
   },
 })
 
-export const { increaseRoundsPlayed, updateIsGameActive, updateIsMenuShown, updateIsPlayerStatsShown, updateIsDealerCardRevealed, updateIsInsuranceRoundComplete, beginPlayerRound, endPlayerRound, beginDealerRound, endDealerRound, endRoundResults, beginSplitRound, beginDealerDrawing, endSplitRound, beginNewRound, endCurrentRound, beginInsuranceRound, endInsuranceRound, updateGameObj } = deckSlice.actions
+export const { increaseRoundsPlayed, updateIsGameActive, updateIsDealerCardRevealed, updateIsInsuranceRoundComplete, beginPlayerRound, endPlayerRound, beginDealerRound, endDealerRound, endRoundResults, beginSplitRound, beginDealerDrawing, endSplitRound, beginNewRound, endCurrentRound, beginInsuranceRound, endInsuranceRound, updateGameObj } = deckSlice.actions
 
 export default deckSlice.reducer

@@ -15,13 +15,13 @@ import FinalResults from './components/final-results/FinalResults'
 function App() {
 
 
-  const isMenuShown = useSelector((state: RootState) => state.gameData.isMenuShown);
+  const isGameIntro = useSelector((state: RootState) => state.gameData.isGameIntro);
 
   return (
     <>
       <CssBaseline />
 
-      {isMenuShown && <GameMenu />}
+      {!isGameIntro && <GameMenu />}
       <Routes>
         {/* <Route path='/' element={<GameIntro />} /> */}
         <Route path='/' element={<GameIntro />} />

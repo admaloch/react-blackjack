@@ -14,7 +14,6 @@ export default function QuitGame() {
   const quitGameHandler = () => {
     dispatch(addInactivePlayers(playersArr))
     dispatch(resetPlayersArr())
-    dispatch(updateIsMenuShown());
     navigate("/finalResults");
   };
 
