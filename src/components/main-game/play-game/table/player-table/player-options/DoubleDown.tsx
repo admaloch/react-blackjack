@@ -12,9 +12,7 @@ export default function DoubleDown({ playerIndex }: PlayerIndexProps) {
     const playerDraw = usePlayerDrawCard(playerIndex)
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const currPlayer = playersArr[playerIndex]
-    const { hand, isDoubleDown } = currPlayer
-
-
+    const { hand, isDoubleDown, currBet, bank } = currPlayer
 
     useEffect(() => {
         if (isDoubleDown && hand.cards.length === 2) {
@@ -24,9 +22,11 @@ export default function DoubleDown({ playerIndex }: PlayerIndexProps) {
         }
     }, [isDoubleDown, hand, playerDraw])
 
+    const isDoubleDownPossible = currBet < bank
+
     return (
         <div className="player-btn-container">
-            {hand.cards.length === 2 &&
+            {hand.cards.length === 2 && isDoubleDownPossible &&
                 <DoubleDownBtn playerIndex={playerIndex} />
             }
         </div>

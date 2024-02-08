@@ -47,9 +47,13 @@ export default function NextRoundBtn() {
                 currBet: player.minBet <= player.bank
                     ? player.minBet
                     : 5,
+                minBet: player.minBet <= player.bank
+                    ? player.minBet
+                    : 5,
                 bank: player.minBet <= player.bank
                     ? player.bank - player.minBet
                     : player.bank - 5,
+
                 insuranceBet: 0,
                 wonInsuranceRound: false,
                 splitBet: 0,
