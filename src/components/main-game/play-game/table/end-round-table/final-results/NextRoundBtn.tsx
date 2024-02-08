@@ -6,6 +6,7 @@ import { PlayerInterface } from '../../../../../../models/PlayerProps';
 import { delay } from '../../../../../../utils/Utility';
 import { increaseRoundsPlayed, updateGameObj } from '../../../../../../store/game-data/GameDataSlice';
 import { useNavigate } from 'react-router';
+import { resetDealer } from '../../../../../../store/dealer-obj/dealerObjSlice';
 
 export default function NextRoundBtn() {
     const { roundsPlayed } = useSelector((state: RootState) => state.gameData);
@@ -23,9 +24,9 @@ export default function NextRoundBtn() {
                 roundsPlayed: gameData.roundsPlayed + 1,
                 isDealerCardRevealed: false,
                 isInsuranceRoundComplete: false,
-                isRoundActive: true,
             }
         ));
+
         const updatedPlayersArr = playersArr.map((player: PlayerInterface) => {
             return {
                 ...player,
@@ -43,7 +44,12 @@ export default function NextRoundBtn() {
                     cardSum: 0,
                     isBlackjack: false,
                 },
-                currBet: player.minBet <= player.bank ? player.minBet : 5,
+                currBet: player.minBet <= player.bank
+                    ? player.minBet
+                    : 5,
+                bank: player.minBet <= player.bank
+                    ? player.bank - player.minBet
+                    : player.bank - 5,
                 insuranceBet: 0,
                 wonInsuranceRound: false,
                 splitBet: 0,
@@ -60,6 +66,7 @@ export default function NextRoundBtn() {
 
 
         dispatch(updateAllPlayers(updatedPlayersArr));
+        dispatch(resetDealer())
         navigate('/placeBets');
     };
 

@@ -23,7 +23,7 @@ export default function SplitMoneyEarnedOrLost({ player }: PlayerInterfaceProps)
 
                 if (isRoundActive && roundResults.splitResults) {
                     await delay(2000)
-                    console.log('this ran')
+              
                     let newBank = 0
                     if (splitResults === 'Won') newBank = playerHasBJ
                         ? bank + (splitBet * 2.5)

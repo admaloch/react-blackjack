@@ -19,12 +19,15 @@ export default function MainTable({ playerIndex, makeCurrPlayerFinished }: MainT
     const player = playersArr[playerIndex]
 
 
+    // useEffect(() => {
+    //     console.log('is dealer card revealed is', gameData.isDealerCardRevealed)
+    // }, [gameData.isDealerCardRevealed])
+    // useEffect(() => {
+    //     console.log('is dealer drawing is', gameData.isDealerDrawing)
+    // }, [gameData.isDealerDrawing])
     useEffect(() => {
-        if (player) {
-            console.log(`${player.name}`, player)
-        }
-
-    }, [player])
+        console.log('is round active is', gameData.isRoundActive)
+    }, [gameData.isRoundActive])
 
     return (
         <div className="table">

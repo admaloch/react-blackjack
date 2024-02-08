@@ -20,7 +20,7 @@ const initialState: GameDataProps = {
   isGameActive: false,
   isMenuShown: false,
   isPlayerStatsShown: false,
-  isPlayerRoundActive: true,
+  isPlayerRoundActive: false,
   isDealerCardRevealed: false,
   isDealerDrawing: false,
   isInsuranceRoundComplete: false,
@@ -68,7 +68,7 @@ const deckSlice = createSlice({
 
 
     beginPlayerRound: (state) => {
-      return { ...state, isPlayerRoundActive: true }
+      return { ...state, isPlayerRoundActive: true, isRoundActive: true }
     },
     endPlayerRound: (state) => {
       return { ...state, isPlayerRoundActive: false, isDealerRoundActive: true }

@@ -12,24 +12,25 @@ export default function EndRoundTable() {
 
     const playersArr = useSelector((state: RootState) => state.playersArr);
 
-    const { isMainResultsActive, isDealerRoundActive, isSplitResultsActive, isRoundActive } = useSelector((state: RootState) => state.gameData);
+    const {isPlayerRoundActive, isMainResultsActive, isDealerRoundActive, isSplitResultsActive, isRoundActive } = useSelector((state: RootState) => state.gameData);
    
     const dispatch = useDispatch()
     const isPlayersSplit = playersArr.some(x => x.splitHand.cards.length > 0)
 
     useEffect(() => {
         async function splitOrEnd() {
-            if (!isDealerRoundActive && !isSplitResultsActive && !isMainResultsActive && isRoundActive) {
+            if (isRoundActive && !isPlayerRoundActive && !isDealerRoundActive && !isSplitResultsActive && !isMainResultsActive) {
                 await delay(2000)
                 if (isPlayersSplit) {
                     dispatch(beginSplitRound())
                 } else {
+                    console.log('round ended effect ran')
                     dispatch(endCurrentRound())
                 }
             }
         }
         splitOrEnd()
-    }, [isDealerRoundActive, isSplitResultsActive, dispatch, isPlayersSplit, isMainResultsActive, isRoundActive])
+    }, [isPlayerRoundActive, isDealerRoundActive, isSplitResultsActive, dispatch, isPlayersSplit, isMainResultsActive, isRoundActive])
 
 
 

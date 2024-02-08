@@ -20,20 +20,20 @@ export default function ResultsModal({ playerIndex, isCurrPlayerFinished, makeCu
     const { hand, splitHand, isPlayerSplit } = currPlayer
 
     const endResultsBtnHandler = async () => {
-        if (splitHand.cards.length === 1 || playersArr.length - 1 !== playerIndex) {
+        if (isPlayerSplit) {
+            handleSplitRoundResults()
+        }
+        if (splitHand.cards.length === 1
+            || playersArr.length - 1 !== playerIndex) {
             if (!isPlayerSplit || isPlayerSplit && splitHand.cards.length > 1) {
                 changeToNextPlayer()
             }
-            handleSplitRoundResults()
             makeCurrPlayerNotFinished()
-            
-        }else if (splitHand.cards.length === 1){
-            handleSplitRoundResults()
         }
-         else {
-            handleSplitRoundResults()
+        else {
             dispatch(beginDealerRound())
         }
+
     };
 
     const handleSplitRoundResults = () => {
