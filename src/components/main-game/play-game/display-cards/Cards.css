@@ -1,0 +1,57 @@
+.curr-hand {
+    /* border: red solid 1px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* width: 100%; */
+    /* height: 100%; */
+}
+
+.curr-hand .player-card {
+    /* border: green solid 1px; */
+    /* max-width: 230px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.2rem;
+}
+
+.player-table .curr-hand .player-card {
+    animation: animatePlayerCard 0.3s ease-in-out forwards;
+}
+.dealer-table .curr-hand .player-card {
+    animation: animateDealerCard 0.3s ease-in-out forwards;
+}
+
+@keyframes animatePlayerCard {
+    from {
+        opacity: 0;
+        transform: translateY(-500px) translateX(+450px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) translateX(0);
+        /* Move to the original position */
+    }
+}
+@keyframes animateDealerCard {
+    from {
+        opacity: 0;
+        transform: translateY(-200px) translateX(+550px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) translateX(0);
+        /* Move to the original position */
+    }
+}
+
+.curr-hand .player-card.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+    /* Set the final state explicitly */
+}
+
+.curr-hand img {
+    max-width: 130px;
+}

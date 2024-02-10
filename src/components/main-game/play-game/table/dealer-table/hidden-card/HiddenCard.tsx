@@ -1,17 +1,16 @@
 import { useSelector } from 'react-redux';
-import backOfCardImg from '../../../../../assets/card-images/BACK.png'
-import { RootState } from '../../../../../store/store';
+import backOfCardImg from '../../../../../../assets/card-images/BACK.png'
+import { RootState } from '../../../../../../store/store';
 import { useEffect } from 'react';
-import { delay } from '../../../../../utils/Utility';
+import { delay } from '../../../../../../utils/Utility';
 import { useDispatch } from 'react-redux';
-import { updateIsDealerCardRevealed } from '../../../../../store/game-data/GameDataSlice';
-
-
+import { updateIsDealerCardRevealed } from '../../../../../../store/game-data/GameDataSlice';
+import './HiddenCard.css'
 
 export default function HiddenCard() {
     const dispatch = useDispatch()
 
-    const { isPlayerRoundActive, isDealerCardRevealed } = useSelector((state: RootState) => state.gameData);
+    const { isPlayerRoundActive } = useSelector((state: RootState) => state.gameData);
     const dealerObj = useSelector((state: RootState) => state.dealerObj);
     const { cards } = dealerObj.hand
 
@@ -29,12 +28,9 @@ export default function HiddenCard() {
         return () => { isMounted = false }
     }, [isPlayerRoundActive, cards, dispatch]);
 
-    const hiddenCardClass = isDealerCardRevealed
-        ? 'back-of-card hide-card '
-        : 'back-of-card reveal-card'
 
     return (
-        <img className={hiddenCardClass} src={backOfCardImg} alt="Back of Card" />
+        <img className='back-of-card' src={backOfCardImg} alt="Back of Card" />
     );
 }
 

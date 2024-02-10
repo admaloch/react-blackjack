@@ -1,21 +1,27 @@
 import Card from './Card'
+import './Cards.css'
+
+
+
 
 interface CardsProps {
-    cardUrlVals: string[]
+    cardUrlVals: string[];
+    isDealerCardRevealed: boolean; // New prop to indicate whether the first card should be hidden
 }
 
-export default function Cards({ cardUrlVals }: CardsProps) {
-
-    // console.log('cardUrls kare', cardUrlVals)
-
+const Cards: React.FC<CardsProps> = ({ cardUrlVals, isDealerCardRevealed }) => {
     return (
         <div className="curr-hand">
-            {cardUrlVals.map((card, index) => (
+            {cardUrlVals.map((cardUrlVal, index) => (
                 <Card
                     key={index}
-                    cardUrlVal={card}
+                    cardUrlVal={cardUrlVal}
+                    isHidden={!isDealerCardRevealed && index === 0} // Hide the first card if not revealed
                 />
             ))}
         </div>
-    )
-}
+    );
+};
+
+
+export default Cards;

@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../../../store/store';
 import EndRoundTable from './end-round-table/EndRoundTable';
 import { useEffect } from 'react';
+import DeckOfCardsSvg from '../../../../assets/DeckOfCardsSvg';
 
 interface MainTableProps {
     playerIndex: number;
@@ -31,6 +32,7 @@ export default function MainTable({ playerIndex, makeCurrPlayerFinished }: MainT
 
     return (
         <div className="table">
+            <DeckOfCardsSvg style={{ width: '70x', height: '70px', position: 'fixed', fill: 'white', top: '6rem', right: '6.5rem' }} />
             <DealerTable />
             {isPlayerRoundActive &&
                 <PlayerTable

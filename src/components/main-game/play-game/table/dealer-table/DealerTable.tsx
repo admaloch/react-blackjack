@@ -6,7 +6,7 @@ import Cards from '../../display-cards/Cards';
 import useDealerDrawCard from '../../../draw-cards-hook/useDealerDrawCard';
 import './DealerTable.css'
 import { beginDealerDrawing, beginInsuranceRound, endDealerRound, endInsuranceRound } from '../../../../../store/game-data/GameDataSlice';
-import HiddenCard from './HiddenCard';
+import HiddenCard from './hidden-card/HiddenCard';
 import { delay } from '../../../../../utils/Utility';
 import DealerDetails from './DealerDetails';
 
@@ -17,8 +17,8 @@ const DealerTable: React.FC = () => {
   const { isInsuranceRoundComplete } = useSelector((state: RootState) => state.gameData);
   const { cards, cardSum } = dealerObj.hand
   const cardLength = cards.length
-  const {  isDealerCardRevealed, isDealerRoundActive } = useSelector((state: RootState) => state.gameData);
-  const [ setIsCardRevealed] = useState(false)
+  const { isDealerCardRevealed, isDealerRoundActive } = useSelector((state: RootState) => state.gameData);
+  const [setIsCardRevealed] = useState(false)
   const revealCard = () => setIsCardRevealed(true)
   // Use the same hook instance throughout the component
   const dealerDraw = useDealerDrawCard()
@@ -33,11 +33,17 @@ const DealerTable: React.FC = () => {
     let isMounted = true
     async function initDealerDraw() {
       if (isMounted) {
-        if (cardLength === 0 || cardLength === 1) {
-          await delay(300)
+        if (cardLength === 0) {
+
           dealerDraw();
         }
       }
+
+      if (cardLength === 1) {
+        await delay(300)
+        dealerDraw();
+      }
+
     }
     initDealerDraw()
     return () => { isMounted = false }
@@ -92,12 +98,15 @@ const DealerTable: React.FC = () => {
     <div className="dealer-table">
 
       <div className="dealer-hand">
-      {isShowRoundsPlayed && <h3>Round {roundsPlayed}</h3>}
+        {isShowRoundsPlayed && <h3>Round {roundsPlayed}</h3>}
 
         <DealerDetails />
         <div className="dealer-cards">
-          <HiddenCard />
-          <Cards cardUrlVals={dealerObj.hand.cardUrlVals} />
+          {!isDealerCardRevealed &&
+            <HiddenCard />
+          }
+          <Cards cardUrlVals={dealerObj.hand.cardUrlVals} isDealerCardRevealed={isDealerCardRevealed} />
+
         </div>
 
       </div>

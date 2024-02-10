@@ -7,6 +7,7 @@ import PlayerDetails from './PlayerDetails';
 import SplitCardPreview from './player-options/SplitCardPreview';
 import { useEffect } from 'react';
 import usePlayerDrawCard from '../../../draw-cards-hook/usePlayerDrawCard';
+import { delay } from '../../../../../utils/Utility';
 
 interface PlayerTableProps {
     playerIndex: number;
@@ -21,14 +22,22 @@ function PlayerTable({ playerIndex, makeCurrPlayerFinished }: PlayerTableProps) 
     const playerDraw = usePlayerDrawCard(playerIndex)
 
     useEffect(() => {
-        if (dealerObj.hand.cards.length === 2) {
-            if (hand.cards.length === 0 || hand.cards.length === 1) {
-                setTimeout(() => {
-                    playerDraw()
-                }, 300);
+        let isMounted = true
+        async function initPlayerDraw() {
+            if (isMounted) {
+                await delay(300)
+                if (dealerObj.hand.cards.length === 2) {
+                    if (hand.cards.length === 0 || hand.cards.length === 1) {
+                        playerDraw()
+                    }
+                }
             }
         }
+        initPlayerDraw()
+        return () => { isMounted = false }
     }, [hand, dealerObj, playerDraw]);
+
+
 
     const handText = splitHand.cards.length === 1 ? '1st hand' : '2nd hand'
 
