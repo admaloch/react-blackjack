@@ -69,7 +69,7 @@ const DealerTable: React.FC = () => {
             dispatch(beginDealerDrawing());
             dealerDraw();
           } else if (cardSum >= 17 && isInsuranceRoundComplete) {
-            await delay(3000);
+            await delay(2000);
             dispatch(endDealerRound());
           }
         }
@@ -83,13 +83,16 @@ const DealerTable: React.FC = () => {
 
 
 
-
+  const gameData = useSelector((state: RootState) => state.gameData);
+  const { roundsPlayed, isGameIntro, isAddPlayersRound, isBetRoundActive } = gameData
+  const isShowRoundsPlayed = !isGameIntro && !isAddPlayersRound && !isBetRoundActive
 
 
   return (
     <div className="dealer-table">
 
       <div className="dealer-hand">
+      {isShowRoundsPlayed && <h3>Round {roundsPlayed}</h3>}
 
         <DealerDetails />
         <div className="dealer-cards">

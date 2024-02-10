@@ -6,7 +6,6 @@ import './Modal.css';
 export interface ModalProps {
     closeModal: () => void;
     open: boolean;
-
 }
 
 export interface MainModalProps extends ModalProps {

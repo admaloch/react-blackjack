@@ -13,7 +13,7 @@ export default function TableHeader() {
     } else if (isMainResultsActive) {
         currText = 'Main hand results...'
     } else if (!isRoundActive) {
-        currText = `Round ${roundsPlayed} complete`
+        currText = 'Round complete'
     } else {
         currText = ''
     }
