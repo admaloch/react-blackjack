@@ -8,9 +8,5 @@
 // dispatch(addPlayer({ ...emptyPlayerItem, name: formattedName }));
 
 
-dave  900 - 200 - 100 = 600
-main 200 doubledup - bust
-split 100 bust
-
-james - 100 - stand
-lilly - 21 stand
+dave 5 insurance 2.5 split 5 12.5 = 987.5
+bank = 

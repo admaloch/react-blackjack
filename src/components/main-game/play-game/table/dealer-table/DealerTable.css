@@ -1,3 +1,16 @@
+.dealer-table {
+    position: relative;
+}
+
+.full-deck-image {
+width: 100px;
+height: 100px;
+fill: white;
+position: absolute;
+top: 0;
+right: -1rem;
+}
+
 .dealer-hand {
 
     height: 100%;

@@ -9,6 +9,7 @@ import { beginDealerDrawing, beginInsuranceRound, endDealerRound, endInsuranceRo
 import HiddenCard from './hidden-card/HiddenCard';
 import { delay } from '../../../../../utils/Utility';
 import DealerDetails from './DealerDetails';
+import DeckOfCardsSvg from '../../../../../assets/DeckOfCardsSvg';
 
 const DealerTable: React.FC = () => {
 
@@ -17,13 +18,14 @@ const DealerTable: React.FC = () => {
   const { isInsuranceRoundComplete } = useSelector((state: RootState) => state.gameData);
   const { cards, cardSum } = dealerObj.hand
   const cardLength = cards.length
-  const { isDealerCardRevealed, isDealerRoundActive } = useSelector((state: RootState) => state.gameData);
-  const [setIsCardRevealed] = useState(false)
+  const { isDealerCardRevealed, isDealerRoundActive, isRoundActive, roundsPlayed, isGameIntro, isAddPlayersRound, isBetRoundActive } = useSelector((state: RootState) => state.gameData);
+  const [isCardRevealed, setIsCardRevealed] = useState(false)
   const revealCard = () => setIsCardRevealed(true)
   // Use the same hook instance throughout the component
   const dealerDraw = useDealerDrawCard()
   const dispatch = useDispatch()
 
+  const isShowRoundsPlayed = !isGameIntro && !isAddPlayersRound && !isBetRoundActive
   const playerHasInsurance = playersArr.some(x => x.insuranceBet !== 0)
 
 
@@ -32,9 +34,10 @@ const DealerTable: React.FC = () => {
   useEffect(() => {
     let isMounted = true
     async function initDealerDraw() {
-      if (isMounted) {
-        if (cardLength === 0) {
 
+      if (isMounted) {
+        if(isRoundActive)
+        if (cardLength === 0) {
           dealerDraw();
         }
       }
@@ -47,7 +50,7 @@ const DealerTable: React.FC = () => {
     }
     initDealerDraw()
     return () => { isMounted = false }
-  }, [cards, dealerDraw, cardLength]);
+  }, [cards, dealerDraw, cardLength, isRoundActive]);
 
 
 
@@ -79,8 +82,6 @@ const DealerTable: React.FC = () => {
             dispatch(endDealerRound());
           }
         }
-
-
       }
     }
     mainDealerDrawRound();
@@ -89,14 +90,12 @@ const DealerTable: React.FC = () => {
 
 
 
-  const gameData = useSelector((state: RootState) => state.gameData);
-  const { roundsPlayed, isGameIntro, isAddPlayersRound, isBetRoundActive } = gameData
-  const isShowRoundsPlayed = !isGameIntro && !isAddPlayersRound && !isBetRoundActive
+
 
 
   return (
     <div className="dealer-table">
-
+      <DeckOfCardsSvg className='full-deck-image'  />
       <div className="dealer-hand">
         {isShowRoundsPlayed && <h3>Round {roundsPlayed}</h3>}
 
@@ -106,11 +105,8 @@ const DealerTable: React.FC = () => {
             <HiddenCard />
           }
           <Cards cardUrlVals={dealerObj.hand.cardUrlVals} isDealerCardRevealed={isDealerCardRevealed} />
-
         </div>
-
       </div>
-
     </div>
   );
 };

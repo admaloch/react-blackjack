@@ -17,40 +17,44 @@
 }
 
 .player-table .curr-hand .player-card {
-    animation: animatePlayerCard 0.3s ease-in-out forwards;
+    animation: animatePlayerCard .5s ease-in-out forwards;
 }
+
 .dealer-table .curr-hand .player-card {
-    animation: animateDealerCard 0.3s ease-in-out forwards;
+    animation: animateDealerCard .5s ease-in-out forwards;
 }
 
 @keyframes animatePlayerCard {
     from {
         opacity: 0;
-        transform: translateY(-500px) translateX(+450px);
+        transform: translateY(-550px) translateX(+450px) scale(0) rotate(0deg);
+        /* Start smaller, no rotation initially (0deg) */
     }
+
     to {
         opacity: 1;
-        transform: translateY(0) translateX(0);
-        /* Move to the original position */
-    }
-}
-@keyframes animateDealerCard {
-    from {
-        opacity: 0;
-        transform: translateY(-200px) translateX(+550px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) translateX(0);
-        /* Move to the original position */
+        transform: translateY(0) translateX(0) scale(1) rotate(360deg);
+        /* End up normal size, rotate 360 degrees */
     }
 }
 
-.curr-hand .player-card.animate-in {
-    opacity: 1;
-    transform: translateY(0);
-    /* Set the final state explicitly */
+
+@keyframes animateDealerCard {
+    from {
+        opacity: 0;
+        transform: translateY(-150px) translateX(+600px) scale(0) rotate(0deg);
+        /* Start smaller, no rotation initially (0deg) */
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) translateX(0) scale(1) rotate(360deg);
+        /* End up normal size, rotate 360 degrees */
+    }
 }
+
+
+
 
 .curr-hand img {
     max-width: 130px;

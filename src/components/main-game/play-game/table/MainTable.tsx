@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../../../store/store';
 import EndRoundTable from './end-round-table/EndRoundTable';
 import { useEffect } from 'react';
-import DeckOfCardsSvg from '../../../../assets/DeckOfCardsSvg';
 
 interface MainTableProps {
     playerIndex: number;
@@ -14,10 +13,9 @@ interface MainTableProps {
 export default function MainTable({ playerIndex, makeCurrPlayerFinished }: MainTableProps) {
     const { isPlayerRoundActive } = useSelector((state: RootState) => state.gameData);
     const gameData = useSelector((state: RootState) => state.gameData);
+    const dealerObj = useSelector((state: RootState) => state.dealerObj);
 
-    const playersArr = useSelector((state: RootState) => state.playersArr);
 
-    const player = playersArr[playerIndex]
 
 
     // useEffect(() => {
@@ -27,12 +25,12 @@ export default function MainTable({ playerIndex, makeCurrPlayerFinished }: MainT
     //     console.log('is dealer drawing is', gameData.isDealerDrawing)
     // }, [gameData.isDealerDrawing])
     useEffect(() => {
-        console.log('is round active is', gameData.isRoundActive)
-    }, [gameData.isRoundActive])
+        console.log('dealer cards', dealerObj.hand.cards)
+    }, [dealerObj.hand.cards])
 
     return (
         <div className="table">
-            <DeckOfCardsSvg style={{ width: '70x', height: '70px', position: 'fixed', fill: 'white', top: '6rem', right: '6.5rem' }} />
+
             <DealerTable />
             {isPlayerRoundActive &&
                 <PlayerTable

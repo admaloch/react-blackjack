@@ -30,7 +30,11 @@ export default function HiddenCard() {
 
 
     return (
-        <img className='back-of-card' src={backOfCardImg} alt="Back of Card" />
+        <img
+            className='back-of-card hiddenCardAnimation'
+            src={backOfCardImg}
+            alt="Back of Card"
+        />
     );
 }
 
