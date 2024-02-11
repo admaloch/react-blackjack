@@ -38,7 +38,9 @@ export default function MainTable({ playerIndex, makeCurrPlayerFinished }: MainT
                     makeCurrPlayerFinished={makeCurrPlayerFinished}
                 />
             }
-            {!isPlayerRoundActive && <EndRoundTable />}
+            {!isPlayerRoundActive &&
+                <EndRoundTable />
+            }
 
         </div>
     )

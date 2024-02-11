@@ -1,11 +1,11 @@
 import './PlayGame.css'
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store/store';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import EndOfTurnResults from './end-of-turn-modal/EndOfTurnResults';
 import { useDispatch } from "react-redux";
-import { updatePlayer } from '../../../store/player-arr/playersArrSlice';
+import playersArrSlice, { updatePlayer } from '../../../store/player-arr/playersArrSlice';
 import ExitTable from './exit-table-modal/ExitTable';
 
 import MainTable from './table/MainTable';
@@ -25,6 +25,10 @@ export default function PlayGame() {
         setCurrPlayerIndex((prevIndex) => (prevIndex + 1) % playersArr.length);
         dispatch(updatePlayer({ ...playersArr[currPlayerIndex], isDoubleDown: false }));
     }
+
+    useEffect(() => {
+        console.log(playersArr[currPlayerIndex])
+    }, [playersArr, currPlayerIndex])
 
     return (
         <div className='game-container play-round'>

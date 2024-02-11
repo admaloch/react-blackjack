@@ -12,25 +12,39 @@ export default function EndRoundTable() {
 
     const playersArr = useSelector((state: RootState) => state.playersArr);
 
-    const {isPlayerRoundActive, isMainResultsActive, isDealerRoundActive, isSplitResultsActive, isRoundActive } = useSelector((state: RootState) => state.gameData);
-   
+    const { isPlayerRoundActive, isMainResultsActive, isDealerRoundActive, isSplitResultsActive, isRoundActive } = useSelector((state: RootState) => state.gameData);
+
     const dispatch = useDispatch()
     const isPlayersSplit = playersArr.some(x => x.splitHand.cards.length > 0)
+    const allPlayersWonInsurance = playersArr.every(x => x.wonInsuranceRound)
 
     useEffect(() => {
+        let isMounted = true
         async function splitOrEnd() {
-            if (isRoundActive && !isPlayerRoundActive && !isDealerRoundActive && !isSplitResultsActive && !isMainResultsActive) {
-                await delay(2000)
-                if (isPlayersSplit) {
-                    dispatch(beginSplitRound())
-                } else {
-                    console.log('round ended effect ran')
-                    dispatch(endCurrentRound())
+            if (isMounted) {
+                if (isRoundActive && !isPlayerRoundActive && !isDealerRoundActive && !isSplitResultsActive && !isMainResultsActive && allPlayersWonInsurance) {
+                    await delay(2000)
+                    if (isPlayersSplit) {
+                        dispatch(beginSplitRound())
+                    } else {
+                        console.log('round ended effect ran')
+                        dispatch(endCurrentRound())
+                    }
                 }
             }
         }
         splitOrEnd()
-    }, [isPlayerRoundActive, isDealerRoundActive, isSplitResultsActive, dispatch, isPlayersSplit, isMainResultsActive, isRoundActive])
+        return () => { isMounted = false }
+    }, [isPlayerRoundActive, isDealerRoundActive, isSplitResultsActive, dispatch, isPlayersSplit, isMainResultsActive, isRoundActive, allPlayersWonInsurance])
+
+    // useEffect(() => {
+    //     let isMounted = true
+    //     if (isMounted) {
+    //         if(allPlayersWonInsurance)
+    //     }
+
+    // }
+
 
 
 
