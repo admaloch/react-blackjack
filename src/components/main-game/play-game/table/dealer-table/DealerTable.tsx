@@ -5,7 +5,7 @@ import { RootState } from '../../../../../store/store';
 import Cards from '../../display-cards/Cards';
 import useDealerDrawCard from '../../../draw-cards-hook/useDealerDrawCard';
 import './DealerTable.css'
-import { beginDealerDrawing, beginInsuranceRound, endInsuranceRound, updateGameObj } from '../../../../../store/game-data/GameDataSlice';
+import { beginDealerDrawing, beginInsuranceRound, endDealerRound, endInsuranceRound, updateGameObj } from '../../../../../store/game-data/GameDataSlice';
 import HiddenCard from './hidden-card/HiddenCard';
 import { delay } from '../../../../../utils/Utility';
 import DealerDetails from './DealerDetails';
@@ -17,7 +17,7 @@ const DealerTable: React.FC = () => {
   const playersArr = useSelector((state: RootState) => state.playersArr);
   const gameData = useSelector((state: RootState) => state.gameData);
 
-  const { isInsuranceRoundComplete, isDealerCardRevealed, isDealerRoundActive, isRoundActive, roundsPlayed, isGameIntro, isAddPlayersRound, isBetRoundActive } = gameData
+  const { isInsuranceRoundComplete, isDealerCardRevealed, isDealerRoundActive, isPlayerRoundActive, roundsPlayed, isGameIntro, isAddPlayersRound, isBetRoundActive } = gameData
   const { cards, cardSum } = dealerObj.hand
   const cardLength = cards.length
   // const [isCardRevealed, setIsCardRevealed] = useState(false)
@@ -36,23 +36,21 @@ const DealerTable: React.FC = () => {
   useEffect(() => {
     let isMounted = true
     async function initDealerDraw() {
-
       if (isMounted) {
-        if (isRoundActive)
-          if (cardLength === 0) {
-            dealerDraw();
-          }
-      }
 
-      if (cardLength === 1) {
-        await delay(300)
-        dealerDraw();
-      }
+        if (cardLength === 0) {
+          dealerDraw();
+        }
+        if (cardLength === 1) {
+          await delay(300)
+          dealerDraw();
+        }
 
+      }
     }
     initDealerDraw()
     return () => { isMounted = false }
-  }, [cards, dealerDraw, cardLength, isRoundActive]);
+  }, [cards, dealerDraw, cardLength]);
 
 
 
@@ -83,12 +81,13 @@ const DealerTable: React.FC = () => {
             await delay(2000);
 
             const isStartMainRound = allPlayersWonInsurance ? false : true
-            dispatch(updateGameObj({
-              ...gameData,
-              isDealerRoundActive: false,
-              isMainResultsActive: isStartMainRound,
-              isDealerDrawing: false,
-            }));
+            // dispatch(updateGameObj({
+            //   ...gameData,
+            //   isDealerRoundActive: false,
+            //   isMainResultsActive: true,
+            //   isDealerDrawing: false,
+            // }));
+            dispatch(endDealerRound())
           }
         }
       }
