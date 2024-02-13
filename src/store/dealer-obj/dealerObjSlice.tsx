@@ -9,21 +9,21 @@ interface DealerState {
 const initialState: DealerObjInterface = {
     name: 'Dealer',
     "hand": {
-            "cards": [
-                "6♥",
-                "A♠"
-            ],
-            "cardUrlVals": [
-                "6H",
-                "AS"
-            ],
-            "cardNumVals": [
-                6,
-                11
-            ],
-            "cardSum": 17,
-            "isBlackjack": false
-        },
+        "cards": [
+            "3♥",
+            "A♠"
+        ],
+        "cardUrlVals": [
+            "3H",
+            "AS"
+        ],
+        "cardNumVals": [
+            3,
+            11
+        ],
+        "cardSum": 14,
+        "isBlackjack": false
+    },
 }
 
 const dealerObjSlice = createSlice({
