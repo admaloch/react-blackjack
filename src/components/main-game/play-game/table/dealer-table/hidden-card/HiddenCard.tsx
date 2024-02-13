@@ -4,13 +4,13 @@ import { RootState } from '../../../../../../store/store';
 import { useEffect } from 'react';
 import { delay } from '../../../../../../utils/Utility';
 import { useDispatch } from 'react-redux';
-import { updateIsDealerCardRevealed } from '../../../../../../store/game-data/GameDataSlice';
+import { revealDealerCard } from '../../../../../../store/game-data/GameDataSlice';
 import './HiddenCard.css'
 
 export default function HiddenCard() {
     const dispatch = useDispatch()
 
-    const { isPlayerRoundActive } = useSelector((state: RootState) => state.gameData);
+    const { isPlayerRoundActive, isDealerCardRevealed } = useSelector((state: RootState) => state.gameData);
     const dealerObj = useSelector((state: RootState) => state.dealerObj);
     const { cards } = dealerObj.hand
 
@@ -18,15 +18,15 @@ export default function HiddenCard() {
         let isMounted = true
         async function showCardsFunc() {
             if (isMounted) {
-                if (!isPlayerRoundActive && cards.length === 2) {
+                if (!isPlayerRoundActive && cards.length === 2 && !isDealerCardRevealed) {
                     await delay(1500)
-                    dispatch(updateIsDealerCardRevealed())
+                    dispatch(revealDealerCard())
                 }
             }
         }
         showCardsFunc()
         return () => { isMounted = false }
-    }, [isPlayerRoundActive, cards, dispatch]);
+    }, [isPlayerRoundActive, cards, dispatch, isDealerCardRevealed]);
 
 
     return (

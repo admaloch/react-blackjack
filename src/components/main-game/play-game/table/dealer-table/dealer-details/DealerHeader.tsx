@@ -2,7 +2,7 @@ import {  useSelector } from 'react-redux';
 import { RootState } from '../../../../../../store/store';
 import { useEffect } from 'react';
 import { delay } from '../../../../../../utils/Utility';
-import { ShowDealerDataProps } from './MainDealerDetails';
+import { ShowDealerDataProps } from '../MainDealerDetails';
 
 interface DealerHeaderProps {
     showDealerData: ShowDealerDataProps;
@@ -16,18 +16,18 @@ export default function DealerHeader({ showDealerData, makeBlackjackTrue }: Deal
     const { name, hand } = dealerObj;
     const { cardSum, cardUrlVals } = hand
 
-    // useEffect(() => {
-    //     let isMounted = true;
-    //     async function showBlackJack() {
-    //         if (isMounted) {
-    //             await delay(1000);
-    //             cardSum === 21 && cardUrlVals.length === 2 && isDealerCardRevealed
-    //                 && makeBlackjackTrue()
-    //         }
-    //     }
-    //     showBlackJack();
-    //     return () => { isMounted = false };
-    // }, [isDealerCardRevealed, cardUrlVals, cardSum, makeBlackjackTrue]);
+    useEffect(() => {
+        let isMounted = true;
+        async function showBlackJack() {
+            if (isMounted) {
+                await delay(1000);
+                cardSum === 21 && cardUrlVals.length === 2 && isDealerCardRevealed
+                    && makeBlackjackTrue()
+            }
+        }
+        showBlackJack();
+        return () => { isMounted = false };
+    }, [isDealerCardRevealed, cardUrlVals, cardSum, makeBlackjackTrue]);
 
     let dealerHeaderText: string | JSX.Element = name;
     if (showDealerData.isBlackjack) {

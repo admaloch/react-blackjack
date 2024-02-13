@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../../../store/store';
-import MainDealerDetails from './MainDealerDetails';
+import MainDealerDetails from '../MainDealerDetails';
 
 export default function DealerDetails() {
 
