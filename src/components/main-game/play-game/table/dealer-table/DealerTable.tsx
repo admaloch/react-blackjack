@@ -8,7 +8,7 @@ import './DealerTable.css'
 import { beginDealerDrawing, beginInsuranceRound, endDealerRound, endInsuranceRound, updateGameObj } from '../../../../../store/game-data/GameDataSlice';
 import HiddenCard from './hidden-card/HiddenCard';
 import { delay } from '../../../../../utils/Utility';
-import DealerDetails from './DealerDetails';
+import DealerDetails from './dealer-details/DealerDetails';
 import DeckOfCardsSvg from '../../../../../assets/DeckOfCardsSvg';
 
 const DealerTable: React.FC = () => {
