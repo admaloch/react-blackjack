@@ -22,8 +22,8 @@ export default function EndRoundTable() {
         let isMounted = true
         async function splitOrEnd() {
             if (isMounted) {
-                if (isRoundActive && !isPlayerRoundActive && !isDealerRoundActive && !isSplitResultsActive && !isMainResultsActive && allPlayersWonInsurance) {
-                    await delay(2000)
+                if (isRoundActive && !isPlayerRoundActive && !isDealerRoundActive && !isSplitResultsActive && !isMainResultsActive) {
+                    await delay(1200)
                     if (isPlayersSplit) {
                         dispatch(beginSplitRound())
                     } else {
@@ -35,7 +35,7 @@ export default function EndRoundTable() {
         }
         splitOrEnd()
         return () => { isMounted = false }
-    }, [isPlayerRoundActive, isDealerRoundActive, isSplitResultsActive, dispatch, isPlayersSplit, isMainResultsActive, isRoundActive, allPlayersWonInsurance])
+    }, [isPlayerRoundActive, isDealerRoundActive, isSplitResultsActive, dispatch, isPlayersSplit, isMainResultsActive, isRoundActive])
 
     // useEffect(() => {
     //     let isMounted = true

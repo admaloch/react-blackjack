@@ -81,13 +81,13 @@ const DealerTable: React.FC = () => {
             await delay(2000);
 
             const isStartMainRound = allPlayersWonInsurance ? false : true
-            // dispatch(updateGameObj({
-            //   ...gameData,
-            //   isDealerRoundActive: false,
-            //   isMainResultsActive: true,
-            //   isDealerDrawing: false,
-            // }));
-            dispatch(endDealerRound())
+            dispatch(updateGameObj({
+              ...gameData,
+              isDealerRoundActive: false,
+              isMainResultsActive: isStartMainRound,
+              isDealerDrawing: false,
+            }));
+            // dispatch(endDealerRound())
           }
         }
       }

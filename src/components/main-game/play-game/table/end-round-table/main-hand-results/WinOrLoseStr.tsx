@@ -22,7 +22,7 @@ export default function WinOrLoseStr({ player }: PlayerInterfaceProps) {
             
             if (isMounted) {
                 if (isMainResultsActive && isRoundActive && roundResults.mainResults === '' && !wonInsuranceRound) {
-                    console.log('win or lose str ran')
+                    // console.log('win or lose str ran')
                     await delay(2000)
                     const winOrLoseStr = playerWonOrLostFunc(player, dealerObj, 'main')
                     const newRoundResults: RoundResultsProps = { ...roundResults, mainResults: winOrLoseStr }

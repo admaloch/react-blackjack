@@ -17,7 +17,7 @@ export default function DealerDetails() {
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const isPlayerInsured = playersArr.some(player => player.splitBet !== 0)
     const { name, hand } = dealerObj;
-    const { cardSum, cardUrlVals } = hand
+    const { cardSum, cardUrlVals, cards } = hand
 
 
     useEffect(() => {
@@ -47,29 +47,35 @@ export default function DealerDetails() {
         return () => { isMounted = false };
     }, [isPlayerInsured, isDealerCardRevealed, isDealerRoundActive]);
 
+    useEffect(() => {
+        console.log('show dealer data state', showDealerData)
+    }, [showDealerData])
 
     let dealerHeaderText: string | JSX.Element = name;
-        if (!isDealerRoundActive && showDealerData.isBlackjack) {
-            dealerHeaderText = <h2 className=' win-color'>{name} BlackJack!</h2>
-        } else if (!isDealerRoundActive && cardSum > 21) {
-            dealerHeaderText = <h2 className=' lose-color'>{name} Bust!</h2>
-        } else if (!isDealerRoundActive && cardSum >= 17 && cardSum <= 21) {
-            dealerHeaderText = <h2 className=' stay-color'>{name} Stays</h2>
-        } else {
-            dealerHeaderText = <h2 className=''>{name}</h2>
-        }
+    if (showDealerData.isBlackjack) {
+        dealerHeaderText = <h2 className=' win-color'>{name} BlackJack!</h2>
+    } else if (!isDealerRoundActive && cardSum > 21) {
+        dealerHeaderText = <h2 className=' lose-color'>{name} Bust!</h2>
+    } else if (!isDealerRoundActive && cardSum >= 17 && cardSum <= 21) {
+        dealerHeaderText = <h2 className=' stay-color'>{name} Stays</h2>
+    } else {
+        dealerHeaderText = <h2 className=''>{name}</h2>
+    }
 
 
 
-    const revealInsuranceClass = !isInsuranceRoundComplete && showDealerData.isInsuranceEval
-        ? 'hide-item reveal-item' : 'hide-item'
 
-    const revealDrawCardsClass = isInsuranceRoundComplete && isDealerRoundActive
-        ? 'hide-item reveal-item' : 'hide-item'
 
     const dealerStatusClass = isInsuranceRoundComplete
         ? "dealer-status dealer-status-reverse"
         : 'dealer-status'
+
+    let dealerStatusText = ''
+    if (!isInsuranceRoundComplete && showDealerData.isInsuranceEval) {
+        dealerStatusText = 'Checking insurance bets...'
+    } else if (isInsuranceRoundComplete && isDealerRoundActive && cardSum <= 17) {
+        dealerStatusText = 'Dealer drawing cards...'
+    }
 
     return (
 
@@ -78,8 +84,7 @@ export default function DealerDetails() {
             {dealerHeaderText}
             <p className={`hide-item ${isDealerCardRevealed ? 'reveal-item' : ''}`}>Sum: {hand.cardSum}</p>
             <div className={dealerStatusClass}>
-                <h3 className={revealInsuranceClass}>Checking insurance bets...</h3>
-                <h3 className={revealDrawCardsClass}>Dealer drawing cards...</h3>
+                <h3 className='dealer-status'>{dealerStatusText}</h3>
             </div>
         </>
 
