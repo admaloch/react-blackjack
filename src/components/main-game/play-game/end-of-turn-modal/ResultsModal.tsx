@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../../../../store/store";
 import ResultsModalContents from "./ResultsModalContent";
 import { updatePlayer } from "../../../../store/player-arr/playersArrSlice";
-import { beginDealerRound } from "../../../../store/game-data/GameDataSlice";
+import { beginDealerRound, revealDealerCard } from "../../../../store/game-data/GameDataSlice";
+import { delay } from "../../../../utils/Utility";
 
 interface EndOfTurnResultsProps {
     playerIndex: number;
@@ -32,6 +33,9 @@ export default function ResultsModal({ playerIndex, isCurrPlayerFinished, makeCu
         }
         else {
             dispatch(beginDealerRound())
+            // setTimeout(() => {
+            //     dispatch(revealDealerCard())
+            // }, 1500);
         }
 
     };
