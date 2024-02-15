@@ -78,6 +78,10 @@ const deckSlice = createSlice({
     endDealerRound: (state) => {
       return { ...state, isDealerRoundActive: false, isMainResultsActive: true, isDealerDrawing: false }
     },
+    endDealerAndRound: (state) => {
+      return { ...state, isDealerRoundActive: false, isMainResultsActive: false, isDealerDrawing: false }
+    },
+
     endRoundResults: (state) => {
 
       return { ...state, isMainResultsActive: false }
@@ -103,6 +107,6 @@ const deckSlice = createSlice({
   },
 })
 
-export const { increaseRoundsPlayed, updateIsGameActive, revealDealerCard, updateIsInsuranceRoundComplete, beginPlayerRound, endPlayerRound, beginDealerRound, endDealerRound, endRoundResults, beginSplitRound, beginDealerDrawing, endSplitRound, beginNewRound, endCurrentRound, beginInsuranceRound, endInsuranceRound, updateGameObj } = deckSlice.actions
+export const { increaseRoundsPlayed, updateIsGameActive, revealDealerCard, updateIsInsuranceRoundComplete, beginPlayerRound, endPlayerRound, beginDealerRound, endDealerRound, endRoundResults, beginSplitRound, beginDealerDrawing, endSplitRound, beginNewRound, endCurrentRound, beginInsuranceRound, endInsuranceRound, updateGameObj, endDealerAndRound } = deckSlice.actions
 
 export default deckSlice.reducer

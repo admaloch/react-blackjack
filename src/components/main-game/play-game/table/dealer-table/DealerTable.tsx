@@ -5,7 +5,7 @@ import { RootState } from '../../../../../store/store';
 import Cards from '../../display-cards/Cards';
 import useDealerDrawCard from '../../../draw-cards-hook/useDealerDrawCard';
 import './DealerTable.css'
-import { beginDealerDrawing, beginInsuranceRound, endDealerRound, endInsuranceRound, updateGameObj } from '../../../../../store/game-data/GameDataSlice';
+import { beginDealerDrawing, beginInsuranceRound, endDealerAndRound, endDealerRound, endInsuranceRound, updateGameObj } from '../../../../../store/game-data/GameDataSlice';
 import HiddenCard from './hidden-card/HiddenCard';
 import { delay } from '../../../../../utils/Utility';
 import DealerDetails from './dealer-details/DealerDetails';
@@ -80,13 +80,14 @@ const DealerTable: React.FC = () => {
           } else if (cardSum >= 17 && isInsuranceRoundComplete) {
             await delay(2000);
 
-            const isStartMainRound = allPlayersWonInsurance ? false : true
-            dispatch(updateGameObj({
-              ...gameData,
-              isDealerRoundActive: false,
-              isMainResultsActive: isStartMainRound,
-              isDealerDrawing: false,
-            }));
+            // const isStartMainRound = allPlayersWonInsurance ? false : true
+            // dispatch(updateGameObj({
+            //   ...gameData,
+            //   isDealerRoundActive: false,
+            //   isMainResultsActive: true,
+            //   isDealerDrawing: false,
+            // }));
+            allPlayersWonInsurance ? dispatch(endDealerAndRound()) : dispatch(endDealerRound())
             // dispatch(endDealerRound())
           }
         }
@@ -94,7 +95,7 @@ const DealerTable: React.FC = () => {
     }
     mainDealerDrawRound();
     return () => { isMounted = false };
-  }, [cardSum, dealerDraw, isDealerCardRevealed, isInsuranceRoundComplete, isDealerRoundActive, dispatch, gameData, allPlayersWonInsurance]);
+  }, [cardSum, dealerDraw, isDealerCardRevealed, isInsuranceRoundComplete, isDealerRoundActive, dispatch, allPlayersWonInsurance]);
 
 
 

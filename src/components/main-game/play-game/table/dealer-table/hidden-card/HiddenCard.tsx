@@ -14,19 +14,19 @@ export default function HiddenCard() {
     const dealerObj = useSelector((state: RootState) => state.dealerObj);
     const { cards, cardSum } = dealerObj.hand
 
-    // useEffect(() => {
-    //     let isMounted = true
-    //     async function showCardsFunc() {
-    //         if (isMounted) {
-    //             if (isDealerRoundActive && !isDealerCardRevealed && isInsuranceRoundComplete) {
-    //                 await delay(1500)
-    //                 dispatch(revealDealerCard())
-    //             }
-    //         }
-    //     }
-    //     showCardsFunc()
-    //     return () => { isMounted = false }
-    // }, [isDealerRoundActive, dispatch, isDealerCardRevealed, isInsuranceRoundComplete]);
+    useEffect(() => {
+        let isMounted = true
+        async function showCardsFunc() {
+            if (isMounted) {
+                if (isDealerRoundActive && !isDealerCardRevealed) {
+                    await delay(1500)
+                    dispatch(revealDealerCard())
+                }
+            }
+        }
+        showCardsFunc()
+        return () => { isMounted = false }
+    }, [isDealerRoundActive, dispatch, isDealerCardRevealed]);
 
 
     return (
