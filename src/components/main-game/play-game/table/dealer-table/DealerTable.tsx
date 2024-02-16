@@ -79,16 +79,7 @@ const DealerTable: React.FC = () => {
             dealerDraw();
           } else if (cardSum >= 17 && isInsuranceRoundComplete) {
             await delay(2000);
-
-            // const isStartMainRound = allPlayersWonInsurance ? false : true
-            // dispatch(updateGameObj({
-            //   ...gameData,
-            //   isDealerRoundActive: false,
-            //   isMainResultsActive: true,
-            //   isDealerDrawing: false,
-            // }));
             allPlayersWonInsurance ? dispatch(endDealerAndRound()) : dispatch(endDealerRound())
-            // dispatch(endDealerRound())
           }
         }
       }

@@ -15,8 +15,9 @@ export default function EndRoundTable() {
     const { isPlayerRoundActive, isMainResultsActive, isDealerRoundActive, isSplitResultsActive, isRoundActive } = useSelector((state: RootState) => state.gameData);
 
     const dispatch = useDispatch()
-    const isPlayersSplit = playersArr.some(x => x.splitHand.cards.length > 0)
-    const allPlayersWonInsurance = playersArr.every(x => x.wonInsuranceRound)
+    //split round should only run if atleast one player has a split hand and did not win an insurance bet
+    const isPlayerSplitButNotInsured = playersArr.some(x => x.splitHand.cards.length > 0 && !x.wonInsuranceRound)
+
 
     useEffect(() => {
         let isMounted = true
@@ -24,7 +25,7 @@ export default function EndRoundTable() {
             if (isMounted) {
                 if (isRoundActive && !isPlayerRoundActive && !isDealerRoundActive && !isSplitResultsActive && !isMainResultsActive) {
                     await delay(1200)
-                    if (isPlayersSplit) {
+                    if (isPlayerSplitButNotInsured) {
                         dispatch(beginSplitRound())
                     } else {
                         console.log('round ended effect ran')
@@ -35,7 +36,7 @@ export default function EndRoundTable() {
         }
         splitOrEnd()
         return () => { isMounted = false }
-    }, [isPlayerRoundActive, isDealerRoundActive, isSplitResultsActive, dispatch, isPlayersSplit, isMainResultsActive, isRoundActive])
+    }, [isPlayerRoundActive, isDealerRoundActive, isSplitResultsActive, dispatch, isPlayerSplitButNotInsured, isMainResultsActive, isRoundActive])
 
     // useEffect(() => {
     //     let isMounted = true

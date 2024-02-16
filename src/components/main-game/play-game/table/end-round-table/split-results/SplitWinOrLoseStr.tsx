@@ -12,7 +12,7 @@ export default function SplitWinOrLoseStr({ player }: PlayerInterfaceProps) {
     const dispatch = useDispatch()
     const dealerObj = useSelector((state: RootState) => state.dealerObj);
     const { isSplitResultsActive, isRoundActive } = useSelector((state: RootState) => state.gameData);
-    const { roundResults, name } = player
+    const { roundResults, name, wonInsuranceRound } = player
     const { splitResults } = roundResults
 
     useEffect(() => {
@@ -40,6 +40,7 @@ export default function SplitWinOrLoseStr({ player }: PlayerInterfaceProps) {
     if (splitResults === 'Won') winOrLoseStr = `${name} won!`
     else if (splitResults === 'Lost') winOrLoseStr = 'Dealer won!'
     else if (splitResults === 'Push') winOrLoseStr = 'Push!'
+    // else if(wonInsuranceRound) winOrLoseStr = 'Insurance won'
     else winOrLoseStr = ''
 
 

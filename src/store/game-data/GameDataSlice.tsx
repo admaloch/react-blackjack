@@ -48,7 +48,6 @@ const deckSlice = createSlice({
 
 
     revealDealerCard: (state) => {
-      console.log('reveal delaer ran')
       return { ...state, isDealerCardRevealed: true }
     },
 
@@ -63,12 +62,7 @@ const deckSlice = createSlice({
     endCurrentRound: (state) => {
       return { ...state, isRoundActive: false }
     },
-
-
-
-    beginPlayerRound: (state) => {
-      return { ...state, isPlayerRoundActive: true, isRoundActive: true }
-    },
+    beginPlayerRound: (state) => ({ ...state, isPlayerRoundActive: true, isRoundActive: true }),
     endPlayerRound: (state) => {
       return { ...state, isPlayerRoundActive: false, isDealerRoundActive: true }
     },
