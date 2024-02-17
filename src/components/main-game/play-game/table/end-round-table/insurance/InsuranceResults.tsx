@@ -15,6 +15,8 @@ export default function InsuranceResults({ player }: PlayerProps) {
     const dispatch = useDispatch()
     const { cardNumVals } = dealerObj.hand
 
+
+
     const { isDealerCardRevealed } = useSelector((state: RootState) => state.gameData);
 
     const [insuranceResults, setInsuranceResults] = useState({
@@ -50,6 +52,7 @@ export default function InsuranceResults({ player }: PlayerProps) {
     }, [isDealerCardRevealed, cardNumVals, player])
 
     useEffect(() => {
+        const { bank, insuranceBet, currBet, splitBet } = player
         let isMounted = true;
         async function updateInsuranceHand() {
             if (isMounted) {
@@ -58,12 +61,14 @@ export default function InsuranceResults({ player }: PlayerProps) {
                     if (insuranceResults.status === 'Won!') {
                         dispatch(updatePlayer({
                             ...player,
-                            bank: player.bank + player.insuranceBet + player.currBet,
+                            bank: bank + insuranceBet + currBet + splitBet,
                             wonInsuranceRound: true,
                             insuranceBet: 0,
                             currBet: 0,
+                            splitBet: 0,
                         }));
-                    } else {
+                    } 
+                    else {
                         dispatch(updatePlayer({
                             ...player,
                             insuranceBet: 0,

@@ -22,7 +22,9 @@ export default function EarningsOrLosses({ player }: PlayerInterfaceProps) {
                 if (isMainResultsActive && mainResults && !wonInsuranceRound && !isComplete) {
                     await delay(2000)
                     let newBank = 0
-                    if (mainResults === 'Won') newBank = playerHasBJ ? bank + (currBet * 2.5) : bank + (currBet * 2)
+                    if (mainResults === 'Won') newBank = playerHasBJ
+                        ? bank + (currBet * 2.5)
+                        : bank + (currBet * 2)
                     else if (mainResults === 'Push') newBank = bank + currBet
                     else newBank = bank
                     const isRoundComplete = splitHand.cards.length === 0 ? true : false
