@@ -25,7 +25,7 @@ export default function PlayerHandDetails({ player }: PlayerProps) {
            
                 
            
-            <Insurance player={player} />
+            {/* <Insurance player={player} /> */}
             <BjBustOrStay player={player} mainOrSplit='main' />
 
 

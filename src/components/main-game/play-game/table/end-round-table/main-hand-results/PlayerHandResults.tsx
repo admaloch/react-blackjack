@@ -7,6 +7,7 @@ import PlayerResultsHeader from './PlayerResultsHeader';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../../../store/store';
 import { delay } from '../../../../../../utils/Utility';
+import Insurance from '../insurance/Insurance';
 
 export interface PlayerProps {
     player: PlayerInterface;
@@ -55,7 +56,6 @@ export default function PlayerHandResults({ player }: PlayerProps) {
                     if (mainResults === '') {
                         await delay(500);
                         if (!wonInsuranceRound) {
-
                             updatePlayerClass('player-hand emphasize');
                         } else {
                             updatePlayerClass('player-hand obscure-item');
@@ -67,7 +67,7 @@ export default function PlayerHandResults({ player }: PlayerProps) {
                             updatePlayerClass('player-hand emphasize emphasize-lose');
                         } else if (mainResults === 'Push') {
                             updatePlayerClass('player-hand emphasize emphasize-push');
-                        } 
+                        }
                     }
                 } else if (isSplitResultsActive) { // split win or loss
                     if (splitResults === '') {
@@ -114,6 +114,7 @@ export default function PlayerHandResults({ player }: PlayerProps) {
                     updatePlayerClass={updatePlayerClass}
                 />
             }
+            <Insurance player={player} />
         </div>
     );
 }
