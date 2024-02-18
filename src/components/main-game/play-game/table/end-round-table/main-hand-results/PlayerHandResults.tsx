@@ -115,9 +115,9 @@ export default function PlayerHandResults({ player }: PlayerProps) {
                     updatePlayerClass={updatePlayerClass}
                 />
             }
-            <Insurance player={player} />
+            
             <EarningsOrLosses player={player} />
-
+            <Insurance player={player} />
         </div>
     );
 }
