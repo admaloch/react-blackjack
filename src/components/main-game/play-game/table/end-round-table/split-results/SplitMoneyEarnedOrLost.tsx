@@ -4,7 +4,7 @@ import { PlayerInterfaceProps } from '../../../../../../models/PlayerProps';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../../../../store/store';
 import { updatePlayer } from '../../../../../../store/player-arr/playersArrSlice';
-import { endSplitRound, endCurrentRound } from '../../../../../../store/game-data/GameDataSlice';
+import { endSplitRound, endFullRound } from '../../../../../../store/game-data/GameDataSlice';
 import MoneyWonOrLost from '../../../../../results-components/MoneyWonOrLost';
 
 export default function SplitMoneyEarnedOrLost({ player }: PlayerInterfaceProps) {
@@ -34,13 +34,12 @@ export default function SplitMoneyEarnedOrLost({ player }: PlayerInterfaceProps)
 
                         dispatch(updatePlayer({ ...player, bank: newBank, splitBet: 0, roundResults: newRoundResObj }))
                         dispatch(endSplitRound())
-                        dispatch(endCurrentRound())
+                        dispatch(endFullRound())
                     }
                     if (splitBet && player.wonInsuranceRound) {
                         dispatch(updatePlayer({ ...player, bank: player.bank + splitBet, splitBet: 0, roundResults: newRoundResObj }))
-                        dispatch(endCurrentRound())
+                        dispatch(endFullRound())
                     }
-
                 }
 
             }

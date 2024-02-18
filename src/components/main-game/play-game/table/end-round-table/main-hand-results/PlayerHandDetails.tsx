@@ -30,7 +30,7 @@ export default function PlayerHandDetails({ player }: PlayerProps) {
 
 
             <WinOrLoseStr player={player} />
-            <EarningsOrLosses player={player} />
+            {/* <EarningsOrLosses player={player} /> */}
 
 
         </>

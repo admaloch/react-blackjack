@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../../../../../store/store';
 import { delay } from '../../../../../../utils/Utility';
 import Insurance from '../insurance/Insurance';
+import EarningsOrLosses from './EarningsOrLosses';
 
 export interface PlayerProps {
     player: PlayerInterface;
@@ -115,6 +116,8 @@ export default function PlayerHandResults({ player }: PlayerProps) {
                 />
             }
             <Insurance player={player} />
+            <EarningsOrLosses player={player} />
+
         </div>
     );
 }

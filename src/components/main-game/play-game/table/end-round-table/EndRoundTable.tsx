@@ -3,7 +3,7 @@ import { RootState } from "../../../../../store/store";
 import './EndRoundTable.css'
 import PlayerHandResults from "./main-hand-results/PlayerHandResults";
 import { useEffect } from "react";
-import { beginSplitRound, endCurrentRound } from "../../../../../store/game-data/GameDataSlice";
+import { beginSplitRound, endFullRound } from "../../../../../store/game-data/GameDataSlice";
 import TableHeader from "./table-header/TableHeader";
 import { delay } from "../../../../../utils/Utility";
 import NextRoundBtn from "./final-results/NextRoundBtn";
@@ -29,7 +29,7 @@ export default function EndRoundTable() {
                         dispatch(beginSplitRound())
                     } else {
                         console.log('round ended effect ran')
-                        dispatch(endCurrentRound())
+                        dispatch(endFullRound())
                     }
                 }
             }
