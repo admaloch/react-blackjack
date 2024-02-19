@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { RootState } from "../../../../store/store";
 import ResultsModal from "./ResultsModal";
 import { useSelector } from 'react-redux';
+import { delay } from '../../../../utils/Utility';
 
 interface EndOfTurnResultsProps {
     playerIndex: number;
@@ -18,13 +19,19 @@ export default function EndOfTurnResults({ playerIndex, isCurrPlayerFinished, ma
     const { hand, isDoubleDown } = currPlayer
 
     useEffect(() => {
-        if (hand.cardSum > 21
-            || hand.cards.length === 2 && hand.cardSum === 21
-            || hand.cards.length === 3 && isDoubleDown) {
-            setTimeout(() => {
-                makeCurrPlayerFinished()
-            }, 1000)
+        let isMounted = true
+        async function endPlayerTurn() {
+            if (isMounted) {
+                if (hand.cardSum > 21
+                    || hand.cards.length === 2 && hand.cardSum === 21
+                    || hand.cards.length === 3 && isDoubleDown) {
+                    await delay(1000)
+                    makeCurrPlayerFinished()
+                }
+            }
         }
+        endPlayerTurn()
+        return () => { isMounted = false };
     }, [hand, isDoubleDown, makeCurrPlayerFinished])
 
     return (

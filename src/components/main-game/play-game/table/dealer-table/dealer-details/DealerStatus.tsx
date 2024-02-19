@@ -14,6 +14,8 @@ export default function DealerStatus({ showDealerData, updateIsInsuranceEval }: 
 
     const { isDealerCardRevealed, isInsuranceRoundComplete, isDealerRoundActive } = useSelector((state: RootState) => state.gameData);
     const playersArr = useSelector((state: RootState) => state.playersArr);
+    const dealerObj = useSelector((state: RootState) => state.dealerObj);
+    const dealerSum = dealerObj.hand.cardSum
     const isPlayerInsured = playersArr.some(player => player.insuranceBet !== 0)
 
     useEffect(() => {
@@ -39,8 +41,10 @@ export default function DealerStatus({ showDealerData, updateIsInsuranceEval }: 
     let dealerStatusText = ''
     if (!isInsuranceRoundComplete && showDealerData.isInsuranceEval) {
         dealerStatusText = 'Checking insurance bets...'
-    } else if (isInsuranceRoundComplete && isDealerRoundActive && isDealerCardRevealed && !showDealerData.isBlackjack) {
+    } else if (isInsuranceRoundComplete && isDealerRoundActive && isDealerCardRevealed && !showDealerData.isBlackjack && dealerSum < 21) {
         dealerStatusText = 'Dealer drawing cards...'
+    } else {
+        dealerStatusText = ''
     }
 
     return (

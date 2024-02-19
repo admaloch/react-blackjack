@@ -77,9 +77,12 @@ const DealerTable: React.FC = () => {
             await delay(2000);
             dispatch(beginDealerDrawing());
             dealerDraw();
-          } else if (cardSum >= 17 && isInsuranceRoundComplete) {
+          } else if (cardSum >= 17 && isInsuranceRoundComplete && isDealerCardRevealed) {
+
             await delay(2000);
-            allPlayersWonInsurance ? dispatch(endDealerAndRound()) : dispatch(endDealerRound())
+            allPlayersWonInsurance
+              ? dispatch(endDealerAndRound())
+              : dispatch(endDealerRound())
           }
         }
       }

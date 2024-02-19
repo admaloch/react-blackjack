@@ -5,6 +5,7 @@ import ResultsModalContents from "./ResultsModalContent";
 import { updatePlayer } from "../../../../store/player-arr/playersArrSlice";
 import { beginDealerRound, revealDealerCard } from "../../../../store/game-data/GameDataSlice";
 import { delay } from "../../../../utils/Utility";
+import { useEffect } from "react";
 
 interface EndOfTurnResultsProps {
     playerIndex: number;
@@ -22,10 +23,9 @@ export default function ResultsModal({ playerIndex, isCurrPlayerFinished, makeCu
 
     const endResultsBtnHandler = async () => {
         if (isPlayerSplit) {
-            handleSplitRoundResults()
+            reversePlayerHands()
         }
-        if (splitHand.cards.length === 1
-            || playersArr.length - 1 !== playerIndex) {
+        if (splitHand.cards.length === 1 || playersArr.length - 1 !== playerIndex) {
             if (!isPlayerSplit || isPlayerSplit && splitHand.cards.length > 1) {
                 changeToNextPlayer()
             }
@@ -33,18 +33,22 @@ export default function ResultsModal({ playerIndex, isCurrPlayerFinished, makeCu
         }
         else {
             dispatch(beginDealerRound())
-            // setTimeout(() => {
-            //     dispatch(revealDealerCard())
-            // }, 1500);
         }
-
     };
 
-    const handleSplitRoundResults = () => {
+    const reversePlayerHands = () => {
+        console.log('reverse hands ran')
         const updatedSplitHand = { ...hand }
         const updatedMainHand = { ...splitHand }
-        dispatch(updatePlayer({ ...playersArr[playerIndex], hand: updatedMainHand, splitHand: updatedSplitHand, isDoubleDown: false }));
+        dispatch(updatePlayer({
+            ...playersArr[playerIndex],
+            hand: updatedMainHand,
+            splitHand: updatedSplitHand,
+            isDoubleDown: false
+        }));
     }
+
+
 
     return (
 

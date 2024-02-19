@@ -38,13 +38,7 @@ export default function EndRoundTable() {
         return () => { isMounted = false }
     }, [isPlayerRoundActive, isDealerRoundActive, isSplitResultsActive, dispatch, isPlayerSplitButNotInsured, isMainResultsActive, isRoundActive])
 
-    // useEffect(() => {
-    //     let isMounted = true
-    //     if (isMounted) {
-    //         if(allPlayersWonInsurance)
-    //     }
 
-    // }
 
 
 

@@ -34,7 +34,7 @@ export default function DealerHeader({ showDealerData, makeBlackjackTrue }: Deal
         dealerHeaderText = <h2 className=' win-color'>{name} BlackJack!</h2>
     } else if (!isDealerRoundActive && cardSum > 21) {
         dealerHeaderText = <h2 className=' lose-color'>{name} Bust!</h2>
-    } else if (!isDealerRoundActive && cardSum >= 17 && cardSum <= 21) {
+    } else if (!isDealerRoundActive && cardSum >= 17 && cardSum < 21) {
         dealerHeaderText = <h2 className=' stay-color'>{name} Stays</h2>
     } else {
         dealerHeaderText = <h2 className=''>{name}</h2>
