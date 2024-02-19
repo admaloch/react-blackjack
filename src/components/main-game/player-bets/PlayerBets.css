@@ -74,12 +74,14 @@
 }
 
 .bet-container {
+    min-width: 52%;
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     border: var(--text) solid 2px;
+    background-color: var(--table-background);
     border-radius: 5px;
     padding: 5rem 3rem 3rem 3rem;
 }

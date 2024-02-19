@@ -22,11 +22,13 @@ export default function ResultsModal({ playerIndex, isCurrPlayerFinished, makeCu
     const { hand, splitHand, isPlayerSplit } = currPlayer
 
     const endResultsBtnHandler = async () => {
-        if (isPlayerSplit) {
+
+        if (isPlayerSplit && splitHand.cards.length === 1) {
             reversePlayerHands()
-        }
-        if (splitHand.cards.length === 1 || playersArr.length - 1 !== playerIndex) {
+        } if (splitHand.cards.length === 1 || playersArr.length - 1 !== playerIndex) {
             if (!isPlayerSplit || isPlayerSplit && splitHand.cards.length > 1) {
+                reversePlayerHands()
+                
                 changeToNextPlayer()
             }
             makeCurrPlayerNotFinished()
@@ -37,7 +39,6 @@ export default function ResultsModal({ playerIndex, isCurrPlayerFinished, makeCu
     };
 
     const reversePlayerHands = () => {
-        console.log('reverse hands ran')
         const updatedSplitHand = { ...hand }
         const updatedMainHand = { ...splitHand }
         dispatch(updatePlayer({
