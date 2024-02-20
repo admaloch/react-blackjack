@@ -1,7 +1,8 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useState } from 'react';
 import ReactDOM from 'react-dom';
 import './Modal.css';
+import { delay } from '../../../utils/Utility';
 
 export interface ModalProps {
     closeModal: () => void;
@@ -16,16 +17,33 @@ export default function Modal({ open, children, closeModal }: MainModalProps): J
 
     const [isVisible, setIsVisible] = useState(false);
 
-    const closeModalHandler = () => {
+    const closeModalHandler = useCallback(() => {
         setIsVisible(false);
-            closeModal();
-    };
+        closeModal();
+    }, [closeModal])
 
     useEffect(() => {
         if (open) {
             setIsVisible(true);
         }
     }, [open]);
+
+    // currently set up the timer modal and it works but for some reason will return to the current player after moving to the next player
+
+    useEffect(() => {
+        let isMounted = true
+        async function closeModalTimer() {
+            if (isMounted) {
+                if (isVisible) {
+                
+                    await delay(2500)
+                    closeModalHandler()
+                }
+            }
+        }
+        closeModalTimer()
+        return () => { isMounted = false }
+    }, [isVisible, closeModalHandler])
 
     if (!open) return null;
 
@@ -34,7 +52,8 @@ export default function Modal({ open, children, closeModal }: MainModalProps): J
             <div
                 onClick={closeModalHandler}
                 className={isVisible ? "modal-overlay active" : "modal-overlay"}
-            ></div>
+            >
+            </div>
             <div className={isVisible ? "modal-container active" : "modal-container"}>
 
                 {children && children}
