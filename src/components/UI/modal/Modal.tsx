@@ -35,7 +35,6 @@ export default function Modal({ open, children, closeModal }: MainModalProps): J
         async function closeModalTimer() {
             if (isMounted) {
                 if (isVisible) {
-
                     await delay(2500)
                     closeModalHandler()
                 }
