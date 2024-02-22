@@ -18,7 +18,7 @@ export default function ResultsModalContents({ playerIndex, endResultsBtnHandler
                 playerIndex={playerIndex}
                 endResultsBtnHandler={endResultsBtnHandler}
             /> */}
-            <ModalTimer timeout={2000} onTimeout={endResultsBtnHandler} />
+            <ModalTimer timeout={1500} onTimeout={endResultsBtnHandler} />
         </div>
     )
 }

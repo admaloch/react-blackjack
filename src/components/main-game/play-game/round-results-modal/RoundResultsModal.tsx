@@ -17,6 +17,7 @@ export default function RoundResultsModal() {
         <Modal
             closeModal={endResultsBtnHandler}
             open={!isDealerRoundActive}
+            isTimer={false}
         >
             <div className="end-round-modal">
                 <h2>End of round results:</h2>

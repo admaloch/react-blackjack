@@ -23,6 +23,7 @@ export default function PlayerStatsModal({ closeModal, open }: PlayerStatsProps)
         <Modal
             closeModal={closeModal}
             open={open}
+            isTimer={false}
         >
             <div className="stats-modal-container">
                 <h3>Player Stats</h3>
@@ -41,7 +42,7 @@ export default function PlayerStatsModal({ closeModal, open }: PlayerStatsProps)
                     className="game-btn">
                     Return to game
                 </div>
-                
+
 
             </div>
         </Modal>
