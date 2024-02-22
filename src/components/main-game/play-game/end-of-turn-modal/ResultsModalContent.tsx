@@ -1,6 +1,7 @@
 import ResultsModalHeader from "./ResultsModalHeader";
 import ResultsModalStats from "./ResultsModalStats";
 import ResultsModalBtn from "./ResultsModalBtn";
+import ModalTimer from "../../../modal-timer/ModalTimer";
 
 interface ResultsModalContentsProps {
     playerIndex: number;
@@ -17,6 +18,8 @@ export default function ResultsModalContents({ playerIndex, endResultsBtnHandler
                 playerIndex={playerIndex}
                 endResultsBtnHandler={endResultsBtnHandler}
             />
+            <ModalTimer timeout={2000} onTimeout={endResultsBtnHandler} />
+
         </div>
     )
 }

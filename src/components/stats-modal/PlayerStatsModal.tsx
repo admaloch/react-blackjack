@@ -41,6 +41,7 @@ export default function PlayerStatsModal({ closeModal, open }: PlayerStatsProps)
                     className="game-btn">
                     Return to game
                 </div>
+                
 
             </div>
         </Modal>

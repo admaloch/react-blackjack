@@ -1,23 +1,30 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react';
 
-export default function ModalTimer({ timeout, onTimeout }) {
+interface ModalTimerProps {
+    timeout: number;
+    onTimeout: () => void;
+}
+
+export default function ModalTimer({ timeout, onTimeout }: ModalTimerProps) {
 
     const [remainingTime, setRemainingTime] = useState(timeout)
-    
+
     useEffect(() => {
-        setTimeout(onTimeout, timeout);
+        const timer = setTimeout(onTimeout, timeout)
+        return () => clearTimeout(timer)
     }, [timeout, onTimeout])
 
 
     useEffect(() => {
-        setInterval(() => {
+        const interval = setInterval(() => {
             setRemainingTime((prevRemainingTime) => prevRemainingTime - 100)
         }, 100)
+        return () => clearInterval(interval)
     }, [])
 
 
     return (
-        <progress id='question-time' />
+        <progress id='question-time' max={timeout} value={remainingTime} />
     )
 }

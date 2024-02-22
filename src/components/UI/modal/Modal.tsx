@@ -18,6 +18,7 @@ export default function Modal({ open, children, closeModal }: MainModalProps): J
     const [isVisible, setIsVisible] = useState(false);
 
     const closeModalHandler = useCallback(() => {
+        console.log('close modal handler ran in modal component')
         setIsVisible(false);
         closeModal();
     }, [closeModal])
@@ -30,19 +31,19 @@ export default function Modal({ open, children, closeModal }: MainModalProps): J
 
     // currently set up the timer modal and it works but for some reason will return to the current player after moving to the next player
 
-    useEffect(() => {
-        let isMounted = true
-        async function closeModalTimer() {
-            if (isMounted) {
-                if (isVisible) {
-                    await delay(2500)
-                    closeModalHandler()
-                }
-            }
-        }
-        closeModalTimer()
-        return () => { isMounted = false }
-    }, [isVisible, closeModalHandler])
+    // useEffect(() => {
+    //     let isMounted = true
+    //     async function closeModalTimer() {
+    //         if (isMounted) {
+    //             if (isVisible) {
+    //                 await delay(2500)
+    //                 closeModalHandler()
+    //             }
+    //         }
+    //     }
+    //     closeModalTimer()
+    //     return () => { isMounted = false }
+    // }, [isVisible, closeModalHandler])
 
     if (!open) return null;
 

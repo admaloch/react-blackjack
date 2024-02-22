@@ -19,17 +19,17 @@ interface GameDataProps {
 const initialState: GameDataProps = {
   roundsPlayed: 1,
   isGameActive: false,
-  isGameIntro: true,
+  isGameIntro: false,
   isAddPlayersRound: false,
   isBetRoundActive: false,
-  isPlayerRoundActive: false,
+  isPlayerRoundActive: true,
   isDealerCardRevealed: false,
   isDealerDrawing: false,
   isInsuranceRoundComplete: false,
   isDealerRoundActive: false,
   isMainResultsActive: false,
   isSplitResultsActive: false,
-  isRoundActive: false,
+  isRoundActive: true,
 }
 
 const deckSlice = createSlice({
