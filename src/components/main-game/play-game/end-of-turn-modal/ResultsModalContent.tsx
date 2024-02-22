@@ -14,12 +14,11 @@ export default function ResultsModalContents({ playerIndex, endResultsBtnHandler
         <div className="end-turn-modal">
             <ResultsModalHeader playerIndex={playerIndex} />
             <ResultsModalStats playerIndex={playerIndex} />
-            <ResultsModalBtn
+            {/* <ResultsModalBtn
                 playerIndex={playerIndex}
                 endResultsBtnHandler={endResultsBtnHandler}
-            />
+            /> */}
             <ModalTimer timeout={2000} onTimeout={endResultsBtnHandler} />
-
         </div>
     )
 }
