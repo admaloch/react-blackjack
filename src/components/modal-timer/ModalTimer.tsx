@@ -39,12 +39,15 @@ export default function ModalTimer({ timeout, onTimeout }: ModalTimerProps) {
     };
 
     return (
-        <progress
-            id="question-time"
-            max={timeout}
-            value={remainingTime}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-        />
+        <div id="progress-wrapper">
+            <progress
+                id="question-time"
+                max={timeout}
+                value={remainingTime}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+            />
+        </div>
+
     );
 }
