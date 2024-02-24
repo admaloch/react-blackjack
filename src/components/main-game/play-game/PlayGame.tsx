@@ -1,7 +1,7 @@
 import './PlayGame.css'
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store/store';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import EndOfTurnResults from './end-of-turn-modal/EndOfTurnResults';
 import { useDispatch } from "react-redux";
@@ -18,8 +18,8 @@ export default function PlayGame() {
     const [currPlayerIndex, setCurrPlayerIndex] = useState(0);
     const [isCurrPlayerFinished, setIsCurrPlayerFinished] = useState(false)
 
-    const makeCurrPlayerFinished = () => setIsCurrPlayerFinished(true)
-    const makeCurrPlayerNotFinished = () => setIsCurrPlayerFinished(false)
+    const makeCurrPlayerFinished = useCallback(() => setIsCurrPlayerFinished(true), []);
+    const makeCurrPlayerNotFinished = useCallback(() => setIsCurrPlayerFinished(false), []);
 
     const changeToNextPlayer = () => {
         setCurrPlayerIndex((prevIndex) => (prevIndex + 1) % playersArr.length);

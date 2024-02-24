@@ -19,20 +19,31 @@ export default function EndOfTurnResults({ playerIndex, isCurrPlayerFinished, ma
     const { hand, isDoubleDown } = currPlayer
 
     useEffect(() => {
-        let isMounted = true
+        let timer: NodeJS.timeout;
+
         async function endPlayerTurn() {
-            if (isMounted) {
-                if (hand.cardSum > 21
-                    || hand.cards.length === 2 && hand.cardSum === 21
-                    || hand.cards.length === 3 && isDoubleDown) {
-                    await delay(1000)
-                    makeCurrPlayerFinished()
+            if (!isCurrPlayerFinished) {
+                if (
+                    hand.cards.length > 2 && hand.cardSum > 21 ||
+                    (hand.cards.length === 2 && hand.cardSum === 21) ||
+                    (hand.cards.length === 3 && isDoubleDown)
+                ) {
+                    console.log('end player turn ran');
+                    timer = setTimeout(makeCurrPlayerFinished, 1000);
                 }
             }
+
         }
-        endPlayerTurn()
-        return () => { isMounted = false };
-    }, [hand, isDoubleDown, makeCurrPlayerFinished])
+
+        endPlayerTurn();
+
+        return () => clearTimeout(timer);
+    }, [hand, isDoubleDown, makeCurrPlayerFinished, isCurrPlayerFinished]);
+
+    useEffect(() => {
+        console.log(currPlayer.name, currPlayer.hand.cards)
+    }, [currPlayer])
+
 
     return (
         <ResultsModal

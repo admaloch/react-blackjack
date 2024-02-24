@@ -117,6 +117,10 @@
     margin: .2rem .7rem .7rem .7rem;
 }
 
+.hidden-btn {
+    display: none;
+}
+
 .stand-btn {
     position: absolute;
     top: .2em;
