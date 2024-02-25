@@ -18,10 +18,11 @@ export default function FinalResults() {
   return (
     <div className="final-results game-container">
       <div className="results-container">
-        <h2>Final results:</h2>
+        <h2>Game Over</h2>
+        <h3>Final results:</h3>
 
-        <h3>Total rounds played: {gameData.roundsPlayed}</h3>
-        <h3>Player stats:</h3>
+        <h4>Total rounds played: {gameData.roundsPlayed}</h4>
+        <h4>Player stats:</h4>
         <ul>
           {inactivePlayers.length > 0 &&
             (inactivePlayers as PlayerInterface[]).map(player => (

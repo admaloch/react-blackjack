@@ -6,7 +6,6 @@ import PlayerIndexProps from "../../../../models/PlayerIndexProps";
 import { PlayerInterface } from "../../../../models/PlayerProps";
 import ExitTableModal from "./ExitTableModal";
 
-
 export default function ExitTable({ playerIndex }: PlayerIndexProps) {
 
     const playersArr = useSelector((state: RootState) => state.playersArr);
@@ -22,17 +21,19 @@ export default function ExitTable({ playerIndex }: PlayerIndexProps) {
         }
     }, [playersArr]);
 
-    if (!playerWhoLeft) return;
+  
 
     return (
+        <>
+            {playerWhoLeft &&
 
-        <ExitTableModal
-            playerIndex={playerIndex}
-            playerWhoLeft={playerWhoLeft}
-            closeModal={closeModal}
-            isModalOpen={isModalOpen}
-
-        />
-
+                <ExitTableModal
+                    playerIndex={playerIndex}
+                    playerWhoLeft={playerWhoLeft}
+                    closeModal={closeModal}
+                    isModalOpen={isModalOpen}
+                />
+            }
+        </>
     );
 }

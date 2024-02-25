@@ -100,7 +100,7 @@ const DealerTable: React.FC = () => {
     <div className="dealer-table">
       <DeckOfCardsSvg className='full-deck-image' />
       <div className="dealer-hand">
-        {isShowRoundsPlayed && <h3>Round {roundsPlayed}</h3>}
+        {isShowRoundsPlayed && <h3 className='rounds-played'>Round {roundsPlayed}</h3>}
 
         <DealerDetails />
         <div className="dealer-cards">

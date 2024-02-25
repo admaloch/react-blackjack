@@ -6,8 +6,8 @@ import { RootState } from '../../store/store';
 
 export default function GameMenu() {
     const gameData = useSelector((state: RootState) => state.gameData);
-    const { isGameIntro, isAddPlayersRound, isBetRoundActive } = gameData
-    const isPlayerStatsShown = !isGameIntro && !isAddPlayersRound && !isBetRoundActive
+    const { isGameIntro, isAddPlayersRound, isGameActive } = gameData
+    const isPlayerStatsShown = !isGameIntro && !isAddPlayersRound && isGameActive
 
     return (
 
@@ -16,7 +16,7 @@ export default function GameMenu() {
                 <h2>Blackjack</h2>
                 <div className="menu-icons">
                     {isPlayerStatsShown && <PlayerStats />}
-                    <QuitGame />
+                    {isGameActive && <QuitGame />}
                 </div>
             </div>
         </div>

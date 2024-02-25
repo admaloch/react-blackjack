@@ -19,19 +19,23 @@ export default function ExitTablePlayerInfo({ playerWhoLeft, playerIndex }: Exit
         if (currPlayerName === lastPlayerName
             && currPlayerName === playerWhoLeft.name) {
             statusText = 'Player round complete'
-        }
+        } else statusText = ''
+
     } else {
         statusText = 'Game Over'
     }
 
     return (
         <>
-            <h2>{playerWhoLeft.name} left the table</h2>
+            {statusText &&
+                <h2>{statusText}</h2>
+            }
+            <h3>{playerWhoLeft.name} left the table</h3>
             <ul>
                 <li>Current bank: ${playerWhoLeft.bank}</li>
                 <li>Rounds won: {playerWhoLeft.roundsWon}</li>
             </ul>
-            <h3>{statusText}</h3>
+
         </>
     )
 }

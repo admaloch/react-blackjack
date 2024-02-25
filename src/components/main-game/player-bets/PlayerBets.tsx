@@ -39,7 +39,7 @@ export default function PlayerBets() {
                     ...gameData,
                     isBetRoundActive: false,
                     isPlayerRoundActive: true,
-                    isRoundActive: true
+                    isRoundActive: true,
                 }
             ))
             navigate("/startRound");

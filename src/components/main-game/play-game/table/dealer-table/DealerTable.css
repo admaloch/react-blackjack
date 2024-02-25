@@ -3,12 +3,12 @@
 }
 
 .full-deck-image {
-width: 100px;
-height: 100px;
-fill: white;
-position: absolute;
-top: 0;
-right: -1rem;
+    width: 100px;
+    height: 100px;
+    fill: white;
+    position: absolute;
+    top: 0;
+    right: -1rem;
 }
 
 .dealer-hand {
@@ -23,13 +23,18 @@ right: -1rem;
     top: 1.2rem;
 }
 
-.dealer-hand h3 {
+.rounds-played {
     font-size: 1.8rem;
     margin-bottom: 0;
 }
+
 .dealer-hand h3,
 .dealer-hand h2 {
- line-height: 30px;
+    line-height: 30px;
+}
+
+.dealer-hand h4 {
+    font-size: 1.3rem;
 }
 
 
@@ -75,6 +80,8 @@ right: -1rem;
     position: absolute;
     left: 1rem;
     top: 0rem;
+    font-size: 1.3rem;
+    width: 100%;
 }
 
 .dealer-status-reverse {
