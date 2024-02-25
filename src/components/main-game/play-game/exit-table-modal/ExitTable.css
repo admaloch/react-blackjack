@@ -1,4 +1,3 @@
-
 .exit-table-modal {
 
     width: 100%;
@@ -12,4 +11,13 @@
 .exit-table-modal h2 {
     font-size: 2rem;
 }
+.exit-table-modal h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0;
+}
 
+
+.exit-table-modal p {
+    font-size: .7rem;
+    font-style: italic;
+}

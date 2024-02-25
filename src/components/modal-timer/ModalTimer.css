@@ -1,12 +1,12 @@
 progress {
     border: var(--background) solid 1px;
-height: 10px;
+    height: 10px;
 
 }
 
 progress {
     border-radius: 20px;
-    
+
 }
 
 progress::-moz-progress-bar {
@@ -21,4 +21,11 @@ progress::-webkit-progress-value {
 progress::-webkit-progress-bar {
     background: var(--text);
     border-radius: 20px;
+}
+
+#progress-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: .2rem 0;
 }
