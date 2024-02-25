@@ -5,8 +5,12 @@ import './ExitTable.css'
 import ExitTableBtn from "./ExitTableModalBtn";
 import { removePlayer } from "../../../../store/player-arr/playersArrSlice";
 import { addInactivePlayer } from "../../../../store/inactive-players/InactivePlayersSlice";
-import { beginDealerRound, updateIsGameActive } from "../../../../store/game-data/GameDataSlice";
+import { beginDealerRound, endIsGameActive, updateIsGameActive } from "../../../../store/game-data/GameDataSlice";
 import { PlayerInterface } from "../../../../models/PlayerProps";
+import ModalTimer from "../../../modal-timer/ModalTimer";
+import { useRef } from "react";
+import { useNavigate } from "react-router";
+import ExitTableContent from "./ExitTableContent";
 
 interface ExitTableModalProps {
     playerIndex: number;
@@ -17,28 +21,47 @@ interface ExitTableModalProps {
 
 export default function ExitTableModal({ playerIndex, playerWhoLeft, closeModal, isModalOpen }: ExitTableModalProps) {
 
+    
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const dispatch = useDispatch();
+    const buttonRef = useRef<HTMLButtonElement | null>(null);
 
-    const currPlayerName = playersArr[playerIndex].name
-    const lastPlayerName = playersArr[playersArr.length - 1].name
+
+    const navigate = useNavigate();
+
 
 
     const exitTableModalBtnHandler = async () => {
+        const currPlayerName = playersArr[playerIndex].name
+        const lastPlayerName = playersArr[playersArr.length - 1].name
         if (playerWhoLeft) {
+            console.log('players arr length', playersArr.length)
+
+            dispatch(removePlayer({ name: playerWhoLeft.name }))
+            dispatch(addInactivePlayer({ ...playerWhoLeft }))
             if (playersArr.length > 1) {
                 if (currPlayerName === lastPlayerName
                     && currPlayerName === playerWhoLeft.name) {
                     dispatch(beginDealerRound())
+                    console.log('begin dealer ran')
                 }
             } else {
-                dispatch(updateIsGameActive());
+                console.log('end is game active')
+
+                dispatch(endIsGameActive());
+                navigate("/finalResults");
             }
-            dispatch(removePlayer({ name: playerWhoLeft.name }))
-            dispatch(addInactivePlayer({ ...playerWhoLeft }))
             closeModal()
         }
     };
+
+    const handleClickButtonRef = () => {
+        if (buttonRef.current) {
+            buttonRef.current.click();
+        }
+    };
+
+    if(!playerWhoLeft) return;
 
     return (
         <Modal
@@ -48,16 +71,14 @@ export default function ExitTableModal({ playerIndex, playerWhoLeft, closeModal,
         >
             {playerWhoLeft && (
                 <div className="exit-table-modal">
-                    <h2>{playerWhoLeft.name} left the table</h2>
-                    <ul>
-                        <li>Current bank: ${playerWhoLeft.bank}</li>
-                        <li>Rounds won: {playerWhoLeft.roundsWon}</li>
-                    </ul>
-                    <ExitTableBtn
-                        exitTableModalBtnHandler={exitTableModalBtnHandler}
-                        playerIndex={playerIndex}
+                    <ExitTableContent
                         playerWhoLeft={playerWhoLeft}
+                        playerIndex={playerIndex}
                     />
+
+                    <button className="hidden-btn" ref={buttonRef} onClick={exitTableModalBtnHandler}>Click hear</button>
+                    <ModalTimer timeout={2000} onTimeout={handleClickButtonRef} />
+                    
                 </div>
             )}
         </Modal>
