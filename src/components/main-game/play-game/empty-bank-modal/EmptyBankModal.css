@@ -1,4 +1,4 @@
-.end-round-modal {
+.empty-bank-modal {
 
     width: 100%;
     height: 100%;
@@ -8,18 +8,10 @@
     align-items: center;
 }
 
-.end-round-modal h2 {
+.empty-bank-modal h2 {
     font-size: 2rem;
 }
 
-
-
-.dealer-round-results{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-   
-}
 
 .player-round-results {
     display: flex;

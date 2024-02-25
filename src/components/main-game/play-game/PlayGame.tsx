@@ -14,6 +14,7 @@ export default function PlayGame() {
 
     const dispatch = useDispatch()
     const playersArr = useSelector((state: RootState) => state.playersArr);
+    const gameData = useSelector((state: RootState) => state.gameData);
     const { isPlayerRoundActive, isGameActive } = useSelector((state: RootState) => state.gameData);
     const [currPlayerIndex, setCurrPlayerIndex] = useState(0);
     const [isCurrPlayerFinished, setIsCurrPlayerFinished] = useState(false)
@@ -26,7 +27,9 @@ export default function PlayGame() {
         dispatch(updatePlayer({ ...playersArr[currPlayerIndex], isDoubleDown: false }));
     }
 
-
+    useEffect(() => {
+        console.log(gameData)
+    }, [gameData])
 
     return (
         <div className='game-container play-round'>

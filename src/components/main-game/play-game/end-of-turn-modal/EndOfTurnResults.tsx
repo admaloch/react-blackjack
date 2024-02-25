@@ -40,9 +40,7 @@ export default function EndOfTurnResults({ playerIndex, isCurrPlayerFinished, ma
         return () => clearTimeout(timer);
     }, [hand, isDoubleDown, makeCurrPlayerFinished, isCurrPlayerFinished]);
 
-    useEffect(() => {
-        console.log(currPlayer.name, currPlayer.hand.cards)
-    }, [currPlayer])
+
 
 
     return (
