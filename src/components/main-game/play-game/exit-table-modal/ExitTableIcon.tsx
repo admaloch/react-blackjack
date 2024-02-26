@@ -7,7 +7,6 @@ import { PlayerInterface } from '../../../../models/PlayerProps';
 interface ExitTableIconProps {
     currPlayer: PlayerInterface;
     closeModalHandler: () => void;
-
 }
 
 export default function ExitTableIcon({ currPlayer, closeModalHandler }: ExitTableIconProps) {
