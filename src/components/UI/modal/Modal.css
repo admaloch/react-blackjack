@@ -34,9 +34,9 @@
   visibility: hidden;
   opacity: 0;
   transition: 0.5s all;
-  /* min-width: 50%; */
+  min-width: 35%;
 
-  padding: 1.5rem;
+  padding: 2rem 1.5rem;
   border-radius: 5px;
 }
 

@@ -7,7 +7,7 @@ import ExitTableStatus from "./ExitTableStatus";
 interface ExitTableContentProps {
     playerIndex: number;
     playerWhoLeft: PlayerInterface;
-    closeModal: ()=> void;
+    closeModal: () => void;
 }
 
 export default function ExitTableContent({ playerIndex, playerWhoLeft, closeModal }: ExitTableContentProps) {
@@ -24,27 +24,27 @@ export default function ExitTableContent({ playerIndex, playerWhoLeft, closeModa
 
     return (
         <>
-       
-                <div className="exit-table-modal">
-                    <ExitTablePlayerInfo
-                        playerWhoLeft={playerWhoLeft}
-                        playerIndex={playerIndex}
 
-                    />
-                    <button
-                        className="hidden-btn"
-                        ref={buttonRef} onClick={closeModal}>
-                    </button>
-                    <ModalTimer
-                        timeout={20000}
-                        onTimeout={handleClickButtonRef}
-                    />
-                    <ExitTableStatus
-                        playerWhoLeft={playerWhoLeft}
-                        playerIndex={playerIndex}
-                    />
-                </div>
-         
+            <div className="exit-table-modal">
+                <ExitTablePlayerInfo
+                    playerWhoLeft={playerWhoLeft}
+                    playerIndex={playerIndex}
+
+                />
+                <button
+                    className="hidden-btn"
+                    ref={buttonRef} onClick={closeModal}>
+                </button>
+                <ModalTimer
+                    timeout={2000}
+                    onTimeout={handleClickButtonRef}
+                />
+                <ExitTableStatus
+                    playerWhoLeft={playerWhoLeft}
+                    playerIndex={playerIndex}
+                />
+            </div>
+
         </>
     );
 }
