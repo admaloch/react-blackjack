@@ -18,7 +18,7 @@ interface GameDataProps {
 
 const initialState: GameDataProps = {
   roundsPlayed: 1,
-  isGameActive: true,
+  isGameActive: false,
   isGameIntro: false,
   isAddPlayersRound: false,
   isBetRoundActive: false,

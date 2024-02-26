@@ -7,6 +7,7 @@ import { beginSplitRound, endFullRound } from "../../../../../store/game-data/Ga
 import TableHeader from "./table-header/TableHeader";
 import { delay } from "../../../../../utils/Utility";
 import NextRoundBtn from "./final-results/NextRoundBtn";
+import EmptyBankModal from "../../empty-bank-modal/EmptyBankModal";
 
 export default function EndRoundTable() {
 
@@ -55,6 +56,7 @@ export default function EndRoundTable() {
                 ))}
             </div>
             {!isRoundActive && <NextRoundBtn />}
+            <EmptyBankModal />
         </div>
     )
 }

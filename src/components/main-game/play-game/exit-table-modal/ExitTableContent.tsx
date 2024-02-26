@@ -36,7 +36,7 @@ export default function ExitTableContent({ playerIndex, playerWhoLeft, closeModa
                         ref={buttonRef} onClick={closeModal}>
                     </button>
                     <ModalTimer
-                        timeout={2000}
+                        timeout={20000}
                         onTimeout={handleClickButtonRef}
                     />
                     <ExitTableStatus

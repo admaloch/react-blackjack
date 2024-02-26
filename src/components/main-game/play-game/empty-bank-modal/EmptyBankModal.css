@@ -1,4 +1,4 @@
-.empty-bank-modal {
+.empty-bank-container {
 
     width: 100%;
     height: 100%;
@@ -8,25 +8,31 @@
     align-items: center;
 }
 
-.empty-bank-modal h2 {
-    font-size: 2rem;
+.empty-bank-container h3 {
+    font-size: 1.4rem;
+
 }
 
 
-.player-round-results {
+.empty-bank-list {
     display: flex;
     justify-content: center;
-    align-items: start;
+    align-items: center;
     flex-direction: column;
 }
 
-.player-round-results li {
+.empty-bank-list li {
     list-style: none;
     display: flex;
-
     align-items: center;
+    white-space: nowrap;
 }
 
-.player-round-results p {
+.empty-bank-list p {
     margin: 0 .1rem;
+}
+
+.empty-bank-container p {
+    font-style: italic;
+    font-size: .7rem;
 }

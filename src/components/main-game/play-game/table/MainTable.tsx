@@ -17,14 +17,14 @@ export default function MainTable({ playerIndex, makeCurrPlayerFinished }: MainT
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const currPlayer = playersArr[playerIndex]
 
-    const {
-        isDealerRoundActive,
-        isDealerCardRevealed,
-        isDealerDrawing,
-        isInsuranceRoundComplete,
-        isMainResultsActive,
-        isSplitResultsActive,
-        isRoundActive, } = gameData
+    // const {
+    //     isDealerRoundActive,
+    //     isDealerCardRevealed,
+    //     isDealerDrawing,
+    //     isInsuranceRoundComplete,
+    //     isMainResultsActive,
+    //     isSplitResultsActive,
+    //     isRoundActive, } = gameData
 
 
     // useEffect(() => {
