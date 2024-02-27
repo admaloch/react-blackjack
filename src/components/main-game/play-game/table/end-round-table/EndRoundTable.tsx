@@ -56,7 +56,7 @@ export default function EndRoundTable() {
                 ))}
             </div>
             {!isRoundActive && <NextRoundBtn />}
-            <EmptyBankModal />
+            
         </div>
     )
 }

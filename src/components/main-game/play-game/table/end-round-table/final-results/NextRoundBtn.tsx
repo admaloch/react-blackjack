@@ -7,6 +7,7 @@ import { delay } from '../../../../../../utils/Utility';
 import { increaseRoundsPlayed, updateGameObj } from '../../../../../../store/game-data/GameDataSlice';
 import { useNavigate } from 'react-router';
 import { resetDealer } from '../../../../../../store/dealer-obj/dealerObjSlice';
+import EmptyBankModal from '../../../empty-bank-modal/EmptyBankModal';
 
 export default function NextRoundBtn() {
     const { roundsPlayed } = useSelector((state: RootState) => state.gameData);
@@ -18,15 +19,13 @@ export default function NextRoundBtn() {
 
     const endGameHandler = async () => {
         await delay(300)
-        dispatch(updateGameObj(
-            {
-                ...gameData,
-                roundsPlayed: gameData.roundsPlayed + 1,
-                isDealerCardRevealed: false,
-                isInsuranceRoundComplete: false,
-            }
-        ));
+        resetGameData()
+        updatePlayerHands()
+        dispatch(resetDealer())
+        navigate('/placeBets');
+    };
 
+    const updatePlayerHands = () => {
         const updatedPlayersArr = playersArr.map((player: PlayerInterface) => {
             return {
                 ...player,
@@ -53,7 +52,6 @@ export default function NextRoundBtn() {
                 bank: player.minBet <= player.bank
                     ? player.bank - player.minBet
                     : player.bank - 5,
-
                 insuranceBet: 0,
                 wonInsuranceRound: false,
                 splitBet: 0,
@@ -67,16 +65,27 @@ export default function NextRoundBtn() {
                 beginningRoundBank: player.bank,
             };
         });
-
-
         dispatch(updateAllPlayers(updatedPlayersArr));
-        dispatch(resetDealer())
-        navigate('/placeBets');
-    };
+    }
+
+    const resetGameData = () => {
+        dispatch(updateGameObj(
+            {
+                ...gameData,
+                roundsPlayed: gameData.roundsPlayed + 1,
+                isDealerCardRevealed: false,
+                isInsuranceRoundComplete: false,
+            }
+        ));
+    }
 
     return (
-        <div onClick={endGameHandler} className="btn-container">
-            <button className="game-btn">Start Round {roundsPlayed + 1}</button>
-        </div>
+        <>
+            <div onClick={endGameHandler} className="btn-container">
+                <button className="game-btn">Start Round {roundsPlayed + 1}</button>
+            </div>
+            <EmptyBankModal />
+        </>
+
     );
 }
