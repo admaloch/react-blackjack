@@ -8,21 +8,31 @@ import { increaseRoundsPlayed, updateGameObj } from '../../../../../../store/gam
 import { useNavigate } from 'react-router';
 import { resetDealer } from '../../../../../../store/dealer-obj/dealerObjSlice';
 import EmptyBankModal from '../../../empty-bank-modal/EmptyBankModal';
+import { useState } from 'react';
 
 export default function NextRoundBtn() {
+    const [isPlayersBrokeModal, setIsPlayersBrokeModal] = useState(false)
+    const closePlayerBrokeModal = () => setIsPlayersBrokeModal(false)
+
     const { roundsPlayed } = useSelector((state: RootState) => state.gameData);
     const gameData = useSelector((state: RootState) => state.gameData);
     const playersArr = useSelector((state: RootState) => state.playersArr);
+    const areAnyPlayersBroke = playersArr.some(player => player.bank < 5
+    )
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const endGameHandler = async () => {
+    const finalBtnHandler = async () => {
         await delay(300)
+        if (areAnyPlayersBroke) {
+            setIsPlayersBrokeModal(true)
+        } else {
+            navigate('/placeBets');
+        }
         resetGameData()
         updatePlayerHands()
         dispatch(resetDealer())
-        navigate('/placeBets');
     };
 
     const updatePlayerHands = () => {
@@ -81,10 +91,13 @@ export default function NextRoundBtn() {
 
     return (
         <>
-            <div onClick={endGameHandler} className="btn-container">
+            <div onClick={finalBtnHandler} className="btn-container">
                 <button className="game-btn">Start Round {roundsPlayed + 1}</button>
             </div>
-            <EmptyBankModal />
+            <EmptyBankModal
+                closePlayerBrokeModal={closePlayerBrokeModal}
+                isPlayersBrokeModal={isPlayersBrokeModal}
+            />
         </>
 
     );
