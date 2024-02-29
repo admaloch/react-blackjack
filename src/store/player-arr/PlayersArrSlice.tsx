@@ -133,6 +133,11 @@ const playerArrSlice = createSlice({
                 state.splice(index, 1);
             }
         },
+        removePlayers: (state, action: PayloadAction<PlayerNameProps[]>) => {
+            const playerNamesToRemove = action.payload.map(player => player.name);
+            state = state.filter(player => !playerNamesToRemove.includes(player.name));
+        },
+
         resetPlayersArr: (state) => {
             state.splice(0, state.length, ...initialState);
         },
@@ -142,6 +147,6 @@ const playerArrSlice = createSlice({
     },
 });
 
-export const { addPlayer, updatePlayer, removePlayer, resetPlayersArr, updateAllPlayers } = playerArrSlice.actions;
+export const { addPlayer, updatePlayer, removePlayer, resetPlayersArr, updateAllPlayers, removePlayers } = playerArrSlice.actions;
 
 export default playerArrSlice.reducer;

@@ -1,10 +1,11 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './EmptyBankModal.css'
 import Modal from '../../../UI/modal/Modal';
 import { RootState } from '../../../../store/store';
 import { useState } from 'react';
 import EmptyBankModalResults from './EmptyBankModalResults';
 import { useNavigate } from 'react-router';
+import { removePlayers } from '../../../../store/player-arr/playersArrSlice';
 
 interface EmptyBankModalProps {
     closePlayerBrokeModal: () => void;
@@ -15,15 +16,18 @@ export default function EmptyBankModal({ closePlayerBrokeModal, isPlayersBrokeMo
     const navigate = useNavigate();
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const areAllPlayersBroke = playersArr.every(player => player.bank < 5)
+    const brokePlayers = playersArr.filter(player => player.bank < 5)
+    const dispatch = useDispatch();
 
     const closeModalHandler = () => {
         closePlayerBrokeModal()
         modalResultsFunc()
     }
 
-    // finishing up modal - remove player/players when modal closes
+    // finishing up modal - remove player/players when modal
     const modalResultsFunc = () => {
         if (!areAllPlayersBroke) {
+            dispatch(removePlayers(brokePlayers))
             navigate('/placeBets');
         } else {
             navigate('/finalResults');
