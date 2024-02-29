@@ -73,7 +73,6 @@ const deckSlice = createSlice({
       return { ...state, isPlayerRoundActive: false, isDealerRoundActive: true }
     },
     endDealerRound: (state) => {
-      console.log('end dealer round ran')
       return { ...state, isDealerRoundActive: false, isMainResultsActive: true, isDealerDrawing: false }
     },
     endDealerAndRound: (state) => {

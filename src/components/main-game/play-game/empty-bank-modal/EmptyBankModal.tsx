@@ -2,10 +2,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import './EmptyBankModal.css'
 import Modal from '../../../UI/modal/Modal';
 import { RootState } from '../../../../store/store';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import EmptyBankModalResults from './EmptyBankModalResults';
 import { useNavigate } from 'react-router';
 import { removePlayers } from '../../../../store/player-arr/playersArrSlice';
+import { addInactivePlayers } from '../../../../store/inactive-players/InactivePlayersSlice';
 
 interface EmptyBankModalProps {
     closePlayerBrokeModal: () => void;
@@ -27,12 +28,18 @@ export default function EmptyBankModal({ closePlayerBrokeModal, isPlayersBrokeMo
     // finishing up modal - remove player/players when modal
     const modalResultsFunc = () => {
         if (!areAllPlayersBroke) {
+            console.log(brokePlayers)
             dispatch(removePlayers(brokePlayers))
+            dispatch(addInactivePlayers(brokePlayers))
             navigate('/placeBets');
         } else {
             navigate('/finalResults');
         }
     }
+
+    // useEffect(() => {
+    //     console.log(playersArr)
+    // }, [playersArr])
 
     return (
         <Modal

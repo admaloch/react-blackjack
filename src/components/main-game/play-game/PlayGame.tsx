@@ -27,9 +27,6 @@ export default function PlayGame() {
         dispatch(updatePlayer({ ...playersArr[currPlayerIndex], isDoubleDown: false }));
     }
 
-    useEffect(() => {
-        console.log(gameData)
-    }, [gameData])
 
     return (
         <div className='game-container play-round'>
