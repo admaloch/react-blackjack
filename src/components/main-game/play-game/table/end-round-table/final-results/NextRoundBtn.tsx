@@ -17,8 +17,7 @@ export default function NextRoundBtn() {
     const { roundsPlayed } = useSelector((state: RootState) => state.gameData);
     const gameData = useSelector((state: RootState) => state.gameData);
     const playersArr = useSelector((state: RootState) => state.playersArr);
-    const areAnyPlayersBroke = playersArr.some(player => player.bank < 5
-    )
+    const areAnyPlayersBroke = playersArr.some(player => player.bank < 5)
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -28,6 +27,7 @@ export default function NextRoundBtn() {
         if (areAnyPlayersBroke) {
             setIsPlayersBrokeModal(true)
         } else {
+
             navigate('/placeBets');
         }
         resetGameData()
