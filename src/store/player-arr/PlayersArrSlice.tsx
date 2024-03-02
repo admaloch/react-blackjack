@@ -142,6 +142,8 @@ const playerArrSlice = createSlice({
             state.splice(0, state.length, ...initialState);
         },
         updateAllPlayers: (_, action: PayloadAction<PlayerInterface[]>) => {
+            const activePlayers = action.payload.map(player => player.bank >= 5)
+            const inActivePlayers = action.payload.map(player => player.bank < 5)
             return action.payload;
         },
     },

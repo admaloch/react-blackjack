@@ -30,7 +30,7 @@ export default function EmptyBankModal({ closePlayerBrokeModal, isPlayersBrokeMo
         if (!areAllPlayersBroke) {
 
             dispatch(removePlayers(brokePlayers))
-            // dispatch(addInactivePlayers(brokePlayers))
+            dispatch(addInactivePlayers(brokePlayers))
             navigate('/placeBets');
         } else {
             navigate('/finalResults');

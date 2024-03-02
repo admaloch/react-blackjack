@@ -8,10 +8,10 @@ const playerArrSlice = createSlice({
     initialState,
     reducers: {
         addInactivePlayer: (state, action: PayloadAction<PlayerInterface | null>) => {
-            state.push(action.payload);
+            return [...state, action.payload]
         },
         addInactivePlayers: (state, action: PayloadAction<PlayerInterface[]>) => {
-            state.push(...action.payload);
+            return [...state, ...action.payload]
         },
     },
 });

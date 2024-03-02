@@ -11,6 +11,7 @@ import NextRoundBtn from "./final-results/NextRoundBtn";
 export default function EndRoundTable() {
 
     const playersArr = useSelector((state: RootState) => state.playersArr);
+    const inactivePlayers = useSelector((state: RootState) => state.inactivePlayers);
 
     const { isPlayerRoundActive, isMainResultsActive, isDealerRoundActive, isSplitResultsActive, isRoundActive } = useSelector((state: RootState) => state.gameData);
 
@@ -20,7 +21,7 @@ export default function EndRoundTable() {
 
     useEffect(() => {
         let isMounted = true
-        async function splitOrEnd() {
+        async function splitOrEndResults() {
             if (isMounted) {
                 if (isRoundActive && !isPlayerRoundActive && !isDealerRoundActive && !isSplitResultsActive && !isMainResultsActive) {
                     await delay(1200)
@@ -32,9 +33,10 @@ export default function EndRoundTable() {
                 }
             }
         }
-        splitOrEnd()
+        splitOrEndResults()
         return () => { isMounted = false }
     }, [isPlayerRoundActive, isDealerRoundActive, isSplitResultsActive, dispatch, isPlayerSplitButNotInsured, isMainResultsActive, isRoundActive])
+
 
     return (
         <div className="player-results-table">

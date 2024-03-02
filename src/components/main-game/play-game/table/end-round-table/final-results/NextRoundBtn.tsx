@@ -27,7 +27,6 @@ export default function NextRoundBtn() {
         if (areAnyPlayersBroke) {
             setIsPlayersBrokeModal(true)
         } else {
-
             navigate('/placeBets');
         }
         resetGameData()
