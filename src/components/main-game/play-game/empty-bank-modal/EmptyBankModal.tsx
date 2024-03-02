@@ -27,10 +27,9 @@ export default function EmptyBankModal({ closePlayerBrokeModal, isPlayersBrokeMo
 
     // finishing up modal - remove player/players when modal
     const modalResultsFunc = () => {
+        dispatch(removePlayers(brokePlayers))
+        dispatch(addInactivePlayers(brokePlayers))
         if (!areAllPlayersBroke) {
-
-            dispatch(removePlayers(brokePlayers))
-            dispatch(addInactivePlayers(brokePlayers))
             navigate('/placeBets');
         } else {
             navigate('/finalResults');

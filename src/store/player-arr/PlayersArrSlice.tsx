@@ -141,10 +141,53 @@ const playerArrSlice = createSlice({
         resetPlayersArr: (state) => {
             state.splice(0, state.length, ...initialState);
         },
-        updateAllPlayers: (_, action: PayloadAction<PlayerInterface[]>) => {
-            const activePlayers = action.payload.map(player => player.bank >= 5)
-            const inActivePlayers = action.payload.map(player => player.bank < 5)
-            return action.payload;
+        // updateAllPlayers: (_, action: PayloadAction<PlayerInterface[]>) => {
+        //     const activePlayers = action.payload.map(player => player.bank >= 5)
+        //     const inActivePlayers = action.payload.map(player => player.bank < 5)
+        //     return action.payload;
+        // },
+        updateAllPlayers: (state) => {
+            const inActivePlayers = state.filter(player => player.bank < 5)
+            const updatedActivePlayers = state.filter(player => player.bank >= 5).map((player: PlayerInterface) => {
+                return {
+                    ...player,
+                    hand: {
+                        cards: [],
+                        cardUrlVals: [],
+                        cardNumVals: [],
+                        cardSum: 0,
+                        isBlackjack: false,
+                    },
+                    splitHand: {
+                        cards: [],
+                        cardUrlVals: [],
+                        cardNumVals: [],
+                        cardSum: 0,
+                        isBlackjack: false,
+                    },
+                    currBet: player.minBet <= player.bank
+                        ? player.minBet
+                        : 5,
+                    minBet: player.minBet <= player.bank
+                        ? player.minBet
+                        : 5,
+                    bank: player.minBet <= player.bank
+                        ? player.bank - player.minBet
+                        : player.bank - 5,
+                    insuranceBet: 0,
+                    wonInsuranceRound: false,
+                    splitBet: 0,
+                    isPlayerSplit: false,
+                    isDoubleDown: false,
+                    roundResults: {
+                        mainResults: '',
+                        splitResults: '',
+                        isComplete: false,
+                    },
+                    beginningRoundBank: player.bank,
+                };
+            });
+            return [...inActivePlayers, ...updatedActivePlayers]
         },
     },
 });
