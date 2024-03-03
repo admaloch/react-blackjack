@@ -20,7 +20,6 @@ export default function PlayerStatsModal({ closeModal, open, openModal }: Player
         closeModal()
     }
 
-
     return (
         <Modal
             closeModal={closeModal}
@@ -36,8 +35,7 @@ export default function PlayerStatsModal({ closeModal, open, openModal }: Player
                         <PlayerStatsItem
                             key={player.name}
                             player={player}
-                            closeStatsModal={closeStatsModalHandler}
-                            openStatsModal={openModal}
+                            closeStatsModal={closeModal}
                         />
                     ))}
                 </ul>

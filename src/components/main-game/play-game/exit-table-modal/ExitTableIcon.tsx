@@ -6,19 +6,18 @@ import { PlayerInterface } from '../../../../models/PlayerProps';
 
 interface ExitTableIconProps {
     currPlayer: PlayerInterface;
-    closeStatsModal: () => void;
-    openStatsModal: () => void;
+    closeStatsModal?: () => void;
 }
 
-export default function ExitTableIcon({ currPlayer, closeStatsModal, openStatsModal }: ExitTableIconProps) {
+export default function ExitTableIcon({ currPlayer, closeStatsModal }: ExitTableIconProps) {
     const dispatch = useDispatch();
 
     const exitTableHandler = async () => {
-        closeStatsModal()
-        await delay(200)
+        await delay(100)
+        closeStatsModal && closeStatsModal()
         dispatch(updatePlayer({ ...currPlayer, playerLeftTable: true }))
-        await delay(1900)
-        openStatsModal()
+
+
     }
 
     return (
