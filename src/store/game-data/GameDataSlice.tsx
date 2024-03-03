@@ -22,14 +22,14 @@ const initialState: GameDataProps = {
   isGameIntro: false,
   isAddPlayersRound: false,
   isBetRoundActive: false,
-  isPlayerRoundActive: false,
+  isPlayerRoundActive: true,
   isDealerCardRevealed: false,
   isDealerDrawing: false,
   isInsuranceRoundComplete: false,
   isDealerRoundActive: false,
   isMainResultsActive: false,
   isSplitResultsActive: false,
-  isRoundActive: false,
+  isRoundActive: true,
 }
 
 const deckSlice = createSlice({
