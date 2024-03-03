@@ -13,7 +13,7 @@ export default function ExitTableIcon({ currPlayer, closeStatsModal }: ExitTable
     const dispatch = useDispatch();
 
     const exitTableHandler = async () => {
-        closeStatsModal()
+        // closeStatsModal()
         await delay(200)
 
         dispatch(updatePlayer({ ...currPlayer, playerLeftTable: true }))
