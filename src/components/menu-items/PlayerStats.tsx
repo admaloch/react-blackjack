@@ -17,6 +17,8 @@ export default function PlayerStats() {
       <PlayerStatsModal
         open={isModalOpen}
         closeModal={closeModal}
+        openModal={openModal}
+        
       />
     </>
   )

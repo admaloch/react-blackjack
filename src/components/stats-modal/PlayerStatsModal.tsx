@@ -8,9 +8,10 @@ import { delay } from '../../utils/Utility';
 interface PlayerStatsProps {
     open: boolean;
     closeModal: () => void;
+    openModal: () => void;
 }
 
-export default function PlayerStatsModal({ closeModal, open }: PlayerStatsProps) {
+export default function PlayerStatsModal({ closeModal, open, openModal }: PlayerStatsProps) {
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const currRound = useSelector((state: RootState) => state.gameData.roundsPlayed);
 
@@ -18,6 +19,7 @@ export default function PlayerStatsModal({ closeModal, open }: PlayerStatsProps)
         await delay(200)
         closeModal()
     }
+
 
     return (
         <Modal
@@ -35,6 +37,7 @@ export default function PlayerStatsModal({ closeModal, open }: PlayerStatsProps)
                             key={player.name}
                             player={player}
                             closeStatsModal={closeStatsModalHandler}
+                            openStatsModal={openModal}
                         />
                     ))}
                 </ul>
