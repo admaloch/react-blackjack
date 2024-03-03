@@ -35,7 +35,7 @@
   opacity: 0;
   transition: 0.5s all;
   min-width: 35%;
-
+border: black solid 1px;
   padding: 2rem 1.5rem;
   border-radius: 5px;
 }

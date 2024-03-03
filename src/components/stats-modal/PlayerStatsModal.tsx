@@ -14,7 +14,7 @@ export default function PlayerStatsModal({ closeModal, open }: PlayerStatsProps)
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const currRound = useSelector((state: RootState) => state.gameData.roundsPlayed);
 
-    const closeModalHandler = async () => {
+    const closeStatsModalHandler = async () => {
         await delay(200)
         closeModal()
     }
@@ -34,12 +34,12 @@ export default function PlayerStatsModal({ closeModal, open }: PlayerStatsProps)
                         <PlayerStatsItem
                             key={player.name}
                             player={player}
-                            closeModalHandler={closeModalHandler}
+                            closeStatsModal={closeStatsModalHandler}
                         />
                     ))}
                 </ul>
                 <div
-                    onClick={closeModalHandler}
+                    onClick={closeStatsModalHandler}
                     className="game-btn">
                     Return to game
                 </div>

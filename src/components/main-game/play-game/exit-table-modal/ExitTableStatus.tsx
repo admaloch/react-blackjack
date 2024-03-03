@@ -19,6 +19,8 @@ export default function ExitTableStatus({ playerWhoLeft, playerIndex }: ExitTabl
         if (currPlayerName === lastPlayerName
             && currPlayerName === playerWhoLeft.name) {
             statusText = 'Beginning dealer round...'
+        } else if (currPlayerName !== playerWhoLeft.name) {
+            statusText = `Continuing ${currPlayerName}'s turn...`
         } else {
             const nextPlayerName = playersArr[playerIndex + 1].name
             statusText = `Beginning ${nextPlayerName}'s turn...`

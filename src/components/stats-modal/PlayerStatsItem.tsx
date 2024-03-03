@@ -3,10 +3,10 @@ import ExitTableIcon from "../main-game/play-game/exit-table-modal/ExitTableIcon
 
 interface PlayerStatsItemProps {
     player: PlayerInterface;
-    closeModalHandler: () => void;
+    closeStatsModal: () => void;
 }
 
-export default function PlayerStatsItem({ player, closeModalHandler }: PlayerStatsItemProps) {
+export default function PlayerStatsItem({ player, closeStatsModal }: PlayerStatsItemProps) {
 
     const { name, bank, roundsWon } = player
 
@@ -14,7 +14,7 @@ export default function PlayerStatsItem({ player, closeModalHandler }: PlayerSta
         <li>
             <ExitTableIcon
              currPlayer={player} 
-             closeModalHandler={closeModalHandler}
+             closeStatsModal={closeStatsModal}
 
              />
             {name}: Current Bank: {`$${bank}`}: Total Rounds Won: {roundsWon}
