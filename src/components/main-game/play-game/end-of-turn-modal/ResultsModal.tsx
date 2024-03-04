@@ -49,7 +49,6 @@ export default function ResultsModal({ playerIndex, isCurrPlayerFinished, makeCu
     )
 
     const endResultsBtnHandler = useCallback(async () => {
-        console.log('end results handler')
         if (isPlayerSplit && splitHand.cards.length === 1) {
             reversePlayerSplitHand()
         } if (splitHand.cards.length === 1 || playersArr.length - 1 !== playerIndex) {

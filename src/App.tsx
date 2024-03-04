@@ -11,11 +11,71 @@ import { RootState } from './store/store'
 import PlayerBets from './components/main-game/player-bets/PlayerBets'
 import PlayGame from './components/main-game/play-game/PlayGame'
 import FinalResults from './components/final-results/FinalResults'
+import { useEffect } from 'react'
 
 function App() {
-
-
   const isGameIntro = useSelector((state: RootState) => state.gameData.isGameIntro);
+
+  const gameData = useSelector((state: RootState) => state.gameData);
+  const {
+    isDealerRoundActive,
+    isPlayerRoundActive,
+    isDealerCardRevealed,
+    isDealerDrawing,
+    isInsuranceRoundComplete,
+    isMainResultsActive,
+    isSplitResultsActive,
+    isRoundActive,
+    isGameActive,
+    isAddPlayersRound,
+    isBetRoundActive
+  } = gameData
+
+  useEffect(() => {
+    console.log('isPlayerRoundActive is now', isPlayerRoundActive)
+  }, [isPlayerRoundActive])
+
+  useEffect(() => {
+    console.log('isDealerRoundActive is now', isDealerRoundActive)
+  }, [isDealerRoundActive])
+
+  useEffect(() => {
+    console.log('isDealerCardRevealed is now', isDealerCardRevealed)
+  }, [isDealerCardRevealed])
+
+  useEffect(() => {
+    console.log('isDealerDrawing is now', isDealerDrawing)
+  }, [isDealerDrawing])
+
+  useEffect(() => {
+    console.log('isInsuranceRoundComplete is now', isInsuranceRoundComplete)
+  }, [isInsuranceRoundComplete])
+  useEffect(() => {
+    console.log('isMainResultsActive is now', isMainResultsActive)
+  }, [isMainResultsActive])
+
+  useEffect(() => {
+    console.log('isSplitResultsActive is now', isSplitResultsActive)
+  }, [isSplitResultsActive])
+
+  useEffect(() => {
+    console.log('isRoundActive is now', isRoundActive)
+  }, [isRoundActive])
+  useEffect(() => {
+    console.log('isGameActive is now', isGameActive)
+  }, [isGameActive])
+  useEffect(() => {
+    console.log('isGameIntro is now', isGameIntro)
+  }, [isGameIntro])
+  useEffect(() => {
+    console.log('isAddPlayersRound is now', isAddPlayersRound)
+  }, [isAddPlayersRound])
+  useEffect(() => {
+    console.log('isBetRoundActive is now', isBetRoundActive)
+  }, [isBetRoundActive])
+  // testing for issues -- also just realized head is detached.
+
+
 
   return (
     <>

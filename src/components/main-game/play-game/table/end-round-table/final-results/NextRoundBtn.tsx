@@ -15,6 +15,7 @@ export default function NextRoundBtn() {
     const { roundsPlayed } = useSelector((state: RootState) => state.gameData);
     const gameData = useSelector((state: RootState) => state.gameData);
     const playersArr = useSelector((state: RootState) => state.playersArr);
+    const areAllPlayersBroke = playersArr.every(player => player.bank < 5)
     const areAnyPlayersBroke = playersArr.some(player => player.bank < 5)
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -25,21 +26,26 @@ export default function NextRoundBtn() {
             setIsPlayersBrokeModal(true)
         } else {
             navigate('/placeBets');
+            resetGameData()
         }
-        resetGameData()
+
         dispatch(updateAllPlayers());
         dispatch(resetDealer())
     };
 
-   
+
 
     const resetGameData = () => {
         dispatch(updateGameObj(
             {
                 ...gameData,
-                roundsPlayed: gameData.roundsPlayed + 1,
+                roundsPlayed: !areAllPlayersBroke
+                    ? gameData.roundsPlayed + 1
+                    : gameData.roundsPlayed,
                 isDealerCardRevealed: false,
                 isInsuranceRoundComplete: false,
+                isBetRoundActive: !areAllPlayersBroke ? true : false,
+                isGameActive: !areAllPlayersBroke ? true : false
             }
         ));
     }

@@ -28,7 +28,6 @@ export default function EndOfTurnResults({ playerIndex, isCurrPlayerFinished, ma
                     (hand.cards.length === 2 && hand.cardSum === 21) ||
                     (hand.cards.length === 3 && isDoubleDown)
                 ) {
-                    console.log('end player turn ran');
                     timer = setTimeout(makeCurrPlayerFinished, 1000);
                 }
             }
