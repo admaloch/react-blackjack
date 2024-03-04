@@ -43,10 +43,11 @@ export default function ResultsModal({ playerIndex, isCurrPlayerFinished, makeCu
                         }
                     } else return x
                 })
-                dispatch(updateAllPlayers(finalSplitHandUpdate))
+                dispatch(updateAllPlayers())
             }
         }, [dispatch, playersArr, playersHaveSplit]
     )
+    
 
     const endResultsBtnHandler = useCallback(async () => {
         if (isPlayerSplit && splitHand.cards.length === 1) {

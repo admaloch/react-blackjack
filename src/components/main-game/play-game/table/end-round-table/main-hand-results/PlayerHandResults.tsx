@@ -47,7 +47,7 @@ export default function PlayerHandResults({ player }: PlayerProps) {
                     } else if (player.insuranceBet === 0) {
                         setPlayerClass('player-hand obscure-item');
                     }
-                    await delay(2500);
+                    await delay(1000);
                     if (dealerSum === 21 && player.insuranceBet !== 0) {
                         setPlayerClass('player-hand emphasize emphasize-win');
                     } else if (dealerSum !== 21 && player.insuranceBet !== 0) {

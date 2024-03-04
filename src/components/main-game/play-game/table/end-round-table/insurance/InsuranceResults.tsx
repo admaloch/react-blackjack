@@ -81,6 +81,8 @@ export default function InsuranceResults({ player }: PlayerProps) {
         return () => { isMounted = false }
     }, [insuranceResults, player, dispatch])
 
+    
+
     return (
         <>
             {insuranceResults.status !== '' &&
