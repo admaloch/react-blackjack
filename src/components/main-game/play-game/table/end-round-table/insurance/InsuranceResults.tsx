@@ -29,7 +29,7 @@ export default function InsuranceResults({ player }: PlayerProps) {
         let isMounted = true;
         async function changeInsuranceResults() {
             if (isMounted) {
-                await delay(4000);
+                await delay(2500);
                 if (isDealerCardRevealed && player.insuranceBet !== 0) {
                     if (cardNumVals[0] === 10 && cardNumVals[1] === 11) {
                         setInsuranceResults({
@@ -56,7 +56,7 @@ export default function InsuranceResults({ player }: PlayerProps) {
         let isMounted = true;
         async function updateInsuranceHand() {
             if (isMounted) {
-                await delay(2500)
+                await delay(1500)
                 if (insuranceResults.isComplete && player.insuranceBet !== 0) {
                     if (insuranceResults.status === 'Won!') {
                         dispatch(updatePlayer({
@@ -67,7 +67,7 @@ export default function InsuranceResults({ player }: PlayerProps) {
                             currBet: 0,
                             splitBet: 0,
                         }));
-                    } 
+                    }
                     else {
                         dispatch(updatePlayer({
                             ...player,
