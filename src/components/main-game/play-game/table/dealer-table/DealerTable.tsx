@@ -37,20 +37,20 @@ const DealerTable: React.FC = () => {
     let isMounted = true
     async function initDealerDraw() {
       if (isMounted) {
-
-        if (cardLength === 0) {
-          dealerDraw();
+        if (isPlayerRoundActive) {
+          if (cardLength === 0) {
+            dealerDraw();
+          }
+          if (cardLength === 1) {
+            await delay(300)
+            dealerDraw();
+          }
         }
-        if (cardLength === 1) {
-          await delay(300)
-          dealerDraw();
-        }
-
       }
     }
     initDealerDraw()
     return () => { isMounted = false }
-  }, [cards, dealerDraw, cardLength]);
+  }, [cards, dealerDraw, cardLength, isPlayerRoundActive]);
 
 
 
@@ -92,7 +92,9 @@ const DealerTable: React.FC = () => {
   }, [cardSum, dealerDraw, isDealerCardRevealed, isInsuranceRoundComplete, isDealerRoundActive, dispatch, allPlayersWonInsurance]);
 
 
-
+  useEffect(() => {
+    console.log(dealerObj.hand.cards)
+  }, [dealerObj.hand.cards])
 
 
 
