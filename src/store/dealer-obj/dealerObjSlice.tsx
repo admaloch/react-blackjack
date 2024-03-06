@@ -10,18 +10,18 @@ const initialState: DealerObjInterface = {
     name: 'Dealer',
     "hand": {
         "cards": [
-            "2♥",
-            "5♠"
+            "10♥",
+            "10♠"
         ],
         "cardUrlVals": [
-            "2H",
-            "5S"
+            "10H",
+            "10S"
         ],
         "cardNumVals": [
-            2,
-            5
+            10,
+            10
         ],
-        "cardSum": 7,
+        "cardSum": 20,
         "isBlackjack": false
     },
 }

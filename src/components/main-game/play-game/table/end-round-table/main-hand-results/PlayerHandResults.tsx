@@ -72,7 +72,7 @@ export default function PlayerHandResults({ player }: PlayerProps) {
                     }
                 } else if (isSplitResultsActive) { // split win or loss
                     if (splitResults === '') {
-                        await delay(1500);
+                        await delay(1000);
                         if (player.splitHand.cards.length !== 0) {
                             changeToSplitHand();
                             updatePlayerClass('player-hand emphasize');
@@ -84,6 +84,8 @@ export default function PlayerHandResults({ player }: PlayerProps) {
                             updatePlayerClass('player-hand emphasize emphasize-win');
                         } else if (splitResults === 'Lost') {
                             updatePlayerClass('player-hand emphasize emphasize-lose');
+                        } else if (splitResults === 'Push') {
+                            updatePlayerClass('player-hand emphasize emphasize-push');
                         }
                     }
                 } else {

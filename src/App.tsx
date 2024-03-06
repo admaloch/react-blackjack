@@ -78,10 +78,10 @@ function App() {
   // testing for issues -- also just realized head is detached.
 
 
-  useEffect(() =>{
-    console.log(playersArr[0])
-    // console.log(playersArr[1])
-  } , [playersArr])
+  // useEffect(() =>{
+  //   console.log(playersArr[0])
+  //   // console.log(playersArr[1])
+  // } , [playersArr])
 
   return (
     <>

@@ -61,18 +61,18 @@ const initialState: PlayerInterface[] = [
         "name": "James",
         "hand": {
             "cards": [
-                "5♥",
+                "7♥",
                 "10♠"
             ],
             "cardUrlVals": [
-                "5H",
+                "7H",
                 "10S"
             ],
             "cardNumVals": [
-                5,
+                7,
                 10
             ],
-            "cardSum": 15,
+            "cardSum": 17,
             "isBlackjack": false,
         },
         "splitHand": {
@@ -146,6 +146,34 @@ const playerArrSlice = createSlice({
         //     const inActivePlayers = action.payload.map(player => player.bank < 5)
         //     return action.payload;
         // },
+        reverseCurrSplitHand: (state, action: PayloadAction<number>) => {
+            const updatedState = state.map((player, index) => {
+                if (index === action.payload) {
+                    return {
+                        ...player,
+                        hand: player.splitHand,
+                        splitHand: player.hand,
+                        isDoubleDown: false
+                    };
+                }
+                return player;
+            });
+
+            return updatedState;
+        },
+
+        reverseAllSplitHands: (state) => {
+            const allPlayersWithSplitHands = state.map(x => {
+                if (x.splitHand.cards.length > 0) {
+                    return {
+                        ...x,
+                        hand: x.splitHand,
+                        splitHand: x.hand,
+                    }
+                } else return x
+            })
+            return allPlayersWithSplitHands;
+        },
         updateAllPlayers: (state) => {
             const inActivePlayers = state.filter(player => player.bank < 5)
             const updatedActivePlayers = state.filter(player => player.bank >= 5).map((player: PlayerInterface) => {
@@ -192,6 +220,6 @@ const playerArrSlice = createSlice({
     },
 });
 
-export const { addPlayer, updatePlayer, removePlayer, resetPlayersArr, updateAllPlayers, removePlayers } = playerArrSlice.actions;
+export const { addPlayer, updatePlayer, removePlayer, resetPlayersArr, updateAllPlayers, removePlayers, reverseAllSplitHands, reverseCurrSplitHand } = playerArrSlice.actions;
 
 export default playerArrSlice.reducer;
