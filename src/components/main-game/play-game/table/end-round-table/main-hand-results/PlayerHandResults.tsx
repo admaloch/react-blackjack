@@ -29,10 +29,21 @@ export default function PlayerHandResults({ player }: PlayerProps) {
     const { isSplitResultsActive, isInsuranceRoundComplete, isDealerCardRevealed, isDealerDrawing, isMainResultsActive } = useSelector(
         (state: RootState) => state.gameData
     );
+
     const { hand, wonInsuranceRound } = player
     const { splitResults, mainResults } = player.roundResults
     const { cardUrlVals } = hand
     const dealerSum = useSelector((state: RootState) => state.dealerObj.hand.cardSum);
+
+    const winOrLoseEmphasisFunc = useCallback((endResultStr: string) => {
+        if (endResultStr === 'Won') {
+            updatePlayerClass('player-hand emphasize emphasize-win');
+        } else if (endResultStr === 'Lost') {
+            updatePlayerClass('player-hand emphasize emphasize-lose');
+        } else if (endResultStr === 'Push') {
+            updatePlayerClass('player-hand emphasize emphasize-push');
+        }
+    }, [updatePlayerClass])
 
     useEffect(() => {
         // use delays to emphasise player item then color red or green if they win or lose
@@ -42,7 +53,7 @@ export default function PlayerHandResults({ player }: PlayerProps) {
                 // insurance win or loss
                 if (!isInsuranceRoundComplete && isDealerCardRevealed && !isDealerDrawing) {
                     if (player.insuranceBet !== 0) {
-                        await delay(1500);
+                        await delay(1800);
                         setPlayerClass('player-hand emphasize');
                     } else if (player.insuranceBet === 0) {
                         setPlayerClass('player-hand obscure-item');
@@ -55,20 +66,14 @@ export default function PlayerHandResults({ player }: PlayerProps) {
                     }
                 } else if (isMainResultsActive) { //main results
                     if (mainResults === '') {
-                        await delay(500);
+                        // await delay(500);
                         if (!wonInsuranceRound) {
                             updatePlayerClass('player-hand emphasize');
                         } else {
                             updatePlayerClass('player-hand obscure-item');
                         }
                     } else if (mainResults !== '' && !wonInsuranceRound) {
-                        if (mainResults === 'Won') {
-                            updatePlayerClass('player-hand emphasize emphasize-win');
-                        } else if (mainResults === 'Lost') {
-                            updatePlayerClass('player-hand emphasize emphasize-lose');
-                        } else if (mainResults === 'Push') {
-                            updatePlayerClass('player-hand emphasize emphasize-push');
-                        }
+                        winOrLoseEmphasisFunc(mainResults)
                     }
                 } else if (isSplitResultsActive) { // split win or loss
                     if (splitResults === '') {
@@ -80,13 +85,7 @@ export default function PlayerHandResults({ player }: PlayerProps) {
                             updatePlayerClass('player-hand obscure-item');
                         }
                     } else if (splitResults !== '') {
-                        if (splitResults === 'Won') {
-                            updatePlayerClass('player-hand emphasize emphasize-win');
-                        } else if (splitResults === 'Lost') {
-                            updatePlayerClass('player-hand emphasize emphasize-lose');
-                        } else if (splitResults === 'Push') {
-                            updatePlayerClass('player-hand emphasize emphasize-push');
-                        }
+                        winOrLoseEmphasisFunc(splitResults)
                     }
                 } else {
                     updatePlayerClass('player-hand');
@@ -95,7 +94,9 @@ export default function PlayerHandResults({ player }: PlayerProps) {
         }
         winOrLoseEmphasis();
         return () => { isMounted = false; };
-    }, [dealerSum, isDealerCardRevealed, isDealerDrawing, isInsuranceRoundComplete, isSplitResultsActive, player.insuranceBet, player.splitHand.cards.length, splitResults, updatePlayerClass, isMainResultsActive, mainResults, wonInsuranceRound]);
+    }, [dealerSum, isDealerCardRevealed, isDealerDrawing, isInsuranceRoundComplete, isMainResultsActive, isSplitResultsActive, mainResults, player.insuranceBet, player.splitHand.cards.length, splitResults, updatePlayerClass, winOrLoseEmphasisFunc, wonInsuranceRound]);
+
+
 
     return (
         <div className={playerClass}>
@@ -119,7 +120,6 @@ export default function PlayerHandResults({ player }: PlayerProps) {
             }
             <Insurance player={player} />
             <EarningsOrLosses player={player} />
-
         </div>
     );
 }

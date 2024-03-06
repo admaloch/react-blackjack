@@ -30,9 +30,6 @@ const DealerTable: React.FC = () => {
   const playerHasInsurance = playersArr.some(x => x.insuranceBet !== 0)
   const allPlayersWonInsurance = playersArr.every(x => x.wonInsuranceRound)
 
-
-
-
   useEffect(() => {
     let isMounted = true
     async function initDealerDraw() {
@@ -52,8 +49,6 @@ const DealerTable: React.FC = () => {
     return () => { isMounted = false }
   }, [cards, dealerDraw, cardLength, isPlayerRoundActive]);
 
-
-
   useEffect(() => {
     if (isDealerRoundActive) {
       if (playerHasInsurance && isDealerCardRevealed) {
@@ -64,9 +59,6 @@ const DealerTable: React.FC = () => {
     }
 
   }, [playerHasInsurance, isDealerCardRevealed, dispatch, isInsuranceRoundComplete, isDealerRoundActive])
-
-
-
 
   useEffect(() => {
     let isMounted = true;
@@ -79,7 +71,7 @@ const DealerTable: React.FC = () => {
             dealerDraw();
           } else if (cardSum >= 17 && isInsuranceRoundComplete && isDealerCardRevealed) {
 
-            await delay(1500);
+            await delay(1000);
             allPlayersWonInsurance
               ? dispatch(endDealerAndRound())
               : dispatch(endDealerRound())
