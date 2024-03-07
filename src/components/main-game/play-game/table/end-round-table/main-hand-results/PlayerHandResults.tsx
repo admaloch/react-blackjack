@@ -53,12 +53,12 @@ export default function PlayerHandResults({ player }: PlayerProps) {
                 // insurance win or loss
                 if (!isInsuranceRoundComplete && isDealerCardRevealed && !isDealerDrawing) {
                     if (player.insuranceBet !== 0) {
-                        await delay(1800);
+                        await delay(1500);
                         setPlayerClass('player-hand emphasize');
                     } else if (player.insuranceBet === 0) {
                         setPlayerClass('player-hand obscure-item');
                     }
-                    await delay(1000);
+                    await delay(900);
                     if (dealerSum === 21 && player.insuranceBet !== 0) {
                         setPlayerClass('player-hand emphasize emphasize-win');
                     } else if (dealerSum !== 21 && player.insuranceBet !== 0) {
