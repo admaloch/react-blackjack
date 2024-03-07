@@ -17,6 +17,8 @@ export default function PlayerHandDetails({ player }: PlayerProps) {
     const { hand, bank, currBet } = player
     const { cardSum } = hand
 
+    
+
     return (
         <>
         <p>Sum: {cardSum}</p>

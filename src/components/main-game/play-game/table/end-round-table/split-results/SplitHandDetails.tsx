@@ -1,7 +1,6 @@
 import { PlayerInterface } from '../../../../../../models/PlayerProps'
 import PlayerHand from '../main-hand-results/PlayerHand';
 import BjBustOrStay from '../../../../../results-components/BjBustOrStay';
-import SplitMoneyEarnedOrLost from './SplitMoneyEarnedOrLost';
 import SplitWinOrLoseStr from './SplitWinOrLoseStr';
 
 export interface PlayerProps {
