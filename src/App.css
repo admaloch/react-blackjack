@@ -6,9 +6,10 @@
 :root {
     --background: #001219;
     --table-background: #1D2A1F;
-
     --text: #edf2f4;
     --modal-overlay: rgba(0, 0, 0, .7);
+    --modal-color: #C9CDF3;
+
     --color1: #FF4D4D;
     --blackjack: #09CE29;
     --bust: #FF4D4D;

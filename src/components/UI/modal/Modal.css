@@ -34,10 +34,12 @@
   visibility: hidden;
   opacity: 0;
   transition: 0.5s all;
-  min-width: 35%;
+  min-width: 30%;
+  min-height: 30%;
 border: black solid 1px;
-  padding: 2rem 1.5rem;
+  padding: 2.5rem;
   border-radius: 5px;
+  background-color: var(--modal-color);
 }
 
 .modal-container .game-btn {
@@ -61,7 +63,7 @@ border: black solid 1px;
   cursor: pointer;
 }
 
-@media screen and (min-width: 500px) {
+/* @media screen and (min-width: 500px) {
   .modal-container {
     --modal-width: 90%;
     --modal-height: 55%;
@@ -114,4 +116,4 @@ border: black solid 1px;
     --modal-width: 100% !important;
     --modal-height: 100% !important;
   }
-}
+} */

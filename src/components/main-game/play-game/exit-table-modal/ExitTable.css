@@ -8,6 +8,10 @@
     align-items: center;
 }
 
+.exit-table-modal h2 {
+    font-size: 2rem;
+    margin-bottom: 0;
+}
 
 .exit-table-modal h3 {
     font-size: 1.8rem;

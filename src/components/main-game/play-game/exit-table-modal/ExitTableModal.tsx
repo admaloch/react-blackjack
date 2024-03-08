@@ -44,7 +44,7 @@ export default function ExitTableModal({ playerIndex, playerWhoLeft, closeModal,
         <Modal
             closeModal={exitTableModalBtnHandler}
             open={isModalOpen}
-            isTimer={false}
+            isTimer={true}
         >
             <ExitTableContent
                 playerWhoLeft={playerWhoLeft}
