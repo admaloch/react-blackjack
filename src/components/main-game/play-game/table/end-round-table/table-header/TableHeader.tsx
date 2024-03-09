@@ -1,11 +1,11 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../../../store/store';
 import './TableHeader.css'
+import NextRoundBtn from '../final-results/NextRoundBtn';
 export default function TableHeader() {
 
-    const { isMainResultsActive, isSplitResultsActive, roundsPlayed, isRoundActive } = useSelector((state: RootState) => state.gameData);
+    const { isMainResultsActive, isSplitResultsActive, isRoundActive } = useSelector((state: RootState) => state.gameData);
 
-    // const currText = isSplitResultsActive ? 'Split hand results...' : 'Main hand results...'
 
     let currText = ''
     if (isSplitResultsActive) {
@@ -13,7 +13,7 @@ export default function TableHeader() {
     } else if (isMainResultsActive) {
         currText = 'Main hand results...'
     } else if (!isRoundActive) {
-        currText = 'Round complete'
+        currText = 'Round complete:'
     } else {
         currText = ''
     }
@@ -21,7 +21,7 @@ export default function TableHeader() {
     return (
         <div className="header-btn-container">
             {currText && <h2>{currText}</h2>}
-            {/* <h3>Stay here</h3> */}
+            {!isRoundActive && <NextRoundBtn />}
         </div>
 
     )

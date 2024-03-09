@@ -52,9 +52,9 @@ export default function NextRoundBtn() {
 
     return (
         <>
-            <div onClick={finalBtnHandler} className="btn-container">
-                <button className="game-btn">Start Round {roundsPlayed + 1}</button>
-            </div>
+
+            <button onClick={finalBtnHandler} className="game-btn">Start Round {roundsPlayed + 1}</button>
+
             <EmptyBankModal
                 closePlayerBrokeModal={closePlayerBrokeModal}
                 isPlayersBrokeModal={isPlayersBrokeModal}

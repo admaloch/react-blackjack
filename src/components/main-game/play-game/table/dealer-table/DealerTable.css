@@ -20,7 +20,7 @@
     justify-content: start;
     flex-direction: column;
     position: relative;
-    top: 1.2rem;
+    
 }
 
 .rounds-played {
@@ -30,6 +30,7 @@
 
 .dealer-hand h3,
 .dealer-hand h2 {
+    padding: .2rem;
     line-height: 30px;
 }
 

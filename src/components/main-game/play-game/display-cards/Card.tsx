@@ -18,10 +18,10 @@ const Card: React.FC<CardProp> = ({ cardUrlVal, isHidden }) => {
     };
   }, [imagePath]);
 
-  
+
 
   return (
-    <div className={`player-card ${isLoaded ? 'animate-in' : ''} ${isHidden ? 'hidden' : ''}`}>
+    <div className={`playing-card ${isLoaded ? 'animate-in' : ''} ${isHidden ? 'hidden' : ''}`}>
       <img
         style={{ opacity: isLoaded ? 1 : 0 }}
         src={imagePath}

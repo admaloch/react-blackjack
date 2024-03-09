@@ -1,9 +1,8 @@
-.dealer-hand .player-card.hidden img {
+.dealer-hand .playing-card.hidden img {
     display: none;
 }
 
 .back-of-card {
-    max-width: 130px;
     border-radius: 5px;
 }
 

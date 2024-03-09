@@ -12,16 +12,18 @@ interface CardsProps {
 
 const Cards: React.FC<CardsProps> = ({ cardUrlVals, isDealerCardRevealed, playerIndex }) => {
     return (
-        <div className="curr-hand">
+        <>
             {cardUrlVals.map((cardUrlVal, index) => (
                 <Card
                     key={index}
-                    playerIndex= {playerIndex}
+                    playerIndex={playerIndex}
                     cardUrlVal={cardUrlVal}
                     isHidden={!isDealerCardRevealed && index === 0} // Hide the first card if not revealed
                 />
             ))}
-        </div>
+        </>
+
+
     );
 };
 

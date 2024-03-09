@@ -96,13 +96,18 @@ const DealerTable: React.FC = () => {
 
         <DealerDetails />
         <div className="dealer-cards">
-          {!isDealerCardRevealed &&
-            <HiddenCard />
-          }
-          <Cards
-            cardUrlVals={dealerObj.hand.cardUrlVals}
-            isDealerCardRevealed={isDealerCardRevealed}
-          />
+          
+            {!isDealerCardRevealed &&
+              <HiddenCard />
+            }
+            <Cards
+              cardUrlVals={dealerObj.hand.cardUrlVals}
+              isDealerCardRevealed={isDealerCardRevealed}
+            />
+
+          
+
+
         </div>
       </div>
     </div>

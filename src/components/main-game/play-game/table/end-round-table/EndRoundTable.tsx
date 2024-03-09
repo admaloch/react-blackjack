@@ -40,6 +40,7 @@ export default function EndRoundTable() {
 
     return (
         <div className="player-results-table">
+            
             <TableHeader />
             <div className="player-hand-results">
                 {playersArr.map(player => (
@@ -49,7 +50,7 @@ export default function EndRoundTable() {
                     />
                 ))}
             </div>
-            {!isRoundActive && <NextRoundBtn />}
+            
         </div>
     )
 }

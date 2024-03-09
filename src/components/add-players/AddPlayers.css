@@ -1,10 +1,9 @@
-
-
 .form-container {
     border: var(--text) solid 1px;
-
+    background-color: var(--alt-containers);
     padding: 2rem;
     border-radius: 10px;
+
 }
 
 .add-players h1 {
@@ -44,6 +43,7 @@
     padding: 1rem;
     border-radius: 10px;
     margin-top: 1rem;
+    background-color: var(--alt-containers);
 }
 
 .player-list h2 {

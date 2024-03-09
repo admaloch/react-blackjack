@@ -1,32 +1,62 @@
-.curr-hand {
+.dealer-cards,
+.player-cards {
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: fit-content; /* Adjusts container width to fit content */
+    max-width: fit-content;
+    /* Adjusts container width to fit content */
     margin: 0 auto;
+
 }
 
-.player-card {
+.playing-card {
     flex: 1;
     max-width: 100%;
     box-sizing: border-box;
     text-align: center;
-    padding: 0 .3rem;
+    padding: 1rem .3rem;
 }
 
-.player-card img {
-    max-width: 100%;
+.dealer-cards img,
+.player-cards img {
     height: auto;
     display: block;
     margin: 0 auto;
-    width: 130px;
+    width: 40px;
+}
+@media screen and (min-width: 550px) {
+    .dealer-cards img,
+    .player-cards img {
+        width: 110px;
+    }
+}
+@media screen and (min-width: 768px) {
+    .dealer-cards img,
+    .player-cards img {
+        width: 120px;
+    }
 }
 
-.player-table .curr-hand .player-card {
+@media screen and (min-width: 992px) {
+
+    .dealer-cards img,
+    .player-cards img {
+        width: 120px;
+    }
+}
+@media screen and (min-width: 1350px) {
+
+    .dealer-cards img,
+    .player-cards img {
+        width: 150px;
+    }
+}
+
+.player-cards .playing-card {
     animation: animatePlayerCard .5s ease-in-out forwards;
 }
 
-.dealer-table .curr-hand .player-card {
+.dealer-cards .playing-card {
     animation: animateDealerCard .5s ease-in-out forwards;
 }
 

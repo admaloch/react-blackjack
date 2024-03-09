@@ -15,6 +15,7 @@ export default function PlayerHand({ cardUrlVals }: CardUrlValsProps) {
                 <Card
                     key={index}
                     cardUrlVal={card}
+                    isHidden={false}
                 />
             ))}
         </div>
