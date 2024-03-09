@@ -1,9 +1,10 @@
 .table {
-    width: 80%;
-    height: 80vh;
+    width: 87%;
+    height: 85vh;
     border: var(--text) solid 2px;
     background-color: var(--table-background);
     border-radius: 5px;
+    margin-top: 2rem;
 }
 
 .icons svg {

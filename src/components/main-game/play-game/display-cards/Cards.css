@@ -1,19 +1,25 @@
 .curr-hand {
-    /* border: red solid 1px; */
     display: flex;
     justify-content: center;
     align-items: center;
-    /* width: 100%; */
-    /* height: 100%; */
+    max-width: fit-content; /* Adjusts container width to fit content */
+    margin: 0 auto;
 }
 
-.curr-hand .player-card {
-    /* border: green solid 1px; */
-    /* max-width: 230px; */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0.2rem;
+.player-card {
+    flex: 1;
+    max-width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 0 .3rem;
+}
+
+.player-card img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    width: 130px;
 }
 
 .player-table .curr-hand .player-card {
@@ -28,34 +34,22 @@
     from {
         opacity: 0;
         transform: translateY(-550px) translateX(+450px) scale(0) rotate(0deg);
-        /* Start smaller, no rotation initially (0deg) */
     }
 
     to {
         opacity: 1;
         transform: translateY(0) translateX(0) scale(1) rotate(360deg);
-        /* End up normal size, rotate 360 degrees */
     }
 }
-
 
 @keyframes animateDealerCard {
     from {
         opacity: 0;
         transform: translateY(-150px) translateX(+600px) scale(0) rotate(0deg);
-        /* Start smaller, no rotation initially (0deg) */
     }
 
     to {
         opacity: 1;
         transform: translateY(0) translateX(0) scale(1) rotate(360deg);
-        /* End up normal size, rotate 360 degrees */
     }
-}
-
-
-
-
-.curr-hand img {
-    max-width: 105px;
 }

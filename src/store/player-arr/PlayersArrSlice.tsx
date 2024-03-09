@@ -69,8 +69,8 @@ const initialState: PlayerInterface[] = [
                 "2♠",
                 "2♠",
                 "2♠",
-                "2♠",
-                "2♠",
+
+
             ],
             "cardUrlVals": [
                 "2H",
@@ -81,8 +81,8 @@ const initialState: PlayerInterface[] = [
                 "2S",
                 "2S",
                 "2S",
-                "2S",
-                "2S",
+
+
             ],
             "cardNumVals": [
                 2,
@@ -93,10 +93,11 @@ const initialState: PlayerInterface[] = [
                 2,
                 2,
                 2,
-                2,
-                2,
+
+
+
             ],
-            "cardSum": 20,
+            "cardSum": 16,
             "isBlackjack": false,
         },
         "splitHand": {
