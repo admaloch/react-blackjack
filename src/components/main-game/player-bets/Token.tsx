@@ -7,18 +7,22 @@ import { updatePlayerTokens } from './updatePlayerTokens';
 interface TokenProps {
     number: number;
     currPlayerIndex: number;
+    setIsBetValid: (input: boolean) => void;
+
 }
 
-export default function Token({ number, currPlayerIndex }: TokenProps) {
+export default function Token({ number, currPlayerIndex, setIsBetValid }: TokenProps) {
     const dispatch = useDispatch();
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const player = playersArr[currPlayerIndex]
     const { currBet, bank } = player
 
-
-
-
     const tokenClickHandler = (input: number) => {
+        if (player.currBet >= player.minBet) {
+            setIsBetValid(true);
+        } else {
+            setIsBetValid(false);
+        }
         dispatch(updatePlayer({
             ...player,
             currBet: currBet + input,
@@ -26,6 +30,7 @@ export default function Token({ number, currPlayerIndex }: TokenProps) {
             currTokens: updatePlayerTokens(bank - input)
         }));
     };
+
     const tokenId = `token${number}`
 
     return (

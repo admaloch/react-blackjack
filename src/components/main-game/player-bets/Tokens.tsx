@@ -6,9 +6,10 @@ import { updatePlayerTokens } from './updatePlayerTokens';
 import Token from './Token';
 interface TokensProps {
     currPlayerIndex: number;
+    setIsBetValid: (input: boolean) => void;
 }
 
-export default function Tokens({ currPlayerIndex }: TokensProps) {
+export default function Tokens({ currPlayerIndex, setIsBetValid }: TokensProps) {
 
     const dispatch = useDispatch();
     const playersArr = useSelector((state: RootState) => state.playersArr);
@@ -28,14 +29,19 @@ export default function Tokens({ currPlayerIndex }: TokensProps) {
         <div className="tokens-container">
             {playersArr[currPlayerIndex].currTokens
                 .map((item) => (
-                    <Token key={item} number={item} currPlayerIndex={currPlayerIndex} />
+                    <Token 
+                    key={item} number={item} 
+                    currPlayerIndex={currPlayerIndex} 
+                    setIsBetValid={setIsBetValid}
+
+                    />
                 ))}
-         
-                <div
-                    onClick={allTokensHandler}
-                    className={allTokensClass}>All</div>
-            
-            
+            <div
+                onClick={allTokensHandler}
+                className={allTokensClass}>All
+            </div>
+
+
         </div>
     );
 }
