@@ -85,6 +85,19 @@ function App() {
   //   console.log(deck)
   // }, [deck])
 
+  const deckSuitSumsArr = deck.map(card => card.suits.reduce((p, c) => p + c))
+  const currDeckSum = deckSuitSumsArr.reduce((p, c) => p + c)
+  const isShuffleNeeded = currDeckSum < initialDeckAmount / 2
+
+  console.log('curr deck sum', currDeckSum)
+  console.log('init deck amount', initialDeckAmount)
+
+  useEffect(() => {
+      if (initialDeckAmount === 0) {
+          setInitialDeckAmount(currDeckSum)
+      }
+  }, [currDeckSum, initialDeckAmount])
+
 
   return (
     <>

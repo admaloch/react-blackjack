@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 interface GameDataProps {
   roundsPlayed: number;
+  initialCardAmount: number;
   isGameActive: boolean;
   isGameIntro: boolean;
   isBetRoundActive: boolean;
@@ -18,6 +19,7 @@ interface GameDataProps {
 
 const initialState: GameDataProps = {
   roundsPlayed: 1,
+  initialCardAmount: 1,
   isGameActive: false,
   isGameIntro: true,
   isAddPlayersRound: false,

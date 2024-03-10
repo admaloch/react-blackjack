@@ -6,10 +6,9 @@ import { updatePlayerTokens } from './updatePlayerTokens';
 import Token from './Token';
 interface TokensProps {
     currPlayerIndex: number;
-    setIsBetValid: (input: boolean) => void;
 }
 
-export default function Tokens({ currPlayerIndex, setIsBetValid }: TokensProps) {
+export default function Tokens({ currPlayerIndex }: TokensProps) {
 
     const dispatch = useDispatch();
     const playersArr = useSelector((state: RootState) => state.playersArr);
@@ -32,7 +31,6 @@ export default function Tokens({ currPlayerIndex, setIsBetValid }: TokensProps) 
                     <Token 
                     key={item} number={item} 
                     currPlayerIndex={currPlayerIndex} 
-                    setIsBetValid={setIsBetValid}
 
                     />
                 ))}

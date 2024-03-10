@@ -7,12 +7,11 @@ import { updateGameObj } from "../../../store/game-data/GameDataSlice";
 
 interface PlaceBetBtnProps {
     currPlayerIndex: number;
-    isBetValid: boolean;
     moveToNextPlayer: () => void;
     setIsModalOpen: (input: boolean) => void;
 }
 
-export default function PlaceBetBtn({ setIsModalOpen, isBetValid, currPlayerIndex, moveToNextPlayer }: PlaceBetBtnProps) {
+export default function PlaceBetBtn({ setIsModalOpen, currPlayerIndex, moveToNextPlayer }: PlaceBetBtnProps) {
 
     const [initialDeckAmount, setInitialDeckAmount] = useState(0)
     const gameData = useSelector((state: RootState) => state.gameData);
@@ -54,15 +53,11 @@ export default function PlaceBetBtn({ setIsModalOpen, isBetValid, currPlayerInde
                 ))
                 navigate("/startRound");
             }
-
         }
     };
 
-
-
-
     return (
-        <button className={isBetValid ? 'game-btn' : 'game-btn disabled'} onClick={nextPlayerHandler}>
+        <button className='game-btn' onClick={nextPlayerHandler}>
             Place Bet
         </button>
     );
