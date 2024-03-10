@@ -26,10 +26,15 @@ export default function PlayGame() {
         setCurrPlayerIndex((prevIndex) => (prevIndex + 1) % playersArr.length);
         dispatch(updatePlayer({ ...playersArr[currPlayerIndex], isDoubleDown: false }));
     }
+    const currPlayerHand = playersArr[currPlayerIndex].hand.cardNumVals
+    const currSplitHand = playersArr[currPlayerIndex].splitHand.cardNumVals
 
-    // useEffect(() => {
-    //     console.log(gameData)
-    // }, [gameData])
+    useEffect(() => {
+        console.log('curr hand:', currPlayerHand)
+    }, [currPlayerHand])
+    useEffect(() => {
+        console.log('split hand:', currSplitHand)
+    }, [currSplitHand])
 
 
     return (

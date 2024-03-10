@@ -14,6 +14,7 @@ import FinalResults from './components/final-results/FinalResults'
 import { useEffect } from 'react'
 import playersArrSlice from './store/player-arr/playersArrSlice'
 import dealerObjSlice from './store/dealer-obj/dealerObjSlice'
+import { setInitialDeckAmount } from './store/game-data/GameDataSlice'
 
 function App() {
   const isGameIntro = useSelector((state: RootState) => state.gameData.isGameIntro);
@@ -87,16 +88,14 @@ function App() {
 
   const deckSuitSumsArr = deck.map(card => card.suits.reduce((p, c) => p + c))
   const currDeckSum = deckSuitSumsArr.reduce((p, c) => p + c)
-  const isShuffleNeeded = currDeckSum < initialDeckAmount / 2
 
-  console.log('curr deck sum', currDeckSum)
-  console.log('init deck amount', initialDeckAmount)
+  // useEffect(() => {
+  //   setInitialDeckAmount(currDeckSum)
+  // }, [])
 
-  useEffect(() => {
-      if (initialDeckAmount === 0) {
-          setInitialDeckAmount(currDeckSum)
-      }
-  }, [currDeckSum, initialDeckAmount])
+  // useEffect(() => {
+  //   console.log('Num cards left:', currDeckSum)
+  // }, [currDeckSum])
 
 
   return (

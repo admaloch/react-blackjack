@@ -8,7 +8,7 @@ interface DeckLocationInterface {
 
 // Helper function to draw and update a hand
 const genCardLocationIndexes = (deck: CardObjInterface[]): DeckLocationInterface => {
-    
+
     let deckLocationVals: DeckLocationInterface = {
         cardIndex: 0,
         suitIndex: 0,
@@ -26,13 +26,13 @@ const genCardLocationIndexes = (deck: CardObjInterface[]): DeckLocationInterface
             isCardLocationValid = true;
         }
     }
-    
+
     return deckLocationVals;
 };
 
 // Helper function to draw and update a hand
 const drawAndUpdateHand = (handInput: Hand, cardIndex: number, suitIndex: number, deck: CardObjInterface[]) => {
-    
+
     const handWithNewCards = { ...handInput };
     const suits = ['♦', '♣', '♥', '♠'];
     const urlSuits = ['D', 'S', 'H', 'S'];
@@ -55,14 +55,18 @@ const drawAndUpdateHand = (handInput: Hand, cardIndex: number, suitIndex: number
 
 // Helper function to update Ace value in a hand
 const changeAceVal = (handInput: Hand) => {
-    
+
     const handWithAlteredAceVals = { ...handInput };
-    while (handWithAlteredAceVals.cardSum > 21) {
-        const lastIndex = handWithAlteredAceVals.cardNumVals.lastIndexOf(11);
-        if (lastIndex === -1) break;
-        handWithAlteredAceVals.cardNumVals[lastIndex] = 1;
-        handWithAlteredAceVals.cardSum = handWithAlteredAceVals.cardNumVals.reduce((a, b) => a + b);
+    if (handWithAlteredAceVals.cardSum > 21) {
+        console.log('altered ace val func ran')
+        while (handWithAlteredAceVals.cardSum > 21) {
+            const lastIndex = handWithAlteredAceVals.cardNumVals.lastIndexOf(11);
+            if (lastIndex === -1) break;
+            handWithAlteredAceVals.cardNumVals[lastIndex] = 1;
+            handWithAlteredAceVals.cardSum = handWithAlteredAceVals.cardNumVals.reduce((a, b) => a + b);
+        }
     }
+
     return handWithAlteredAceVals;
 };
 

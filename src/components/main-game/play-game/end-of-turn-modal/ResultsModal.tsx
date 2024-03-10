@@ -31,20 +31,25 @@ export default function ResultsModal({ playerIndex, isCurrPlayerFinished, makeCu
     //     }));
     // }, [dispatch, hand, playerIndex, playersArr, splitHand])
 
+    const isLastPlayer = playersArr.length - 1 === playerIndex
 
     const endResultsBtnHandler = useCallback(async () => {
 
-        if (isPlayerSplit) {
+        if (isPlayerSplit && isPlayerSplit && splitHand.cards.length === 1) {
             dispatch(reverseCurrSplitHand(playerIndex))
         }
-        if (playersArr.length - 1 !== playerIndex) {
+        if (!isLastPlayer) {
             if (!isPlayerSplit || isPlayerSplit && splitHand.cards.length > 1) {
                 changeToNextPlayer()
             }
             makeCurrPlayerNotFinished()
         } else {
-            playersHaveSplit && dispatch(reverseAllSplitHands())
-            dispatch(beginDealerRound())
+            if (isPlayerSplit && splitHand.cards.length === 1) {
+                makeCurrPlayerNotFinished()
+            } else {
+                playersHaveSplit && dispatch(reverseAllSplitHands())
+                dispatch(beginDealerRound())
+            }
         }
 
 
