@@ -139,7 +139,19 @@ const playerArrSlice = createSlice({
                 state[index] = action.payload;
             }
         },
-
+        updatePlayerInsurance: (state, action: PayloadAction<number>) => {
+            const playerIndex = action.payload;
+            const playerToUpdate = state[playerIndex];
+            if (playerToUpdate) {
+                const insuranceBet = Math.ceil(playerToUpdate.currBet / 2);
+                const bank = playerToUpdate.bank - insuranceBet
+                state[playerIndex] = {
+                    ...playerToUpdate,
+                    bank,
+                    insuranceBet,
+                };
+            }
+        },
         removePlayer: (state, action: PayloadAction<PlayerNameProps>) => {
             const index = state.findIndex(player => player.name === action.payload.name);
             if (index !== -1) {
@@ -154,11 +166,6 @@ const playerArrSlice = createSlice({
         resetPlayersArr: (state) => {
             state.splice(0, state.length, ...initialState);
         },
-        // updateAllPlayers: (_, action: PayloadAction<PlayerInterface[]>) => {
-        //     const activePlayers = action.payload.map(player => player.bank >= 5)
-        //     const inActivePlayers = action.payload.map(player => player.bank < 5)
-        //     return action.payload;
-        // },
         reverseCurrSplitHand: (state, action: PayloadAction<number>) => {
             const updatedState = state.map((player, index) => {
                 if (index === action.payload) {
@@ -233,6 +240,6 @@ const playerArrSlice = createSlice({
     },
 });
 
-export const { addPlayer, updatePlayer, removePlayer, resetPlayersArr, updateAllPlayers, removePlayers, reverseAllSplitHands, reverseCurrSplitHand } = playerArrSlice.actions;
+export const { addPlayer, updatePlayer, removePlayer, resetPlayersArr, updateAllPlayers, removePlayers, reverseAllSplitHands, reverseCurrSplitHand, updatePlayerInsurance } = playerArrSlice.actions;
 
 export default playerArrSlice.reducer;

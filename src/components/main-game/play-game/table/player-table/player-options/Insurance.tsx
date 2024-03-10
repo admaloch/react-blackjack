@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../../../store/store";
-import { updatePlayer } from "../../../../../../store/player-arr/playersArrSlice";
+import { updatePlayer, updatePlayerInsurance } from "../../../../../../store/player-arr/playersArrSlice";
 import PlayerIndexProps from "../../../../../../models/PlayerIndexProps";
 import { delay } from "../../../../../../utils/Utility";
 
@@ -26,9 +26,8 @@ export default function Insurance({ playerIndex }: PlayerIndexProps) {
 
 
     const insuranceBtnHandler = async () => {
-
         await delay(300)
-        dispatch(updatePlayer({ ...currPlayer, insuranceBet: currBet / 2, bank: bank - currBet / 2 }));
+        dispatch(updatePlayerInsurance(playerIndex));
     }
 
     return (
