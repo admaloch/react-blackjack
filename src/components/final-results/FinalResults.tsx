@@ -1,17 +1,22 @@
 import { useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import FinalPlayerStats from './FinalPlayerStats';
 import { PlayerInterface } from '../../models/PlayerProps';
 import './FinalResults.css'
+import { returnToGameIntro } from '../../store/game-data/GameDataSlice';
+import { resetInactivePlayers } from '../../store/inactive-players/InactivePlayersSlice';
 
 export default function FinalResults() {
   const inactivePlayers = useSelector((state: RootState) => state.inactivePlayers);
   const gameData = useSelector((state: RootState) => state.gameData);
-
+  const dispatch = useDispatch()
   const navigate = useNavigate();
 
   const resultsPageBtnHandler = () => {
+
+    dispatch(returnToGameIntro())
+    dispatch(resetInactivePlayers())
     navigate("/");
   }
 

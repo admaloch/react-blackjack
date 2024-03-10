@@ -7,6 +7,7 @@ import { beginDealerRound, endIsGameActive } from "../../../../store/game-data/G
 import { PlayerInterface } from "../../../../models/PlayerProps";
 import { useNavigate } from "react-router";
 import ExitTableContent from "./ExitTableContent";
+import { resetDealer } from "../../../../store/dealer-obj/dealerObjSlice";
 
 interface ExitTableModalProps {
     playerIndex: number;
@@ -32,6 +33,7 @@ export default function ExitTableModal({ playerIndex, playerWhoLeft, closeModal,
                 dispatch(beginDealerRound())
             }
         } else {
+            dispatch(resetDealer())
             dispatch(endIsGameActive());
             navigate("/finalResults");
         }

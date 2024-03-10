@@ -48,8 +48,16 @@ const dealerObjSlice = createSlice({
             state.hand = action.payload;
         },
         resetDealer: (state) => {
-            state.name = initialState.name;
-            state.hand = initialState.hand;
+            return {
+                ...state,
+                hand: {
+                    cards: [],
+                    cardUrlVals: [],
+                    cardNumVals: [],
+                    cardSum: 0,
+                    isBlackjack: false,
+                },
+            }
         },
     },
 });

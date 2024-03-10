@@ -24,6 +24,7 @@ export default function FinalPlayerStats({ player }: FinalPlayerStatsProps) {
             <h5 className={winOrLoseClass}>{name} {winOrLoseStr} </h5>
             <div className="end-results-items">
                 <p>Rounds won: {roundsWon}</p>
+                <p>Bank: ${bank}</p>
                 {finalBankStr}
             </div>
         </li>

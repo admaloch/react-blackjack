@@ -45,17 +45,25 @@ const deckSlice = createSlice({
     updateIsGameActive: (state) => {
       state.isGameActive = !state.isGameActive;
     },
-
-
     endIsGameActive: (state) => {
-      return { ...state, isGameActive: false }
+      return {
+        ...state,
+        isGameActive: false,
+        isAddPlayersRound: false,
+        isBetRoundActive: false,
+        isPlayerRoundActive: false,
+        isDealerCardRevealed: false,
+        isDealerDrawing: false,
+        isInsuranceRoundComplete: false,
+        isDealerRoundActive: false,
+        isMainResultsActive: false,
+        isSplitResultsActive: false,
+        isRoundActive: false,
+      }
     },
     revealDealerCard: (state) => {
       return { ...state, isDealerCardRevealed: true }
     },
-
-
-
     beginDealerDrawing: (state) => {
       return { ...state, isDealerDrawing: true }
     },
@@ -101,9 +109,12 @@ const deckSlice = createSlice({
     endInsuranceRound: (state) => {
       return { ...state, isInsuranceRoundComplete: true }
     },
+    returnToGameIntro: (state) => {
+      return { ...state, isGameIntro: true }
+    },
   },
 })
 
-export const { increaseRoundsPlayed, updateIsGameActive, revealDealerCard, updateIsInsuranceRoundComplete, beginPlayerRound, endPlayerRound, beginDealerRound, endDealerRound, endMainHandResults, beginSplitRound, beginDealerDrawing, endSplitRound, beginNewRound, endFullRound, beginInsuranceRound, endInsuranceRound, updateGameObj, endDealerAndRound, endIsGameActive } = deckSlice.actions
+export const { increaseRoundsPlayed, updateIsGameActive, revealDealerCard, updateIsInsuranceRoundComplete, beginPlayerRound, endPlayerRound, beginDealerRound, endDealerRound, endMainHandResults, beginSplitRound, beginDealerDrawing, endSplitRound, beginNewRound, endFullRound, beginInsuranceRound, endInsuranceRound, updateGameObj, endDealerAndRound, endIsGameActive, returnToGameIntro } = deckSlice.actions
 
 export default deckSlice.reducer

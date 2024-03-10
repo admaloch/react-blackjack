@@ -13,10 +13,13 @@ import PlayGame from './components/main-game/play-game/PlayGame'
 import FinalResults from './components/final-results/FinalResults'
 import { useEffect } from 'react'
 import playersArrSlice from './store/player-arr/playersArrSlice'
+import dealerObjSlice from './store/dealer-obj/dealerObjSlice'
 
 function App() {
   const isGameIntro = useSelector((state: RootState) => state.gameData.isGameIntro);
+  const dealerObj = useSelector((state: RootState) => state.gameData.dealerObj);
   const playersArr = useSelector((state: RootState) => state.playersArr);
+  const deck = useSelector((state: RootState) => state.deck);
 
   const gameData = useSelector((state: RootState) => state.gameData);
   const {
@@ -78,10 +81,10 @@ function App() {
   // testing for issues -- also just realized head is detached.
 
 
-  // useEffect(() =>{
-  //   console.log(playersArr[0])
-  //   // console.log(playersArr[1])
-  // } , [playersArr])
+  // useEffect(() => {
+  //   console.log(deck)
+  // }, [deck])
+
 
   return (
     <>

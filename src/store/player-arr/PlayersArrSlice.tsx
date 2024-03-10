@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, current, PayloadAction } from "@reduxjs/toolkit";
 import { PlayerInterface } from "../../models/PlayerProps";
 
 // const initialState: PlayerInterface[] = [];

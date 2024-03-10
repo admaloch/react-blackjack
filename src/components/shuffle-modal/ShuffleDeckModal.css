@@ -1,0 +1,25 @@
+.shuffle-deck-modal {
+
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.shuffle-deck-modal h2 {
+    font-size: 2rem;
+    margin-bottom: 0;
+}
+
+.shuffle-deck-modal h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0;
+}
+
+
+.shuffle-deck-modal p {
+    font-size: .7rem;
+    font-style: italic;
+}

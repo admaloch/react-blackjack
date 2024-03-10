@@ -13,9 +13,10 @@ const playerArrSlice = createSlice({
         addInactivePlayers: (state, action: PayloadAction<PlayerInterface[]>) => {
             return [...state, ...action.payload]
         },
+        resetInactivePlayers: () => initialState,
     },
 });
 
-export const { addInactivePlayer, addInactivePlayers } = playerArrSlice.actions;
+export const { addInactivePlayer, addInactivePlayers, resetInactivePlayers } = playerArrSlice.actions;
 
 export default playerArrSlice.reducer;
