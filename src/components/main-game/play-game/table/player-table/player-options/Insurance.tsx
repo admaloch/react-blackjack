@@ -26,6 +26,7 @@ export default function Insurance({ playerIndex }: PlayerIndexProps) {
 
 
     const insuranceBtnHandler = async () => {
+
         await delay(300)
         dispatch(updatePlayer({ ...currPlayer, insuranceBet: currBet / 2, bank: bank - currBet / 2 }));
     }

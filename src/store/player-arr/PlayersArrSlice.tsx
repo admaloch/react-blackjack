@@ -7,33 +7,33 @@ import { PlayerInterface } from "../../models/PlayerProps";
 // const initialState: PlayerInterface[] = []
 
 const initialState: PlayerInterface[] = [
-    
+
     {
         "name": "James",
         "hand": {
             "cards": [
                 "A♥",
-                "10♠",
+                "4♠",
 
 
 
             ],
             "cardUrlVals": [
                 "AH",
-                "10S",
+                "4S",
 
 
 
             ],
             "cardNumVals": [
                 11,
-                10,
+                4,
 
 
 
 
             ],
-            "cardSum": 21,
+            "cardSum": 15,
             "isBlackjack": false,
         },
         "splitHand": {
@@ -43,10 +43,10 @@ const initialState: PlayerInterface[] = [
             "cardSum": 0,
             "isBlackjack": false,
         },
-        "bank": 900,
+        "bank": 995,
         "beginningRoundBank": 1000,
-        "currBet": 100,
-        "minBet": 100,
+        "currBet": 5,
+        "minBet": 5,
         "insuranceBet": 0,
         "wonInsuranceRound": false,
         "splitBet": 0,
