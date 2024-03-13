@@ -13,27 +13,27 @@ const initialState: PlayerInterface[] = [
         "hand": {
             "cards": [
                 "A♥",
-                "4♠",
+                "10♠",
 
 
 
             ],
             "cardUrlVals": [
                 "AH",
-                "4S",
+                "10S",
 
 
 
             ],
             "cardNumVals": [
                 11,
-                4,
+                10,
 
 
 
 
             ],
-            "cardSum": 15,
+            "cardSum": 21,
             "isBlackjack": false,
         },
         "splitHand": {
@@ -237,9 +237,35 @@ const playerArrSlice = createSlice({
             });
             return [...inActivePlayers, ...updatedActivePlayers]
         },
+        updateHandResults: (state, action: PayloadAction<number>) => {
+            // currently udpating to update main and split hand - jhust realized it can't get access to index so I just need to update based on player obj instead
+            const player = state[action.payload]
+            const { currBet, splitBet, bank, roundResults, splitHand } = player
+            const { splitResults, mainResults } = roundResults
+            const { cardSum, cardUrlVals } = player.hand
+            const playerHasBJ = cardSum === 21 && cardUrlVals.length === 2 ? true : false
+            const isRoundComplete = splitHand.cards.length === 0 ? true : false
+
+            const newRoundResObj = { ...roundResults, isComplete: isRoundComplete }
+
+            let newBank = 0
+            if ()
+                if (mainResults === 'Won') newBank = playerHasBJ
+                    ? bank + (currBet * 2.5)
+                    : bank + (currBet * 2)
+                else if (mainResults === 'Push') newBank = bank + currBet
+                else newBank = bank
+            state[action.payload] = {
+                ...player,
+                bank: newBank,
+                currBet: 0,
+                roundResults: newRoundResObj,
+            }
+
+        },
     },
 });
 
-export const { addPlayer, updatePlayer, removePlayer, resetPlayersArr, updateAllPlayers, removePlayers, reverseAllSplitHands, reverseCurrSplitHand, updatePlayerInsurance } = playerArrSlice.actions;
+export const { addPlayer, updatePlayer, removePlayer, resetPlayersArr, updateAllPlayers, removePlayers, reverseAllSplitHands, reverseCurrSplitHand, updatePlayerInsurance, updateHandResults } = playerArrSlice.actions;
 
 export default playerArrSlice.reducer;

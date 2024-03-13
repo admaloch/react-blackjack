@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { PlayerInterfaceProps } from "../../../../../../models/PlayerProps";
 import { useEffect } from "react";
 import { delay } from "../../../../../../utils/Utility";
-import { updatePlayer } from "../../../../../../store/player-arr/playersArrSlice";
+import { updateHandResults, updatePlayer } from "../../../../../../store/player-arr/playersArrSlice";
 import { endFullRound, endMainHandResults, endSplitRound } from "../../../../../../store/game-data/GameDataSlice";
 import { RootState } from "../../../../../../store/store";
 import MoneyWonOrLost from "../../../../../results-components/MoneyWonOrLost";
@@ -21,7 +21,7 @@ export default function EarningsOrLosses({ player }: PlayerInterfaceProps) {
                 const playerHasBJ = cardSum === 21 && cardUrlVals.length === 2 ? true : false
                 const isRoundComplete = splitHand.cards.length === 0 ? true : false
                 const newRoundResObj = { ...roundResults, isComplete: isRoundComplete }
-                
+                // finishing update players
                 if (isMainResultsActive || splitBet) {
                     if (isMainResultsActive && mainResults && !wonInsuranceRound && !isComplete) {
                         await delay(2000)
@@ -37,6 +37,7 @@ export default function EarningsOrLosses({ player }: PlayerInterfaceProps) {
                             currBet: 0,
                             roundResults: newRoundResObj,
                         }))
+                        dispatch(updateHandResults({currIndex: }))
                         dispatch(endMainHandResults())
                     }
                     if (isRoundActive && roundResults.splitResults) {

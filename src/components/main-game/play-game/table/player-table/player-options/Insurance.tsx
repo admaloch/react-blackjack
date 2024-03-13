@@ -1,13 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../../../store/store";
-import { updatePlayer, updatePlayerInsurance } from "../../../../../../store/player-arr/playersArrSlice";
+import { updatePlayerInsurance } from "../../../../../../store/player-arr/playersArrSlice";
 import PlayerIndexProps from "../../../../../../models/PlayerIndexProps";
 import { delay } from "../../../../../../utils/Utility";
 
 export default function Insurance({ playerIndex }: PlayerIndexProps) {
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const currPlayer = playersArr[playerIndex]
-    const { hand, currBet, bank } = currPlayer
+    const { hand } = currPlayer
     const dealerObj = useSelector((state: RootState) => state.dealerObj);
     const dispatch = useDispatch()
 
@@ -23,7 +23,6 @@ export default function Insurance({ playerIndex }: PlayerIndexProps) {
     } else {
         return;
     }
-
 
     const insuranceBtnHandler = async () => {
         await delay(300)
