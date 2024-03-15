@@ -94,7 +94,7 @@ function App() {
   // }, [])
 
   // useEffect(() => {
-  //   console.log('Num cards left:', currDeckSum)
+  //   console.log('Num cards left:', playersArr)
   // }, [currDeckSum])
 
 

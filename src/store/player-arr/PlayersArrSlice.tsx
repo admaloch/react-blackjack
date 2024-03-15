@@ -237,32 +237,59 @@ const playerArrSlice = createSlice({
             });
             return [...inActivePlayers, ...updatedActivePlayers]
         },
-        updateHandResults: (state, action: PayloadAction<number>) => {
-            // currently udpating to update main and split hand - jhust realized it can't get access to index so I just need to update based on player obj instead
-            const player = state[action.payload]
+        updateHandResults: (state, action: PayloadAction<PlayerInterface>) => {
+            const playerIndex = state.findIndex(player => player.name === action.payload.name)
+            const player = state[playerIndex]
             const { currBet, splitBet, bank, roundResults, splitHand } = player
             const { splitResults, mainResults } = roundResults
             const { cardSum, cardUrlVals } = player.hand
             const playerHasBJ = cardSum === 21 && cardUrlVals.length === 2 ? true : false
             const isRoundComplete = splitHand.cards.length === 0 ? true : false
-
             const newRoundResObj = { ...roundResults, isComplete: isRoundComplete }
-
             let newBank = 0
-            if ()
+            if (currBet !== 0) {
                 if (mainResults === 'Won') newBank = playerHasBJ
                     ? bank + (currBet * 2.5)
                     : bank + (currBet * 2)
                 else if (mainResults === 'Push') newBank = bank + currBet
                 else newBank = bank
-            state[action.payload] = {
-                ...player,
-                bank: newBank,
-                currBet: 0,
-                roundResults: newRoundResObj,
+                state[playerIndex] = {
+                    ...player,
+                    bank: newBank,
+                    currBet: 0,
+                    roundResults: newRoundResObj,
+                }
+            } else if (splitBet && player.wonInsuranceRound) {
+                state[playerIndex] = {
+                    ...player,
+                    bank: player.bank + splitBet,
+                    splitBet: 0,
+                    roundResults: newRoundResObj,
+                }
+            } else {
+                if (splitResults === 'Won') newBank = playerHasBJ
+                    ? bank + (splitBet * 2.5)
+                    : bank + (splitBet * 2)
+                else if (splitResults === 'Push') newBank = bank + splitBet
+                else newBank = bank
+                state[playerIndex] = {
+                    ...player,
+                    bank: newBank,
+                    splitBet: 0,
+                    roundResults: newRoundResObj,
+                }
             }
-
         },
+        // updateSplitAndInsuranceResults: (state, action: PayloadAction<PlayerInterface>) => {
+        //     const playerIndex = state.findIndex(player => player.name === action.payload.name)
+        //     const player = state[playerIndex]
+        //     state[playerIndex] = {
+        //         ...player,
+        //         bank: player.bank + player.splitBet,
+        //         splitBet: 0,
+        //         roundResults: newRoundResObj,
+        //     }
+        // }
     },
 });
 

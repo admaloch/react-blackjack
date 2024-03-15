@@ -26,8 +26,8 @@ export default function PlayGame() {
         setCurrPlayerIndex((prevIndex) => (prevIndex + 1) % playersArr.length);
         dispatch(updatePlayer({ ...playersArr[currPlayerIndex], isDoubleDown: false }));
     }
-    const currPlayerHand = playersArr[currPlayerIndex].hand.cardNumVals
-    const currSplitHand = playersArr[currPlayerIndex].splitHand.cardNumVals
+    const currPlayerHand = playersArr[currPlayerIndex].roundResults.mainResults
+    const currSplitHand = playersArr[currPlayerIndex].roundResults.splitResults
 
     useEffect(() => {
         console.log('curr hand:', currPlayerHand)
