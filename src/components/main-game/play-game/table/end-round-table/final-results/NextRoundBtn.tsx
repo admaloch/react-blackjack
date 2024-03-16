@@ -3,7 +3,7 @@ import { RootState } from '../../../../../../store/store';
 import './NextRoundBtn.css';
 import { updateAllPlayers } from '../../../../../../store/player-arr/playersArrSlice';
 import { delay } from '../../../../../../utils/Utility';
-import { resetGameData, updateGameObj } from '../../../../../../store/game-data/GameDataSlice';
+import { resetGameData } from '../../../../../../store/game-data/GameDataSlice';
 import { useNavigate } from 'react-router';
 import { resetDealer } from '../../../../../../store/dealer-obj/dealerObjSlice';
 import EmptyBankModal from '../../../empty-bank-modal/EmptyBankModal';
@@ -13,7 +13,6 @@ export default function NextRoundBtn() {
     const [isPlayersBrokeModal, setIsPlayersBrokeModal] = useState(false)
     const closePlayerBrokeModal = () => setIsPlayersBrokeModal(false)
     const { roundsPlayed } = useSelector((state: RootState) => state.gameData);
-    const gameData = useSelector((state: RootState) => state.gameData);
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const areAllPlayersBroke = playersArr.every(player => player.bank < 5)
     const areAnyPlayersBroke = playersArr.some(player => player.bank < 5)

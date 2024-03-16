@@ -4,123 +4,123 @@ import { PlayerInterface } from "../../models/PlayerProps";
 // const initialState: PlayerInterface[] = [];
 // clubs (♣), diamonds (♦), hearts (♥), and spades (♠).x
 
-// const initialState: PlayerInterface[] = []
+const initialState: PlayerInterface[] = []
 
-const initialState: PlayerInterface[] = [
+// const initialState: PlayerInterface[] = [
 
-    {
-        "name": "James",
-        "hand": {
-            "cards": [
-                "A♥",
-                "8♠",
-
-
-
-            ],
-            "cardUrlVals": [
-                "AH",
-                "8S",
+//     {
+//         "name": "James",
+//         "hand": {
+//             "cards": [
+//                 "A♥",
+//                 "8♠",
 
 
 
-            ],
-            "cardNumVals": [
-                11,
-                8,
+//             ],
+//             "cardUrlVals": [
+//                 "AH",
+//                 "8S",
+
+
+
+//             ],
+//             "cardNumVals": [
+//                 11,
+//                 8,
 
 
 
 
-            ],
-            "cardSum": 19,
-            "isBlackjack": false,
-        },
-        "splitHand": {
-            "cards": [],
-            "cardUrlVals": [],
-            "cardNumVals": [],
-            "cardSum": 0,
-            "isBlackjack": false,
-        },
-        "bank": 995,
-        "beginningRoundBank": 1000,
-        "currBet": 5,
-        "minBet": 5,
-        "insuranceBet": 0,
-        "wonInsuranceRound": false,
-        "splitBet": 0,
-        "isPlayerSplit": false,
-        "isDoubleDown": false,
-        "playerLeftTable": false,
-        "roundResults": {
-            "mainResults": "",
-            "splitResults": "",
-            "isComplete": false,
-        },
-        "currTokens": [
-            1,
-            5,
-            25,
-            50,
-            100,
-            500
-        ],
-        "roundsWon": 0
-    },
-    {
-        "name": "Dave",
-        "hand": {
-            "cards": [
-                "A♥",
-                "A♠"
-            ],
-            "cardUrlVals": [
-                "AH",
-                "AS"
-            ],
-            "cardNumVals": [
-                11,
-                1,
-            ],
-            "cardSum": 12,
-            "isBlackjack": false,
-        },
-        "splitHand": {
-            "cards": [],
-            "cardUrlVals": [],
-            "cardNumVals": [],
-            "cardSum": 0,
-            "isBlackjack": false,
-        },
-        "bank": 900,
-        "beginningRoundBank": 1000,
-        "currBet": 100,
-        "minBet": 100,
-        "insuranceBet": 0,
-        "wonInsuranceRound": false,
-        "splitBet": 0,
-        "isPlayerSplit": false,
-        "isDoubleDown": false,
-        "playerLeftTable": false,
-        "roundResults": {
-            "mainResults": "",
-            "splitResults": "",
-            "isComplete": false,
-        },
-        "currTokens": [
-            1,
-            5,
-            25,
-            50,
-            100,
-            500
-        ],
-        "roundsWon": 0
-    },
+//             ],
+//             "cardSum": 19,
+//             "isBlackjack": false,
+//         },
+//         "splitHand": {
+//             "cards": [],
+//             "cardUrlVals": [],
+//             "cardNumVals": [],
+//             "cardSum": 0,
+//             "isBlackjack": false,
+//         },
+//         "bank": 995,
+//         "beginningRoundBank": 1000,
+//         "currBet": 5,
+//         "minBet": 5,
+//         "insuranceBet": 0,
+//         "wonInsuranceRound": false,
+//         "splitBet": 0,
+//         "isPlayerSplit": false,
+//         "isDoubleDown": false,
+//         "playerLeftTable": false,
+//         "roundResults": {
+//             "mainResults": "",
+//             "splitResults": "",
+//             "isComplete": false,
+//         },
+//         "currTokens": [
+//             1,
+//             5,
+//             25,
+//             50,
+//             100,
+//             500
+//         ],
+//         "roundsWon": 0
+//     },
+//     {
+//         "name": "Dave",
+//         "hand": {
+//             "cards": [
+//                 "A♥",
+//                 "A♠"
+//             ],
+//             "cardUrlVals": [
+//                 "AH",
+//                 "AS"
+//             ],
+//             "cardNumVals": [
+//                 11,
+//                 1,
+//             ],
+//             "cardSum": 12,
+//             "isBlackjack": false,
+//         },
+//         "splitHand": {
+//             "cards": [],
+//             "cardUrlVals": [],
+//             "cardNumVals": [],
+//             "cardSum": 0,
+//             "isBlackjack": false,
+//         },
+//         "bank": 900,
+//         "beginningRoundBank": 1000,
+//         "currBet": 100,
+//         "minBet": 100,
+//         "insuranceBet": 0,
+//         "wonInsuranceRound": false,
+//         "splitBet": 0,
+//         "isPlayerSplit": false,
+//         "isDoubleDown": false,
+//         "playerLeftTable": false,
+//         "roundResults": {
+//             "mainResults": "",
+//             "splitResults": "",
+//             "isComplete": false,
+//         },
+//         "currTokens": [
+//             1,
+//             5,
+//             25,
+//             50,
+//             100,
+//             500
+//         ],
+//         "roundsWon": 0
+//     },
 
 
-]
+// ]
 
 interface PlayerNameProps {
     name: string;

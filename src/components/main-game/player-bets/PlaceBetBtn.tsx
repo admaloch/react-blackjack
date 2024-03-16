@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import { useNavigate } from "react-router";
 import { updatePlayer } from "../../../store/player-arr/playersArrSlice";
-import { updateGameObj } from "../../../store/game-data/GameDataSlice";
+import { beginPlayerRound } from "../../../store/game-data/GameDataSlice";
 import { shuffleDeckState } from "../../../store/deck/deckSlice";
 
 interface PlaceBetBtnProps {
@@ -32,14 +32,7 @@ export default function PlaceBetBtn({ setIsModalOpen, currPlayerIndex, moveToNex
                 dispatch(shuffleDeckState())
                 setIsModalOpen(true)
             } else {
-                dispatch(updateGameObj(
-                    {
-                        ...gameData,
-                        isBetRoundActive: false,
-                        isPlayerRoundActive: true,
-                        isRoundActive: true,
-                    }
-                ))
+                dispatch(beginPlayerRound())
                 navigate("/startRound");
             }
         }

@@ -5,7 +5,7 @@ import { RootState } from '../../../../../store/store';
 import Cards from '../../display-cards/Cards';
 import useDealerDrawCard from '../../../draw-cards-hook/useDealerDrawCard';
 import './DealerTable.css'
-import { beginDealerDrawing, beginInsuranceRound, endDealerAndRound, endDealerRound, endInsuranceRound, updateGameObj } from '../../../../../store/game-data/GameDataSlice';
+import { beginDealerDrawing, beginInsuranceRound, endDealerAndRound, endDealerRound, endInsuranceRound } from '../../../../../store/game-data/GameDataSlice';
 import HiddenCard from './hidden-card/HiddenCard';
 import { delay } from '../../../../../utils/Utility';
 import DealerDetails from './dealer-details/DealerDetails';

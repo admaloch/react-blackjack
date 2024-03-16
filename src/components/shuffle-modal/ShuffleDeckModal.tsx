@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../../store/store"
 import './ShuffleDeckModal.css'
 import ModalTimer from '../modal-timer/ModalTimer';
-import { updateGameObj } from '../../store/game-data/GameDataSlice';
+import { beginPlayerRound } from '../../store/game-data/GameDataSlice';
 import { useNavigate } from 'react-router';
 
 interface ShuffleDeckModalProps {
@@ -12,22 +12,11 @@ interface ShuffleDeckModalProps {
 }
 
 export default function ShuffleDeckModal({ closeModal, open }: ShuffleDeckModalProps) {
-    const playersArr = useSelector((state: RootState) => state.playersArr);
-    const gameData = useSelector((state: RootState) => state.gameData);
-    const currRound = useSelector((state: RootState) => state.gameData.roundsPlayed);
     const dispatch = useDispatch()
     const navigate = useNavigate();
-
     const closeShuffleModalHandler = async () => {
         closeModal()
-        dispatch(updateGameObj(
-            {
-                ...gameData,
-                isBetRoundActive: false,
-                isPlayerRoundActive: true,
-                isRoundActive: true,
-            }
-        ))
+        dispatch(beginPlayerRound())
         navigate("/startRound");
     }
 

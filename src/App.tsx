@@ -79,12 +79,13 @@ function App() {
   // useEffect(() => {
   //   console.log('isBetRoundActive is now', isBetRoundActive)
   // }, [isBetRoundActive])
+
   // testing for issues -- also just realized head is detached.
 
 
-  // useEffect(() => {
-  //   console.log(deck)
-  // }, [deck])
+  useEffect(() => {
+    console.log(deck)
+  }, [deck])
 
   const deckSuitSumsArr = deck.map(card => card.suits.reduce((p, c) => p + c))
   const currDeckSum = deckSuitSumsArr.reduce((p, c) => p + c)
@@ -93,9 +94,9 @@ function App() {
   //   setInitialDeckAmount(currDeckSum)
   // }, [])
 
-  useEffect(() => {
-    console.log('game data', gameData)
-  }, [gameData])
+  // useEffect(() => {
+  //   console.log('game data', gameData)
+  // }, [gameData])
 
 
   return (
