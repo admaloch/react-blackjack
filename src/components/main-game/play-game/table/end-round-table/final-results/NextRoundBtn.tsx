@@ -27,7 +27,7 @@ export default function NextRoundBtn() {
         } else {
             navigate('/placeBets');
             dispatch(resetGameData(areAllPlayersBroke))
-        }
+        }  
         dispatch(updateAllPlayers());
         dispatch(resetDealer())
     };
