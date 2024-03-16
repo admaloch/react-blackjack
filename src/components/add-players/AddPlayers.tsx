@@ -4,25 +4,11 @@ import "./AddPlayers.css"
 import PlayerForm from "./PlayerForm"
 import PlayerList from "./PlayerList"
 import { NavLink } from "react-router-dom";
-
 import { useDispatch } from 'react-redux';
-import { updateGameObj, updateIsPlayerStatsShown } from '../../store/game-data/GameDataSlice';
-
+import { startBetRound} from '../../store/game-data/GameDataSlice';
 
 export default function AddPlayers() {
-
-    const gameData = useSelector((state: RootState) => state.gameData);
-
     const dispatch = useDispatch();
-    const btnHandler = () => {
-        dispatch(updateGameObj(
-            {
-                ...gameData,
-                isAddPlayersRound: false,
-                isBetRoundActive: true,
-            }
-        ))
-    }
     const playerDataArr = useSelector((state: RootState) => state.playersArr);
 
     return (
@@ -32,12 +18,11 @@ export default function AddPlayers() {
                 <PlayerForm />
             </div>
             {playerDataArr.length > 0 && <PlayerList />}
-
             {playerDataArr.length > 0 &&
                 <div className="start-game-btn">
                     <NavLink to="/playGame">
                         <button
-                            onClick={btnHandler}
+                            onClick={()=> dispatch(startBetRound())}
                             className="game-btn"
                         >
                             Start Game

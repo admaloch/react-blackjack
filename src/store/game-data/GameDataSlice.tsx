@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface GameDataProps {
   roundsPlayed: number;
@@ -42,6 +42,13 @@ const deckSlice = createSlice({
     increaseRoundsPlayed: (state) => {
       state.roundsPlayed += 1;
     },
+    startBetRound: (state) => {
+      return { ...state, isAddPlayersRound: false, isBetRoundActive: true, }
+    },
+    startAddPlayers: (state) => {
+      return { ...state, isGameActive: true, isAddPlayersRound: true, isGameIntro: false, }
+    },
+
     updateIsGameActive: (state) => {
       state.isGameActive = !state.isGameActive;
     },
@@ -95,11 +102,8 @@ const deckSlice = createSlice({
       return { ...state, isSplitResultsActive: true }
     },
     endSplitRound: (state) => {
-      return { ...state, isSplitResultsActive: false }
+      return { ...state, isSplitResultsActive: false, isRoundActive: false }
     },
-
-
-
     updateIsInsuranceRoundComplete: (state) => {
       state.isInsuranceRoundComplete = !state.isInsuranceRoundComplete;
     },
@@ -112,9 +116,22 @@ const deckSlice = createSlice({
     returnToGameIntro: (state) => {
       return { ...state, isGameIntro: true }
     },
+    resetGameData: (state, action: PayloadAction<boolean>) => {
+      const areAllPlayersBroke = action.payload;
+      return {
+        ...state,
+        roundsPlayed: !areAllPlayersBroke
+          ? state.roundsPlayed + 1
+          : state.roundsPlayed,
+        isDealerCardRevealed: false,
+        isInsuranceRoundComplete: false,
+        isBetRoundActive: !areAllPlayersBroke ? true : false,
+        isGameActive: !areAllPlayersBroke ? true : false
+      }
+    },
   },
 })
 
-export const { increaseRoundsPlayed, updateIsGameActive, revealDealerCard, updateIsInsuranceRoundComplete, beginPlayerRound, endPlayerRound, beginDealerRound, endDealerRound, endMainHandResults, beginSplitRound, beginDealerDrawing, endSplitRound, beginNewRound, endFullRound, beginInsuranceRound, endInsuranceRound, updateGameObj, endDealerAndRound, endIsGameActive, returnToGameIntro } = deckSlice.actions
+export const { increaseRoundsPlayed, updateIsGameActive, revealDealerCard, updateIsInsuranceRoundComplete, beginPlayerRound, endPlayerRound, beginDealerRound, endDealerRound, endMainHandResults, beginSplitRound, beginDealerDrawing, endSplitRound, beginNewRound, endFullRound, beginInsuranceRound, endInsuranceRound, updateGameObj, endDealerAndRound, endIsGameActive, returnToGameIntro, startBetRound, startAddPlayers, resetGameData } = deckSlice.actions
 
 export default deckSlice.reducer

@@ -2,14 +2,17 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../../../../../store/store';
 import './TableHeader.css'
 import NextRoundBtn from '../final-results/NextRoundBtn';
-import { updateIsInsuranceRoundComplete } from '../../../../../../store/game-data/GameDataSlice';
 export default function TableHeader() {
 
-    const { isMainResultsActive, isSplitResultsActive, isRoundActive, isInsuranceRoundComplete } = useSelector((state: RootState) => state.gameData);
+    const { isMainResultsActive, isSplitResultsActive, isRoundActive, isInsuranceRoundComplete, isDealerCardRevealed, isDealerRoundActive } = useSelector((state: RootState) => state.gameData);
 
 
     let currText = ''
-    if (!isInsuranceRoundComplete) {
+
+    // if (!isInsuranceRoundComplete && !isDealerCardRevealed) {
+    //     currText = 'Dealer'
+    // }
+    if (!isInsuranceRoundComplete && isDealerCardRevealed) {
         currText = 'Insurance results...'
     }
     else if (isSplitResultsActive) {
@@ -19,7 +22,7 @@ export default function TableHeader() {
     } else if (!isRoundActive) {
         currText = 'Round complete:'
     } else {
-        currText = 'End of round results'
+        currText = ''
     }
 
     return (

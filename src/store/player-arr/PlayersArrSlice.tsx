@@ -13,27 +13,27 @@ const initialState: PlayerInterface[] = [
         "hand": {
             "cards": [
                 "A♥",
-                "10♠",
+                "8♠",
 
 
 
             ],
             "cardUrlVals": [
                 "AH",
-                "10S",
+                "8S",
 
 
 
             ],
             "cardNumVals": [
                 11,
-                10,
+                8,
 
 
 
 
             ],
-            "cardSum": 21,
+            "cardSum": 19,
             "isBlackjack": false,
         },
         "splitHand": {

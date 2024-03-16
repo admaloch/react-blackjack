@@ -93,9 +93,9 @@ function App() {
   //   setInitialDeckAmount(currDeckSum)
   // }, [])
 
-  // useEffect(() => {
-  //   console.log('Num cards left:', playersArr)
-  // }, [currDeckSum])
+  useEffect(() => {
+    console.log('game data', gameData)
+  }, [gameData])
 
 
   return (

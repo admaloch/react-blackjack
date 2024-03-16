@@ -3,7 +3,7 @@ import { RootState } from '../../../../../../store/store';
 import './NextRoundBtn.css';
 import { updateAllPlayers } from '../../../../../../store/player-arr/playersArrSlice';
 import { delay } from '../../../../../../utils/Utility';
-import { updateGameObj } from '../../../../../../store/game-data/GameDataSlice';
+import { resetGameData, updateGameObj } from '../../../../../../store/game-data/GameDataSlice';
 import { useNavigate } from 'react-router';
 import { resetDealer } from '../../../../../../store/dealer-obj/dealerObjSlice';
 import EmptyBankModal from '../../../empty-bank-modal/EmptyBankModal';
@@ -26,29 +26,11 @@ export default function NextRoundBtn() {
             setIsPlayersBrokeModal(true)
         } else {
             navigate('/placeBets');
-            resetGameData()
+            dispatch(resetGameData(areAllPlayersBroke))
         }
-
         dispatch(updateAllPlayers());
         dispatch(resetDealer())
     };
-
-
-
-    const resetGameData = () => {
-        dispatch(updateGameObj(
-            {
-                ...gameData,
-                roundsPlayed: !areAllPlayersBroke
-                    ? gameData.roundsPlayed + 1
-                    : gameData.roundsPlayed,
-                isDealerCardRevealed: false,
-                isInsuranceRoundComplete: false,
-                isBetRoundActive: !areAllPlayersBroke ? true : false,
-                isGameActive: !areAllPlayersBroke ? true : false
-            }
-        ));
-    }
 
     return (
         <>
