@@ -3,7 +3,7 @@ import { PlayerInterface } from '../../../../../../models/PlayerProps'
 import { RootState } from '../../../../../../store/store';
 import { useEffect, useState } from 'react';
 import { delay } from '../../../../../../utils/Utility';
-import { updatePlayer } from '../../../../../../store/player-arr/playersArrSlice';
+import { resetAfterInsuranceWin, updatePlayer } from '../../../../../../store/player-arr/playersArrSlice';
 
 export interface PlayerProps {
     player: PlayerInterface;
@@ -52,28 +52,15 @@ export default function InsuranceResults({ player }: PlayerProps) {
     }, [isDealerCardRevealed, cardNumVals, player])
 
     useEffect(() => {
-        const { bank, insuranceBet, currBet, splitBet } = player
         let isMounted = true;
         async function updateInsuranceHand() {
             if (isMounted) {
                 await delay(1500)
                 if (insuranceResults.isComplete && player.insuranceBet !== 0) {
                     if (insuranceResults.status === 'Won!') {
-                        dispatch(updatePlayer({
-                            ...player,
-                            bank: bank + insuranceBet + currBet + splitBet,
-                            wonInsuranceRound: true,
-                            insuranceBet: 0,
-                            currBet: 0,
-                            splitBet: 0,
-                        }));
+                        dispatch(resetAfterInsuranceWin(player));
                     }
-                    else {
-                        dispatch(updatePlayer({
-                            ...player,
-                            insuranceBet: 0,
-                        }));
-                    }
+                    else dispatch(updatePlayer({ ...player, insuranceBet: 0 }));
                 }
             }
         }
@@ -81,7 +68,7 @@ export default function InsuranceResults({ player }: PlayerProps) {
         return () => { isMounted = false }
     }, [insuranceResults, player, dispatch])
 
-    
+
 
     return (
         <>

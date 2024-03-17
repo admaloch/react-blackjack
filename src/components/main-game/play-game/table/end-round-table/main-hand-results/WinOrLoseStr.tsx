@@ -1,10 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../../../store/store";
-import { PlayerInterfaceProps, RoundResultsProps } from "../../../../../../models/PlayerProps";
+import { PlayerInterfaceProps } from "../../../../../../models/PlayerProps";
 import { useEffect } from "react";
-import { delay } from "../../../../../../utils/Utility";
-import { updatePlayer } from "../../../../../../store/player-arr/playersArrSlice";
-import playerWonOrLostFunc from "../../../../../../utils/playerWonOrLostFunc";
+import {  updateWinOrLose } from "../../../../../../store/player-arr/playersArrSlice";
 
 export default function WinOrLoseStr({ player }: PlayerInterfaceProps) {
     const dispatch = useDispatch()
@@ -14,27 +12,13 @@ export default function WinOrLoseStr({ player }: PlayerInterfaceProps) {
     const { mainResults } = roundResults
 
     useEffect(() => {
-        let isMounted = true
-        async function updateWinOrLose() {
-            if (isMounted) {
-                if (isMainResultsActive && isRoundActive && roundResults.mainResults === '' && !wonInsuranceRound) {
-                    // console.log('win or lose str ran')
-                    await delay(2000)
-                    const winOrLoseStr = playerWonOrLostFunc(player, dealerObj, 'main')
-                    const newRoundResults: RoundResultsProps = { ...roundResults, mainResults: winOrLoseStr }
-                    const isRoundWonChanged = winOrLoseStr === 'Won' ? player.roundsWon + 1 : player.roundsWon
-                    dispatch(updatePlayer({
-                        ...player,
-                        roundResults: newRoundResults,
-                        roundsWon: isRoundWonChanged,
-                    }))
-                }
-            }
+        if (isMainResultsActive && isRoundActive && roundResults.mainResults === '' && !wonInsuranceRound) {
+            setTimeout(() => {
+                dispatch(updateWinOrLose({ player, dealerObj }))
+            }, 2000);
         }
-        updateWinOrLose()
-        return () => { isMounted = false }
     }, [dealerObj, dispatch, player, roundResults, isRoundActive, isMainResultsActive, wonInsuranceRound])
-
+    
     let winOrLoseStr: string = ''
     if (mainResults === 'Won') winOrLoseStr = `${name} won!`
     else if (mainResults === 'Lost') winOrLoseStr = 'Dealer won!'

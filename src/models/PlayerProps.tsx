@@ -76,5 +76,8 @@ export interface PlayerInterfaceProps {
     player: PlayerInterface
 }
 
-
+export interface PlayerAndDealerProps {
+    player: PlayerInterface;
+    dealerObj: DealerObjInterface;
+}
 

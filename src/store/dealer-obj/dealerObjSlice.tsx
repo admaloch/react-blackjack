@@ -44,9 +44,7 @@ const dealerObjSlice = createSlice({
         updateDealer: (state, action: PayloadAction<DealerState>) => {
             return { ...state, ...action.payload };
         },
-        updateDealerHand: (state, action: PayloadAction<Hand>) => {
-            state.hand = action.payload;
-        },
+
         resetDealer: (state) => {
             return {
                 ...state,
@@ -62,6 +60,6 @@ const dealerObjSlice = createSlice({
     },
 });
 
-export const { updateDealer, updateDealerHand, resetDealer } = dealerObjSlice.actions;
+export const { updateDealer, resetDealer } = dealerObjSlice.actions;
 
 export default dealerObjSlice.reducer;

@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { RootState } from "../../../../store/store";
 import ResultsModal from "./ResultsModal";
 import { useSelector } from 'react-redux';
-import { delay } from '../../../../utils/Utility';
 
 interface EndOfTurnResultsProps {
     playerIndex: number;

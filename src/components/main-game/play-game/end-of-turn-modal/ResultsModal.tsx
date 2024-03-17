@@ -2,10 +2,9 @@ import Modal from "../../../UI/modal/Modal";
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../../../../store/store";
 import ResultsModalContents from "./ResultsModalContent";
-import { reverseAllSplitHands, reverseCurrSplitHand, updateAllPlayers, updatePlayer } from "../../../../store/player-arr/playersArrSlice";
-import { beginDealerRound, revealDealerCard } from "../../../../store/game-data/GameDataSlice";
-import { delay } from "../../../../utils/Utility";
-import { useCallback, useEffect } from "react";
+import { reverseAllSplitHands, reverseCurrSplitHand } from "../../../../store/player-arr/playersArrSlice";
+import { beginDealerRound } from "../../../../store/game-data/GameDataSlice";
+import { useCallback } from "react";
 
 interface EndOfTurnResultsProps {
     playerIndex: number;
@@ -20,16 +19,7 @@ export default function ResultsModal({ playerIndex, isCurrPlayerFinished, makeCu
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const currPlayer = playersArr[playerIndex]
     const playersHaveSplit = playersArr.some(player => player.splitHand.cards.length > 0)
-    const { hand, splitHand, isPlayerSplit } = currPlayer
-
-    // const reversePlayerSplitHand = useCallback(() => {
-    //     dispatch(updatePlayer({
-    //         ...playersArr[playerIndex],
-    //         hand: splitHand,
-    //         splitHand: hand,
-    //         isDoubleDown: false
-    //     }));
-    // }, [dispatch, hand, playerIndex, playersArr, splitHand])
+    const { splitHand, isPlayerSplit } = currPlayer
 
     const isLastPlayer = playersArr.length - 1 === playerIndex
 
@@ -51,24 +41,7 @@ export default function ResultsModal({ playerIndex, isCurrPlayerFinished, makeCu
                 dispatch(beginDealerRound())
             }
         }
-
-
-        // if (isPlayerSplit && splitHand.cards.length === 1) {
-        //     console.log('reverse curr split conditional ran')
-        //     dispatch(reverseCurrSplitHand(playerIndex))
-
-        // } if (splitHand.cards.length === 1 || playersArr.length - 1 !== playerIndex) {
-        //     if (!isPlayerSplit || isPlayerSplit && splitHand.cards.length > 1) {
-        //         dispatch(reverseCurrSplitHand(playerIndex))
-
-        //         changeToNextPlayer()
-        //     }
-        //     makeCurrPlayerNotFinished()
-        // } else {
-        //     playersHaveSplit && dispatch(reverseAllSplitHands())
-        //     dispatch(beginDealerRound())
-        // }
-    }, [changeToNextPlayer, dispatch, isPlayerSplit, makeCurrPlayerNotFinished, playerIndex, playersArr.length, playersHaveSplit, splitHand.cards.length]);
+    }, [changeToNextPlayer, dispatch, isLastPlayer, isPlayerSplit, makeCurrPlayerNotFinished, playerIndex, playersHaveSplit, splitHand.cards.length]);
 
 
     // still working on this

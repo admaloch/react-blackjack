@@ -1,5 +1,6 @@
 import { createSlice, current, PayloadAction } from "@reduxjs/toolkit";
-import { PlayerInterface } from "../../models/PlayerProps";
+import { DealerObjInterface, PlayerAndDealerProps, PlayerInterface, RoundResultsProps } from "../../models/PlayerProps";
+import playerWonOrLostFunc from "../../utils/playerWonOrLostFunc";
 
 // const initialState: PlayerInterface[] = [];
 // clubs (♣), diamonds (♦), hearts (♥), and spades (♠).x
@@ -139,6 +140,9 @@ const playerArrSlice = createSlice({
                 state[index] = action.payload;
             }
         },
+        makeDoubleDownFalse: (state, action: PayloadAction<number>) => {
+            state[action.payload].isDoubleDown = false
+        },
         updatePlayerInsurance: (state, action: PayloadAction<number>) => {
             const playerIndex = action.payload;
             const playerToUpdate = state[playerIndex];
@@ -150,6 +154,39 @@ const playerArrSlice = createSlice({
                     bank,
                     insuranceBet,
                 };
+            }
+        },
+        resetAfterInsuranceWin: (state, action: PayloadAction<PlayerInterface>) => {
+            const index = state.findIndex(player => player.name === action.payload.name)
+            const { bank, insuranceBet, currBet, splitBet } = state[index]
+            state[index] = {
+                ...state[index],
+                bank: bank + insuranceBet + currBet + splitBet,
+                wonInsuranceRound: true,
+                insuranceBet: 0,
+                currBet: 0,
+                splitBet: 0,
+            }
+        },
+        // resetInsurance: (state, action: PayloadAction<PlayerInterface>)=>{
+        //     const index = state.findIndex(player=>player.name === action.payload.name)
+        //     state[index] = {
+        //         ...state[index],
+        //         insuranceBet: 0
+        //     }
+        // },
+        updateWinOrLose: (state, action: PayloadAction<PlayerAndDealerProps>) => {
+            const { player, dealerObj } = action.payload
+            const index = state.findIndex(player => player.name === player.name)
+            const { roundResults } = player
+
+            const winOrLoseStr = playerWonOrLostFunc(player, dealerObj, 'main')
+            const newRoundResults: RoundResultsProps = { ...roundResults, mainResults: winOrLoseStr }
+            const isRoundWonChanged = winOrLoseStr === 'Won' ? player.roundsWon + 1 : player.roundsWon
+            state[index] = {
+                ...state[index],
+                roundResults: newRoundResults,
+                roundsWon: isRoundWonChanged,
             }
         },
         removePlayer: (state, action: PayloadAction<PlayerNameProps>) => {
@@ -280,19 +317,9 @@ const playerArrSlice = createSlice({
                 }
             }
         },
-        // updateSplitAndInsuranceResults: (state, action: PayloadAction<PlayerInterface>) => {
-        //     const playerIndex = state.findIndex(player => player.name === action.payload.name)
-        //     const player = state[playerIndex]
-        //     state[playerIndex] = {
-        //         ...player,
-        //         bank: player.bank + player.splitBet,
-        //         splitBet: 0,
-        //         roundResults: newRoundResObj,
-        //     }
-        // }
     },
 });
 
-export const { addPlayer, updatePlayer, removePlayer, resetPlayersArr, updateAllPlayers, removePlayers, reverseAllSplitHands, reverseCurrSplitHand, updatePlayerInsurance, updateHandResults } = playerArrSlice.actions;
+export const { addPlayer, updatePlayer, removePlayer, resetPlayersArr, updateAllPlayers, removePlayers, reverseAllSplitHands, reverseCurrSplitHand, updatePlayerInsurance, updateHandResults, makeDoubleDownFalse, resetAfterInsuranceWin, updateWinOrLose } = playerArrSlice.actions;
 
 export default playerArrSlice.reducer;
