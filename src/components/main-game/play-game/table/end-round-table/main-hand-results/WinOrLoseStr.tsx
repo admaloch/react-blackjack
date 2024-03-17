@@ -1,8 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../../../store/store";
-import { PlayerInterfaceProps } from "../../../../../../models/PlayerProps";
+import { PlayerInterfaceProps, RoundResultsProps } from "../../../../../../models/PlayerProps";
 import { useEffect } from "react";
-import {  updateWinOrLose } from "../../../../../../store/player-arr/playersArrSlice";
+import { delay } from "../../../../../../utils/Utility";
+import { updatePlayer, updateWinOrLose } from "../../../../../../store/player-arr/playersArrSlice";
+import playerWonOrLostFunc from "../../../../../../utils/playerWonOrLostFunc";
 
 export default function WinOrLoseStr({ player }: PlayerInterfaceProps) {
     const dispatch = useDispatch()
@@ -12,13 +14,19 @@ export default function WinOrLoseStr({ player }: PlayerInterfaceProps) {
     const { mainResults } = roundResults
 
     useEffect(() => {
-        if (isMainResultsActive && isRoundActive && roundResults.mainResults === '' && !wonInsuranceRound) {
-            setTimeout(() => {
-                dispatch(updateWinOrLose({ player, dealerObj }))
-            }, 2000);
+        let isMounted = true
+        async function winOrLoseFunc() {
+            if (isMounted) {
+                if (isMainResultsActive && isRoundActive && roundResults.mainResults === '' && !wonInsuranceRound) {
+                    await delay(2000)
+                    dispatch(updateWinOrLose({ player, dealerObj }))
+                }
+            }
         }
-    }, [dealerObj, dispatch, player, roundResults, isRoundActive, isMainResultsActive, wonInsuranceRound])
-    
+        winOrLoseFunc()
+        return () => { isMounted = false }
+    }, [dealerObj, dispatch, isMainResultsActive, isRoundActive, player, roundResults.mainResults, wonInsuranceRound])
+
     let winOrLoseStr: string = ''
     if (mainResults === 'Won') winOrLoseStr = `${name} won!`
     else if (mainResults === 'Lost') winOrLoseStr = 'Dealer won!'

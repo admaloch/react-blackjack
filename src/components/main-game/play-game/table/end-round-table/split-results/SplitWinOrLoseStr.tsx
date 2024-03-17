@@ -4,37 +4,30 @@ import playerWonOrLostFunc from '../../../../../../utils/playerWonOrLostFunc';
 import { PlayerInterfaceProps, RoundResultsProps } from '../../../../../../models/PlayerProps';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../../../../store/store';
-import { updatePlayer } from '../../../../../../store/player-arr/playersArrSlice';
+import { updatePlayer, updateWinOrLose } from '../../../../../../store/player-arr/playersArrSlice';
 
 
 export default function SplitWinOrLoseStr({ player }: PlayerInterfaceProps) {
 
     const dispatch = useDispatch()
     const dealerObj = useSelector((state: RootState) => state.dealerObj);
-    const { isSplitResultsActive, isRoundActive } = useSelector((state: RootState) => state.gameData);
-    const { roundResults, name, wonInsuranceRound } = player
+    const { isRoundActive } = useSelector((state: RootState) => state.gameData);
+    const { roundResults, name } = player
     const { splitResults } = roundResults
 
     useEffect(() => {
         let isMounted = true
-        async function updateWinOrLose() {
+        async function winOrLoseFunc() {
             if (isMounted) {
                 if (isRoundActive && roundResults.splitResults === '') {
                     await delay(1500)
-                    const winOrLoseStr = playerWonOrLostFunc(player, dealerObj, 'split')
-                    const newRoundResults: RoundResultsProps = { ...roundResults, splitResults: winOrLoseStr }
-                    const isRoundWonChanged = winOrLoseStr === 'Won' ? player.roundsWon + 1 : player.roundsWon
-                    dispatch(updatePlayer({
-                        ...player,
-                        roundResults: newRoundResults,
-                        roundsWon: isRoundWonChanged,
-                    }))
+                    dispatch(updateWinOrLose({ player, dealerObj }))
                 }
             }
         }
-        updateWinOrLose()
+        winOrLoseFunc()
         return () => { isMounted = false }
-    }, [dealerObj, dispatch, isSplitResultsActive, player, roundResults, isRoundActive])
+    }, [dealerObj, dispatch, isRoundActive, player, roundResults.splitResults])
 
     let winOrLoseStr: string = ''
     if (splitResults === 'Won') winOrLoseStr = `${name} won!`

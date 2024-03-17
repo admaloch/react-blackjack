@@ -5,123 +5,123 @@ import playerWonOrLostFunc from "../../utils/playerWonOrLostFunc";
 // const initialState: PlayerInterface[] = [];
 // clubs (♣), diamonds (♦), hearts (♥), and spades (♠).x
 
-const initialState: PlayerInterface[] = []
+// const initialState: PlayerInterface[] = []
 
-// const initialState: PlayerInterface[] = [
+const initialState: PlayerInterface[] = [
 
-//     {
-//         "name": "James",
-//         "hand": {
-//             "cards": [
-//                 "A♥",
-//                 "8♠",
-
-
-
-//             ],
-//             "cardUrlVals": [
-//                 "AH",
-//                 "8S",
+    {
+        "name": "James",
+        "hand": {
+            "cards": [
+                "A♥",
+                "8♠",
 
 
 
-//             ],
-//             "cardNumVals": [
-//                 11,
-//                 8,
+            ],
+            "cardUrlVals": [
+                "AH",
+                "8S",
+
+
+
+            ],
+            "cardNumVals": [
+                11,
+                8,
 
 
 
 
-//             ],
-//             "cardSum": 19,
-//             "isBlackjack": false,
-//         },
-//         "splitHand": {
-//             "cards": [],
-//             "cardUrlVals": [],
-//             "cardNumVals": [],
-//             "cardSum": 0,
-//             "isBlackjack": false,
-//         },
-//         "bank": 995,
-//         "beginningRoundBank": 1000,
-//         "currBet": 5,
-//         "minBet": 5,
-//         "insuranceBet": 0,
-//         "wonInsuranceRound": false,
-//         "splitBet": 0,
-//         "isPlayerSplit": false,
-//         "isDoubleDown": false,
-//         "playerLeftTable": false,
-//         "roundResults": {
-//             "mainResults": "",
-//             "splitResults": "",
-//             "isComplete": false,
-//         },
-//         "currTokens": [
-//             1,
-//             5,
-//             25,
-//             50,
-//             100,
-//             500
-//         ],
-//         "roundsWon": 0
-//     },
-//     {
-//         "name": "Dave",
-//         "hand": {
-//             "cards": [
-//                 "A♥",
-//                 "A♠"
-//             ],
-//             "cardUrlVals": [
-//                 "AH",
-//                 "AS"
-//             ],
-//             "cardNumVals": [
-//                 11,
-//                 1,
-//             ],
-//             "cardSum": 12,
-//             "isBlackjack": false,
-//         },
-//         "splitHand": {
-//             "cards": [],
-//             "cardUrlVals": [],
-//             "cardNumVals": [],
-//             "cardSum": 0,
-//             "isBlackjack": false,
-//         },
-//         "bank": 900,
-//         "beginningRoundBank": 1000,
-//         "currBet": 100,
-//         "minBet": 100,
-//         "insuranceBet": 0,
-//         "wonInsuranceRound": false,
-//         "splitBet": 0,
-//         "isPlayerSplit": false,
-//         "isDoubleDown": false,
-//         "playerLeftTable": false,
-//         "roundResults": {
-//             "mainResults": "",
-//             "splitResults": "",
-//             "isComplete": false,
-//         },
-//         "currTokens": [
-//             1,
-//             5,
-//             25,
-//             50,
-//             100,
-//             500
-//         ],
-//         "roundsWon": 0
-//     },
+            ],
+            "cardSum": 19,
+            "isBlackjack": false,
+        },
+        "splitHand": {
+            "cards": [],
+            "cardUrlVals": [],
+            "cardNumVals": [],
+            "cardSum": 0,
+            "isBlackjack": false,
+        },
+        "bank": 995,
+        "beginningRoundBank": 1000,
+        "currBet": 5,
+        "minBet": 5,
+        "insuranceBet": 0,
+        "wonInsuranceRound": false,
+        "splitBet": 0,
+        "isPlayerSplit": false,
+        "isDoubleDown": false,
+        "playerLeftTable": false,
+        "roundResults": {
+            "mainResults": "",
+            "splitResults": "",
+            "isComplete": false,
+        },
+        "currTokens": [
+            1,
+            5,
+            25,
+            50,
+            100,
+            500
+        ],
+        "roundsWon": 0
+    },
+    {
+        "name": "Dave",
+        "hand": {
+            "cards": [
+                "9♥",
+                "9♠"
+            ],
+            "cardUrlVals": [
+                "9H",
+                "9S"
+            ],
+            "cardNumVals": [
+                9,
+                9,
+            ],
+            "cardSum": 18,
+            "isBlackjack": false,
+        },
+        "splitHand": {
+            "cards": [],
+            "cardUrlVals": [],
+            "cardNumVals": [],
+            "cardSum": 0,
+            "isBlackjack": false,
+        },
+        "bank": 900,
+        "beginningRoundBank": 1000,
+        "currBet": 100,
+        "minBet": 100,
+        "insuranceBet": 0,
+        "wonInsuranceRound": false,
+        "splitBet": 0,
+        "isPlayerSplit": false,
+        "isDoubleDown": false,
+        "playerLeftTable": false,
+        "roundResults": {
+            "mainResults": "",
+            "splitResults": "",
+            "isComplete": false,
+        },
+        "currTokens": [
+            1,
+            5,
+            25,
+            50,
+            100,
+            500
+        ],
+        "roundsWon": 0
+    },
 
 
-// ]
+]
 
 interface PlayerNameProps {
     name: string;
@@ -176,19 +176,22 @@ const playerArrSlice = createSlice({
         //     }
         // },
         updateWinOrLose: (state, action: PayloadAction<PlayerAndDealerProps>) => {
-            const { player, dealerObj } = action.payload
-            const index = state.findIndex(player => player.name === player.name)
-            const { roundResults } = player
-
-            const winOrLoseStr = playerWonOrLostFunc(player, dealerObj, 'main')
-            const newRoundResults: RoundResultsProps = { ...roundResults, mainResults: winOrLoseStr }
-            const isRoundWonChanged = winOrLoseStr === 'Won' ? player.roundsWon + 1 : player.roundsWon
+            const { player: currPlayer, dealerObj: currDealer } = action.payload;
+            const index = state.findIndex(player => player.name === currPlayer.name);
+            const { roundResults } = currPlayer;
+            const splitOrMainStr = currPlayer.currBet !== 0 ? 'main' : 'split'
+            const winOrLoseStr = playerWonOrLostFunc(currPlayer, currDealer, splitOrMainStr);
+            const newRoundResults: RoundResultsProps = splitOrMainStr === 'main'
+                ? { ...roundResults, mainResults: winOrLoseStr }
+                : { ...roundResults, splitResults: winOrLoseStr }
+            const isRoundWonChanged = winOrLoseStr === 'Won' ? currPlayer.roundsWon + 1 : currPlayer.roundsWon;
             state[index] = {
                 ...state[index],
                 roundResults: newRoundResults,
                 roundsWon: isRoundWonChanged,
-            }
+            };
         },
+
         removePlayer: (state, action: PayloadAction<PlayerNameProps>) => {
             const index = state.findIndex(player => player.name === action.payload.name);
             if (index !== -1) {
