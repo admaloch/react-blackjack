@@ -1,11 +1,9 @@
 import { useEffect } from 'react'
 import { delay } from '../../../../../../utils/Utility';
-import playerWonOrLostFunc from '../../../../../../utils/playerWonOrLostFunc';
-import { PlayerInterfaceProps, RoundResultsProps } from '../../../../../../models/PlayerProps';
+import { PlayerInterfaceProps } from '../../../../../../models/PlayerProps';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../../../../store/store';
-import { updatePlayer, updateWinOrLose } from '../../../../../../store/player-arr/playersArrSlice';
-
+import {  updateWinOrLose } from '../../../../../../store/player-arr/playersArrSlice';
 
 export default function SplitWinOrLoseStr({ player }: PlayerInterfaceProps) {
 
@@ -33,9 +31,7 @@ export default function SplitWinOrLoseStr({ player }: PlayerInterfaceProps) {
     if (splitResults === 'Won') winOrLoseStr = `${name} won!`
     else if (splitResults === 'Lost') winOrLoseStr = 'Dealer won!'
     else if (splitResults === 'Push') winOrLoseStr = 'Push!'
-    // else if (wonInsuranceRound) winOrLoseStr = 'Insurance won'
     else winOrLoseStr = ''
-
 
     return winOrLoseStr && (
         <p>{winOrLoseStr}</p>

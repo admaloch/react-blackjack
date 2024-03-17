@@ -1,127 +1,139 @@
 import { createSlice, current, PayloadAction } from "@reduxjs/toolkit";
-import { DealerObjInterface, PlayerAndDealerProps, PlayerInterface, RoundResultsProps } from "../../models/PlayerProps";
+import { DealerObjInterface, Hand, PlayerAndDealerProps, PlayerInterface, RoundResultsProps } from "../../models/PlayerProps";
 import playerWonOrLostFunc from "../../utils/playerWonOrLostFunc";
+import { updatePlayerTokens } from "../../components/main-game/player-bets/updatePlayerTokens";
 
 // const initialState: PlayerInterface[] = [];
 // clubs (♣), diamonds (♦), hearts (♥), and spades (♠).x
 
-// const initialState: PlayerInterface[] = []
-
-const initialState: PlayerInterface[] = [
-
-    {
-        "name": "James",
-        "hand": {
-            "cards": [
-                "A♥",
-                "8♠",
+interface TokensProps {
+    index: number;
+    type: string
+}
+interface TokenClickProps {
+    index: number;
+    number: number;
+}
 
 
 
-            ],
-            "cardUrlVals": [
-                "AH",
-                "8S",
+const initialState: PlayerInterface[] = []
+
+// const initialState: PlayerInterface[] = [
+
+//     {
+//         "name": "James",
+//         "hand": {
+//             "cards": [
+//                 "A♥",
+//                 "3♠",
 
 
 
-            ],
-            "cardNumVals": [
-                11,
-                8,
+//             ],
+//             "cardUrlVals": [
+//                 "AH",
+//                 "3S",
+
+
+
+//             ],
+//             "cardNumVals": [
+//                 11,
+//                 3,
 
 
 
 
-            ],
-            "cardSum": 19,
-            "isBlackjack": false,
-        },
-        "splitHand": {
-            "cards": [],
-            "cardUrlVals": [],
-            "cardNumVals": [],
-            "cardSum": 0,
-            "isBlackjack": false,
-        },
-        "bank": 995,
-        "beginningRoundBank": 1000,
-        "currBet": 5,
-        "minBet": 5,
-        "insuranceBet": 0,
-        "wonInsuranceRound": false,
-        "splitBet": 0,
-        "isPlayerSplit": false,
-        "isDoubleDown": false,
-        "playerLeftTable": false,
-        "roundResults": {
-            "mainResults": "",
-            "splitResults": "",
-            "isComplete": false,
-        },
-        "currTokens": [
-            1,
-            5,
-            25,
-            50,
-            100,
-            500
-        ],
-        "roundsWon": 0
-    },
-    {
-        "name": "Dave",
-        "hand": {
-            "cards": [
-                "9♥",
-                "9♠"
-            ],
-            "cardUrlVals": [
-                "9H",
-                "9S"
-            ],
-            "cardNumVals": [
-                9,
-                9,
-            ],
-            "cardSum": 18,
-            "isBlackjack": false,
-        },
-        "splitHand": {
-            "cards": [],
-            "cardUrlVals": [],
-            "cardNumVals": [],
-            "cardSum": 0,
-            "isBlackjack": false,
-        },
-        "bank": 900,
-        "beginningRoundBank": 1000,
-        "currBet": 100,
-        "minBet": 100,
-        "insuranceBet": 0,
-        "wonInsuranceRound": false,
-        "splitBet": 0,
-        "isPlayerSplit": false,
-        "isDoubleDown": false,
-        "playerLeftTable": false,
-        "roundResults": {
-            "mainResults": "",
-            "splitResults": "",
-            "isComplete": false,
-        },
-        "currTokens": [
-            1,
-            5,
-            25,
-            50,
-            100,
-            500
-        ],
-        "roundsWon": 0
-    },
+//             ],
+//             "cardSum": 14,
+//             "isBlackjack": false,
+//         },
+//         "splitHand": {
+//             "cards": [],
+//             "cardUrlVals": [],
+//             "cardNumVals": [],
+//             "cardSum": 0,
+//             "isBlackjack": false,
+//         },
+//         "bank": 995,
+//         "beginningRoundBank": 1000,
+//         "currBet": 5,
+//         "minBet": 5,
+//         "insuranceBet": 0,
+//         "wonInsuranceRound": false,
+//         "splitBet": 0,
+//         "isPlayerSplit": false,
+//         "isDoubleDown": false,
+//         "playerLeftTable": false,
+//         "roundResults": {
+//             "mainResults": "",
+//             "splitResults": "",
+//             "isComplete": false,
+//         },
+//         "currTokens": [
+//             1,
+//             5,
+//             25,
+//             50,
+//             100,
+//             500
+//         ],
+//         "roundsWon": 0
+//     },
+//     {
+//         "name": "Dave",
+//         "hand": {
+//             "cards": [
+//                 "9♥",
+//                 "9♠"
+//             ],
+//             "cardUrlVals": [
+//                 "9H",
+//                 "9S"
+//             ],
+//             "cardNumVals": [
+//                 9,
+//                 9,
+//             ],
+//             "cardSum": 18,
+//             "isBlackjack": false,
+//         },
+//         "splitHand": {
+//             "cards": [],
+//             "cardUrlVals": [],
+//             "cardNumVals": [],
+//             "cardSum": 0,
+//             "isBlackjack": false,
+//         },
+//         "bank": 900,
+//         "beginningRoundBank": 1000,
+//         "currBet": 100,
+//         "minBet": 100,
+//         "insuranceBet": 0,
+//         "wonInsuranceRound": false,
+//         "splitBet": 0,
+//         "isPlayerSplit": false,
+//         "isDoubleDown": false,
+//         "playerLeftTable": false,
+//         "roundResults": {
+//             "mainResults": "",
+//             "splitResults": "",
+//             "isComplete": false,
+//         },
+//         "currTokens": [
+//             1,
+//             5,
+//             25,
+//             50,
+//             100,
+//             500
+//         ],
+//         "roundsWon": 0
+//     },
 
 
-]
+// ]
 
 interface PlayerNameProps {
     name: string;
@@ -166,6 +178,77 @@ const playerArrSlice = createSlice({
                 insuranceBet: 0,
                 currBet: 0,
                 splitBet: 0,
+            }
+        },
+        updateDoubleDownHand: (state, action: PayloadAction<number>) => {
+            const currPlayer = state[action.payload];
+            const { currBet, splitBet, bank, splitHand } = currPlayer;
+            const isMainHand = splitHand.cards.length < 2;
+            state[action.payload] = {
+                ...currPlayer,
+                isDoubleDown: true,
+                currBet: isMainHand ? currBet * 2 : currBet,
+                splitBet: !isMainHand ? splitBet * 2 : splitBet,
+                bank: isMainHand ? bank - currBet : bank - splitBet,
+            };
+        },
+        splitPlayerHand: (state, action: PayloadAction<number>) => {
+            const currPlayer = state[action.payload];
+            const { hand, currBet, bank } = currPlayer;
+            const { cards, cardNumVals, cardUrlVals, } = hand
+            state[action.payload] = {
+                ...currPlayer,
+                hand: {
+                    ...hand,
+                    cards: [cards[0]],
+                    cardNumVals: [cardNumVals[0]],
+                    cardUrlVals: [cardUrlVals[0]],
+                    cardSum: cardNumVals[0],
+                },
+                splitHand: {
+                    ...hand,
+                    cards: [cards[1]],
+                    cardNumVals: [cardNumVals[1]],
+                    cardUrlVals: [cardUrlVals[1]],
+                    cardSum: cardNumVals[1],
+                },
+                splitBet: currBet,
+                isPlayerSplit: true,
+                bank: bank - currBet,
+            }
+        },
+        updateTokens: (state, action: PayloadAction<TokensProps>) => {
+            const currType = action.payload.type
+            const currIndex = action.payload.index
+            const currPlayer = state[currIndex];
+            const { bank, currBet, minBet } = currPlayer
+            if (currType === 'all-tokens') {
+                state[currIndex] = {
+                    ...state[currIndex],
+                    bank: 0,
+                    currBet: currBet + bank,
+                    currTokens: updatePlayerTokens(0)
+                }
+            } else {
+                const currBank = bank + currBet - minBet
+                state[currIndex] = {
+                    ...state[currIndex],
+                    bank: currBank,
+                    currBet: minBet,
+                    currTokens: updatePlayerTokens(currBank)
+                }
+            }
+        },
+        clickTokenUpdate: (state, action: PayloadAction<TokenClickProps>) => {
+            const input = action.payload.number
+            const currIndex = action.payload.index
+            const currPlayer = state[currIndex];
+            const { bank, currBet } = currPlayer
+            state[currIndex] = {
+                ...state[currIndex],
+                currBet: currBet + input,
+                bank: bank - input,
+                currTokens: updatePlayerTokens(bank - input)
             }
         },
         // resetInsurance: (state, action: PayloadAction<PlayerInterface>)=>{
@@ -221,6 +304,7 @@ const playerArrSlice = createSlice({
 
             return updatedState;
         },
+
 
         reverseAllSplitHands: (state) => {
             const allPlayersWithSplitHands = state.map(x => {
@@ -323,6 +407,6 @@ const playerArrSlice = createSlice({
     },
 });
 
-export const { addPlayer, updatePlayer, removePlayer, resetPlayersArr, updateAllPlayers, removePlayers, reverseAllSplitHands, reverseCurrSplitHand, updatePlayerInsurance, updateHandResults, makeDoubleDownFalse, resetAfterInsuranceWin, updateWinOrLose } = playerArrSlice.actions;
+export const { addPlayer, updatePlayer, removePlayer, resetPlayersArr, updateAllPlayers, removePlayers, reverseAllSplitHands, reverseCurrSplitHand, updatePlayerInsurance, updateHandResults, makeDoubleDownFalse, resetAfterInsuranceWin, updateWinOrLose, updateDoubleDownHand, splitPlayerHand, updateTokens, clickTokenUpdate } = playerArrSlice.actions;
 
 export default playerArrSlice.reducer;

@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from "../../../../../../store/store";
 import PlayerIndexProps from '../../../../../../models/PlayerIndexProps';
 import { useDispatch } from 'react-redux';
-import { updatePlayer } from '../../../../../../store/player-arr/playersArrSlice';
+import { updateDoubleDownHand } from '../../../../../../store/player-arr/playersArrSlice';
 
 export default function DoubleDownBtn({ playerIndex }: PlayerIndexProps) {
 
@@ -17,30 +17,15 @@ export default function DoubleDownBtn({ playerIndex }: PlayerIndexProps) {
             : 'block',
     };
 
-    const doubleDownHandler = async () => {
-        let updatedPlayer = { ...currPlayer };
-        if (updatedPlayer.splitHand.cards.length < 2) {
-            updatedPlayer = {
-                ...updatedPlayer,
-                isDoubleDown: true,
-                currBet: currPlayer.currBet * 2,
-                bank: currPlayer.bank - currPlayer.currBet,
-            };
-        } else {
-            updatedPlayer = {
-                ...updatedPlayer,
-                isDoubleDown: true,
-                splitBet: currPlayer.splitBet * 2,
-                bank: currPlayer.bank - currPlayer.splitBet,
-            };
-        }
-        dispatch(updatePlayer(updatedPlayer));
-    };
+    // const doubleDownHandler = () => {
+    //     dispatch(updateDoubleDownHand(playerIndex))
+    // };
 
     return (
         <button
             style={doubleDownStyle}
-            onClick={doubleDownHandler}
+            onClick={() => dispatch(updateDoubleDownHand(playerIndex))
+            }
             className="game-btn double-btn">Double Down
         </button>
     )

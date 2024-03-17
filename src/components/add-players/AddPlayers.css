@@ -11,19 +11,14 @@
     text-align: center;
 }
 
-
-
 .add-players form {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
 }
 
-
 .name-input {
-    /* min-width: 250px; */
     padding: .4rem;
     margin-right: .5rem;
 
