@@ -9,7 +9,7 @@ export default function SplitCardPreview({ playerIndex }: PlayerIndexProps) {
     const { splitHand } = currPlayer
 
     const handText = splitHand.cards.length === 1 ? '2nd hand' : '1st hand'
-
+//  curretnly cleaning up this
     return (
         <div className="split-card-preview disabled">
             <h5>{handText}</h5>
