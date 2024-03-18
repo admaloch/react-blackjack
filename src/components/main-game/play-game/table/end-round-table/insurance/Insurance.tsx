@@ -6,7 +6,6 @@ export interface PlayerProps {
 }
 
 export default function Insurance({ player }: PlayerProps) {
-
     const { insuranceBet } = player
 
     return (

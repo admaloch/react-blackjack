@@ -15,8 +15,6 @@ interface TokenClickProps {
     number: number;
 }
 
-
-
 const initialState: PlayerInterface[] = []
 
 // const initialState: PlayerInterface[] = [
@@ -28,22 +26,15 @@ const initialState: PlayerInterface[] = []
 //                 "A♥",
 //                 "3♠",
 
-
-
 //             ],
 //             "cardUrlVals": [
 //                 "AH",
 //                 "3S",
 
-
-
 //             ],
 //             "cardNumVals": [
 //                 11,
 //                 3,
-
-
-
 
 //             ],
 //             "cardSum": 14,
@@ -131,7 +122,6 @@ const initialState: PlayerInterface[] = []
 //         ],
 //         "roundsWon": 0
 //     },
-
 
 // ]
 
@@ -304,7 +294,6 @@ const playerArrSlice = createSlice({
 
             return updatedState;
         },
-
 
         reverseAllSplitHands: (state) => {
             const allPlayersWithSplitHands = state.map(x => {

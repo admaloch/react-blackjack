@@ -5,7 +5,7 @@ interface BjBustOrStayProps {
     mainOrSplit: string;
 }
 
-export default function BjBustOrStay({ player, mainOrSplit= 'main' }: BjBustOrStayProps) {
+export default function BjBustOrStay({ player, mainOrSplit = 'main' }: BjBustOrStayProps) {
 
     const currentHand = mainOrSplit === 'main' ? player.hand : player.splitHand
     const { cardUrlVals, cardSum } = currentHand
@@ -21,7 +21,6 @@ export default function BjBustOrStay({ player, mainOrSplit= 'main' }: BjBustOrSt
         resultsString = <p className='stay-color'>Stay!</p>;
 
     }
-
 
     return <div>{resultsString}</div>
 }

@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { RootState } from '../../../../../store/store';
 import DealerHeader from './dealer-details/DealerHeader';
 import DealerStatus from './dealer-details/DealerStatus';
@@ -26,18 +26,10 @@ export default function DealerDetails() {
     }, []);
 
     const { isDealerCardRevealed } = useSelector((state: RootState) => state.gameData);
-    const { isBlackjack, isInsuranceEval } = showDealerData
 
     const dealerObj = useSelector((state: RootState) => state.dealerObj);
     const { hand } = dealerObj;
     const { cardSum } = hand
-
-    // useEffect(() => {
-    //     console.log('is blackjack is', isBlackjack)
-    // }, [isBlackjack])
-    // useEffect(() => {
-    //     console.log('is insurance eval is', isInsuranceEval)
-    // }, [isInsuranceEval])
 
     return (
         <>

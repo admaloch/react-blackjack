@@ -14,8 +14,6 @@ export default function MoneyWonOrLost({ player }: PlayerInterfaceProps) {
         moneyWonOrLostStr = 'Broke even'
     }
 
-
-
     return (
         <p>{moneyWonOrLostStr}</p>
     )

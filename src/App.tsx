@@ -82,7 +82,6 @@ function App() {
 
   // testing for issues -- also just realized head is detached.
 
-
   useEffect(() => {
     console.log(deck)
   }, [deck])
@@ -97,7 +96,6 @@ function App() {
   // useEffect(() => {
   //   console.log('game data', gameData)
   // }, [gameData])
-
 
   return (
     <>

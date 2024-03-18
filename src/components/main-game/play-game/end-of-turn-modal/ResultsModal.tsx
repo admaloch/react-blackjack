@@ -20,15 +20,12 @@ export default function ResultsModal({ playerIndex, isCurrPlayerFinished, makeCu
     const currPlayer = playersArr[playerIndex]
     const playersHaveSplit = playersArr.some(player => player.splitHand.cards.length > 0)
     const { splitHand, isPlayerSplit } = currPlayer
-
     const isLastPlayer = playersArr.length - 1 === playerIndex
 
     const endResultsBtnHandler = useCallback(async () => {
-
         if (isPlayerSplit && isPlayerSplit && splitHand.cards.length === 1) {
             dispatch(reverseCurrSplitHand(playerIndex))
-        }
-        if (!isLastPlayer) {
+        } if (!isLastPlayer) {
             if (!isPlayerSplit || isPlayerSplit && splitHand.cards.length > 1) {
                 changeToNextPlayer()
             }
@@ -43,12 +40,7 @@ export default function ResultsModal({ playerIndex, isCurrPlayerFinished, makeCu
         }
     }, [changeToNextPlayer, dispatch, isLastPlayer, isPlayerSplit, makeCurrPlayerNotFinished, playerIndex, playersHaveSplit, splitHand.cards.length]);
 
-
-    // still working on this
-
-
     return (
-
         <Modal
             closeModal={endResultsBtnHandler}
             open={isCurrPlayerFinished}
@@ -58,7 +50,6 @@ export default function ResultsModal({ playerIndex, isCurrPlayerFinished, makeCu
                 playerIndex={playerIndex}
                 endResultsBtnHandler={endResultsBtnHandler}
             />
-
         </Modal>
     )
 }

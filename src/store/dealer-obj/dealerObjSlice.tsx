@@ -8,34 +8,14 @@ interface DealerState {
 
 const initialState: DealerObjInterface = {
     name: 'Dealer',
-    "hand": {
-        "cards": [
-            "10♥",
-            "A♠"
-        ],
-        "cardUrlVals": [
-            "10H",
-            "AS"
-        ],
-        "cardNumVals": [
-            10,
-            11
-        ],
-        "cardSum": 21,
-        "isBlackjack": false
+    hand: {
+        cards: [],
+        cardUrlVals: [],
+        cardNumVals: [],
+        cardSum: 0,
+        isBlackjack: false,
     },
 }
-
-// const initialState: DealerObjInterface = {
-//     name: 'Dealer',
-//     hand: {
-//         cards: [],
-//         cardUrlVals: [],
-//         cardNumVals: [],
-//         cardSum: 0,
-//         isBlackjack: false,
-//     },
-// }
 
 const dealerObjSlice = createSlice({
     name: 'dealerObj',
@@ -44,7 +24,6 @@ const dealerObjSlice = createSlice({
         updateDealer: (state, action: PayloadAction<DealerState>) => {
             return { ...state, ...action.payload };
         },
-
         resetDealer: (state) => {
             return {
                 ...state,
@@ -61,5 +40,4 @@ const dealerObjSlice = createSlice({
 });
 
 export const { updateDealer, resetDealer } = dealerObjSlice.actions;
-
 export default dealerObjSlice.reducer;

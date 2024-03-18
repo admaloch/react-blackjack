@@ -11,22 +11,17 @@ interface ExitTableIconProps {
 
 export default function ExitTableIcon({ currPlayer, closeStatsModal }: ExitTableIconProps) {
     const dispatch = useDispatch();
-
     const exitTableHandler = async () => {
         await delay(100)
         closeStatsModal && closeStatsModal()
         dispatch(updatePlayer({ ...currPlayer, playerLeftTable: true }))
-
-
     }
 
     return (
-
         <div
             onClick={exitTableHandler}
             className="exit-table-icon">
             <ExitTableIconWithPopper placement="top" />
         </div>
-
     )
 }

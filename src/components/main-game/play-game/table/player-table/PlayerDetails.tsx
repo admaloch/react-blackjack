@@ -2,8 +2,6 @@ import PlayerIndexProps from '../../../../../models/PlayerIndexProps';
 import { RootState } from '../../../../../store/store';
 import { useSelector } from 'react-redux';
 
-
-
 export default function PlayerDetails({ playerIndex }: PlayerIndexProps) {
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const currPlayer = playersArr[playerIndex]

@@ -17,7 +17,6 @@ export interface DealerObjInterface {
     hand: Hand;
 }
 
-
 export interface PlayerInterface {
     name: string;
     hand: Hand;

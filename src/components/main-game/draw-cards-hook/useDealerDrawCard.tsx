@@ -1,4 +1,4 @@
-// useDealerDrawCard.ts
+// hook for drawing dealer card and updating deck state
 import {  useDispatch, useSelector } from 'react-redux';
 import { useCallback } from 'react';
 import { RootState } from '../../../store/store';
@@ -11,20 +11,18 @@ const useDealerDrawCard = () => {
     const dispatch = useDispatch();
     const dealerObj = useSelector((state: RootState) => state.dealerObj);
     const deck = useSelector((state: RootState) => state.deck);
-
     const updateState = useCallback(
         (updatedValue: DealerObjInterface) => {
             dispatch(updateDealer({ ...dealerObj, ...updatedValue }));
         },
         [dispatch, dealerObj]
     );
-
+    
     const drawAndHandleUpdate = useCallback(() => {
         const { cardIndex, suitIndex } = genCardLocationIndexes(deck);
         const updatedDealerHand: Hand = { ...dealerObj.hand };
         const drawnHand = drawAndUpdateHand(updatedDealerHand, cardIndex, suitIndex, deck);
         let updatedValue: DealerObjInterface;
-
         if (drawnHand.cardNumVals.includes(11)) {
             updatedValue = {
                 ...dealerObj,
@@ -36,14 +34,10 @@ const useDealerDrawCard = () => {
                 hand: drawnHand,
             };
         }
-
         updateState(updatedValue);
-
         const newDeck = updateDeckFromState(deck, cardIndex, suitIndex);
         dispatch(updateDeck(newDeck));
     }, [deck, dispatch, dealerObj, updateState]);
-
-    // console.log('dealer draw hook ran');
     return drawAndHandleUpdate;
 };
 

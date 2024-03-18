@@ -1,22 +1,17 @@
 .dealer-hand .playing-card.hidden img {
     display: none;
 }
-
 .back-of-card {
     border-radius: 5px;
 }
-
-
 .hiddenCardAnimation {
     animation: animateHiddenCard 0.5s ease-in-out forwards;
 }
-
 @keyframes animateHiddenCard {
     from {
         opacity: 0;
         transform: translateY(-150px) translateX(+650px) scale(0) rotate(0deg);
     }
-
     to {
         opacity: 1;
         transform: translateY(0) translateX(0) scale(1) rotate(360deg);

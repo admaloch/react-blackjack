@@ -12,20 +12,17 @@ export default function FinalResults() {
   const gameData = useSelector((state: RootState) => state.gameData);
   const dispatch = useDispatch()
   const navigate = useNavigate();
-
   const resultsPageBtnHandler = () => {
-
     dispatch(returnToGameIntro())
     dispatch(resetInactivePlayers())
     navigate("/");
   }
-
+  
   return (
     <div className="final-results game-container">
       <div className="results-container">
         <h2>Game Over</h2>
         <h3>Final results:</h3>
-
         <h4>Total rounds played: {gameData.roundsPlayed}</h4>
         <h4>Player stats:</h4>
         <ul>
@@ -37,17 +34,12 @@ export default function FinalResults() {
             ))
           }
         </ul>
-
-
         <button
           onClick={resultsPageBtnHandler}
           className="game-btn">
           Return to main menu
         </button>
-
       </div>
-
-
     </div>
   )
 }

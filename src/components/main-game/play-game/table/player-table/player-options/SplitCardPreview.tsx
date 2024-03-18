@@ -13,7 +13,7 @@ export default function SplitCardPreview({ playerIndex }: PlayerIndexProps) {
     return (
         <div className="split-card-preview disabled">
             <h5>{handText}</h5>
-            <Card cardUrlVal={splitHand.cardUrlVals[0]} />
+            <Card isHidden={false} cardUrlVal={splitHand.cardUrlVals[0]} />
         </div>
     )
 }

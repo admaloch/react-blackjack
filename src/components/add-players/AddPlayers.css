@@ -3,36 +3,31 @@
     background-color: var(--alt-containers);
     padding: 2rem;
     border-radius: 10px;
-
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
-
 .add-players h1 {
     font-size: 2.5rem;
     text-align: center;
 }
-
 .add-players form {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-
 .name-input {
     padding: .4rem;
     margin-right: .5rem;
-
 }
-
 .name-input.error {
     box-shadow: 0 0 5px red;
 }
-
 .error-message {
     color: red;
 }
-
-
 .player-list {
     border: var(--text) solid 1px;
     padding: 1rem;
@@ -40,15 +35,12 @@
     margin-top: 1rem;
     background-color: var(--alt-containers);
 }
-
 .player-list h2 {
     margin-bottom: 0 !important;
 }
-
 .player-list ul {
     padding-left: 0;
 }
-
 .player-list li {
     list-style: none;
     display: flex;
@@ -56,22 +48,18 @@
     align-items: center;
     line-height: 20px;
 }
-
 .delete-icon {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
 .delete-icon svg {
     transition: .15s ease-in-out opacity;
     cursor: pointer;
 }
-
 .delete-icon svg:hover {
     opacity: .7;
 }
-
 .start-game-btn {
     margin-top: 1rem;
 }

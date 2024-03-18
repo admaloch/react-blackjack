@@ -10,13 +10,10 @@ export interface PlayerProps {
 
 export default function SplitHandDetails({ player }: PlayerProps) {
     const { splitBet, bank } = player;
-    const { isComplete } = player.roundResults
     const { cardUrlVals, cardSum } = player.splitHand
-
 
     return (
         <>
-
             <PlayerHand cardUrlVals={cardUrlVals} />
             <p>Sum: {cardSum}</p>
             <p>Bank: {bank}</p>

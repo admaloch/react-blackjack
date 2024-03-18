@@ -10,7 +10,6 @@ interface ResultsModalContentsProps {
 
 export default function ResultsModalContents({ playerIndex, endResultsBtnHandler }: ResultsModalContentsProps) {
     const buttonRef = useRef<HTMLButtonElement | null>(null);
-
     const handleClickButtonRef = () => {
         if (buttonRef.current) {
             buttonRef.current.click();

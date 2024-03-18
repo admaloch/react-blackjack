@@ -7,7 +7,6 @@
 // const dispatch = useDispatch();
 // dispatch(addPlayer({ ...emptyPlayerItem, name: formattedName }));
 
-
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../../../store/store';
 import { useCallback, useEffect, useState } from 'react';
@@ -19,8 +18,6 @@ export interface ShowDealerDataProps {
     isInsuranceEval: boolean;
     isBlackjack: boolean;
 }
-
-
 
 export default function DealerDetails() {
 
@@ -34,15 +31,12 @@ export default function DealerDetails() {
     }, []
     )
 
-
-
     const updateIsInsuranceEval = useCallback((booleanInput: boolean) => {
         setShowDealerData((prevDataState) => ({ ...prevDataState, isInsuranceEval: booleanInput }));
     }, []);
     const { isDealerCardRevealed } = useSelector((state: RootState) => state.gameData);
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const isPlayerInsured = playersArr.some(player => player.insuranceBet !== 0)
-
 
     const { isBlackjack, isInsuranceEval } = showDealerData
 

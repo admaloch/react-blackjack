@@ -45,7 +45,6 @@ export default function PlayerStatsModal({ closeModal, open, openModal }: Player
                     Return to game
                 </div>
 
-
             </div>
         </Modal>
     )

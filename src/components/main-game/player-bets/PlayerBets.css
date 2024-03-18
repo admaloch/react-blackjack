@@ -1,6 +1,7 @@
 .place-bets h4 {
     font-size: 2rem;
 }
+
 .place-bets h5 {
     font-size: 1.5rem;
 }
@@ -11,15 +12,15 @@
     align-items: center;
 }
 
-.tokens-container div{
+.tokens-container div {
     background-color: var(--text);
     color: var(--background);
     transition: opacity .15s ease-in-out;
 
     border-radius: 50px;
     /* text-align: center; */
-    margin:.5rem;
-    
+    margin: .5rem;
+
     cursor: pointer;
     display: flex;
     justify-content: center;
@@ -38,32 +39,37 @@
     --token500: #540d6e;
 }
 
-#token1{
+#token1 {
     background-color: var(--token1);
     color: var(--background);
     border: dashed 4px var(--token50);
 }
-#token5{
+
+#token5 {
     background-color: var(--token5);
     color: var(--background);
     border: dashed 4px var(--token500);
 }
-#token25{
+
+#token25 {
     background-color: var(--token25);
     color: var(--background);
     border: dashed 4px var(--token1);
 }
-#token50{
+
+#token50 {
     background-color: var(--token50);
     color: var(--background);
     border: dashed 4px var(--token5);
 }
-#token100{
+
+#token100 {
     background-color: var(--token100);
     color: var(--text);
     border: dashed 4px var(--text);
 }
-#token500{
+
+#token500 {
     background-color: var(--token500);
     color: var(--text);
     border: dashed 4px var(--token25);
@@ -85,8 +91,6 @@
     border-radius: 5px;
     padding: 5rem 3rem 3rem 3rem;
 }
-
-
 
 .tokens-container div:hover,
 .reset-tokens:hover {
@@ -114,5 +118,3 @@
     /* filter: invert(100); */
     margin-bottom: .5rem;
 }
-
-

@@ -1,6 +1,5 @@
 import { DealerObjInterface, PlayerInterface } from "../models/PlayerProps"
 
-
 const playerWonOrLostFunc = (player: PlayerInterface, dealerObj: DealerObjInterface, mainOrSplit = 'main'): string => {
     const { wonInsuranceRound } = player
     const currHand = mainOrSplit === 'main' ? player.hand : player.splitHand
@@ -23,6 +22,4 @@ const playerWonOrLostFunc = (player: PlayerInterface, dealerObj: DealerObjInterf
 }
 
 export default playerWonOrLostFunc
-
-
 

@@ -28,8 +28,6 @@ export default function Stand({ makeCurrPlayerFinished, playerIndex }: StandProp
         }, 350)
     }
 
-
-
     return (
         <div className="player-btn-container">
             <button

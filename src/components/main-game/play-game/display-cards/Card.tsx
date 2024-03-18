@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 interface CardProp {
   cardUrlVal: string;
-  isHidden: boolean; // New prop to indicate whether the card should be hidden
+  isHidden: boolean; 
 }
 
 const Card: React.FC<CardProp> = ({ cardUrlVal, isHidden }) => {
@@ -10,15 +10,12 @@ const Card: React.FC<CardProp> = ({ cardUrlVal, isHidden }) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    // Set isLoaded to true when the image is loaded
     const image = new Image();
     image.src = imagePath;
     image.onload = () => {
       setIsLoaded(true);
     };
   }, [imagePath]);
-
-
 
   return (
     <div className={`playing-card ${isLoaded ? 'animate-in' : ''} ${isHidden ? 'hidden' : ''}`}>

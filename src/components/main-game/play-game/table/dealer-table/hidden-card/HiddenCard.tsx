@@ -9,10 +9,7 @@ import './HiddenCard.css'
 
 export default function HiddenCard() {
     const dispatch = useDispatch()
-
-    const { isPlayerRoundActive, isDealerCardRevealed, isDealerRoundActive, isInsuranceRoundComplete } = useSelector((state: RootState) => state.gameData);
-    const dealerObj = useSelector((state: RootState) => state.dealerObj);
-    const { cards, cardSum } = dealerObj.hand
+    const {  isDealerCardRevealed, isDealerRoundActive } = useSelector((state: RootState) => state.gameData);
 
     useEffect(() => {
         let isMounted = true
@@ -28,7 +25,6 @@ export default function HiddenCard() {
         return () => { isMounted = false }
     }, [isDealerRoundActive, dispatch, isDealerCardRevealed]);
 
-
     return (
         <img
             className='back-of-card hiddenCardAnimation'
@@ -37,4 +33,3 @@ export default function HiddenCard() {
         />
     );
 }
-

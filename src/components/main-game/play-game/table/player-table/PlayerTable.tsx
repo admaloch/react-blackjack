@@ -37,11 +37,7 @@ function PlayerTable({ playerIndex, makeCurrPlayerFinished }: PlayerTableProps) 
         return () => { isMounted = false }
     }, [hand, dealerObj, playerDraw]);
 
-
-
     const handText = splitHand.cards.length === 1 ? '1st hand' : '2nd hand'
-
-
 
     return (
         <div className="player-table">

@@ -2,7 +2,6 @@ import CardUrlValsProps from '../../../../../../models/CardUrlVals';
 import { PlayerInterface } from '../../../../../../models/PlayerProps'
 import Card from '../../../display-cards/Card';
 
-
 export interface PlayerProps {
     player: PlayerInterface;
 }

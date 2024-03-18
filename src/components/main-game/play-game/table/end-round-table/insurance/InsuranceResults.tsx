@@ -14,11 +14,7 @@ export default function InsuranceResults({ player }: PlayerProps) {
     const dealerObj = useSelector((state: RootState) => state.dealerObj);
     const dispatch = useDispatch()
     const { cardNumVals } = dealerObj.hand
-
-
-
     const { isDealerCardRevealed } = useSelector((state: RootState) => state.gameData);
-
     const [insuranceResults, setInsuranceResults] = useState({
         status: '',
         class_: 'insurance-msg',
@@ -67,8 +63,6 @@ export default function InsuranceResults({ player }: PlayerProps) {
         updateInsuranceHand()
         return () => { isMounted = false }
     }, [insuranceResults, player, dispatch])
-
-
 
     return (
         <>

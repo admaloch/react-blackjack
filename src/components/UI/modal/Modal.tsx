@@ -14,16 +14,16 @@ export interface MainModalProps extends ModalProps {
     children: JSX.Element | null;
 }
 
-export default function Modal({ open, children, closeModal, isTimer = false  }: MainModalProps): JSX.Element | null {
+export default function Modal({ open, children, closeModal, isTimer = false }: MainModalProps): JSX.Element | null {
 
     const [isVisible, setIsVisible] = useState(false);
 
     const closeModalHandler = useCallback(() => {
-        if(!isTimer) {
+        if (!isTimer) {
             setIsVisible(false);
             closeModal();
         }
-        
+
     }, [closeModal, isTimer])
 
     useEffect(() => {
@@ -31,8 +31,6 @@ export default function Modal({ open, children, closeModal, isTimer = false  }: 
             setIsVisible(true);
         }
     }, [open]);
-
-
 
     if (!open) return null;
 

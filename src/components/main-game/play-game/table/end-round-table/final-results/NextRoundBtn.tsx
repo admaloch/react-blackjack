@@ -33,14 +33,11 @@ export default function NextRoundBtn() {
 
     return (
         <>
-
             <button onClick={finalBtnHandler} className="game-btn">Start Round {roundsPlayed + 1}</button>
-
             <EmptyBankModal
                 closePlayerBrokeModal={closePlayerBrokeModal}
                 isPlayersBrokeModal={isPlayersBrokeModal}
             />
         </>
-
     );
 }

@@ -9,10 +9,8 @@ interface ExitTablePlayerInfoProps {
 
 export default function ExitTablePlayerInfo({ playerWhoLeft, playerIndex }: ExitTablePlayerInfoProps) {
     const playersArr = useSelector((state: RootState) => state.playersArr);
-
     const currPlayerName = playersArr[playerIndex].name
     const lastPlayerName = playersArr[playersArr.length - 1].name
-
     let statusText: string = ''
 
     if (playersArr.length > 1) {
@@ -35,7 +33,6 @@ export default function ExitTablePlayerInfo({ playerWhoLeft, playerIndex }: Exit
                 <li>Current bank: ${playerWhoLeft.bank}</li>
                 <li>Rounds won: {playerWhoLeft.roundsWon}</li>
             </ul>
-
         </>
     )
 }

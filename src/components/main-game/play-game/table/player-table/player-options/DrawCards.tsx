@@ -1,5 +1,4 @@
 import PlayerIndexProps from '../../../../../../models/PlayerIndexProps';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { DrawCardsIconWithPopper } from '../../../../../UI/icons/DrawCardsIconWithPopper';
 import { delay } from '../../../../../../utils/Utility';
 import usePlayerDrawCard from '../../../../draw-cards-hook/usePlayerDrawCard';
@@ -32,7 +31,6 @@ export default function DrawCards({ playerIndex }: PlayerIndexProps) {
         <div
             onClick={drawCardsHandler}
             className={drawCardClass}>
-            
             <DrawCardsIconWithPopper placement="top" />
         </div>
     )

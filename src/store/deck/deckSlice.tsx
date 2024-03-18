@@ -2,8 +2,6 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import CardObjInterface from "../../models/CardProps";
 
-
-
 const initialState: CardObjInterface[] = [
   { card: '2', value: 2, suits: [2, 2, 2, 2] },
   { card: '3', value: 3, suits: [2, 2, 2, 2] },
@@ -34,8 +32,5 @@ const deckSlice = createSlice({
 
 export const { updateDeck, shuffleDeckState } = deckSlice.actions
 
-
 export default deckSlice.reducer
-
-
 

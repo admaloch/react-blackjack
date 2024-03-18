@@ -15,7 +15,7 @@ export default function EarningsOrLosses({ player }: PlayerInterfaceProps) {
         let isMounted = true
         async function updateHandsWithResults() {
             if (isMounted) {
-                const { wonInsuranceRound,roundResults, splitBet } = player
+                const { wonInsuranceRound, roundResults, splitBet } = player
                 const { mainResults, isComplete } = roundResults
 
                 if (isMainResultsActive || splitBet) {
@@ -39,12 +39,7 @@ export default function EarningsOrLosses({ player }: PlayerInterfaceProps) {
         }
         updateHandsWithResults()
         return () => { isMounted = false }
-
     }, [dispatch, player, isRoundActive, isMainResultsActive])
-
-
-
-
 
     return (!isRoundActive &&
         <MoneyWonOrLost player={player} />

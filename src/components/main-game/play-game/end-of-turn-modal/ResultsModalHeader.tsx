@@ -2,13 +2,10 @@ import { useSelector } from "react-redux"
 import { RootState } from "../../../../store/store";
 import PlayerIndexProps from "../../../../models/PlayerIndexProps";
 
-
 export default function ResultsModalHeader({ playerIndex }: PlayerIndexProps) {
-
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const currPlayer = playersArr[playerIndex]
     const { hand, name } = currPlayer
-
     let modalHeader: string = ''
 
     if (hand.cardSum > 21) {
@@ -21,5 +18,5 @@ export default function ResultsModalHeader({ playerIndex }: PlayerIndexProps) {
         modalHeader = `${name} stands`
     }
 
-    return   <h2>{modalHeader}</h2>
+    return <h2>{modalHeader}</h2>
 }

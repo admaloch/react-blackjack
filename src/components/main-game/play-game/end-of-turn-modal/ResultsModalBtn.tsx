@@ -4,17 +4,14 @@ import { RootState } from "../../../../store/store";
 interface ResultsModalBtnProps {
     playerIndex: number;
     endResultsBtnHandler: () => void;
-
 }
 
 export default function ResultsModalBtn({ playerIndex, endResultsBtnHandler }: ResultsModalBtnProps) {
 
     const playersArr = useSelector((state: RootState) => state.playersArr);
-
     const {  splitHand, isPlayerSplit } = playersArr[playerIndex]
-
     let modalButton: string = ''
-
+    
     if (isPlayerSplit && splitHand.cards.length === 1) {
         modalButton = `Play other split hand`
     }

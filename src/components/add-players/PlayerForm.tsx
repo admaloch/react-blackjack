@@ -5,20 +5,23 @@ import { addPlayer } from '../../store/player-arr/playersArrSlice';
 import { emptyPlayerItem } from '../../models/PlayerProps';
 
 export default function PlayerForm() {
+
     const playerArr = useSelector((state: RootState) => state.playersArr);
     const dispatch = useDispatch();
-
     const [inputValue, setInputValue] = useState<string>('');
-
-
     const [isNameValid, setIsNameValid] = useState<boolean>(true);
     const [errorMsg, setErrorMsg] = useState<string>('Please enter a valid name');
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        if (inputValue.trim().length > 0 && playerArr.length < 5 && !playerArr.some(player => player.name === inputValue.trim())) {
+        
+        const isNameValid = inputValue.trim().length > 0
+            && playerArr.length < 5
+            && !playerArr.some(player => player.name.toLowerCase() === inputValue.trim().toLowerCase())
+
+        if (isNameValid) {
             const formattedName = inputValue.trim().charAt(0).toUpperCase() + inputValue.trim().slice(1)
-            dispatch(addPlayer({ ...emptyPlayerItem, name: formattedName}));
+            dispatch(addPlayer({ ...emptyPlayerItem, name: formattedName }));
             setInputValue('');
             setIsNameValid(true);
         } else {

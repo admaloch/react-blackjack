@@ -17,16 +17,6 @@ export default function MainTable({ playerIndex, makeCurrPlayerFinished }: MainT
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const currPlayer = playersArr[playerIndex]
 
-
-
-
-
-
-
-
-
-
-
     return (
         <div className="table">
 

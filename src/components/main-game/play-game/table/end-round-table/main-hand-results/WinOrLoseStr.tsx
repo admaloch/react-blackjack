@@ -1,10 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../../../store/store";
-import { PlayerInterfaceProps, RoundResultsProps } from "../../../../../../models/PlayerProps";
+import { PlayerInterfaceProps } from "../../../../../../models/PlayerProps";
 import { useEffect } from "react";
 import { delay } from "../../../../../../utils/Utility";
-import { updatePlayer, updateWinOrLose } from "../../../../../../store/player-arr/playersArrSlice";
-import playerWonOrLostFunc from "../../../../../../utils/playerWonOrLostFunc";
+import {  updateWinOrLose } from "../../../../../../store/player-arr/playersArrSlice";
 
 export default function WinOrLoseStr({ player }: PlayerInterfaceProps) {
     const dispatch = useDispatch()

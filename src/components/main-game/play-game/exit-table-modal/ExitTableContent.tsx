@@ -11,9 +11,8 @@ interface ExitTableContentProps {
 }
 
 export default function ExitTableContent({ playerIndex, playerWhoLeft, closeModal }: ExitTableContentProps) {
-
+    
     const buttonRef = useRef<HTMLButtonElement | null>(null);
-
     const handleClickButtonRef = () => {
         if (buttonRef.current) {
             buttonRef.current.click();
@@ -21,15 +20,12 @@ export default function ExitTableContent({ playerIndex, playerWhoLeft, closeModa
     };
 
     if (!playerWhoLeft) return;
-
     return (
         <>
-
             <div className="exit-table-modal">
                 <ExitTablePlayerInfo
                     playerWhoLeft={playerWhoLeft}
                     playerIndex={playerIndex}
-
                 />
                 <button
                     className="hidden-btn"
@@ -44,8 +40,6 @@ export default function ExitTableContent({ playerIndex, playerWhoLeft, closeModa
                     playerIndex={playerIndex}
                 />
             </div>
-
         </>
     );
 }
-

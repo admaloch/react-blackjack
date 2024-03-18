@@ -16,13 +16,10 @@ const DealerTable: React.FC = () => {
   const dealerObj = useSelector((state: RootState) => state.dealerObj);
   const playersArr = useSelector((state: RootState) => state.playersArr);
   const gameData = useSelector((state: RootState) => state.gameData);
-
   const { isInsuranceRoundComplete, isDealerCardRevealed, isDealerRoundActive, isPlayerRoundActive, roundsPlayed, isGameIntro, isAddPlayersRound, isBetRoundActive } = gameData
   const { cards, cardSum } = dealerObj.hand
   const cardLength = cards.length
-  // const [isCardRevealed, setIsCardRevealed] = useState(false)
-  // const revealCard = () => setIsCardRevealed(true)
-  // Use the same hook instance throughout the component
+
   const dealerDraw = useDealerDrawCard()
   const dispatch = useDispatch()
 
@@ -83,11 +80,6 @@ const DealerTable: React.FC = () => {
     return () => { isMounted = false };
   }, [cardSum, dealerDraw, isDealerCardRevealed, isInsuranceRoundComplete, isDealerRoundActive, dispatch, allPlayersWonInsurance]);
 
-
-
-
-
-
   return (
     <div className="dealer-table">
       <DeckOfCardsSvg className='full-deck-image' />
@@ -96,17 +88,14 @@ const DealerTable: React.FC = () => {
 
         <DealerDetails />
         <div className="dealer-cards">
-          
-            {!isDealerCardRevealed &&
-              <HiddenCard />
-            }
-            <Cards
-              cardUrlVals={dealerObj.hand.cardUrlVals}
-              isDealerCardRevealed={isDealerCardRevealed}
-            />
 
-          
-
+          {!isDealerCardRevealed &&
+            <HiddenCard />
+          }
+          <Cards
+            cardUrlVals={dealerObj.hand.cardUrlVals}
+            isDealerCardRevealed={isDealerCardRevealed}
+          />
 
         </div>
       </div>

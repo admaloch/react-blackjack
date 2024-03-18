@@ -4,7 +4,6 @@ import { useEffect } from 'react';
 import { delay } from '../../../../../../utils/Utility';
 import { ShowDealerDataProps } from '../MainDealerDetails';
 
-
 interface DealerStatusProps {
     showDealerData: ShowDealerDataProps;
     updateIsInsuranceEval: (booleanInput: boolean) => void;

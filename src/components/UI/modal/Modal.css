@@ -20,7 +20,6 @@
   transition: .5s all;
 }
 
-
 .modal-container {
   background-color: var(--text);
   position: fixed;
@@ -36,7 +35,7 @@
   transition: 0.5s all;
   min-width: 30%;
   min-height: 30%;
-border: black solid 1px;
+  border: black solid 1px;
   padding: 1.5rem;
   border-radius: 5px;
   background-color: var(--modal-color);
@@ -99,16 +98,12 @@ border: black solid 1px;
   }
 }
 
-
-
 @media only screen and (max-device-width: 1000px) and (orientation: landscape) {
   .modal-container {
     --modal-width: 100% !important;
     --modal-height: 100% !important;
   }
 }
-
-
 
 @media only screen and (min-device-width: 480px) and (max-device-width: 640px) and (orientation: landscape) {
 

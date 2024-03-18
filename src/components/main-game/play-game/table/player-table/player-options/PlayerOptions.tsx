@@ -7,13 +7,10 @@ import ExitTableIcon from "../../../exit-table-modal/ExitTableIcon";
 import { RootState } from "../../../../../../store/store";
 import { useSelector } from "react-redux";
 
-
 interface PlayerIconsProps {
     playerIndex: number;
     makeCurrPlayerFinished: () => void;
 }
-
-
 
 export default function PlayerOptions({ playerIndex, makeCurrPlayerFinished }: PlayerIconsProps) {
 

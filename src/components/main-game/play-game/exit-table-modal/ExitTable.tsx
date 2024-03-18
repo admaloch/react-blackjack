@@ -21,8 +21,6 @@ export default function ExitTable({ playerIndex }: PlayerIndexProps) {
         }
     }, [playersArr]);
 
-  
-
     return (
         <>
             {playerWhoLeft &&

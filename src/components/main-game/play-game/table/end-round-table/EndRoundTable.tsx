@@ -6,17 +6,11 @@ import { useEffect } from "react";
 import { beginSplitRound, endFullRound } from "../../../../../store/game-data/GameDataSlice";
 import TableHeader from "./table-header/TableHeader";
 import { delay } from "../../../../../utils/Utility";
-import NextRoundBtn from "./final-results/NextRoundBtn";
 
 export default function EndRoundTable() {
-
     const playersArr = useSelector((state: RootState) => state.playersArr);
-    const inactivePlayers = useSelector((state: RootState) => state.inactivePlayers);
-
     const { isPlayerRoundActive, isMainResultsActive, isDealerRoundActive, isSplitResultsActive, isRoundActive } = useSelector((state: RootState) => state.gameData);
-
     const dispatch = useDispatch()
-
     const isPlayerSplitButNotInsured = playersArr.some(x => x.splitHand.cards.length > 0 && !x.wonInsuranceRound)
 
     useEffect(() => {
@@ -37,10 +31,8 @@ export default function EndRoundTable() {
         return () => { isMounted = false }
     }, [isPlayerRoundActive, isDealerRoundActive, isSplitResultsActive, dispatch, isPlayerSplitButNotInsured, isMainResultsActive, isRoundActive])
 
-
     return (
         <div className="player-results-table">
-            
             <TableHeader />
             <div className="player-hand-results">
                 {playersArr.map(player => (
@@ -50,7 +42,6 @@ export default function EndRoundTable() {
                     />
                 ))}
             </div>
-            
         </div>
     )
 }

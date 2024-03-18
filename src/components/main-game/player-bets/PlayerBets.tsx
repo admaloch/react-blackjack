@@ -8,7 +8,6 @@ import ResetBetsBtn from './ResetBetsBtn';
 
 import ShuffleDeckModal from '../../shuffle-modal/ShuffleDeckModal';
 
-
 export default function PlayerBets() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [currPlayerIndex, setCurrPlayerIndex] = useState(0);
@@ -19,8 +18,6 @@ export default function PlayerBets() {
 
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const player = playersArr[currPlayerIndex]
-
-
 
     return (
         <div className='game-container place-bets'>
@@ -35,7 +32,7 @@ export default function PlayerBets() {
                 />
                 <PlaceBetBtn
                     currPlayerIndex={currPlayerIndex}
-                
+
                     moveToNextPlayer={moveToNextPlayer}
                     setIsModalOpen={setIsModalOpen}
                 />

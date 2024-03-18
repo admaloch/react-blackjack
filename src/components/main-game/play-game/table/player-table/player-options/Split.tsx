@@ -5,14 +5,12 @@ import { RootState } from '../../../../../../store/store';
 import PlayerIndexProps from '../../../../../../models/PlayerIndexProps';
 import { delay } from '../../../../../../utils/Utility';
 
-
-
 export default function Split({ playerIndex }: PlayerIndexProps) {
+
   const dispatch = useDispatch();
   const playersArr = useSelector((state: RootState) => state.playersArr);
   const currPlayer = playersArr[playerIndex];
   const { hand } = currPlayer;
-
   let isCardRanksEqual = false
   if (hand.cards.length === 2) {
     const cardRanks = hand.cards.map(x => x.slice(0, 1))

@@ -6,9 +6,14 @@
     max-width: fit-content;
     /* Adjusts container width to fit content */
     margin: 0 auto;
-
 }
-
+.dealer-cards img,
+.player-cards img {
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    width: 40px;
+}
 .playing-card {
     flex: 1;
     max-width: 100%;
@@ -17,12 +22,31 @@
     padding: 1rem .3rem;
 }
 
-.dealer-cards img,
-.player-cards img {
-    height: auto;
-    display: block;
-    margin: 0 auto;
-    width: 40px;
+.player-cards .playing-card {
+    animation: animatePlayerCard .5s ease-in-out forwards;
+}
+.dealer-cards .playing-card {
+    animation: animateDealerCard .5s ease-in-out forwards;
+}
+@keyframes animatePlayerCard {
+    from {
+        opacity: 0;
+        transform: translateY(-550px) translateX(+450px) scale(0) rotate(0deg);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) translateX(0) scale(1) rotate(360deg);
+    }
+}
+@keyframes animateDealerCard {
+    from {
+        opacity: 0;
+        transform: translateY(-150px) translateX(+600px) scale(0) rotate(0deg);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) translateX(0) scale(1) rotate(360deg);
+    }
 }
 @media screen and (min-width: 550px) {
     .dealer-cards img,
@@ -36,50 +60,15 @@
         width: 120px;
     }
 }
-
 @media screen and (min-width: 992px) {
-
     .dealer-cards img,
     .player-cards img {
         width: 120px;
     }
 }
 @media screen and (min-width: 1350px) {
-
     .dealer-cards img,
     .player-cards img {
         width: 150px;
-    }
-}
-
-.player-cards .playing-card {
-    animation: animatePlayerCard .5s ease-in-out forwards;
-}
-
-.dealer-cards .playing-card {
-    animation: animateDealerCard .5s ease-in-out forwards;
-}
-
-@keyframes animatePlayerCard {
-    from {
-        opacity: 0;
-        transform: translateY(-550px) translateX(+450px) scale(0) rotate(0deg);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0) translateX(0) scale(1) rotate(360deg);
-    }
-}
-
-@keyframes animateDealerCard {
-    from {
-        opacity: 0;
-        transform: translateY(-150px) translateX(+600px) scale(0) rotate(0deg);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0) translateX(0) scale(1) rotate(360deg);
     }
 }

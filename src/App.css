@@ -17,8 +17,6 @@
     --alt-containers: rgba(35, 100, 170, .2)
 }
 
-
-
 #root {
     min-height: 100vh;
     background-color: var(--background);

@@ -1,7 +1,6 @@
 .dealer-table {
     position: relative;
 }
-
 .full-deck-image {
     width: 100px;
     height: 100px;
@@ -10,9 +9,7 @@
     top: 0;
     right: -1rem;
 }
-
 .dealer-hand {
-
     height: 100%;
     width: 100%;
     display: flex;
@@ -20,71 +17,52 @@
     justify-content: start;
     flex-direction: column;
     position: relative;
-    
 }
-
 .rounds-played {
     font-size: 1.8rem;
     margin-bottom: 0;
 }
-
 .dealer-hand h3,
 .dealer-hand h2 {
     padding: .2rem;
     line-height: 30px;
 }
-
 .dealer-hand h4 {
     font-size: 1.3rem;
 }
-
-
 .dealer-cards {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
-
-
-
-
-
 .dealer-details {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-
 .dealer-header {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
 .dealer-sum {
     opacity: 0;
     transition: opacity 0.5s ease;
-    /* You can adjust the duration and timing function */
 }
-
 .dealer-sum.revealed {
     opacity: 1;
 }
-
 .dealer-status {
     display: flex;
     flex-direction: column;
-
     position: absolute;
     left: 1rem;
     top: 0rem;
     font-size: 1.3rem;
     width: 100%;
 }
-
 .dealer-status-reverse {
     flex-direction: column-reverse;
 }

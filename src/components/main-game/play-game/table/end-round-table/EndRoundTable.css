@@ -1,5 +1,4 @@
 .player-results-table {
-
     height: 50%;
     width: 100%;
     position: relative;
@@ -8,25 +7,17 @@
     display: flex;
     justify-content: center;
 }
-
-
-
 .player-results-table h4 {
     font-size: .9rem;
 }
-
 .player-hand-results {
-
     /* width: fit-content; */
     display: flex;
-
     flex-direction: row;
     align-items: center;
     margin-top: 4.5rem;
     overflow-x: scroll;
-
 }
-
 .player-hand {
     position: relative;
     display: flex;
@@ -40,9 +31,7 @@
     transition: border 0.3s ease;
     /* Added transition property */
     margin-bottom: .3rem;
-
 }
-
 .player-hand h4 {
     position: absolute;
     display: flex;
@@ -50,73 +39,60 @@
     align-items: center;
     text-align: center;
     top: -1.5rem;
-
     /* min-width: 300px; */
-
 }
-
 .emphasize {
     border: var(--text) solid 1px;
-
 }
-
 .emphasize-win {
     border: var(--blackjack) solid 1px;
 }
-
 .emphasize-lose {
     border: var(--bust) solid 1px;
 }
-
 .emphasize-lose {
     border: var(--bust) solid 1px;
 }
-
 .emphasize-push {
     border: var(--neutral) solid 1px;
 }
-
-
 .icons svg {
     fill: white;
 }
-
 .player-results-table p {
     line-height: 12px;
     font-size: .7rem;
     white-space: no-wrap;
 }
-
-
-
-
-
-
-
 .player-table svg {
     width: 5rem;
     height: 5rem;
 }
-
-
 .curr-player-hand {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
 .curr-player-hand .playing-card {
-
     display: flex;
     justify-content: center;
     align-items: center;
     padding: .1rem;
 }
-
 .curr-player-hand img {
     max-width: 30px;
 }
-
+.insurance-msg {
+    transition: all 1s ease;
+}
+.insurance-msg.revealed {
+    opacity: 1;
+}
+.player-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 @media screen and (min-width: 500px) {
     .curr-player-hand img {
         max-width: 45px;
@@ -141,19 +117,4 @@
     .curr-player-hand img {
         max-width: 95px;
     }
-}
-
-.insurance-msg {
-
-    transition: all 1s ease;
-}
-
-.insurance-msg.revealed {
-    opacity: 1;
-}
-
-.player-header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }

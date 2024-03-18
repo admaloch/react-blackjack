@@ -46,11 +46,9 @@ export default function PlayerHandResults({ player }: PlayerProps) {
     }, [updatePlayerClass])
 
     useEffect(() => {
-        // use delays to emphasise player item then color red or green if they win or lose
         let isMounted = true;
         async function winOrLoseEmphasis() {
             if (isMounted) {
-                // insurance win or loss
                 if (!isInsuranceRoundComplete && isDealerCardRevealed && !isDealerDrawing) {
                     if (player.insuranceBet !== 0) {
                         await delay(1500);
@@ -95,8 +93,6 @@ export default function PlayerHandResults({ player }: PlayerProps) {
         winOrLoseEmphasis();
         return () => { isMounted = false; };
     }, [dealerSum, isDealerCardRevealed, isDealerDrawing, isInsuranceRoundComplete, isMainResultsActive, isSplitResultsActive, mainResults, player.insuranceBet, player.splitHand.cards.length, splitResults, updatePlayerClass, winOrLoseEmphasisFunc, wonInsuranceRound]);
-
-
 
     return (
         <div className={playerClass}>

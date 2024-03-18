@@ -17,10 +17,6 @@ export default function DoubleDownBtn({ playerIndex }: PlayerIndexProps) {
             : 'block',
     };
 
-    // const doubleDownHandler = () => {
-    //     dispatch(updateDoubleDownHand(playerIndex))
-    // };
-
     return (
         <button
             style={doubleDownStyle}

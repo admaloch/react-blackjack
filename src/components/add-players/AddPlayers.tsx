@@ -6,11 +6,9 @@ import PlayerList from "./PlayerList"
 import { NavLink } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { startBetRound} from '../../store/game-data/GameDataSlice';
-
 export default function AddPlayers() {
     const dispatch = useDispatch();
     const playerDataArr = useSelector((state: RootState) => state.playersArr);
-
     return (
         <div className="add-players game-container">
             <div className="form-container">

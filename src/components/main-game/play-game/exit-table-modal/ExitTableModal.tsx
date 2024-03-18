@@ -38,9 +38,7 @@ export default function ExitTableModal({ playerIndex, playerWhoLeft, closeModal,
             navigate("/finalResults");
         }
         closeModal()
-
     };
-
 
     return (
         <Modal

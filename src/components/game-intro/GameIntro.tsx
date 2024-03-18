@@ -1,11 +1,9 @@
 import { NavLink } from 'react-router-dom';
 import './GameIntro.css';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { startAddPlayers } from '../../store/game-data/GameDataSlice';
-import { RootState } from '../../store/store';
 
 export default function GameIntro() {
-  const gameData = useSelector((state: RootState) => state.gameData);
   const dispatch = useDispatch();
 
   return (

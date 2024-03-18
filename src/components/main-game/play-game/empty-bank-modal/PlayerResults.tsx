@@ -1,9 +1,9 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
-import { useEffect } from "react";
+import { PlayerInterfaceProps } from "../../../../models/PlayerProps";
 
+export default function PlayerResults({ player }:PlayerInterfaceProps) {
 
-export default function PlayerResults({ player }) {
   const dealerObj = useSelector((state: RootState) => state.dealerObj);
   const dealerCardSum = dealerObj.hand.cardSum
   const { name, hand, splitHand, wonInsuranceRound } = player
@@ -11,15 +11,8 @@ export default function PlayerResults({ player }) {
 
   const playerHasBJ = cardSum === 21 && cardUrlVals.length === 2 ? true : false
   const didPlayerBust = cardSum > 21
-
   const didDealerBust = dealerObj.hand.cardSum > 21
   const dealerHasBJ = dealerObj.hand.cardSum === 21 && dealerObj.hand.cards.length === 2
-
-  const playerSplitBJ = splitHand.cardSum === 21 && splitHand.cardUrlVals.length === 2
-    ? true : false
-  const playerSplitBust = splitHand.cardSum > 21
-  const playerHasSplit = splitHand.cards.length > 0
-
   let mainResults = ''
   let splitResults = ''
 
@@ -33,6 +26,11 @@ export default function PlayerResults({ player }) {
     mainResults = 'Push'
   }
 
+  const playerSplitBJ = splitHand.cardSum === 21 && splitHand.cardUrlVals.length === 2
+    ? true : false
+  const playerSplitBust = splitHand.cardSum > 21
+  const playerHasSplit = splitHand.cards.length > 0
+
   if (playerSplitBJ && !dealerHasBJ || !playerSplitBust && didDealerBust || !playerSplitBust && !didDealerBust && splitHand.cardSum > dealerCardSum) {
     splitResults = 'Wins'
   } else if (!playerSplitBJ && dealerHasBJ || playerSplitBust && !didDealerBust || !playerSplitBust && !didDealerBust && splitHand.cardSum < dealerCardSum) {
@@ -41,19 +39,12 @@ export default function PlayerResults({ player }) {
     splitResults = 'Push'
   }
 
-  // useEffect(()=>{
-
-  // })
-
-
-
   return (
     <li>
       <ul>
         <li className="main-hand-results">
           <p style={{ fontWeight: 'bold' }}>{name}: {mainResults}</p>
           <p> -- Final sum: {cardSum}</p>
-
           {playerHasBJ && <p className='win-color'> -- Blackjack! </p>}
           {didPlayerBust && <p className='lose-color'> -- Bust! </p>}
           {wonInsuranceRound &&
@@ -68,9 +59,7 @@ export default function PlayerResults({ player }) {
             {playerSplitBust && <p className='lose-color'> -- Bust! </p>}
           </li>
         }
-
       </ul>
-
     </li>
   )
 }

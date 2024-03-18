@@ -1,7 +1,15 @@
+import { PlayerInterface } from "../../../../../../models/PlayerProps"
 import { ShowMainHandIconWithPopper } from "../../../../../UI/icons/ShowMainHandIconWithPopper"
 import { ShowSplitHandIconWithPopper } from "../../../../../UI/icons/ShowSplitHandIconWithPopper"
 
-export default function PlayerResultsHeader({ player, changeToMainHand, changeToSplitHand, showSplitHand }) {
+interface PlayerResultsHeaderProps {
+    player: PlayerInterface;
+    changeToMainHand: () => void;
+    changeToSplitHand: () => void;
+    showSplitHand: boolean;
+}
+
+export default function PlayerResultsHeader({ player, changeToMainHand, changeToSplitHand, showSplitHand }: PlayerResultsHeaderProps) {
 
     const isSplitHand = player.splitHand.cards.length !== 0
 
