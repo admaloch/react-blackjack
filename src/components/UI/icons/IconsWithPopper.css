@@ -1,17 +1,13 @@
-
 .icon-container {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
 .icon-container svg {
     fill: var(--text);
     transition: .15s ease-in-out opacity;
     cursor: pointer;
-    /* font-size: 2rem; */
 }
-
 .icon-container svg:hover {
     opacity: .7;
 }

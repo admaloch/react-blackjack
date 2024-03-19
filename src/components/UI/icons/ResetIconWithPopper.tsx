@@ -7,7 +7,6 @@ export function ResetIconWithPopper({ placement = 'bottom' }: IconProps) {
             icon={(style) => <RefreshIcon sx={style} />}
             text="Reset bet"
             placement={placement}
-            
         />
     );
 }

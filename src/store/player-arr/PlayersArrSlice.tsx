@@ -1,10 +1,7 @@
-import { createSlice, current, PayloadAction } from "@reduxjs/toolkit";
-import { DealerObjInterface, Hand, PlayerAndDealerProps, PlayerInterface, RoundResultsProps } from "../../models/PlayerProps";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { PlayerAndDealerProps, PlayerInterface, RoundResultsProps } from "../../models/PlayerProps";
 import playerWonOrLostFunc from "../../utils/playerWonOrLostFunc";
 import { updatePlayerTokens } from "../../components/main-game/player-bets/updatePlayerTokens";
-
-// const initialState: PlayerInterface[] = [];
-// clubs (♣), diamonds (♦), hearts (♥), and spades (♠).x
 
 interface TokensProps {
     index: number;
@@ -16,114 +13,6 @@ interface TokenClickProps {
 }
 
 const initialState: PlayerInterface[] = []
-
-// const initialState: PlayerInterface[] = [
-
-//     {
-//         "name": "James",
-//         "hand": {
-//             "cards": [
-//                 "A♥",
-//                 "3♠",
-
-//             ],
-//             "cardUrlVals": [
-//                 "AH",
-//                 "3S",
-
-//             ],
-//             "cardNumVals": [
-//                 11,
-//                 3,
-
-//             ],
-//             "cardSum": 14,
-//             "isBlackjack": false,
-//         },
-//         "splitHand": {
-//             "cards": [],
-//             "cardUrlVals": [],
-//             "cardNumVals": [],
-//             "cardSum": 0,
-//             "isBlackjack": false,
-//         },
-//         "bank": 995,
-//         "beginningRoundBank": 1000,
-//         "currBet": 5,
-//         "minBet": 5,
-//         "insuranceBet": 0,
-//         "wonInsuranceRound": false,
-//         "splitBet": 0,
-//         "isPlayerSplit": false,
-//         "isDoubleDown": false,
-//         "playerLeftTable": false,
-//         "roundResults": {
-//             "mainResults": "",
-//             "splitResults": "",
-//             "isComplete": false,
-//         },
-//         "currTokens": [
-//             1,
-//             5,
-//             25,
-//             50,
-//             100,
-//             500
-//         ],
-//         "roundsWon": 0
-//     },
-//     {
-//         "name": "Dave",
-//         "hand": {
-//             "cards": [
-//                 "9♥",
-//                 "9♠"
-//             ],
-//             "cardUrlVals": [
-//                 "9H",
-//                 "9S"
-//             ],
-//             "cardNumVals": [
-//                 9,
-//                 9,
-//             ],
-//             "cardSum": 18,
-//             "isBlackjack": false,
-//         },
-//         "splitHand": {
-//             "cards": [],
-//             "cardUrlVals": [],
-//             "cardNumVals": [],
-//             "cardSum": 0,
-//             "isBlackjack": false,
-//         },
-//         "bank": 900,
-//         "beginningRoundBank": 1000,
-//         "currBet": 100,
-//         "minBet": 100,
-//         "insuranceBet": 0,
-//         "wonInsuranceRound": false,
-//         "splitBet": 0,
-//         "isPlayerSplit": false,
-//         "isDoubleDown": false,
-//         "playerLeftTable": false,
-//         "roundResults": {
-//             "mainResults": "",
-//             "splitResults": "",
-//             "isComplete": false,
-//         },
-//         "currTokens": [
-//             1,
-//             5,
-//             25,
-//             50,
-//             100,
-//             500
-//         ],
-//         "roundsWon": 0
-//     },
-
-// ]
 
 interface PlayerNameProps {
     name: string;
@@ -241,13 +130,6 @@ const playerArrSlice = createSlice({
                 currTokens: updatePlayerTokens(bank - input)
             }
         },
-        // resetInsurance: (state, action: PayloadAction<PlayerInterface>)=>{
-        //     const index = state.findIndex(player=>player.name === action.payload.name)
-        //     state[index] = {
-        //         ...state[index],
-        //         insuranceBet: 0
-        //     }
-        // },
         updateWinOrLose: (state, action: PayloadAction<PlayerAndDealerProps>) => {
             const { player: currPlayer, dealerObj: currDealer } = action.payload;
             const index = state.findIndex(player => player.name === currPlayer.name);
@@ -264,7 +146,6 @@ const playerArrSlice = createSlice({
                 roundsWon: isRoundWonChanged,
             };
         },
-
         removePlayer: (state, action: PayloadAction<PlayerNameProps>) => {
             const index = state.findIndex(player => player.name === action.payload.name);
             if (index !== -1) {
@@ -291,7 +172,6 @@ const playerArrSlice = createSlice({
                 }
                 return player;
             });
-
             return updatedState;
         },
 

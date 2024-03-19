@@ -33,4 +33,3 @@ const deckSlice = createSlice({
 export const { updateDeck, shuffleDeckState } = deckSlice.actions
 
 export default deckSlice.reducer
-

@@ -1,5 +1,4 @@
 import DrawCardsIcon from '../../../assets/DrawCardsIcon'
-
 import { IconWithPopper } from './IconsWithPopper';
 import IconProps from './IconWithPopperProps';
 

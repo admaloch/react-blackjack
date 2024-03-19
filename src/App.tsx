@@ -1,4 +1,3 @@
-
 import './App.css'
 import GameIntro from './components/game-intro/GameIntro'
 import AddPlayers from './components/add-players/AddPlayers'
@@ -12,9 +11,6 @@ import PlayerBets from './components/main-game/player-bets/PlayerBets'
 import PlayGame from './components/main-game/play-game/PlayGame'
 import FinalResults from './components/final-results/FinalResults'
 import { useEffect } from 'react'
-import playersArrSlice from './store/player-arr/playersArrSlice'
-import dealerObjSlice from './store/dealer-obj/dealerObjSlice'
-import { setInitialDeckAmount } from './store/game-data/GameDataSlice'
 
 function App() {
   const isGameIntro = useSelector((state: RootState) => state.gameData.isGameIntro);

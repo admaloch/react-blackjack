@@ -12,8 +12,6 @@ interface PlaceBetBtnProps {
 }
 
 export default function PlaceBetBtn({ setIsModalOpen, currPlayerIndex, moveToNextPlayer }: PlaceBetBtnProps) {
-
-    const gameData = useSelector((state: RootState) => state.gameData);
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const deck = useSelector((state: RootState) => state.deck);
     const player = playersArr[currPlayerIndex]

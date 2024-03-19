@@ -9,10 +9,8 @@ interface TokensProps {
 }
 
 export default function Tokens({ currPlayerIndex }: TokensProps) {
-
     const dispatch = useDispatch();
     const playersArr = useSelector((state: RootState) => state.playersArr);
-
     const allTokensClass = playersArr[currPlayerIndex].bank > 0
         ? "all-tokens"
         : "all-tokens disabled"
@@ -24,7 +22,6 @@ export default function Tokens({ currPlayerIndex }: TokensProps) {
                     <Token
                         key={item} number={item}
                         currPlayerIndex={currPlayerIndex}
-
                     />
                 ))}
             <div

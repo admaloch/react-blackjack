@@ -15,12 +15,10 @@ interface PlayerTableProps {
 }
 
 function PlayerTable({ playerIndex, makeCurrPlayerFinished }: PlayerTableProps) {
-    const gameData = useSelector((state: RootState) => state.gameData);
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const dealerObj = useSelector((state: RootState) => state.dealerObj);
     const { hand, splitHand, splitBet, name } = playersArr[playerIndex]
     const playerDraw = usePlayerDrawCard(playerIndex)
-
     useEffect(() => {
         let isMounted = true
         async function initPlayerDraw() {
@@ -36,9 +34,7 @@ function PlayerTable({ playerIndex, makeCurrPlayerFinished }: PlayerTableProps) 
         initPlayerDraw()
         return () => { isMounted = false }
     }, [hand, dealerObj, playerDraw]);
-
     const handText = splitHand.cards.length === 1 ? '1st hand' : '2nd hand'
-
     return (
         <div className="player-table">
             <PlayerOptions
@@ -51,7 +47,6 @@ function PlayerTable({ playerIndex, makeCurrPlayerFinished }: PlayerTableProps) 
                     <h2> split: {handText}</h2>
                 }
             </div>
-
             <PlayerDetails playerIndex={playerIndex} />
             <div className="player-cards">
                 <Cards
@@ -59,7 +54,6 @@ function PlayerTable({ playerIndex, makeCurrPlayerFinished }: PlayerTableProps) 
                     playerIndex={playerIndex}
                 />
             </div>
-
             {playersArr[playerIndex].splitHand.cards.length > 0 &&
                 <SplitCardPreview
                     playerIndex={playerIndex}

@@ -20,6 +20,4 @@ const playerWonOrLostFunc = (player: PlayerInterface, dealerObj: DealerObjInterf
         return 'Push'
     }
 }
-
 export default playerWonOrLostFunc
-

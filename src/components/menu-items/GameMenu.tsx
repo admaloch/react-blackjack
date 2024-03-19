@@ -11,7 +11,6 @@ export default function GameMenu() {
     const isStatsDisabled = !isPlayerRoundActive && isRoundActive
 
     return (
-
         <div className="game-menu">
             <div className="menu-container">
                 <h2>Blackjack</h2>

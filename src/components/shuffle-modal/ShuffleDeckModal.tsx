@@ -1,6 +1,5 @@
 import Modal from '../UI/modal/Modal'
-import { useDispatch, useSelector } from "react-redux"
-import { RootState } from "../../store/store"
+import { useDispatch } from "react-redux"
 import './ShuffleDeckModal.css'
 import ModalTimer from '../modal-timer/ModalTimer';
 import { beginPlayerRound } from '../../store/game-data/GameDataSlice';

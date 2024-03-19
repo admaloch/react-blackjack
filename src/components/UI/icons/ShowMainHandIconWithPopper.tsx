@@ -1,6 +1,5 @@
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';import { IconWithPopper } from './IconsWithPopper';
 import IconProps from './IconWithPopperProps';
-
 export function ShowMainHandIconWithPopper({ placement = 'top' }: IconProps) {
     return (
         <IconWithPopper

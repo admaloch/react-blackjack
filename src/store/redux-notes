@@ -1,99 +1,107 @@
-// import { useSelector } from 'react-redux';
-// import { RootState } from '../../store/store';
-// const currRound = useSelector((state: RootState) => state.gameData.roundsPlayed);
+// const initialState: PlayerInterface[] = [
 
-// import { useDispatch } from 'react-redux';
-// import { addPlayer } from '../../store/player-arr/playersArrSlice';
-// const dispatch = useDispatch();
-// dispatch(addPlayer({ ...emptyPlayerItem, name: formattedName }));
+//     {
+//         "name": "James",
+//         "hand": {
+//             "cards": [
+//                 "A♥",
+//                 "3♠",
 
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../../../../store/store';
-import { useCallback, useEffect, useState } from 'react';
-import DealerHeader from './DealerHeader';
-import DealerStatus from './DealerStatus';
-import { delay } from '../../../../../../utils/Utility';
+//             ],
+//             "cardUrlVals": [
+//                 "AH",
+//                 "3S",
 
-export interface ShowDealerDataProps {
-    isInsuranceEval: boolean;
-    isBlackjack: boolean;
-}
+//             ],
+//             "cardNumVals": [
+//                 11,
+//                 3,
 
-export default function DealerDetails() {
+//             ],
+//             "cardSum": 14,
+//             "isBlackjack": false,
+//         },
+//         "splitHand": {
+//             "cards": [],
+//             "cardUrlVals": [],
+//             "cardNumVals": [],
+//             "cardSum": 0,
+//             "isBlackjack": false,
+//         },
+//         "bank": 995,
+//         "beginningRoundBank": 1000,
+//         "currBet": 5,
+//         "minBet": 5,
+//         "insuranceBet": 0,
+//         "wonInsuranceRound": false,
+//         "splitBet": 0,
+//         "isPlayerSplit": false,
+//         "isDoubleDown": false,
+//         "playerLeftTable": false,
+//         "roundResults": {
+//             "mainResults": "",
+//             "splitResults": "",
+//             "isComplete": false,
+//         },
+//         "currTokens": [
+//             1,
+//             5,
+//             25,
+//             50,
+//             100,
+//             500
+//         ],
+//         "roundsWon": 0
+//     },
+//     {
+//         "name": "Dave",
+//         "hand": {
+//             "cards": [
+//                 "9♥",
+//                 "9♠"
+//             ],
+//             "cardUrlVals": [
+//                 "9H",
+//                 "9S"
+//             ],
+//             "cardNumVals": [
+//                 9,
+//                 9,
+//             ],
+//             "cardSum": 18,
+//             "isBlackjack": false,
+//         },
+//         "splitHand": {
+//             "cards": [],
+//             "cardUrlVals": [],
+//             "cardNumVals": [],
+//             "cardSum": 0,
+//             "isBlackjack": false,
+//         },
+//         "bank": 900,
+//         "beginningRoundBank": 1000,
+//         "currBet": 100,
+//         "minBet": 100,
+//         "insuranceBet": 0,
+//         "wonInsuranceRound": false,
+//         "splitBet": 0,
+//         "isPlayerSplit": false,
+//         "isDoubleDown": false,
+//         "playerLeftTable": false,
+//         "roundResults": {
+//             "mainResults": "",
+//             "splitResults": "",
+//             "isComplete": false,
+//         },
+//         "currTokens": [
+//             1,
+//             5,
+//             25,
+//             50,
+//             100,
+//             500
+//         ],
+//         "roundsWon": 0
+//     },
 
-    const [showDealerData, setShowDealerData] = useState<ShowDealerDataProps>({
-        isInsuranceEval: false,
-        isBlackjack: false,
-    })
-
-    const makeBlackjackTrue = useCallback(() => {
-        setShowDealerData((prevDataState) => ({ ...prevDataState, isBlackjack: true }));
-    }, []
-    )
-
-    const updateIsInsuranceEval = useCallback((booleanInput: boolean) => {
-        setShowDealerData((prevDataState) => ({ ...prevDataState, isInsuranceEval: booleanInput }));
-    }, []);
-    const { isDealerCardRevealed } = useSelector((state: RootState) => state.gameData);
-    const playersArr = useSelector((state: RootState) => state.playersArr);
-    const isPlayerInsured = playersArr.some(player => player.insuranceBet !== 0)
-
-    const { isBlackjack, isInsuranceEval } = showDealerData
-
-    const { isDealerRoundActive } = useSelector((state: RootState) => state.gameData);
-    const dealerObj = useSelector((state: RootState) => state.dealerObj);
-    const { hand } = dealerObj;
-    const { cardSum, cardUrlVals } = hand
-
-    useEffect(() => {
-        console.log('is blackjack is', isBlackjack)
-    }, [isBlackjack])
-    useEffect(() => {
-        console.log('is insurance eval is', isInsuranceEval)
-    }, [isInsuranceEval])
-
-    // useEffect(() => {
-    //     let isMounted = true;
-    //     async function showBlackJack() {
-    //         if (isMounted) {
-    //             await delay(1000);
-    //             cardSum === 21 && cardUrlVals.length === 2 && isDealerCardRevealed
-    //                 && setShowDealerData((prevDataState) => ({ ...prevDataState, isBlackjack: true }));
-    //         }
-    //     }
-    //     showBlackJack();
-    //     return () => { isMounted = false };
-    // }, [isDealerCardRevealed, cardUrlVals, cardSum]);
-
-    useEffect(() => {
-        let isMounted = true;
-        async function showIsInsuranceEval() {
-            if (isMounted && isDealerRoundActive) {
-                if (isDealerCardRevealed && isPlayerInsured) {
-                    await delay(1500)
-                    setShowDealerData((prevDataState) => ({ ...prevDataState, isInsuranceEval: true }))
-                } else {
-                    setShowDealerData((prevDataState) => ({ ...prevDataState, isInsuranceEval: false }));
-                }
-            }
-        }
-        showIsInsuranceEval();
-        return () => { isMounted = false };
-    }, [isPlayerInsured, isDealerCardRevealed, isDealerRoundActive]);
-
-    return (
-
-        <>
-            <DealerHeader
-                showDealerData={showDealerData}
-                makeBlackjackTrue={makeBlackjackTrue}
-            />
-            <p className={`hide-item ${isDealerCardRevealed ? 'reveal-item' : ''}`}>Sum: {cardSum}</p>
-            <DealerStatus
-                showDealerData={showDealerData}
-                updateIsInsuranceEval={updateIsInsuranceEval}
-            />
-        </>
-
-    );
-}
+// ]

@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../../../../store/store';
-import './NextRoundBtn.css';
 import { updateAllPlayers } from '../../../../../../store/player-arr/playersArrSlice';
 import { delay } from '../../../../../../utils/Utility';
 import { resetGameData } from '../../../../../../store/game-data/GameDataSlice';

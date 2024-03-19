@@ -1,40 +1,9 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-
-interface GameDataProps {
-  roundsPlayed: number;
-  isGameActive: boolean;
-  isGameIntro: boolean;
-  isBetRoundActive: boolean;
-  isAddPlayersRound: boolean;
-  isPlayerRoundActive: boolean;
-  isDealerRoundActive: boolean;
-  isDealerCardRevealed: boolean;
-  isDealerDrawing: boolean;
-  isInsuranceRoundComplete: boolean;
-  isMainResultsActive: boolean;
-  isSplitResultsActive: boolean;
-  isRoundActive: boolean;
-}
-
-const initialState: GameDataProps = {
-  roundsPlayed: 1,
-  isGameActive: false,
-  isGameIntro: true,
-  isAddPlayersRound: false,
-  isBetRoundActive: false,
-  isPlayerRoundActive: false,
-  isDealerCardRevealed: false,
-  isDealerDrawing: false,
-  isInsuranceRoundComplete: false,
-  isDealerRoundActive: false,
-  isMainResultsActive: false,
-  isSplitResultsActive: false,
-  isRoundActive: false,
-}
+import { initialGameState } from "./GameDataProps";
 
 const deckSlice = createSlice({
   name: 'game-data',
-  initialState,
+  initialState: initialGameState,
   reducers: {
     revealDealerCard: (state) => { state.isDealerCardRevealed = true },
     beginDealerDrawing: (state) => { state.isDealerDrawing = true },

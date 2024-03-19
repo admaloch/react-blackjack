@@ -9,18 +9,15 @@
     top: 0;
     padding: .2rem;
 }
-
 .player-table h5,
 .player-table h4 {
     padding: 0;
 }
-
 .player-header {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
 .split-card-preview {
     position: absolute;
     right: .5rem;
@@ -33,14 +30,11 @@
 .split-card-preview img {
 width: 50px;
 }
-
 .player-table .exit-table-icon {
- 
     position: absolute;
     bottom: -1rem;
     left: .5rem;
 }
-
 .player-table .exit-table-icon svg {
     width: 40px;
 }

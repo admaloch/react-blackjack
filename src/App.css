@@ -2,28 +2,24 @@
     margin: 0;
     padding: 0;
 }
-
 :root {
     --background: #001219;
     --table-background: #1D2A1F;
     --text: #edf2f4;
     --modal-overlay: rgba(0, 0, 0, .7);
     --modal-color: #C9CDF3;
-
     --color1: #FF4D4D;
     --blackjack: #09CE29;
     --bust: #FF4D4D;
     --neutral: #C7B229;
     --alt-containers: rgba(35, 100, 170, .2)
 }
-
 #root {
     min-height: 100vh;
     background-color: var(--background);
     color: var(--text);
     font-family: 'Roboto', sans-serif;
 }
-
 .game-container {
     height: 100%;
     min-height: 100vh;
@@ -31,9 +27,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* line-height: 3rem; */
 }
-
 .game-btn {
     padding: .5rem 1.5rem;
     color: var(--text);
@@ -44,55 +38,43 @@
     font-size: 1rem;
     border-radius: 5px;
 }
-
 .game-btn a {
     color: var(--text);
     text-decoration: none;
     transition: .15s ease-in-out all;
 }
-
 .game-btn:hover,
 .game-btn:hover a {
     color: var(--background);
 }
-
 .game-btn:hover {
     background-color: var(--text);
     border: var(--background) solid 2px;
 }
-
 .disabled {
-    /* display: block !important; */
     pointer-events: none;
     opacity: .5;
 }
-
 #icon-popper {
     z-index: 200;
 }
-
 .win-color {
     color: var(--blackjack);
 }
-
 .lose-color {
     color: var(--bust);
 }
-
 .stay-color {
     color: var(--neutral);
 }
-
 .hide-item {
     opacity: 0;
     transition: opacity 0.5s ease;
     /* You can adjust the duration and timing function */
 }
-
 .reveal-item {
     opacity: 1;
 }
-
 .obscure-item {
     opacity: .5;
 }

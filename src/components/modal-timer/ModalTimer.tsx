@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './ModalTimer.css'
+
 interface ModalTimerProps {
     timeout: number;
     onTimeout: () => void;
 }
-
 export default function ModalTimer({ timeout, onTimeout }: ModalTimerProps) {
     const [remainingTime, setRemainingTime] = useState(timeout);
     const [isPaused, setIsPaused] = useState(false);
 
     useEffect(() => {
-        let timer: NodeJS.Timeout;
+        let timer: number;
         if (!isPaused) {
             timer = setTimeout(() => {
                 onTimeout();
@@ -21,7 +21,7 @@ export default function ModalTimer({ timeout, onTimeout }: ModalTimerProps) {
     }, [remainingTime, onTimeout, isPaused]);
 
     useEffect(() => {
-        let interval: NodeJS.Timeout;
+        let interval: number;
         if (!isPaused) {
             interval = setInterval(() => {
                 setRemainingTime((prevRemainingTime) => Math.max(prevRemainingTime - 100, 0));
@@ -48,6 +48,5 @@ export default function ModalTimer({ timeout, onTimeout }: ModalTimerProps) {
                 onMouseLeave={handleMouseLeave}
             />
         </div>
-
     );
 }

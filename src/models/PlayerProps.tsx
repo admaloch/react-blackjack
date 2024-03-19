@@ -5,18 +5,15 @@ export interface Hand {
     cardSum: number,
     isBlackjack: boolean;
 }
-
 export interface RoundResultsProps {
     mainResults: string,
     splitResults: string,
     isComplete: boolean,
 }
-
 export interface DealerObjInterface {
     name: string;
     hand: Hand;
 }
-
 export interface PlayerInterface {
     name: string;
     hand: Hand;
@@ -35,7 +32,6 @@ export interface PlayerInterface {
     roundsWon: number;
     roundResults: RoundResultsProps
 }
-
 export const emptyPlayerItem: PlayerInterface = {
     name: '',
     hand: {
@@ -70,13 +66,10 @@ export const emptyPlayerItem: PlayerInterface = {
     currTokens: [1, 5, 25, 50, 100, 500],
     roundsWon: 0,
 }
-
 export interface PlayerInterfaceProps {
     player: PlayerInterface
 }
-
 export interface PlayerAndDealerProps {
     player: PlayerInterface;
     dealerObj: DealerObjInterface;
 }
-
