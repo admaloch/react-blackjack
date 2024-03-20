@@ -6,13 +6,10 @@ import { startAddPlayers } from '../../store/game-data/GameDataSlice';
 export default function GameIntro() {
   const dispatch = useDispatch();
 
-
-
-
   const clickHandler = () => {
     dispatch(startAddPlayers())
+    document.body.requestFullscreen();
   }
-
 
   return (
     <div className="game-intro game-container">

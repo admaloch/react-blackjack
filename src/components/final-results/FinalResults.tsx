@@ -16,6 +16,8 @@ export default function FinalResults() {
     dispatch(returnToGameIntro())
     dispatch(resetInactivePlayers())
     navigate("/");
+    document.exitFullscreen();
+
   }
   
   return (

@@ -6,7 +6,7 @@ import EndOfTurnResults from './end-of-turn-modal/EndOfTurnResults';
 import { useDispatch } from "react-redux";
 import ExitTable from './exit-table-modal/ExitTable';
 import MainTable from './table/MainTable';
-import { makeDoubleDownFalse } from '../../../store/player-arr/playersArrSlice';
+import { makeDoubleDownFalse } from '../../../store/player-arr/PlayersArrSlice';
 
 export default function PlayGame() {
     const dispatch = useDispatch()

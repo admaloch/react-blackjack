@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { RootState } from '../../store/store';
 import { useSelector, useDispatch } from 'react-redux';
-import { addPlayer } from '../../store/player-arr/playersArrSlice';
 import { emptyPlayerItem } from '../../models/PlayerProps';
+import { addPlayer } from '../../store/player-arr/PlayersArrSlice';
 
 export default function PlayerForm() {
 
