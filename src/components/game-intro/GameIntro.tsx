@@ -6,11 +6,19 @@ import { startAddPlayers } from '../../store/game-data/GameDataSlice';
 export default function GameIntro() {
   const dispatch = useDispatch();
 
+
+
+
+  const clickHandler = () => {
+    dispatch(startAddPlayers())
+  }
+
+
   return (
     <div className="game-intro game-container">
       <h1>Welcome to the Blackjack table</h1>
       <NavLink to="/addPlayers">
-        <button className="game-btn" onClick={() => dispatch(startAddPlayers())}>
+        <button className="game-btn" onClick={clickHandler}>
           Start Game
         </button>
       </NavLink>
