@@ -8,10 +8,9 @@ import { delay } from '../../utils/Utility';
 interface PlayerStatsProps {
     open: boolean;
     closeModal: () => void;
-    openModal: () => void;
 }
 
-export default function PlayerStatsModal({ closeModal, open, openModal }: PlayerStatsProps) {
+export default function PlayerStatsModal({ closeModal, open }: PlayerStatsProps) {
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const currRound = useSelector((state: RootState) => state.gameData.roundsPlayed);
 
