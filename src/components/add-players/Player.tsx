@@ -1,6 +1,6 @@
-import { removePlayer } from '../../store/player-arr/playersArrSlice';
 import { useDispatch } from 'react-redux';
 import { TrashcanIconWithPopper } from '../UI/icons/TrashcanIconWithPopper';
+import { removePlayer } from '../../store/player-arr/PlayersArrSlice';
 interface PlayerProps {
     name: string;
 }

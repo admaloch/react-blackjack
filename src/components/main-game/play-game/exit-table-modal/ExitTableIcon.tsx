@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { ExitTableIconWithPopper } from '../../../UI/icons/ExitTableIconWithPopper'
 import { delay } from '../../../../utils/Utility';
-import { updatePlayer } from '../../../../store/player-arr/playersArrSlice';
+import { updatePlayer } from '../../../../store/player-arr/PlayersArrSlice';
 import { PlayerInterface } from '../../../../models/PlayerProps';
 
 interface ExitTableIconProps {

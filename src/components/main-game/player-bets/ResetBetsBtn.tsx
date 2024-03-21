@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
-import { updateTokens } from '../../../store/player-arr/playersArrSlice';
 import { ResetIconWithPopper } from '../../UI/icons/ResetIconWithPopper';
+import { updateTokens } from '../../../store/player-arr/PlayersArrSlice';
 
 interface ResetBetsBtnProps {
     currPlayerIndex: number;

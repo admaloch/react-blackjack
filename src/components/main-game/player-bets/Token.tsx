@@ -1,6 +1,6 @@
 
 import { useDispatch } from 'react-redux';
-import { clickTokenUpdate } from '../../../store/player-arr/playersArrSlice';
+import { clickTokenUpdate } from '../../../store/player-arr/PlayersArrSlice';
 
 interface TokenProps {
     number: number;

@@ -2,9 +2,10 @@ import Modal from "../../../UI/modal/Modal";
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../../../../store/store";
 import ResultsModalContents from "./ResultsModalContent";
-import { reverseAllSplitHands, reverseCurrSplitHand } from "../../../../store/player-arr/playersArrSlice";
+
 import { beginDealerRound } from "../../../../store/game-data/GameDataSlice";
 import { useCallback } from "react";
+import { reverseAllSplitHands, reverseCurrSplitHand } from "../../../../store/player-arr/PlayersArrSlice";
 
 interface EndOfTurnResultsProps {
     playerIndex: number;

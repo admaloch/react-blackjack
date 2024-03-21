@@ -4,7 +4,7 @@ import Modal from '../../../UI/modal/Modal';
 import { RootState } from '../../../../store/store';
 import EmptyBankModalResults from './EmptyBankModalResults';
 import { useNavigate } from 'react-router';
-import { removePlayers } from '../../../../store/player-arr/playersArrSlice';
+import { removePlayers } from '../../../../store/player-arr/PlayersArrSlice';
 import { addInactivePlayers } from '../../../../store/inactive-players/InactivePlayersSlice';
 
 interface EmptyBankModalProps {

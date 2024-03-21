@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store/store';
 import { useDispatch } from 'react-redux';
-import { updateTokens } from '../../../store/player-arr/playersArrSlice';
 import Token from './Token';
+import { updateTokens } from '../../../store/player-arr/PlayersArrSlice';
 
 interface TokensProps {
     currPlayerIndex: number;

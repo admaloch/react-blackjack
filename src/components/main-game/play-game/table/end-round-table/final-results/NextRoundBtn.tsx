@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../../../../store/store';
-import { updateAllPlayers } from '../../../../../../store/player-arr/playersArrSlice';
 import { delay } from '../../../../../../utils/Utility';
 import { resetGameData } from '../../../../../../store/game-data/GameDataSlice';
 import { useNavigate } from 'react-router';
 import { resetDealer } from '../../../../../../store/dealer-obj/dealerObjSlice';
 import EmptyBankModal from '../../../empty-bank-modal/EmptyBankModal';
 import { useState } from 'react';
+import { updateAllPlayers } from '../../../../../../store/player-arr/PlayersArrSlice';
 
 export default function NextRoundBtn() {
     const [isPlayersBrokeModal, setIsPlayersBrokeModal] = useState(false)

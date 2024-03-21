@@ -3,7 +3,8 @@ import { PlayerInterface } from '../../../../../../models/PlayerProps'
 import { RootState } from '../../../../../../store/store';
 import { useEffect, useState } from 'react';
 import { delay } from '../../../../../../utils/Utility';
-import { resetAfterInsuranceWin, updatePlayer } from '../../../../../../store/player-arr/playersArrSlice';
+import { resetAfterInsuranceWin, updatePlayer } from '../../../../../../store/player-arr/PlayersArrSlice';
+
 
 export interface PlayerProps {
     player: PlayerInterface;

@@ -242,7 +242,7 @@ const playerArrSlice = createSlice({
             let newBank = 0
             if (currBet !== 0) {
                 if (mainResults === 'Won') newBank = playerHasBJ
-                    ? bank + (currBet * 2.5)
+                    ? Math.ceil(bank + (currBet * 2.5))
                     : bank + (currBet * 2)
                 else if (mainResults === 'Push') newBank = bank + currBet
                 else newBank = bank
@@ -261,7 +261,7 @@ const playerArrSlice = createSlice({
                 }
             } else {
                 if (splitResults === 'Won') newBank = playerHasBJ
-                    ? bank + (splitBet * 2.5)
+                    ? Math.ceil(bank + (splitBet * 2.5))
                     : bank + (splitBet * 2)
                 else if (splitResults === 'Push') newBank = bank + splitBet
                 else newBank = bank

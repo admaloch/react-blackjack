@@ -3,7 +3,7 @@ import { delay } from '../../../../../../utils/Utility';
 import { PlayerInterfaceProps } from '../../../../../../models/PlayerProps';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../../../../store/store';
-import {  updateWinOrLose } from '../../../../../../store/player-arr/playersArrSlice';
+import { updateWinOrLose } from '../../../../../../store/player-arr/PlayersArrSlice';
 
 export default function SplitWinOrLoseStr({ player }: PlayerInterfaceProps) {
 

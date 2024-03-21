@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from "../../../../../../store/store";
 import PlayerIndexProps from '../../../../../../models/PlayerIndexProps';
 import { useDispatch } from 'react-redux';
-import { updateDoubleDownHand } from '../../../../../../store/player-arr/playersArrSlice';
+import { updateDoubleDownHand } from '../../../../../../store/player-arr/PlayersArrSlice';
 
 export default function DoubleDownBtn({ playerIndex }: PlayerIndexProps) {
 

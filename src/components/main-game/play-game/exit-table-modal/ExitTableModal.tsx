@@ -1,13 +1,13 @@
 import Modal from "../../../UI/modal/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
-import { removePlayer } from "../../../../store/player-arr/playersArrSlice";
 import { addInactivePlayer } from "../../../../store/inactive-players/InactivePlayersSlice";
 import { beginDealerRound, endIsGameActive } from "../../../../store/game-data/GameDataSlice";
 import { PlayerInterface } from "../../../../models/PlayerProps";
 import { useNavigate } from "react-router";
 import ExitTableContent from "./ExitTableContent";
 import { resetDealer } from "../../../../store/dealer-obj/dealerObjSlice";
+import { removePlayer } from "../../../../store/player-arr/PlayersArrSlice";
 
 interface ExitTableModalProps {
     playerIndex: number;

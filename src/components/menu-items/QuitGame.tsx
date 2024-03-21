@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { QuitIconWithPopper } from "../UI/icons/QuitIconWithPopper";
 import { RootState } from "../../store/store";
 import { addInactivePlayers } from "../../store/inactive-players/InactivePlayersSlice";
-import { resetPlayersArr } from "../../store/player-arr/playersArrSlice";
 import { endIsGameActive } from "../../store/game-data/GameDataSlice";
 import { resetDealer } from "../../store/dealer-obj/dealerObjSlice";
+import { resetPlayersArr } from "../../store/player-arr/PlayersArrSlice";
 
 export default function QuitGame() {
   const playersArr = useSelector((state: RootState) => state.playersArr);

@@ -2,10 +2,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { PlayerInterfaceProps } from "../../../../../../models/PlayerProps";
 import { useEffect } from "react";
 import { delay } from "../../../../../../utils/Utility";
-import { updateHandResults } from "../../../../../../store/player-arr/playersArrSlice";
 import { endFullRound, endMainHandResults, endSplitRound } from "../../../../../../store/game-data/GameDataSlice";
 import { RootState } from "../../../../../../store/store";
 import MoneyWonOrLost from "../../../../../results-components/MoneyWonOrLost";
+import { updateHandResults } from "../../../../../../store/player-arr/PlayersArrSlice";
 
 export default function EarningsOrLosses({ player }: PlayerInterfaceProps) {
     const dispatch = useDispatch()

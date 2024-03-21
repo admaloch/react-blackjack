@@ -1,7 +1,7 @@
 // hook for drawing player cards
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../store/store';
-import { updatePlayer } from '../../../store/player-arr/playersArrSlice';
+import { updatePlayer } from '../../../store/player-arr/PlayersArrSlice';
 import { updateDeck } from '../../../store/deck/deckSlice';
 import { PlayerInterface } from '../../../models/PlayerProps';
 import { genCardLocationIndexes, updateDeckFromState, drawAndUpdateHand, changeAceVal } from './drawCardsFuncs';

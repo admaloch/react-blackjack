@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import { useNavigate } from "react-router";
-import { updatePlayer } from "../../../store/player-arr/playersArrSlice";
 import { beginPlayerRound } from "../../../store/game-data/GameDataSlice";
 import { shuffleDeckState } from "../../../store/deck/deckSlice";
+import { updatePlayer } from "../../../store/player-arr/PlayersArrSlice";
 
 interface PlaceBetBtnProps {
     currPlayerIndex: number;

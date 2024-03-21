@@ -3,7 +3,7 @@ import { RootState } from "../../../../../../store/store";
 import { PlayerInterfaceProps } from "../../../../../../models/PlayerProps";
 import { useEffect } from "react";
 import { delay } from "../../../../../../utils/Utility";
-import {  updateWinOrLose } from "../../../../../../store/player-arr/playersArrSlice";
+import { updateWinOrLose } from "../../../../../../store/player-arr/PlayersArrSlice";
 
 export default function WinOrLoseStr({ player }: PlayerInterfaceProps) {
     const dispatch = useDispatch()

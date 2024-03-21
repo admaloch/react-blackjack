@@ -1,9 +1,10 @@
 import { useDispatch } from 'react-redux';
-import { splitPlayerHand } from '../../../../../../store/player-arr/playersArrSlice';
+
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../../../store/store';
 import PlayerIndexProps from '../../../../../../models/PlayerIndexProps';
 import { delay } from '../../../../../../utils/Utility';
+import { splitPlayerHand } from '../../../../../../store/player-arr/PlayersArrSlice';
 
 export default function Split({ playerIndex }: PlayerIndexProps) {
 
