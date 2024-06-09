@@ -18,11 +18,12 @@ export default function EndOfTurnResults({ playerIndex, isCurrPlayerFinished, ma
     const { hand, isDoubleDown } = currPlayer
 
     useEffect(() => {
-        let timer: number;
+        let timer: ReturnType<typeof setTimeout>; // This ensures compatibility with both environments
+    
         async function endPlayerTurn() {
             if (!isCurrPlayerFinished) {
                 if (
-                    hand.cards.length > 2 && hand.cardSum > 21 ||
+                    (hand.cards.length > 2 && hand.cardSum > 21) ||
                     (hand.cards.length === 2 && hand.cardSum === 21) ||
                     (hand.cards.length === 3 && isDoubleDown)
                 ) {
@@ -30,9 +31,12 @@ export default function EndOfTurnResults({ playerIndex, isCurrPlayerFinished, ma
                 }
             }
         }
+    
         endPlayerTurn();
+    
         return () => clearTimeout(timer);
     }, [hand, isDoubleDown, makeCurrPlayerFinished, isCurrPlayerFinished]);
+    
 
     return (
         <ResultsModal

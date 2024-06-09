@@ -10,7 +10,7 @@ export default function ModalTimer({ timeout, onTimeout }: ModalTimerProps) {
     const [isPaused, setIsPaused] = useState(false);
 
     useEffect(() => {
-        let timer: number;
+        let timer: ReturnType<typeof setTimeout>; // This ensures compatibility with both environments
         if (!isPaused) {
             timer = setTimeout(() => {
                 onTimeout();
@@ -21,7 +21,8 @@ export default function ModalTimer({ timeout, onTimeout }: ModalTimerProps) {
     }, [remainingTime, onTimeout, isPaused]);
 
     useEffect(() => {
-        let interval: number;
+        let interval: ReturnType<typeof setInterval>; // Ensures compatibility with both environments
+
         if (!isPaused) {
             interval = setInterval(() => {
                 setRemainingTime((prevRemainingTime) => Math.max(prevRemainingTime - 100, 0));
