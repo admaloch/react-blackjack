@@ -6,7 +6,7 @@ interface CardProp {
 }
 
 const Card: React.FC<CardProp> = ({ cardUrlVal, isHidden }) => {
-  const imagePath = `/src/assets/card-images/${cardUrlVal}.png`;
+  const imagePath = `../../../../../src/assets/card-images/${cardUrlVal}.png`;
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
