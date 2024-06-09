@@ -24,9 +24,10 @@ export default function PlayerBets() {
             <div className="bet-container">
                 <ResetBetsBtn currPlayerIndex={currPlayerIndex} />
                 <h4>Place Bet: {player.name}</h4>
-                <h5>Current Bank: {`$${player.bank}`}</h5>
+                <h5>Bank: {`$${player.bank + player.currBet}`}</h5>
                 <h5>Min bit: {`$${player.minBet}`}</h5>
                 <h5>Current Bet: {`$${player.currBet}`}</h5>
+                <h5>Bank after bet: {`$${player.bank}`}</h5>
                 <Tokens
                     currPlayerIndex={currPlayerIndex}
                 />
