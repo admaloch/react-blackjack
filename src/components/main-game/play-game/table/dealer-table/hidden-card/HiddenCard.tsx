@@ -26,10 +26,13 @@ export default function HiddenCard() {
     }, [isDealerRoundActive, dispatch, isDealerCardRevealed]);
 
     return (
-        <img
+        <div className="playing-card">
+             <img
             className='back-of-card hiddenCardAnimation'
             src={backOfCardImg}
             alt="Back of Card"
         />
+        </div>
+       
     );
 }

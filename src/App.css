@@ -2,6 +2,11 @@
     margin: 0;
     padding: 0;
 }
+
+body {
+    overflow-x: hidden;
+}
+
 :root {
     --background: #001219;
     --table-background: #1D2A1F;
