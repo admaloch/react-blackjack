@@ -68,7 +68,7 @@ const DealerTable: React.FC = () => {
             dealerDraw();
           } else if (cardSum >= 17 && isInsuranceRoundComplete && isDealerCardRevealed) {
 
-            await delay(1000);
+            await delay(1500);
             allPlayersWonInsurance
               ? dispatch(endDealerAndRound())
               : dispatch(endDealerRound())
@@ -84,7 +84,7 @@ const DealerTable: React.FC = () => {
     <div className="dealer-table">
       <DeckOfCardsSvg className='full-deck-image' />
       <div className="dealer-hand">
-        {isShowRoundsPlayed && <h3 className='rounds-played'>Round {roundsPlayed}</h3>}
+        {isShowRoundsPlayed && <h2 className='rounds-played'>Round {roundsPlayed}</h2>}
 
         <DealerDetails />
         <div className="dealer-cards">

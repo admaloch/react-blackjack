@@ -7,9 +7,11 @@
     display: flex;
     justify-content: center;
 }
+
 .player-results-table h4 {
     font-size: .9rem;
 }
+
 .player-hand-results {
     /* width: fit-content; */
     display: flex;
@@ -18,6 +20,7 @@
     margin-top: 4.5rem;
 
 }
+
 .player-hand {
     position: relative;
     display: flex;
@@ -32,6 +35,7 @@
     /* Added transition property */
     margin-bottom: .3rem;
 }
+
 .player-hand h4 {
     position: absolute;
     display: flex;
@@ -41,78 +45,105 @@
     top: -1.5rem;
     /* min-width: 300px; */
 }
+
 .emphasize {
     border: var(--text) solid 1px;
 }
+
 .emphasize-win {
     border: var(--blackjack) solid 1px;
 }
+
 .emphasize-lose {
     border: var(--bust) solid 1px;
 }
+
 .emphasize-lose {
     border: var(--bust) solid 1px;
 }
+
 .emphasize-push {
     border: var(--neutral) solid 1px;
 }
+
 .icons svg {
     fill: white;
 }
+
 .player-results-table p {
-    line-height: 15px;
-    font-size: 1rem;
+    line-height: 10px;
+    font-size: .8rem;
     white-space: no-wrap;
+    text-align: start;
 }
+
+@media screen and (min-width: 768px) {
+    .player-results-table p {
+        line-height: 14px;
+        font-size: 1rem;
+    }
+}
+
 .player-table svg {
     width: 5rem;
     height: 5rem;
 }
+
 .curr-player-hand {
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 .curr-player-hand .playing-card {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: .1rem;
 }
+
 .curr-player-hand img {
     max-width: 30px;
 }
+
 .insurance-msg {
     transition: all 1s ease;
 }
+
 .insurance-msg.revealed {
     opacity: 1;
 }
+
 .player-header {
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 @media screen and (min-width: 500px) {
     .curr-player-hand img {
         max-width: 45px;
     }
 }
+
 @media screen and (min-width: 768px) {
     .curr-player-hand img {
         max-width: 60px;
     }
 }
+
 @media screen and (min-width: 992px) {
     .curr-player-hand img {
         max-width: 70px;
     }
 }
+
 @media screen and (min-width: 1200px) {
     .curr-player-hand img {
         max-width: 80px;
     }
 }
+
 @media screen and (min-width: 1500px) {
     .curr-player-hand img {
         max-width: 95px;

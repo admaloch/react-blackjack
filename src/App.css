@@ -42,6 +42,11 @@ align-items: center;
     } 
 }
 
+.photo-container .game-container {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+}
 
 .game-container {
     width: 100%;
@@ -54,7 +59,7 @@ align-items: center;
 }
 
 .game-btn {
-    padding: .1rem .3rem;
+    padding: .5rem 1.5rem;
     color: var(--text);
     border: var(--text) solid 2px;
     background-color: var(--283618);
@@ -64,12 +69,7 @@ align-items: center;
     border-radius: 5px;
 }
 
-@media screen and (min-width: 768px) {
-    .game-btn {
-        padding: .5rem 1.5rem;
 
-    }
-}
 
 .game-btn a {
     color: var(--text);

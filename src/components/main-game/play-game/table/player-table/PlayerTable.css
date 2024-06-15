@@ -10,6 +10,12 @@
     padding: .2rem .5rem;
 }
 
+.main-player-hand {
+    width: 100%;
+    height: 100%;
+   margin-top: 4rem;
+}
+
 .player-table h5,
 .player-table h4 {
     padding: 0;
@@ -25,6 +31,9 @@
 }
 .player-header h2 {
     font-size: 1.6rem;
+    opacity: 0;
+    transition: all .25s ease-in-out;
+    margin-bottom: .4rem;
 }
 
 .player-hand-results h3 {
@@ -50,4 +59,8 @@ width: 50px;
 }
 .player-table .exit-table-icon svg {
     width: 40px;
+}
+
+.player-hand-results .playing-card {
+margin: 0 0px;
 }

@@ -1,9 +1,23 @@
 .dealer-hand .playing-card.hidden img {
     display: none;
 }
+
 .back-of-card {
     border-radius: 5px;
+    position: relative;
+    left: .3rem;
 }
+
+.dealer-cards .playing-card:nth-of-type(1) {
+    position: relative;
+    left: .15rem;
+}
+
+.dealer-cards .playing-card:nth-of-type(3) {
+    position: relative;
+    right: .15rem;
+}
+
 /* .hiddenCardAnimation {
     animation: animateHiddenCard 0.5s ease-in-out forwards;
 }

@@ -66,7 +66,8 @@
     border: dashed 4px var(--token100);
 }
 .bet-container {
-    min-width: 52%;
+    width: 100%;
+    max-width: 600px;
     position: relative;
     display: flex;
     flex-direction: column;

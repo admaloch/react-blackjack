@@ -41,19 +41,22 @@ function PlayerTable({ playerIndex, makeCurrPlayerFinished }: PlayerTableProps) 
                 makeCurrPlayerFinished={makeCurrPlayerFinished}
                 playerIndex={playerIndex}
             />
-            <div className="player-header">
-                <h2>{name}&nbsp;</h2>
-                {splitBet > 0 &&
-                    <h2> split: {handText}</h2>
-                }
-            </div>
             <PlayerDetails playerIndex={playerIndex} />
-            <div className="player-cards">
-                <Cards
-                    cardUrlVals={hand.cardUrlVals}
-                    playerIndex={playerIndex}
-                />
+            <div className="main-player-hand">
+                <div className="player-header">
+                    <h2 style={{opacity: 1}}>{name}&nbsp;</h2>
+                    {splitBet > 0 &&
+                        <h2> split: {handText}</h2>
+                    }
+                </div>
+                <div className="player-cards">
+                    <Cards
+                        cardUrlVals={hand.cardUrlVals}
+                        playerIndex={playerIndex}
+                    />
+                </div>
             </div>
+
             {playersArr[playerIndex].splitHand.cards.length > 0 &&
                 <SplitCardPreview
                     playerIndex={playerIndex}

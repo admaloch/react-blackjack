@@ -9,7 +9,7 @@ export default function DealerDetails() {
     return (
         <div className="dealer-details">
             {isPlayerRoundActive
-                ? <h2>Dealer</h2>
+                ? <h3>Dealer</h3>
                 : <MainDealerDetails />
             }
         </div>
