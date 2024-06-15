@@ -31,7 +31,6 @@
 }
 .player-header h2 {
     font-size: 1.6rem;
-    opacity: 0;
     transition: all .25s ease-in-out;
     margin-bottom: .4rem;
 }
@@ -43,7 +42,7 @@
 .split-card-preview {
     position: absolute;
     right: .5rem;
-    top: 5.5rem;
+    top: 35%;
     display: flex;
     justify-content: center;
     align-items: center;

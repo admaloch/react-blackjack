@@ -12,6 +12,8 @@ interface PlayerIconsProps {
     makeCurrPlayerFinished: () => void;
 }
 
+
+
 export default function PlayerOptions({ playerIndex, makeCurrPlayerFinished }: PlayerIconsProps) {
 
     const playersArr = useSelector((state: RootState) => state.playersArr);
@@ -22,7 +24,7 @@ export default function PlayerOptions({ playerIndex, makeCurrPlayerFinished }: P
             <div className="current-options">
                 <DoubleDown playerIndex={playerIndex} />
                 <Split playerIndex={playerIndex} />
-                <Insurance playerIndex={playerIndex} />
+                < Insurance playerIndex={playerIndex} />
             </div>
             <Stand playerIndex={playerIndex} makeCurrPlayerFinished={makeCurrPlayerFinished} />
             <DrawCards playerIndex={playerIndex} />

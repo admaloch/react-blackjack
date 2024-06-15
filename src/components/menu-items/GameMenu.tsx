@@ -11,7 +11,7 @@ export default function GameMenu() {
     const isStatsDisabled = !isPlayerRoundActive && isRoundActive
 
     return (
-        <div className="game-menu">
+        <nav className="game-menu">
             <div className="menu-container">
                 <h2>Blackjack</h2>
                 <div className={isStatsDisabled ? 'disabled menu-icons' : 'menu-icons'}>
@@ -19,6 +19,6 @@ export default function GameMenu() {
                     {isGameActive && <QuitGame />}
                 </div>
             </div>
-        </div>
+        </nav>
     );
 }

@@ -34,7 +34,7 @@ function PlayerTable({ playerIndex, makeCurrPlayerFinished }: PlayerTableProps) 
         initPlayerDraw()
         return () => { isMounted = false }
     }, [hand, dealerObj, playerDraw]);
-    const handText = splitHand.cards.length === 1 ? '1st hand' : '2nd hand'
+    const handText = splitHand.cards.length === 1 ? ': Main hand' : ': Split hand'
     return (
         <div className="player-table">
             <PlayerOptions
@@ -44,9 +44,9 @@ function PlayerTable({ playerIndex, makeCurrPlayerFinished }: PlayerTableProps) 
             <PlayerDetails playerIndex={playerIndex} />
             <div className="main-player-hand">
                 <div className="player-header">
-                    <h2 style={{opacity: 1}}>{name}&nbsp;</h2>
+                    <h2>{name}&nbsp;</h2>
                     {splitBet > 0 &&
-                        <h2> split: {handText}</h2>
+                        <h2> {handText}</h2>
                     }
                 </div>
                 <div className="player-cards">

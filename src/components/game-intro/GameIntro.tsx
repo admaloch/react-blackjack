@@ -22,8 +22,7 @@ export default function GameIntro() {
   }
 
   return (
-    <div style={divStyle} className='photo-container'>
-      <div className="game-intro game-container">
+      <section className="photo-container">
         <div className="intro-content">
           <h1>Welcome to the Blackjack Table</h1>
           <NavLink to="/addPlayers">
@@ -32,8 +31,8 @@ export default function GameIntro() {
             </button>
           </NavLink>
         </div>
-      </div>
-    </div>
+      </section>
+ 
 
   );
 }

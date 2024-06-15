@@ -17,6 +17,7 @@ export default function Insurance({ playerIndex }: PlayerIndexProps) {
             || hand.cards.length === 2 && hand.cardSum === 21
             || currPlayer.insuranceBet !== 0
             || currPlayer.splitBet !== 0
+            || currPlayer.bank < Math.ceil(currPlayer.currBet / 2)
         ) {
             return;
         }

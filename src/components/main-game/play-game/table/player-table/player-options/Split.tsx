@@ -15,7 +15,9 @@ export default function Split({ playerIndex }: PlayerIndexProps) {
   let isCardRanksEqual = false
   if (hand.cards.length === 2) {
     const cardRanks = hand.cards.map(x => x.slice(0, 1))
-    if (cardRanks[0] === cardRanks[1] && currPlayer.splitHand.cards.length === 0) {
+    if (cardRanks[0] === cardRanks[1]
+      && currPlayer.splitHand.cards.length === 0
+      && currPlayer.bank >= currPlayer.currBet) {
       isCardRanksEqual = true
     }
   }

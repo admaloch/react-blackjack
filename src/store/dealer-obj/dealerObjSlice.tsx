@@ -10,18 +10,18 @@ interface DealerState {
 //     name: 'Dealer',
 //     "hand": {
 //         "cards": [
-//             "3♥",
-//             "3♠"
+//             "6♥",
+//             "A♠"
 //         ],
 //         "cardUrlVals": [
-//             "3H",
-//             "3S"
+//             "6H",
+//             "AS"
 //         ],
 //         "cardNumVals": [
-//             3,
-//             3,
+//             6,
+//             11,
 //         ],
-//         "cardSum": 6,
+//         "cardSum": 17,
 //         "isBlackjack": false,
 //     },
 // }

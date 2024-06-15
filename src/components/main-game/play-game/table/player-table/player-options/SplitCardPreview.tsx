@@ -8,7 +8,7 @@ export default function SplitCardPreview({ playerIndex }: PlayerIndexProps) {
     const currPlayer = playersArr[playerIndex]
     const { splitHand } = currPlayer
 
-    const handText = splitHand.cards.length === 1 ? '2nd hand' : '1st hand'
+    const handText = splitHand.cards.length === 1 ? 'Split hand' : 'Main hand'
 //  curretnly cleaning up this
     return (
         <div className="split-card-preview disabled">

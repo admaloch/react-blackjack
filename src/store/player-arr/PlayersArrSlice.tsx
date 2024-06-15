@@ -17,74 +17,24 @@ interface TokenClickProps {
 //             "name": "James",
 //             "hand": {
 //                 "cards": [
-//                     "A♥",
+//                     "3♥",
 //                     "3♠",
                   
     
 //                 ],
 //                 "cardUrlVals": [
-//                     "AH",
+//                     "3H",
 //                     "3S",
                   
     
 //                 ],
 //                 "cardNumVals": [
-//                     11,
+//                     3,
 //                     3,
                    
     
 //                 ],
-//                 "cardSum": 14,
-//                 "isBlackjack": false,
-//             },
-//             "splitHand": {
-//                 "cards": [],
-//                 "cardUrlVals": [],
-//                 "cardNumVals": [],
-//                 "cardSum": 0,
-//                 "isBlackjack": false,
-//             },
-//             "bank": 995,
-//             "beginningRoundBank": 1000,
-//             "currBet": 5,
-//             "minBet": 5,
-//             "insuranceBet": 0,
-//             "wonInsuranceRound": false,
-//             "splitBet": 0,
-//             "isPlayerSplit": false,
-//             "isDoubleDown": false,
-//             "playerLeftTable": false,
-//             "roundResults": {
-//                 "mainResults": "",
-//                 "splitResults": "",
-//                 "isComplete": false,
-//             },
-//             "currTokens": [
-//                 1,
-//                 5,
-//                 25,
-//                 50,
-//                 100,
-//                 500
-//             ],
-//             "roundsWon": 0
-//         },
-//         {
-//             "name": "Dave",
-//             "hand": {
-//                 "cards": [
-//                     "9♥",
-//                     "9♠"
-//                 ],
-//                 "cardUrlVals": [
-//                     "9H",
-//                     "9S"
-//                 ],
-//                 "cardNumVals": [
-//                     9,
-//                     9,
-//                 ],
-//                 "cardSum": 18,
+//                 "cardSum": 6,
 //                 "isBlackjack": false,
 //             },
 //             "splitHand": {
@@ -119,6 +69,7 @@ interface TokenClickProps {
 //             ],
 //             "roundsWon": 0
 //         },
+        
     
 //     ]
 

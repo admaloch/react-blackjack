@@ -17,8 +17,8 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-top: 4.5rem;
-
+    margin-top: 2rem;
+overflow-x: scroll;
 }
 
 .player-hand {
@@ -118,6 +118,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.main-hand-icon {
+    margin-right: .4rem;
+}
+.split-hand-icon {
+    margin-left: .4rem;
 }
 
 @media screen and (min-width: 500px) {
