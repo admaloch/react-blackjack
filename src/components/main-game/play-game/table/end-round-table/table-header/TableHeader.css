@@ -11,4 +11,5 @@
 }
 .header-btn-container h2 {
     font-size: 2rem;
+    color: var(--active-text);
 }

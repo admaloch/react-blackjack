@@ -4,7 +4,7 @@
 .back-of-card {
     border-radius: 5px;
 }
-.hiddenCardAnimation {
+/* .hiddenCardAnimation {
     animation: animateHiddenCard 0.5s ease-in-out forwards;
 }
 @keyframes animateHiddenCard {
@@ -16,4 +16,4 @@
         opacity: 1;
         transform: translateY(0) translateX(0) scale(1) rotate(360deg);
     }
-}
+} */

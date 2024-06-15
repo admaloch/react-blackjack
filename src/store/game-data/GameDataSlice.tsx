@@ -14,6 +14,7 @@ const deckSlice = createSlice({
     endMainHandResults: (state) => { state.isMainResultsActive = false },
     beginSplitRound: (state) => { state.isSplitResultsActive = true },
     startBetRound: (state) => {
+      document.body.requestFullscreen();
       return { ...state, isAddPlayersRound: false, isBetRoundActive: true, }
     },
     startAddPlayers: (state) => {

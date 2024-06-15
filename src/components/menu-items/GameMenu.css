@@ -1,36 +1,42 @@
 .game-menu {
-    position: fixed;
-    top: 0;
-    left: 0;
+    height: 7vh;
     width: 100%;
+    max-width: 1200px;
     display: flex;
     justify-content: center;
-    padding: 1rem;
+
 }
+
 .menu-container {
     display: flex;
     justify-content: center;
     align-items: center;
     justify-content: space-between;
-    width: 80%;
+    width: 100%;
+    /* padding: .5rem 5rem 0 5rem; */
 }
+
 .menu-icons {
     display: flex;
 }
+
 .game-menu svg {
     font-size: 2.5rem;
 }
+
 @font-face {
     font-family: 'CustomFont';
     src: url('/Bouncy.otf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
+
 .game-menu h2,
 .game-menu h3 {
     letter-spacing: 3px;
     font-size: 2.5rem;
 }
+
 .game-menu h2 {
     font-family: 'CustomFont', sans-serif;
 }

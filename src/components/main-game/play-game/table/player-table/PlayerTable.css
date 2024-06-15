@@ -7,17 +7,30 @@
     position: absolute;
     left: 0;
     top: 0;
-    padding: .2rem;
+    padding: .2rem .5rem;
 }
+
 .player-table h5,
 .player-table h4 {
     padding: 0;
+}
+
+.player-info h5 {
+    font-size: .9rem;
 }
 .player-header {
     display: flex;
     justify-content: center;
     align-items: center;
 }
+.player-header h2 {
+    font-size: 1.6rem;
+}
+
+.player-hand-results h3 {
+    font-size: 1.5rem;
+}
+
 .split-card-preview {
     position: absolute;
     right: .5rem;

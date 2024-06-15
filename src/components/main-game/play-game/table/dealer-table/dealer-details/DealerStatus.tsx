@@ -48,7 +48,7 @@ export default function DealerStatus({ showDealerData, updateIsInsuranceEval }: 
 
     return (
         <div className={dealerStatusClass}>
-            <h3 className='dealer-status'>{dealerStatusText}</h3>
+            <h5 className='dealer-status'>{dealerStatusText}</h5>
         </div>
     );
 }

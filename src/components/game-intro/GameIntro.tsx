@@ -8,7 +8,6 @@ export default function GameIntro() {
 
   const clickHandler = () => {
     dispatch(startAddPlayers())
-    document.body.requestFullscreen();
   }
 
   return (

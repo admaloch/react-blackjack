@@ -19,28 +19,19 @@ const initialState: PlayerInterface[] = [
                 "cards": [
                     "A♥",
                     "3♠",
-                    "3♠",
-                    "3♠",
-                    "3♠",
-                    "3♠",
+                  
     
                 ],
                 "cardUrlVals": [
                     "AH",
                     "3S",
-                    "3S",
-                    "3S",
-                    "3S",
-                    "3S",
+                  
     
                 ],
                 "cardNumVals": [
                     11,
                     3,
-                    3,
-                    3,
-                    3,
-                    3,
+                   
     
                 ],
                 "cardSum": 14,

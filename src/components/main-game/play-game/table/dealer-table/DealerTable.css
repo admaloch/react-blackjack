@@ -1,6 +1,7 @@
 .dealer-table {
     position: relative;
 }
+
 .full-deck-image {
     width: 100px;
     height: 100px;
@@ -9,6 +10,7 @@
     top: 0;
     right: -1rem;
 }
+
 .dealer-hand {
     height: 100%;
     width: 100%;
@@ -18,51 +20,82 @@
     flex-direction: column;
     position: relative;
 }
+
 .rounds-played {
     font-size: 1.8rem;
     margin-bottom: 0;
 }
+
 .dealer-hand h3,
 .dealer-hand h2 {
     padding: .2rem;
     line-height: 30px;
+
 }
+
+.dealer-hand h2 {
+    font-size: 1.6rem;
+}
+
+.dealer-hand h3 {
+    font-size: 2rem;
+}
+
 .dealer-hand h4 {
     font-size: 1.3rem;
 }
+
 .dealer-cards {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 .dealer-details {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
+
 .dealer-header {
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 .dealer-sum {
     opacity: 0;
     transition: opacity 0.5s ease;
 }
+
 .dealer-sum.revealed {
     opacity: 1;
 }
+
 .dealer-status {
     display: flex;
     flex-direction: column;
     position: absolute;
-    left: 1rem;
-    top: 0rem;
-    font-size: 1.3rem;
+    /* left: 15%; */
+    bottom: 1%;
+    font-size: 1.6rem;
     width: 100%;
+    color: var(--active-text);
+    width: 100%;
+    text-align: center;
 }
+
+@media screen and (min-width: 992px) {
+    .dealer-status {
+       
+        font-size: 1.6rem;
+
+    }
+}
+
+
 .dealer-status-reverse {
     flex-direction: column-reverse;
 }
