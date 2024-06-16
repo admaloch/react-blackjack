@@ -7,6 +7,8 @@ import './FinalResults.css'
 import { resetGame } from '../../store/game-data/GameDataSlice';
 import { resetInactivePlayers } from '../../store/inactive-players/InactivePlayersSlice';
 import { resetDeck } from '../../store/deck/deckSlice';
+import BGSection from '../UI/sections/BGSection';
+import Wrapper from '../UI/wrapper/Wrapper';
 
 export default function FinalResults() {
   const inactivePlayers = useSelector((state: RootState) => state.inactivePlayers);
@@ -26,8 +28,9 @@ export default function FinalResults() {
   }
 
   return (
-    <div className="final-results game-container">
-      <div className="results-container">
+    <BGSection bgClass='bright-lights'>
+      <Wrapper>
+
         <h2>Game Over</h2>
         <h3>Final results:</h3>
         <h4>Total rounds played: {gameData.roundsPlayed}</h4>
@@ -46,7 +49,7 @@ export default function FinalResults() {
           className="game-btn">
           Return to main menu
         </button>
-      </div>
-    </div>
+      </Wrapper>
+    </BGSection>
   )
 }

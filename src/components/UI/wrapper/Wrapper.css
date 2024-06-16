@@ -40,8 +40,11 @@
 .wrapper h3 {
     font-size: 1.7rem;
 }
-.wrapper p {
-    font-size: 1.3rem;
-    line-height: 1.4rem;
+.wrapper h4 {
+    font-size: 1.5rem;
 }
+.wrapper h5 {
+    font-size: 1.3rem;
+}
+
 

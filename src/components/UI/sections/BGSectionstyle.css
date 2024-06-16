@@ -43,7 +43,7 @@
 
 .bright-lights::before {
     background-image: url('../../../assets/bright-lights.jpg');
-    opacity: .05;
+    opacity: .3;
 }
 
 .casino-image::before {
