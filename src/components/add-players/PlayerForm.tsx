@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { RootState } from '../../store/store';
 import { useSelector, useDispatch } from 'react-redux';
 import { emptyPlayerItem } from '../../models/PlayerProps';
