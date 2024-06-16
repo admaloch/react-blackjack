@@ -7,6 +7,8 @@ import PlaceBetBtn from './PlaceBetBtn';
 import ResetBetsBtn from './ResetBetsBtn';
 
 import ShuffleDeckModal from '../../shuffle-modal/ShuffleDeckModal';
+import BGSection from '../../UI/sections/BGSection';
+import Wrapper from '../../UI/wrapper/Wrapper';
 
 
 export default function PlayerBets() {
@@ -21,27 +23,31 @@ export default function PlayerBets() {
     const player = playersArr[currPlayerIndex]
 
     return (
-        <div className='game-container place-bets'>
-            <div className="bet-container">
-                <ResetBetsBtn currPlayerIndex={currPlayerIndex} />
-                <h4>Place Bet: {player.name}</h4>
-                <h5>Bank: {`$${player.bank + player.currBet}`}</h5>
-                <h5>Min bit: {`$${player.minBet}`}</h5>
-                <h5>Current Bet: {`$${player.currBet}`}</h5>
-                <h5>Bank after bet: {`$${player.bank}`}</h5>
-                <Tokens
-                    currPlayerIndex={currPlayerIndex}
-                />
-                <PlaceBetBtn
-                    currPlayerIndex={currPlayerIndex}
-                    moveToNextPlayer={moveToNextPlayer}
-                    setIsModalOpen={setIsModalOpen}
-                />
-                <ShuffleDeckModal
-                    closeModal={closeModal}
-                    open={isModalOpen}
-                />
-            </div>
-        </div>
+        <BGSection bgClass="token-image">
+
+            <Wrapper>
+                    <ResetBetsBtn currPlayerIndex={currPlayerIndex} />
+                    <h3>Place Bet: {player.name}</h3>
+                    <p>Bank: {`$${player.bank + player.currBet}`}</p>
+                    <p>Min bit: {`$${player.minBet}`}</p>
+                    <p>Current Bet: {`$${player.currBet}`}</p>
+                    <p>Bank after bet: {`$${player.bank}`}</p>
+                    <Tokens
+                        currPlayerIndex={currPlayerIndex}
+                    />
+                    <PlaceBetBtn
+                        currPlayerIndex={currPlayerIndex}
+                        moveToNextPlayer={moveToNextPlayer}
+                        setIsModalOpen={setIsModalOpen}
+                    />
+                    <ShuffleDeckModal
+                        closeModal={closeModal}
+                        open={isModalOpen}
+                    />
+              
+
+
+            </Wrapper>
+        </BGSection>
     );
 }

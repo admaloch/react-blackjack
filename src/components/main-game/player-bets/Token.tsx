@@ -11,6 +11,7 @@ export default function Token({ number, currPlayerIndex }: TokenProps) {
     const dispatch = useDispatch();
 
     return (
+        
         <div
             id={`token${number}`}
             onClick={() => dispatch(clickTokenUpdate({ index: currPlayerIndex, number: number }))}

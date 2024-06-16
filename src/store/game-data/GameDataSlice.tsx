@@ -5,17 +5,15 @@ const deckSlice = createSlice({
   name: 'game-data',
   initialState: initialGameState,
   reducers: {
+    resetGame: () =>  initialGameState,
     revealDealerCard: (state) => { state.isDealerCardRevealed = true },
     beginDealerDrawing: (state) => { state.isDealerDrawing = true },
     endFullRound: (state) => { state.isRoundActive = false },
     beginInsuranceRound: (state) => { state.isInsuranceRoundComplete = false },
     endInsuranceRound: (state) => { state.isInsuranceRoundComplete = true },
-    returnToGameIntro: (state) => { state.isGameIntro = true },
     endMainHandResults: (state) => { state.isMainResultsActive = false },
     beginSplitRound: (state) => { state.isSplitResultsActive = true },
     startBetRound: (state) => {
-      // document.body.requestFullscreen();
-
       return { ...state, isAddPlayersRound: false, isBetRoundActive: true, }
     },
     startAddPlayers: (state) => {
@@ -48,6 +46,6 @@ const deckSlice = createSlice({
   },
 })
 
-export const { revealDealerCard, beginPlayerRound, beginDealerRound, endDealerRound, endMainHandResults, beginSplitRound, beginDealerDrawing, endSplitRound, endFullRound, beginInsuranceRound, endInsuranceRound, endDealerAndRound, endIsGameActive, returnToGameIntro, startBetRound, startAddPlayers, resetGameData } = deckSlice.actions
+export const { revealDealerCard, beginPlayerRound, beginDealerRound, endDealerRound, endMainHandResults, beginSplitRound, beginDealerDrawing, endSplitRound, endFullRound, beginInsuranceRound, endInsuranceRound, endDealerAndRound, endIsGameActive, startBetRound, startAddPlayers, resetGameData, resetGame } = deckSlice.actions
 
 export default deckSlice.reducer

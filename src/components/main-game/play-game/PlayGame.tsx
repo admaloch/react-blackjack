@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import ExitTable from './exit-table-modal/ExitTable';
 import MainTable from './table/MainTable';
 import { makeDoubleDownFalse } from '../../../store/player-arr/PlayersArrSlice';
+import BGSection from '../../UI/sections/BGSection';
 
 export default function PlayGame() {
     const dispatch = useDispatch()
@@ -24,7 +25,8 @@ export default function PlayGame() {
     }
 
     return (
-        <div className='game-container play-round'>
+        <BGSection bgClass="dark-background play-round">
+
             <MainTable
                 playerIndex={currPlayerIndex}
                 makeCurrPlayerFinished={makeCurrPlayerFinished}
@@ -43,6 +45,6 @@ export default function PlayGame() {
                     playerIndex={currPlayerIndex}
                 />
             }
-        </div>
+        </BGSection>
     );
 }

@@ -26,10 +26,10 @@ const deckSlice = createSlice({
       state.length = 0;
       state.push(...action.payload);
     },
-    shuffleDeckState: () => initialState
+    resetDeck: () => initialState,
   },
 });
 
-export const { updateDeck, shuffleDeckState } = deckSlice.actions
+export const { updateDeck, resetDeck } = deckSlice.actions
 
 export default deckSlice.reducer

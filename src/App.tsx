@@ -15,7 +15,7 @@ import { useEffect } from 'react'
 
 function App() {
   const isGameIntro = useSelector((state: RootState) => state.gameData.isGameIntro);
-  const gameData = useSelector((state: RootState) => state.gameData);
+  const deck = useSelector((state: RootState) => state.deck);
 
   const navigate = useNavigate();
 
@@ -27,8 +27,8 @@ function App() {
   }, []);
 
   useEffect(() => {
-    console.log(gameData)
-  }, [gameData])
+    console.log(deck)
+  }, [deck])
 
   return (
     <>

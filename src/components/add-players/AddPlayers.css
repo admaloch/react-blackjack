@@ -1,13 +1,13 @@
 .form-container {
     border: var(--text) solid 1px;
     background-color: var(--background);
-    padding: 2rem;
+    padding: 3rem;
     border-radius: 10px;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    z-index: 1;
+margin: 0 1rem;    
 }
 .add-players h2 {
     font-size: 2rem;

@@ -4,22 +4,27 @@ import { RootState } from '../../store/store';
 import FinalPlayerStats from './FinalPlayerStats';
 import { PlayerInterface } from '../../models/PlayerProps';
 import './FinalResults.css'
-import { returnToGameIntro } from '../../store/game-data/GameDataSlice';
+import { resetGame } from '../../store/game-data/GameDataSlice';
 import { resetInactivePlayers } from '../../store/inactive-players/InactivePlayersSlice';
+import { resetDeck } from '../../store/deck/deckSlice';
 
 export default function FinalResults() {
   const inactivePlayers = useSelector((state: RootState) => state.inactivePlayers);
   const gameData = useSelector((state: RootState) => state.gameData);
+
   const dispatch = useDispatch()
   const navigate = useNavigate();
-  const resultsPageBtnHandler = () => {
-    dispatch(returnToGameIntro())
-    dispatch(resetInactivePlayers())
-    navigate("/");
-    document.exitFullscreen();
 
+  const resultsPageBtnHandler = () => {
+    dispatch(resetGame())
+    dispatch(resetInactivePlayers())
+    dispatch(resetDeck())
+    navigate("/");
+    if (document.fullscreenElement) {
+      document.exitFullscreen();
+    }
   }
-  
+
   return (
     <div className="final-results game-container">
       <div className="results-container">
