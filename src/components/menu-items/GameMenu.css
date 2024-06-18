@@ -21,7 +21,7 @@ background-color: var(--background);
 }
 
 .game-menu svg {
-    font-size: 2.5rem;
+    font-size: 2rem;
 }
 
 @font-face {
@@ -34,7 +34,7 @@ background-color: var(--background);
 .game-menu h2,
 .game-menu h3 {
     letter-spacing: 3px;
-    font-size: 2.5rem;
+    font-size: 2rem;
 }
 
 .game-menu h2 {

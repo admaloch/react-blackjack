@@ -17,15 +17,34 @@
     transition: opacity .15s ease-in-out;
     border-radius: 50px;
     /* text-align: center; */
-    margin: .5rem;
+    margin: .1rem;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
     padding: .2rem; 
 }
+
+@media screen and (min-width: 600px) {
+    .tokens-container div {
+        background-color: var(--text);
+        color: var(--background);
+        transition: opacity .15s ease-in-out;
+        border-radius: 50px;
+        /* text-align: center; */
+        margin: .5rem;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50px;
+        height: 50px;
+        padding: .2rem; 
+    }
+}
+
 :root {
     --token1: #ffd23f;
     --token5: #ee4266;
