@@ -1,3 +1,9 @@
 .main-game h2:nth-of-type(1) {
-    font-size: 3rem;
+    font-size: 1.8rem;
+}
+
+@media screen and (min-width: 550px) {
+    .main-game h2:nth-of-type(1) {
+        font-size: 3rem;
+    }
 }

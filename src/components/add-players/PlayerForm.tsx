@@ -29,7 +29,7 @@ export default function PlayerForm() {
             if (inputValue.trim().length === 0) {
                 setErrorMsg('Valid names must have at least 1 character')
             } else if (playerArr.length === 5) {
-                setErrorMsg('There can only be 5 players at a time')
+                setErrorMsg('Only 5 players can join')
             } else {
                 setErrorMsg(`There is already a player named ${inputValue}. Try adding a distinguishing feature like a last name`)
             }

@@ -35,9 +35,11 @@
     /* padding-top: 3rem; */
 }
 .player-table svg {
-    height: 5rem;
-    
+    height: 3rem;
+    width: 3rem;   
 }
+
+
 .player-table .icon-wrapper {
     position: absolute;
     display: flex;
@@ -45,16 +47,12 @@
     top: 0;
 }
 .player-table .game-btn {
-    padding: .2rem .5rem;
+    padding: .2rem .3rem;
+    font-size: .8rem;
 
 }
 
-@media screen and (min-width: 768px) {
-    .player-table .game-btn {
-        padding: .5rem 1.5rem;
 
-    }
-}
 
 .icon-wrapper .icon-container {
     position: relative;
@@ -68,22 +66,14 @@
 }
 .draw-cards-icon {
     position: absolute;
-    bottom: -1rem;
+    bottom: -.5rem;
     right: -.5rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-.plus-icon svg {
-    width: 20px;
-    height: 20px;
-}
-.plus-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+
 /* .double-btn {
     position: relative;
     right: 4rem;
@@ -98,7 +88,10 @@
     align-items: center;
 }
 .end-turn-modal h2 {
-    font-size: 2rem;
+    font-size: 1.5rem;
+}
+.end-turn-modal h3 {
+    font-size: 1rem;
 }
 .end-turn-stats {
     display: flex;
@@ -125,4 +118,32 @@
 }
 .current-options button {
     margin: .2rem;
+}
+
+@media screen and (min-width: 550px) {
+    .player-table .game-btn {
+        padding: .5rem 1rem;
+        font-size: .8rem;
+    }
+    .end-turn-modal h2 {
+        font-size: 2rem;
+    }
+    .end-turn-modal h3 {
+        font-size: 1.5rem;
+    }
+    .player-table svg {
+        height: 5rem;
+        width: 5rem;   
+    }
+    .draw-cards-icon {
+        bottom: -1rem;
+        right: -.5rem;
+    }
+}
+@media screen and (min-width: 768px) {
+    .player-table .game-btn {
+        padding: .5rem 1.5rem;
+        font-size: 1rem;
+    }
+    
 }

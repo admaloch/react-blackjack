@@ -11,6 +11,12 @@
     margin-left: .5rem;
 }
 .header-btn-container h2 {
-    font-size: 2rem;
+    font-size: 1.4rem;
     color: var(--active-text);
+}
+
+@media screen and (min-width: 550px) {
+    .header-btn-container h2 {
+        font-size: 2rem;
+    }
 }

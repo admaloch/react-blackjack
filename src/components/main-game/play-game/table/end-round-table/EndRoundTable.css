@@ -72,22 +72,14 @@ overflow-x: auto;
 
 .player-results-table p {
     line-height: 10px;
-    font-size: .8rem;
+    font-size: .6rem;
     white-space: no-wrap;
     text-align: start;
 }
 
-@media screen and (min-width: 768px) {
-    .player-results-table p {
-        line-height: 14px;
-        font-size: 1rem;
-    }
-}
 
-.player-table svg {
-    width: 5rem;
-    height: 5rem;
-}
+
+
 
 .curr-player-hand {
     display: flex;
@@ -103,7 +95,7 @@ overflow-x: auto;
 }
 
 .curr-player-hand img {
-    max-width: 30px;
+    max-width: 50px;
 }
 
 .insurance-msg {
@@ -127,17 +119,18 @@ overflow-x: auto;
     margin-left: .4rem;
 }
 
-@media screen and (min-width: 500px) {
-    .curr-player-hand img {
-        max-width: 45px;
-    }
-}
+
 
 @media screen and (min-width: 768px) {
     .curr-player-hand img {
         max-width: 60px;
     }
+    .player-results-table p {
+        line-height: 14px;
+        font-size: 1rem;
+    }
 }
+
 
 @media screen and (min-width: 992px) {
     .curr-player-hand img {

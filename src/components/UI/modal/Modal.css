@@ -32,9 +32,11 @@
   opacity: 0;
   transition: 0.5s all;
   border: black solid 1px;
-  padding: 3rem;
+  padding: 2rem 1rem;
   border-radius: 5px;
   background-color: var(--modal-color);
+  width: 95%;
+  max-width: 500px;
 }
 .modal-container .game-btn {
   color: var(--background);
@@ -52,4 +54,10 @@
 .modal-close-icon:hover {
   opacity: .6;
   cursor: pointer;
+}
+
+@media screen and (min-width: 550px) {
+  .modal-container {
+    padding: 3rem 3rem;
+  }
 }

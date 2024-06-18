@@ -48,13 +48,13 @@ body {
 
 
 .game-btn {
-    padding: .5rem 1.5rem;
+    padding: .3rem 1rem;
     color: var(--text);
     border: var(--text) solid 2px;
     background-color: var(--283618);
     cursor: pointer;
     transition: .15s ease-in-out all;
-    font-size: 1rem;
+    font-size: .7rem;
     border-radius: 5px;
 }
 
@@ -110,4 +110,11 @@ body {
 
 .obscure-item {
     opacity: .5;
+}
+
+@media screen and (min-width:550px) {
+    .game-btn {
+        padding: .5rem 1.5rem;
+        font-size: 1rem;
+    }
 }

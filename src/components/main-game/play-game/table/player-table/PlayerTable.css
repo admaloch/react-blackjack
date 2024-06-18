@@ -1,19 +1,21 @@
 .player-info {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: start;
     /* border: red solid 1px; */
     position: absolute;
     left: 0;
-    top: 0;
+    bottom: 0;
     padding: .2rem .5rem;
+ 
 }
+
+
 
 .main-player-hand {
     width: 100%;
     height: 100%;
-   margin-top: 4rem;
+    margin-top: 4rem;
 }
 
 .player-table h5,
@@ -22,13 +24,18 @@
 }
 
 .player-info h5 {
-    font-size: .9rem;
+    font-size: .7rem;
+    line-height: 12px;
 }
+
+
+
 .player-header {
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 .player-header h2 {
     font-size: 1.6rem;
     transition: all .25s ease-in-out;
@@ -48,18 +55,38 @@
     align-items: center;
     flex-direction: column;
 }
+
 .split-card-preview img {
-width: 50px;
+    width: 50px;
 }
+
 .player-table .exit-table-icon {
     position: absolute;
     bottom: -1rem;
     left: .5rem;
+    display: none;
 }
+
+
+
 .player-table .exit-table-icon svg {
     width: 40px;
 }
 
 .player-hand-results .playing-card {
-margin: 0 0px;
+    margin: 0 0px;
+}
+
+@media screen and (min-width:550px) {
+    .player-info {
+        top: 0;
+        padding: .2rem .5rem;
+    }
+    .player-info h5 {
+        font-size: .9rem;
+        line-height: 14px;
+    }
+    .player-table .exit-table-icon {
+        display: block;
+    }
 }
