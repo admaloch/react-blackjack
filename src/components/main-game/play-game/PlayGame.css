@@ -35,8 +35,8 @@
     /* padding-top: 3rem; */
 }
 .player-table svg {
-    height: 3rem;
-    width: 3rem;   
+    height: 4.3rem;
+    width: 4.3rem;   
 }
 
 
@@ -46,11 +46,7 @@
     right: 0;
     top: 0;
 }
-.player-table .game-btn {
-    padding: .2rem .3rem;
-    font-size: .8rem;
 
-}
 
 
 

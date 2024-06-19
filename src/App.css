@@ -48,13 +48,13 @@ body {
 
 
 .game-btn {
-    padding: .3rem 1rem;
+    padding: .4rem 1rem;
     color: var(--text);
     border: var(--text) solid 2px;
     background-color: var(--283618);
     cursor: pointer;
     transition: .15s ease-in-out all;
-    font-size: .7rem;
+    font-size: .8rem;
     border-radius: 5px;
 }
 

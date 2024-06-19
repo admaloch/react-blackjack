@@ -3,8 +3,8 @@
 }
 
 .full-deck-image {
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
     fill: white;
     position: absolute;
     top: 0;
@@ -80,7 +80,7 @@
     position: absolute;
     /* left: 15%; */
     bottom: 1%;
-    font-size: 1.6rem;
+    font-size: 1.2rem;
     width: 100%;
     color: var(--active-text);
     width: 100%;
@@ -116,11 +116,10 @@
     }
 }
 
-@media screen and (min-width: 992px) {
-    .dealer-status {
-       
-        font-size: 1.6rem;
 
+@media screen and (min-width: 550px) {
+    .dealer-status {
+        font-size: 1.6rem;
     }
 }
 

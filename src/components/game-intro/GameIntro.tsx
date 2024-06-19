@@ -9,6 +9,7 @@ export default function GameIntro() {
 
   const clickHandler = () => {
     dispatch(startAddPlayers())
+
   }
 
   return (
@@ -17,7 +18,7 @@ export default function GameIntro() {
         <h1>Welcome to the Blackjack Table</h1>
         <NavLink to="/addPlayers">
           <button className="game-btn" onClick={clickHandler}>
-            Start Game
+            Add Players
           </button>
         </NavLink>
       </Wrapper>

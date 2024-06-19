@@ -37,9 +37,9 @@
 }
 
 .player-header h2 {
-    font-size: 1.6rem;
+    font-size: 1.3rem;
     transition: all .25s ease-in-out;
-    margin-bottom: .4rem;
+    /* margin-bottom: .4rem; */
 }
 
 .player-hand-results h3 {
@@ -82,6 +82,11 @@
         top: 0;
         padding: .2rem .5rem;
     }
+
+.player-header h2 {
+    font-size: 1.6rem;
+    margin-bottom: .4rem;
+}
     .player-info h5 {
         font-size: .9rem;
         line-height: 14px;

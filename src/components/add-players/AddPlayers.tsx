@@ -14,6 +14,11 @@ export default function AddPlayers() {
     const dispatch = useDispatch();
     const playerDataArr = useSelector((state: RootState) => state.playersArr);
 
+    const startbetRoundBtn = () =>{
+        fullscreenElement.requestFullscreen();
+
+    }
+
     return (
         <BGSection bgClass="card-image">
 
