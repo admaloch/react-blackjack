@@ -12,8 +12,8 @@ export default function FinalPlayerStats({ player }: FinalPlayerStatsProps) {
     const winOrLoseClass = bank > 1000 ? "win-color" : "lose-color"
 
     const finalBankStr = bank > 1000
-        ? <span>Total amount won: <span className='win-color'>${bank - 1000}</span> </span>
-        : <span>Total amount lost: <span className='lose-color'>${1000 - bank}</span> </span>;
+        ? <span>Amount won: <span className='win-color'>${bank - 1000}</span> </span>
+        : <span>Amount lost: <span className='lose-color'>${1000 - bank}</span> </span>;
     return (
         <li>
             <h5 className={winOrLoseClass}>{name} {winOrLoseStr} </h5>

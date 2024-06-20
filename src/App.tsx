@@ -11,6 +11,9 @@ import PlayerBets from './components/main-game/player-bets/PlayerBets'
 import PlayGame from './components/main-game/play-game/PlayGame'
 import FinalResults from './components/final-results/FinalResults'
 import { useEffect } from 'react'
+import { useSelector } from 'react-redux';
+import { RootState } from './store/store'
+
 
 
 function App() {
@@ -23,6 +26,13 @@ function App() {
       return;
     }
   }, []);
+
+
+    const gameData = useSelector((state: RootState) => state.gameData);
+
+useEffect(()=>{
+  console.log(gameData)
+})
 
   return (
     <>

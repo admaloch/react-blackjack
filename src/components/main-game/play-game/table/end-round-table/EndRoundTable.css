@@ -95,7 +95,7 @@ overflow-x: auto;
 }
 
 .curr-player-hand img {
-    max-width: 50px;
+    max-width: 70px;
 }
 
 .insurance-msg {
@@ -123,7 +123,7 @@ overflow-x: auto;
 
 @media screen and (min-width: 768px) {
     .curr-player-hand img {
-        max-width: 60px;
+        max-width: 80px;
     }
     .player-results-table p {
         line-height: 14px;

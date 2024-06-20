@@ -36,18 +36,10 @@
     opacity: .2;
 }
 
-.table-image::before {
-    background-image: url('../../../assets/table-image.jpg');
-    opacity: .2;
-}
-
 .bright-lights::before {
     background-image: url('../../../assets/bright-lights.jpg');
     opacity: .3;
 }
 
-.casino-image::before {
-    background-image: url('../../../assets/casino.jpg');
-    opacity: .2;
-}
+
 

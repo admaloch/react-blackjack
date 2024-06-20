@@ -4,7 +4,7 @@
     max-width: 1200px;
     display: flex;
     justify-content: center;
-background-color: var(--background);
+    background-color: var(--background);
 }
 
 .menu-container {
@@ -13,7 +13,7 @@ background-color: var(--background);
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    /* padding: .5rem 5rem 0 5rem; */
+    padding-top: .7rem;
 }
 
 .menu-icons {
@@ -42,9 +42,14 @@ background-color: var(--background);
 }
 
 @media screen and (min-width: 550px) {
+
     .game-menu h2,
-.game-menu h3 {
-    letter-spacing: 3px;
-    font-size: 2.2rem;
-}
+    .game-menu h3 {
+        letter-spacing: 3px;
+        font-size: 2.8rem;
+    }
+
+    .game-menu svg {
+        font-size: 3rem;
+    }
 }

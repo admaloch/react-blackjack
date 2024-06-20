@@ -30,7 +30,7 @@ export default function ExitTablePlayerInfo({ playerWhoLeft, playerIndex }: Exit
             }
             <h3>{playerWhoLeft.name} left the table</h3>
             <ul>
-                <li>Current bank: ${playerWhoLeft.bank}</li>
+                <li>Bank: ${playerWhoLeft.bank}</li>
                 <li>Rounds won: {playerWhoLeft.roundsWon}</li>
             </ul>
         </>

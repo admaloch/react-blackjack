@@ -25,16 +25,18 @@
 }
 
 .rounds-played {
-    font-size: 1.3rem;
+    font-size: 1.7rem;
     margin-bottom: 0;
 }
 
 .dealer-hand h3 {
     font-size: 1.2rem;
     margin-bottom: .1rem;
-    margin-top: 0rem;
+    margin-top: 1.5rem;
     line-height: 30px;
 }
+
+
 
 .dealer-hand p {
     font-size: 1.1rem;
@@ -78,8 +80,7 @@
     display: flex;
     flex-direction: column;
     position: absolute;
-    /* left: 15%; */
-    bottom: 1%;
+    bottom: -16%;
     font-size: 1.2rem;
     width: 100%;
     color: var(--active-text);
@@ -99,27 +100,34 @@
     }
 
     .rounds-played {
-        font-size: 1.8rem;
+        font-size: 2rem;
         margin-bottom: 0;
     }
 
     .dealer-hand h3 {
         font-size: 1.8rem;
         margin-bottom: .7rem;
-        margin-top: .5rem;
+        margin-top: 2;
         line-height: 30px;
     }
 
     .dealer-hand p {
-
         bottom: .5rem;
+    }
+    .dealer-status {
+        font-size: 1.8rem;
     }
 }
 
 
-@media screen and (min-width: 550px) {
+
+@media screen and (min-width: 1000px) {
     .dealer-status {
-        font-size: 1.6rem;
+        font-size: 1.8rem;
+        bottom: -15%;
+    }
+    .dealer-hand h3 {
+        margin-top: .5rem;
     }
 }
 

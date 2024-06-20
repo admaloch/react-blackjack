@@ -4,13 +4,11 @@ import './TableHeader.css'
 import NextRoundBtn from '../final-results/NextRoundBtn';
 export default function TableHeader() {
 
-    const { isMainResultsActive, isSplitResultsActive, isRoundActive, isInsuranceRoundComplete, isDealerCardRevealed } = useSelector((state: RootState) => state.gameData);
+    const { isMainResultsActive, isSplitResultsActive, isRoundActive } = useSelector((state: RootState) => state.gameData);
 
     let currText = ''
 
-    if (!isInsuranceRoundComplete && isDealerCardRevealed) {
-        currText = 'Insurance results...'
-    } else if (isSplitResultsActive) {
+    if (isSplitResultsActive) {
         currText = 'Split hand results...'
     } else if (isMainResultsActive) {
         currText = 'Main hand results...'

@@ -3,7 +3,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 90%;
+    max-width: 67%;
     margin: 0 auto;
 
 }
@@ -21,7 +21,7 @@
 .playing-card {
     flex: 1 1 auto;
     /* Allow the flex items to grow and shrink */
-    max-width: 100px;
+    max-width: 150px;
     /* Maximum width for each card */
     margin: 0 5px;
     /* Margin between cards */
@@ -29,18 +29,16 @@
     /* Smooth transformation */
 }
 
-@media screen and (min-width: 550px) {
+/* @media screen and (min-width: 400px) {
     .playing-card {
-        flex: 1 1 auto;
-        /* Allow the flex items to grow and shrink */
         max-width: 140px;
-        /* Maximum width for each card */
-        margin: 0 5px;
-        /* Margin between cards */
-        transition: transform 0.3s ease;
-        /* Smooth transformation */
     }
 }
+@media screen and (min-width: 550px) {
+    .playing-card {
+        max-width: 140px;
+    }
+} */
 
 
 
@@ -69,6 +67,7 @@
         transform: translateY(0) translateX(0) scale(1) rotate(360deg);
     }
 }
+
 @keyframes animateDealerCard {
     from {
         opacity: 0;
@@ -87,22 +86,30 @@
             opacity: 0;
             transform: translateY(-1000px) translateX(+1200px) scale(0) rotate(0deg);
         }
+
         to {
             opacity: 1;
             transform: translateY(0) translateX(0) scale(1) rotate(360deg);
         }
-        
+
     }
+
     @keyframes animateDealerCard {
         from {
             opacity: 0;
             transform: translateY(-500px) translateX(+1000px) scale(0) rotate(0deg);
         }
+
         to {
             opacity: 1;
             transform: translateY(0) translateX(0) scale(1) rotate(360deg);
         }
-        
+
+    }
+
+    .dealer-cards,
+    .player-cards {
+        max-width: 90%;
     }
 }
 
@@ -112,22 +119,24 @@
             opacity: 0;
             transform: translateY(-1000px) translateX(+1000px) scale(0) rotate(0deg);
         }
+
         to {
             opacity: 1;
             transform: translateY(0) translateX(0) scale(1) rotate(360deg);
         }
-        
+
     }
+
     @keyframes animateDealerCard {
         from {
             opacity: 0;
             transform: translateY(-500px) translateX(+1300px) scale(0) rotate(0deg);
         }
+
         to {
             opacity: 1;
             transform: translateY(0) translateX(0) scale(1) rotate(360deg);
         }
-        
+
     }
 }
-

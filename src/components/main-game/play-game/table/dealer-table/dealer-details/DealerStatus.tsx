@@ -40,7 +40,7 @@ export default function DealerStatus({ showDealerData, updateIsInsuranceEval }: 
     let dealerStatusText = ''
     if (!isInsuranceRoundComplete && showDealerData.isInsuranceEval) {
         dealerStatusText = 'Checking insurance bets...'
-    } else if (isInsuranceRoundComplete && isDealerRoundActive && isDealerCardRevealed && !showDealerData.isBlackjack && dealerSum < 21) {
+    } else if (isInsuranceRoundComplete && isDealerRoundActive && isDealerCardRevealed && !showDealerData.isBlackjack && dealerSum < 16) {
         dealerStatusText = 'Dealer drawing cards...'
     } else {
         dealerStatusText = ''

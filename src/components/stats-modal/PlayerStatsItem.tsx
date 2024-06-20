@@ -21,7 +21,7 @@ export default function PlayerStatsItem({ player, closeStatsModal }: PlayerStats
                     closeStatsModal={closeStatsModal}
                 />
             }
-            {name}: Current Bank: {`$${bank}`}: Total Rounds Won: {roundsWon}
+            {name}: Bank: {`$${bank}`}: Rounds Won: {roundsWon}
         </li>
     )
 }

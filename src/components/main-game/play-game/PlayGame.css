@@ -115,7 +115,10 @@
 .current-options button {
     margin: .2rem;
 }
-
+.player-table .game-btn {
+    padding: .2rem .5rem;
+    font-size: .8rem;
+}
 @media screen and (min-width: 550px) {
     .player-table .game-btn {
         padding: .5rem 1rem;
