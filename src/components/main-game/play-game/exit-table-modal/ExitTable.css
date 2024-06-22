@@ -22,17 +22,18 @@
     font-size: 1rem;
     font-style: italic;
     list-style: none;
+    text-align: center;
 }
 
 @media screen and (min-width: 550px) {
     .exit-table-modal h3 {
-        font-size: 1.8rem;
+        font-size: 1.4rem;
     }
     .exit-table-modal p {
-        font-size: 1rem;
+        font-size: .8rem;
     }
     .exit-table-modal li {
-        font-size: 1.3rem;
+        font-size: 1rem;
         font-style: italic;
     }
 }

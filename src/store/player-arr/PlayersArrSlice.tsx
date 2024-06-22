@@ -12,67 +12,6 @@ interface TokenClickProps {
     number: number;
 }
 
-// const initialState: PlayerInterface[] = [
-//         {
-//             "name": "James",
-//             "hand": {
-//                 "cards": [
-//                     "3♥",
-//                     "3♠",
-                  
-    
-//                 ],
-//                 "cardUrlVals": [
-//                     "3H",
-//                     "3S",
-                  
-    
-//                 ],
-//                 "cardNumVals": [
-//                     3,
-//                     3,
-                   
-    
-//                 ],
-//                 "cardSum": 6,
-//                 "isBlackjack": false,
-//             },
-//             "splitHand": {
-//                 "cards": [],
-//                 "cardUrlVals": [],
-//                 "cardNumVals": [],
-//                 "cardSum": 0,
-//                 "isBlackjack": false,
-//             },
-//             "bank": 900,
-//             "beginningRoundBank": 1000,
-//             "currBet": 100,
-//             "minBet": 100,
-//             "insuranceBet": 0,
-//             "wonInsuranceRound": false,
-//             "splitBet": 0,
-//             "isPlayerSplit": false,
-//             "isDoubleDown": false,
-//             "playerLeftTable": false,
-//             "roundResults": {
-//                 "mainResults": "",
-//                 "splitResults": "",
-//                 "isComplete": false,
-//             },
-//             "currTokens": [
-//                 1,
-//                 5,
-//                 25,
-//                 50,
-//                 100,
-//                 500
-//             ],
-//             "roundsWon": 0
-//         },
-        
-    
-//     ]
-
 const initialState: PlayerInterface[] = []
 
 interface PlayerNameProps {

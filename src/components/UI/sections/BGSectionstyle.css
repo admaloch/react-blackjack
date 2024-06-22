@@ -27,18 +27,18 @@
 }
 
 .token-image::before {
-    background-image: url('../../../assets/token-image.jpg');
+    background-image: url('https://images.unsplash.com/photo-1542145177-4dc9b8029711?q=80&w=1771&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
     opacity: .2;
 }
 
 .card-image::before {
-    background-image: url('../../../assets/card-image.jpg');
+    background-image: url('https://images.unsplash.com/photo-1541278107931-e006523892df?q=80&w=1771&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
     opacity: .2;
 }
 
 .bright-lights::before {
-    background-image: url('../../../assets/bright-lights.jpg');
-    opacity: .3;
+    background-image: url('https://images.unsplash.com/photo-1514441615332-67834d513dea?q=80&w=1769&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    opacity: .05;
 }
 
 

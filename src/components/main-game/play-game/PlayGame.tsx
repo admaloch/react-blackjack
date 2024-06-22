@@ -4,7 +4,6 @@ import { RootState } from '../../../store/store';
 import { useCallback, useState } from 'react';
 import EndOfTurnResults from './end-of-turn-modal/EndOfTurnResults';
 import { useDispatch } from "react-redux";
-import ExitTable from './exit-table-modal/ExitTable';
 import MainTable from './table/MainTable';
 import { makeDoubleDownFalse } from '../../../store/player-arr/PlayersArrSlice';
 import BGSection from '../../UI/sections/BGSection';
@@ -40,11 +39,7 @@ export default function PlayGame() {
                     makeCurrPlayerFinished={makeCurrPlayerFinished}
                 />
             }
-            {playersArr.length !== 0 &&
-                <ExitTable
-                    playerIndex={currPlayerIndex}
-                />
-            }
+            
         </BGSection>
     );
 }

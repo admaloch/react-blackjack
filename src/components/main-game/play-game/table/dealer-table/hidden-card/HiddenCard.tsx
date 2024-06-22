@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import backOfCardImg from '../../../../../../assets/card-images/BACK.png'
+// import backOfCardImg from '../../../../../../assets/card-images/BACK.png'
 import { RootState } from '../../../../../../store/store';
 import { useEffect } from 'react';
 import { delay } from '../../../../../../utils/Utility';
@@ -10,6 +10,8 @@ import './HiddenCard.css'
 export default function HiddenCard() {
     const dispatch = useDispatch()
     const {  isDealerCardRevealed, isDealerRoundActive } = useSelector((state: RootState) => state.gameData);
+
+    const backOfCardImg = 'https://deckofcardsapi.com/static/img/back.png'
 
     useEffect(() => {
         let isMounted = true
@@ -33,6 +35,5 @@ export default function HiddenCard() {
             alt="Back of Card"
         />
         </div>
-       
     );
 }

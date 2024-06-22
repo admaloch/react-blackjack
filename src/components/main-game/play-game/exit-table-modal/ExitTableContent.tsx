@@ -32,7 +32,6 @@ export default function ExitTableContent({ player, closeModal }: ExitTableConten
             if (currPlayerName === lastPlayerName &&
                 isPlayerRoundActive
             ) {
-                console.log('begin dealer ran')
                 dispatch(beginDealerRound())
             }
         } else {

@@ -6,25 +6,6 @@ interface DealerState {
     hand: Hand;
 }
 
-// const initialState: DealerObjInterface = {
-//     name: 'Dealer',
-//     "hand": {
-//         "cards": [
-//             "2♥",
-//             "A♠"
-//         ],
-//         "cardUrlVals": [
-//             "2H",
-//             "AS"
-//         ],
-//         "cardNumVals": [
-//             2,
-//             11,
-//         ],
-//         "cardSum": 13,
-//         "isBlackjack": false,
-//     },
-// }
 const initialState: DealerObjInterface = {
     name: 'Dealer',
     "hand": {

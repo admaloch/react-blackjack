@@ -47,7 +47,6 @@ export default function PlayerHandResults({ player }: PlayerProps) {
     }, [updatePlayerClass])
 
     useEffect(() => {
-        if (!isRoundActive) return
         let isMounted = true;
         async function winOrLoseEmphasis() {
             if (isMounted) {

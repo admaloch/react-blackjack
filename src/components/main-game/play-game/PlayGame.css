@@ -87,7 +87,7 @@
     font-size: 1.5rem;
 }
 .end-turn-modal h3 {
-    font-size: 1rem;
+    font-size: .8rem;
 }
 .end-turn-stats {
     display: flex;
@@ -128,7 +128,7 @@
         font-size: 2rem;
     }
     .end-turn-modal h3 {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
     }
     .player-table svg {
         height: 5rem;

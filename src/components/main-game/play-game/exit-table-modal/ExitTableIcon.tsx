@@ -2,6 +2,7 @@ import { ExitTableIconWithPopper } from '../../../UI/icons/ExitTableIconWithPopp
 import { PlayerInterfaceProps } from '../../../../models/PlayerProps';
 import { useState } from 'react';
 import ExitTableModal from './ExitTableModal';
+import './ExitTable.css'
 
 export default function ExitTableIcon({ player }: PlayerInterfaceProps) {
 
