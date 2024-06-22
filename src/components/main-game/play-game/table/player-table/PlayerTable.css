@@ -69,6 +69,7 @@
     bottom: -1rem;
     left: .5rem;
     display: none;
+    z-index: 5;
 }
 
 
