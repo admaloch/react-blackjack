@@ -27,7 +27,7 @@ export default function PlayerHandResults({ player }: PlayerProps) {
         setPlayerClass(str);
     }, [setPlayerClass]);
 
-    const { isSplitResultsActive, isInsuranceRoundComplete, isDealerCardRevealed, isDealerDrawing, isMainResultsActive } = useSelector(
+    const { isSplitResultsActive, isInsuranceRoundComplete, isDealerCardRevealed, isDealerDrawing, isMainResultsActive, isRoundActive } = useSelector(
         (state: RootState) => state.gameData
     );
 
@@ -47,6 +47,7 @@ export default function PlayerHandResults({ player }: PlayerProps) {
     }, [updatePlayerClass])
 
     useEffect(() => {
+        if (!isRoundActive) return
         let isMounted = true;
         async function winOrLoseEmphasis() {
             if (isMounted) {
@@ -93,7 +94,7 @@ export default function PlayerHandResults({ player }: PlayerProps) {
         }
         winOrLoseEmphasis();
         return () => { isMounted = false; };
-    }, [dealerSum, isDealerCardRevealed, isDealerDrawing, isInsuranceRoundComplete, isMainResultsActive, isSplitResultsActive, mainResults, player.insuranceBet, player.splitHand.cards.length, splitResults, updatePlayerClass, winOrLoseEmphasisFunc, wonInsuranceRound]);
+    }, [dealerSum, isDealerCardRevealed, isDealerDrawing, isInsuranceRoundComplete, isMainResultsActive, isRoundActive, isSplitResultsActive, mainResults, player.insuranceBet, player.splitHand.cards.length, splitResults, updatePlayerClass, winOrLoseEmphasisFunc, wonInsuranceRound]);
 
     return (
         <div className={playerClass}>
@@ -117,7 +118,9 @@ export default function PlayerHandResults({ player }: PlayerProps) {
             }
             <Insurance player={player} />
             <EarningsOrLosses player={player} />
-            <ExitTableIcon player={player} />
+            {!isRoundActive &&
+                <ExitTableIcon player={player} />
+            }
 
         </div>
     );

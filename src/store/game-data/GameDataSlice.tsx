@@ -5,7 +5,7 @@ const deckSlice = createSlice({
   name: 'game-data',
   initialState: initialGameState,
   reducers: {
-    resetGame: () =>  initialGameState,
+    resetGame: () => initialGameState,
     revealDealerCard: (state) => { state.isDealerCardRevealed = true },
     beginDealerDrawing: (state) => { state.isDealerDrawing = true },
     endFullRound: (state) => { state.isRoundActive = false },
@@ -14,7 +14,7 @@ const deckSlice = createSlice({
     endMainHandResults: (state) => { state.isMainResultsActive = false },
     beginSplitRound: (state) => { state.isSplitResultsActive = true },
     startBetRound: (state) => {
-      
+
       return { ...state, isAddPlayersRound: false, isBetRoundActive: true, }
     },
     startAddPlayers: (state) => {

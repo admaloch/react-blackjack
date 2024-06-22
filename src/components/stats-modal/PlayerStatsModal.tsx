@@ -28,7 +28,6 @@ export default function PlayerStatsModal({ closeModal, open }: PlayerStatsProps)
                         <PlayerStatsItem
                             key={player.name}
                             player={player}
-                            closeStatsModal={closeModal}
                         />
                     ))}
                 </ul>

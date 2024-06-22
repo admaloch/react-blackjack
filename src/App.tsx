@@ -40,10 +40,10 @@ function App() {
 //   console.log(gameData)
 // })
 
-useEffect(() => {
-  console.log('playersArr', playersArr)
-  console.log('inactivePlayers', inactivePlayers)
-}, [playersArr, inactivePlayers])
+// useEffect(() => {
+//   console.log('playersArr', playersArr)
+//   console.log('inactivePlayers', inactivePlayers)
+// }, [playersArr, inactivePlayers])
 
   return (
     <>

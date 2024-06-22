@@ -36,6 +36,7 @@ export default function ResultsModal({ playerIndex, isCurrPlayerFinished, makeCu
                 makeCurrPlayerNotFinished()
             } else {
                 playersHaveSplit && dispatch(reverseAllSplitHands())
+                console.log('begin dealer round just ran')
                 dispatch(beginDealerRound())
             }
         }

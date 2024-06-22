@@ -17,20 +17,22 @@ interface ExitTableContentProps {
 }
 
 export default function ExitTableContent({ player, closeModal }: ExitTableContentProps) {
-    
+
     const playersArr = useSelector((state: RootState) => state.playersArr);
-    
+   const isPlayerRoundActive = useSelector((state: RootState) => state.gameData.isPlayerRoundActive);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const exitTableModalBtnHandler =  () => {
+    const exitTableModalBtnHandler = () => {
         const currPlayerName = player.name
         const lastPlayerName = playersArr[playersArr.length - 1].name
         dispatch(removePlayer({ name: player.name }))
         dispatch(addInactivePlayer({ ...player }))
         if (playersArr.length > 1) {
-            if (currPlayerName === lastPlayerName
-                && currPlayerName === player.name) {
+            if (currPlayerName === lastPlayerName &&
+                isPlayerRoundActive
+            ) {
+                console.log('begin dealer ran')
                 dispatch(beginDealerRound())
             }
         } else {
