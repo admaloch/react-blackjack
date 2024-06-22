@@ -19,7 +19,7 @@ export default function ExitTableContent({ playerIndex, playerWhoLeft, closeModa
         }
     };
 
-    if (!playerWhoLeft) return;
+    // if (!playerWhoLeft) return;
     return (
         <>
             <div className="exit-table-modal">

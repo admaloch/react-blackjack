@@ -10,9 +10,19 @@ interface ExitTablePlayerInfoProps {
 export default function ExitTableStatus({ playerWhoLeft, playerIndex }: ExitTablePlayerInfoProps) {
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const isPlayerRoundActive = useSelector((state: RootState) => state.gameData.isPlayerRoundActive);
-    const currPlayerName = playersArr[playerIndex].name
-    const lastPlayerName = playersArr[playersArr.length - 1].name
+
+
+
+    let currPlayerName = ''
+    let lastPlayerName = ''
     let statusText: string = ''
+
+    if (playersArr.length) {
+         currPlayerName = playersArr[playerIndex].name
+         lastPlayerName = playersArr[playersArr.length - 1].name
+         statusText = ''
+    }
+
     if (playersArr.length > 1) {
         if (isPlayerRoundActive) {
             if (currPlayerName === lastPlayerName

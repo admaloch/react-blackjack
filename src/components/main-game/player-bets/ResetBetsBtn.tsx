@@ -14,7 +14,6 @@ export default function ResetBetsBtn({ currPlayerIndex }: ResetBetsBtnProps) {
 
     useEffect(() => {
         if (isBetRoundActive) {
-            console.log('bet reset')
             dispatch(updateTokens({ index: currPlayerIndex, type: 'reset-tokens' }))
         }
     }, [isBetRoundActive, currPlayerIndex, dispatch])

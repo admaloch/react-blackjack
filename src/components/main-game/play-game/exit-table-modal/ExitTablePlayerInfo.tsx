@@ -9,9 +9,17 @@ interface ExitTablePlayerInfoProps {
 
 export default function ExitTablePlayerInfo({ playerWhoLeft, playerIndex }: ExitTablePlayerInfoProps) {
     const playersArr = useSelector((state: RootState) => state.playersArr);
-    const currPlayerName = playersArr[playerIndex].name
-    const lastPlayerName = playersArr[playersArr.length - 1].name
+    
+    let currPlayerName = ''
+    let lastPlayerName = ''
     let statusText: string = ''
+
+    if (playersArr.length) {
+         currPlayerName = playersArr[playerIndex].name
+         lastPlayerName = playersArr[playersArr.length - 1].name
+         statusText = ''
+    }
+
 
     if (playersArr.length > 1) {
         if (currPlayerName === lastPlayerName

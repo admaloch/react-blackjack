@@ -50,7 +50,7 @@ const drawAndUpdateHand = (handInput: Hand, cardIndex: number, suitIndex: number
 const changeAceVal = (handInput: Hand) => {
     const handWithAlteredAceVals = { ...handInput };
     if (handWithAlteredAceVals.cardSum > 21) {
-        console.log('altered ace val func ran')
+        console.log('alter ace val func ran')
         while (handWithAlteredAceVals.cardSum > 21) {
             const lastIndex = handWithAlteredAceVals.cardNumVals.lastIndexOf(11);
             if (lastIndex === -1) break;

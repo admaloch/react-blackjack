@@ -11,12 +11,18 @@ import PlayerBets from './components/main-game/player-bets/PlayerBets'
 import PlayGame from './components/main-game/play-game/PlayGame'
 import FinalResults from './components/final-results/FinalResults'
 import { useEffect } from 'react'
-import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux'
 import { RootState } from './store/store'
+// import { useSelector } from 'react-redux';
+// import { RootState } from './store/store'
 
 
 
 function App() {
+
+  const playersArr = useSelector((state: RootState) => state.playersArr);
+  const inactivePlayers = useSelector((state: RootState) => state.inactivePlayers);
+
   const navigate = useNavigate();
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -28,11 +34,16 @@ function App() {
   }, []);
 
 
-    const gameData = useSelector((state: RootState) => state.gameData);
+//     const gameData = useSelector((state: RootState) => state.gameData);
 
-useEffect(()=>{
-  console.log(gameData)
-})
+// useEffect(()=>{
+//   console.log(gameData)
+// })
+
+useEffect(() => {
+  console.log('playersArr', playersArr)
+  console.log('inactivePlayers', inactivePlayers)
+}, [playersArr, inactivePlayers])
 
   return (
     <>

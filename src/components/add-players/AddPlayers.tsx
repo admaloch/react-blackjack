@@ -15,7 +15,6 @@ export default function AddPlayers() {
     const playerDataArr = useSelector((state: RootState) => state.playersArr);
 
     const startbetRoundBtn = () => {
-        console.log('this ran')
         dispatch(startBetRound())
         document.body.requestFullscreen();
     }
