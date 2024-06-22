@@ -9,6 +9,7 @@ import { RootState } from '../../../../../../store/store';
 import { delay } from '../../../../../../utils/Utility';
 import Insurance from '../insurance/Insurance';
 import EarningsOrLosses from './EarningsOrLosses';
+import ExitTableIcon from '../../../exit-table-modal/ExitTableIcon';
 
 export interface PlayerProps {
     player: PlayerInterface;
@@ -116,6 +117,8 @@ export default function PlayerHandResults({ player }: PlayerProps) {
             }
             <Insurance player={player} />
             <EarningsOrLosses player={player} />
+            <ExitTableIcon player={player} />
+
         </div>
     );
 }

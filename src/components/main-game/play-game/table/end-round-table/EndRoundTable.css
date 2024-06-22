@@ -21,6 +21,7 @@
 overflow-x: auto;
 }
 
+
 .player-hand {
     position: relative;
     display: flex;
@@ -117,6 +118,10 @@ overflow-x: auto;
 }
 .split-hand-icon {
     margin-left: .4rem;
+}
+
+.player-hand-results .exit-table-icon {
+    width: 20px;
 }
 
 

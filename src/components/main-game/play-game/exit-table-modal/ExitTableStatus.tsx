@@ -1,35 +1,23 @@
 import { useSelector } from 'react-redux';
-import { PlayerInterface } from '../../../../models/PlayerProps';
+import {  PlayerInterfaceProps } from '../../../../models/PlayerProps';
 import { RootState } from '../../../../store/store';
 
-interface ExitTablePlayerInfoProps {
-    playerWhoLeft: PlayerInterface;
-    playerIndex: number;
-}
 
-export default function ExitTableStatus({ playerWhoLeft, playerIndex }: ExitTablePlayerInfoProps) {
+
+export default function ExitTableStatus({ player }: PlayerInterfaceProps) {
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const isPlayerRoundActive = useSelector((state: RootState) => state.gameData.isPlayerRoundActive);
 
+    const currPlayerName = player.name
+    const lastPlayerName = playersArr[playersArr.length - 1].name
+    let statusText = ''
 
-
-    let currPlayerName = ''
-    let lastPlayerName = ''
-    let statusText: string = ''
-
-    if (playersArr.length) {
-         currPlayerName = playersArr[playerIndex].name
-         lastPlayerName = playersArr[playersArr.length - 1].name
-         statusText = ''
-    }
+    const playerIndex = playersArr.findIndex(player => player.name === currPlayerName)
 
     if (playersArr.length > 1) {
         if (isPlayerRoundActive) {
-            if (currPlayerName === lastPlayerName
-                && currPlayerName === playerWhoLeft.name) {
+            if (currPlayerName === lastPlayerName) {
                 statusText = 'Beginning dealer round...'
-            } else if (currPlayerName !== playerWhoLeft.name) {
-                statusText = `Continuing ${currPlayerName}'s turn...`
             } else {
                 const nextPlayerName = playersArr[playerIndex + 1].name
                 statusText = `Beginning ${nextPlayerName}'s turn...`

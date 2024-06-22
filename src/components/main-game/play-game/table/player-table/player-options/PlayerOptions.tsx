@@ -28,7 +28,7 @@ export default function PlayerOptions({ playerIndex, makeCurrPlayerFinished }: P
             </div>
             <Stand playerIndex={playerIndex} makeCurrPlayerFinished={makeCurrPlayerFinished} />
             <DrawCards playerIndex={playerIndex} />
-            <ExitTableIcon currPlayer={currPlayer} />
+            <ExitTableIcon player={currPlayer} />
         </>
     )
 }

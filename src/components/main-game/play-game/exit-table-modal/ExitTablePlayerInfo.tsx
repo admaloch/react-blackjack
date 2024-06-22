@@ -1,32 +1,20 @@
 import { useSelector } from 'react-redux';
-import { PlayerInterface } from '../../../../models/PlayerProps';
+import {  PlayerInterfaceProps } from '../../../../models/PlayerProps';
 import { RootState } from '../../../../store/store';
 
-interface ExitTablePlayerInfoProps {
-    playerWhoLeft: PlayerInterface;
-    playerIndex: number;
-}
 
-export default function ExitTablePlayerInfo({ playerWhoLeft, playerIndex }: ExitTablePlayerInfoProps) {
+
+export default function ExitTablePlayerInfo({ player }: PlayerInterfaceProps) {
     const playersArr = useSelector((state: RootState) => state.playersArr);
-    
-    let currPlayerName = ''
-    let lastPlayerName = ''
-    let statusText: string = ''
 
-    if (playersArr.length) {
-         currPlayerName = playersArr[playerIndex].name
-         lastPlayerName = playersArr[playersArr.length - 1].name
-         statusText = ''
-    }
-
+    const currPlayerName = player.name
+    const lastPlayerName = playersArr[playersArr.length - 1].name
+    let statusText = ''
 
     if (playersArr.length > 1) {
-        if (currPlayerName === lastPlayerName
-            && currPlayerName === playerWhoLeft.name) {
+        if (currPlayerName === lastPlayerName) {
             statusText = 'Player round complete'
         } else statusText = ''
-
     } else {
         statusText = 'Game Over'
     }
@@ -36,10 +24,10 @@ export default function ExitTablePlayerInfo({ playerWhoLeft, playerIndex }: Exit
             {statusText &&
                 <h2>{statusText}</h2>
             }
-            <h3>{playerWhoLeft.name} left the table</h3>
+            <h3>{player.name} left the table</h3>
             <ul>
-                <li>Bank: ${playerWhoLeft.bank}</li>
-                <li>Rounds won: {playerWhoLeft.roundsWon}</li>
+                <li>Bank: ${player.bank}</li>
+                <li>Rounds won: {player.roundsWon}</li>
             </ul>
         </>
     )

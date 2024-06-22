@@ -1,32 +1,27 @@
-import { useDispatch } from 'react-redux';
 import { ExitTableIconWithPopper } from '../../../UI/icons/ExitTableIconWithPopper'
-// import { delay } from '../../../../utils/Utility';
-import { updatePlayer } from '../../../../store/player-arr/PlayersArrSlice';
-import { PlayerInterface } from '../../../../models/PlayerProps';
+import { PlayerInterfaceProps } from '../../../../models/PlayerProps';
+import { useState } from 'react';
+import ExitTableModal from './ExitTableModal';
 
+export default function ExitTableIcon({ player }: PlayerInterfaceProps) {
 
-interface ExitTableIconProps {
-    currPlayer: PlayerInterface;
-    closeStatsModal?: () => void;
-}
-
-export default function ExitTableIcon({ currPlayer, closeStatsModal }: ExitTableIconProps) {
-
-
-    const dispatch = useDispatch();
-
-    const exitTableHandler = async () => {
-        closeStatsModal && closeStatsModal()
-        dispatch(updatePlayer({ ...currPlayer, playerLeftTable: true }))
-    }
-
-
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const closeModal = () => setIsModalOpen(false)
+    const openModal = () => setIsModalOpen(true)
 
     return (
-        <div
-            onClick={exitTableHandler}
-            className="exit-table-icon">
-            <ExitTableIconWithPopper placement="top" />
-        </div>
+        <>
+            <div
+                onClick={openModal}
+                className="exit-table-icon">
+                <ExitTableIconWithPopper placement="top" />
+            </div>
+            <ExitTableModal
+                player={player}
+                closeModal={closeModal}
+                isModalOpen={isModalOpen}
+            />
+        </>
+
     )
 }
