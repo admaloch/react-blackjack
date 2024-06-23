@@ -15,6 +15,7 @@
     margin-bottom: 0;
 }
 .shuffle-deck-modal p {
+    align-items: center;
     font-size: .7rem;
     font-style: italic;
 }

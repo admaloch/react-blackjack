@@ -66,16 +66,16 @@
 
 .player-table .exit-table-icon {
     position: absolute;
-    bottom: -1rem;
+    top: -.8rem;
     left: .5rem;
-    display: none;
+    /* display: none; */
     z-index: 5;
 }
 
 
 
 .player-table .exit-table-icon svg {
-    width: 40px;
+    width: 30px;
 }
 
 .player-hand-results .playing-card {
@@ -113,7 +113,12 @@
     }
 
     .player-table .exit-table-icon {
-        display: block;
+        top: auto;
+        bottom: -1.5rem;
+        left: .5rem;
+    }
+    .player-table .exit-table-icon svg {
+        width: 40px;
     }
 }
 
