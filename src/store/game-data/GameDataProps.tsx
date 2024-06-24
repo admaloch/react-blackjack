@@ -1,4 +1,4 @@
-interface GameDataProps {
+export interface GameDataProps {
   roundsPlayed: number;
   isGameActive: boolean;
   isGameIntro: boolean;

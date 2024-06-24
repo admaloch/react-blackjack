@@ -1,0 +1,11 @@
+.prev-game-modal h2 {
+ text-align: center;
+}
+.prev-game-modal .btn-container {
+display: flex;
+justify-content: center;
+margin-top: .5rem;
+}
+.prev-game-modal .btn-container button {
+    margin: 0 .2rem;
+}

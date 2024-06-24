@@ -22,6 +22,9 @@ const playerArrSlice = createSlice({
     name: 'playersArr',
     initialState,
     reducers: {
+        setPlayers: (_state, action: PayloadAction<PlayerInterface[]>) => {
+            return action.payload;
+        },
         addPlayer: (state, action: PayloadAction<PlayerInterface>) => {
             state.push(action.payload);
         },
@@ -276,6 +279,6 @@ const playerArrSlice = createSlice({
     },
 });
 
-export const { addPlayer, updatePlayer, removePlayer, resetPlayersArr, updateAllPlayers, removePlayers, reverseAllSplitHands, reverseCurrSplitHand, updatePlayerInsurance, updateHandResults, makeDoubleDownFalse, resetAfterInsuranceWin, updateWinOrLose, updateDoubleDownHand, splitPlayerHand, updateTokens, clickTokenUpdate } = playerArrSlice.actions;
+export const { setPlayers, addPlayer, updatePlayer, removePlayer, resetPlayersArr, updateAllPlayers, removePlayers, reverseAllSplitHands, reverseCurrSplitHand, updatePlayerInsurance, updateHandResults, makeDoubleDownFalse, resetAfterInsuranceWin, updateWinOrLose, updateDoubleDownHand, splitPlayerHand, updateTokens, clickTokenUpdate } = playerArrSlice.actions;
 
 export default playerArrSlice.reducer;

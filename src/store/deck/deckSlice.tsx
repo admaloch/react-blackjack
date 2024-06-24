@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import CardObjInterface from "../../models/CardProps";
 
-const initialState: CardObjInterface[] = [
+export const initialState: CardObjInterface[] = [
   { card: '2', value: 2, suits: [2, 2, 2, 2] },
   { card: '3', value: 3, suits: [2, 2, 2, 2] },
   { card: '4', value: 4, suits: [2, 2, 2, 2] },
@@ -27,9 +27,12 @@ const deckSlice = createSlice({
       state.push(...action.payload);
     },
     resetDeck: () => initialState,
+    setDeck: (_state, action: PayloadAction<CardObjInterface[]>) => {
+      return action.payload;
+    }
   },
 });
 
-export const { updateDeck, resetDeck } = deckSlice.actions
+export const {setDeck, updateDeck, resetDeck } = deckSlice.actions
 
 export default deckSlice.reducer

@@ -11,16 +11,42 @@ import PlayerBets from './components/main-game/player-bets/PlayerBets'
 import PlayGame from './components/main-game/play-game/PlayGame'
 import FinalResults from './components/final-results/FinalResults'
 import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from './store/store'
+import { fetchStoreData, sendStoreData } from './store/actions/storeActions'
+
+let isInitial = true
 
 function App() {
-  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+  // const navigate = useNavigate();
+
+  // // eslint-disable-next-line react-hooks/exhaustive-deps
+  // useEffect(() => {
+  //   if (location.pathname !== '/') {
+  //     navigate('/');
+  //     return;
+  //   }
+  // }, []);
+
+  const state = useSelector((state: RootState) => state);
+
 
   useEffect(() => {
-    if (location.pathname !== '/') {
-      navigate('/');
-      return;
-    }
-  }, []);
+    console.log(state)
+  }, [state])
+
+
+
+
+  // useEffect(() => {
+  //   if (isInitial) {
+  //     isInitial = false;
+  //     return;
+  //   }
+  //   dispatch(sendStoreData(store));
+  // }, [store, dispatch]);
 
   return (
     <>

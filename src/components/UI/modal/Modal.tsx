@@ -6,22 +6,24 @@ import './Modal.css';
 export interface ModalProps {
     closeModal: () => void;
     open: boolean;
-    isTimer: boolean;
+    isTimer?: boolean;
+    isCloseOnClick?: boolean;
 }
 
 export interface MainModalProps extends ModalProps {
     children: JSX.Element | null;
 }
 
-export default function Modal({ open, children, closeModal, isTimer = false }: MainModalProps): JSX.Element | null {
+export default function Modal({ open, children, closeModal, isTimer = false, isCloseOnClick = true }: MainModalProps): JSX.Element | null {
 
     const [isVisible, setIsVisible] = useState(false);
+
     const closeModalHandler = useCallback(() => {
-        if (!isTimer) {
+        if (!isTimer && isCloseOnClick) {
             setIsVisible(false);
             closeModal();
         }
-    }, [closeModal, isTimer])
+    }, [closeModal, isTimer, isCloseOnClick])
 
     useEffect(() => {
         if (open) {
@@ -30,7 +32,7 @@ export default function Modal({ open, children, closeModal, isTimer = false }: M
     }, [open]);
 
     if (!open) return null;
-    
+
     return ReactDOM.createPortal(
         <>
             <div

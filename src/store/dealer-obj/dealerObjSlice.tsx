@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { DealerObjInterface, Hand } from "../../models/PlayerProps";
 
-interface DealerState {
+export interface DealerState {
     name: string;
     hand: Hand;
 }
@@ -36,8 +36,11 @@ const dealerObjSlice = createSlice({
                 },
             }
         },
+        setDealer: (_state, action: PayloadAction<DealerState>) => {
+            return action.payload; // Directly setting the state to the new value
+        }
     },
 });
 
-export const { updateDealer, resetDealer } = dealerObjSlice.actions;
+export const {setDealer, updateDealer, resetDealer } = dealerObjSlice.actions;
 export default dealerObjSlice.reducer;

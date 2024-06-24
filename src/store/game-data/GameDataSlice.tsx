@@ -1,10 +1,13 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { initialGameState } from "./GameDataProps";
+import { GameDataProps, initialGameState } from "./GameDataProps";
 
 const deckSlice = createSlice({
   name: 'game-data',
   initialState: initialGameState,
   reducers: {
+    setGameData: (_state, action: PayloadAction<GameDataProps>) => {
+      return action.payload;
+    },
     resetGame: () => initialGameState,
     revealDealerCard: (state) => { state.isDealerCardRevealed = true },
     beginDealerDrawing: (state) => { state.isDealerDrawing = true },
@@ -14,8 +17,10 @@ const deckSlice = createSlice({
     endMainHandResults: (state) => { state.isMainResultsActive = false },
     beginSplitRound: (state) => { state.isSplitResultsActive = true },
     startBetRound: (state) => {
-
       return { ...state, isAddPlayersRound: false, isBetRoundActive: true, }
+    },
+    returnToPrevGame: (state) => {
+      return { ...state, isGameIntro: false, isGameActive: true, isBetRoundActive: true, }
     },
     startAddPlayers: (state) => {
       return { ...state, isGameActive: true, isAddPlayersRound: true, isGameIntro: false, }
@@ -47,6 +52,6 @@ const deckSlice = createSlice({
   },
 })
 
-export const { revealDealerCard, beginPlayerRound, beginDealerRound, endDealerRound, endMainHandResults, beginSplitRound, beginDealerDrawing, endSplitRound, endFullRound, beginInsuranceRound, endInsuranceRound, endDealerAndRound, endIsGameActive, startBetRound, startAddPlayers, resetGameData, resetGame } = deckSlice.actions
+export const {returnToPrevGame, revealDealerCard, beginPlayerRound, beginDealerRound, endDealerRound, endMainHandResults, beginSplitRound, beginDealerDrawing, endSplitRound, endFullRound, beginInsuranceRound, endInsuranceRound, endDealerAndRound, endIsGameActive, startBetRound, startAddPlayers, resetGameData, resetGame, setGameData } = deckSlice.actions
 
 export default deckSlice.reducer
