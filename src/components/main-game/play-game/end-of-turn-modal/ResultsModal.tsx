@@ -6,6 +6,7 @@ import ResultsModalContents from "./ResultsModalContent";
 import { beginDealerRound } from "../../../../store/game-data/GameDataSlice";
 import { useCallback } from "react";
 import { reverseAllSplitHands, reverseCurrSplitHand } from "../../../../store/player-arr/PlayersArrSlice";
+import { sendStoreData } from "../../../../store/actions/storeActions";
 
 interface EndOfTurnResultsProps {
     playerIndex: number;
@@ -15,9 +16,10 @@ interface EndOfTurnResultsProps {
 }
 
 export default function ResultsModal({ playerIndex, isCurrPlayerFinished, makeCurrPlayerNotFinished, changeToNextPlayer }: EndOfTurnResultsProps) {
+    const store = useSelector((state: RootState) => state);
+    const playersArr = useSelector((state: RootState) => state.playersArr);
 
     const dispatch = useDispatch()
-    const playersArr = useSelector((state: RootState) => state.playersArr);
     const currPlayer = playersArr[playerIndex]
     const playersHaveSplit = playersArr.some(player => player.splitHand.cards.length > 0)
     const { splitHand, isPlayerSplit } = currPlayer
@@ -37,6 +39,7 @@ export default function ResultsModal({ playerIndex, isCurrPlayerFinished, makeCu
             } else {
                 playersHaveSplit && dispatch(reverseAllSplitHands())
                 dispatch(beginDealerRound())
+                dispatch(sendStoreData(store));
             }
         }
     }, [changeToNextPlayer, dispatch, isLastPlayer, isPlayerSplit, makeCurrPlayerNotFinished, playerIndex, playersHaveSplit, splitHand.cards.length]);

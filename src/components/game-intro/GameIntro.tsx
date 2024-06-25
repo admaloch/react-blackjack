@@ -26,8 +26,6 @@ export default function GameIntro() {
 
     const fetchDataAndCheckActiveGame = async () => {
       if (initLoad) {
-
-
         try {
           await dispatch(fetchStoreData());
           if (playersArr.length > 0) {

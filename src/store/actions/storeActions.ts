@@ -32,10 +32,13 @@ export const fetchStoreData = (): ThunkAction<void, RootState, unknown, Action<s
         };
         try {
             const data = await fetchData();
-            dispatch(setDealer(data.dealerObj));
-            dispatch(setPlayers(data.playersArr));
-            dispatch(setDeck(data.deck));
-            dispatch(setInactivePlayers(data.inactivePlayers));
+            console.log('fetched data:', data)
+            if (data.playersArr && data.playersArr.length > 0) {
+                dispatch(setDealer(data.dealerObj));
+                dispatch(setPlayers(data.playersArr));
+                dispatch(setDeck(data.deck));
+                dispatch(setInactivePlayers(data.inactivePlayers));
+            }
         } catch (error) {
             console.error('Error fetching data:', error);
         }
@@ -45,20 +48,24 @@ export const fetchStoreData = (): ThunkAction<void, RootState, unknown, Action<s
 // Thunk Action to Send Store Data
 export const sendStoreData = (store: storeInterface): ThunkAction<void, RootState, unknown, Action<string>> => {
     return async () => {
-        try {
-            const response = await fetch(firebaseUrl, {
-                method: "PUT",
-                body: JSON.stringify(store),
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            });
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-        } catch (error) {
-            console.error('Error saving data:', error);
-        }
+        // try {
+        //     const response = await fetch(firebaseUrl, {
+        //         method: "PUT",
+        //         body: JSON.stringify(store),
+        //         headers: {
+        //             "Content-Type": "application/json"
+        //         }
+        //     });
+        //     if (!response.ok) {
+        //         throw new Error('Network response was not ok');
+        //     }
+        // } catch (error) {
+        //     console.error('Error saving data:', error);
+        // }
+
+        console.log('sendStore data ran')
     };
 };
+
+
 

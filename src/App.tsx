@@ -30,23 +30,20 @@ function App() {
   //   }
   // }, []);
 
-  const state = useSelector((state: RootState) => state);
+  // const gameData = useSelector((state: RootState) => state.gameData);
+  // const inactivePlayers = useSelector((state: RootState) => state.inactivePlayers);
+  // const {isBetRoundActive, isDealerRoundActive, isPlayerRoundActive, isGameActive} = gameData
 
+// useEffect(()=>{
+//   console.log(gameData)
+// },[gameData])
 
-  useEffect(() => {
-    console.log(state)
-  }, [state])
-
-
-
-
-  // useEffect(() => {
-  //   if (isInitial) {
-  //     isInitial = false;
-  //     return;
-  //   }
-  //   dispatch(sendStoreData(store));
-  // }, [store, dispatch]);
+//   useEffect(() => {
+// if(isBetRoundActive ||
+  
+// )
+//     dispatch(sendStoreData(state));
+//   }, [state, dispatch]);
 
   return (
     <>
