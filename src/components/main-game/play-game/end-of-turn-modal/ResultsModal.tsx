@@ -17,7 +17,7 @@ interface EndOfTurnResultsProps {
 
 export default function ResultsModal({ playerIndex, isCurrPlayerFinished, makeCurrPlayerNotFinished, changeToNextPlayer }: EndOfTurnResultsProps) {
     const store = useSelector((state: RootState) => state);
-    const playersArr = useSelector((state: RootState) => state.playersArr);
+    const playersArr = store.playersArr
 
     const dispatch = useDispatch()
     const currPlayer = playersArr[playerIndex]
@@ -39,10 +39,12 @@ export default function ResultsModal({ playerIndex, isCurrPlayerFinished, makeCu
             } else {
                 playersHaveSplit && dispatch(reverseAllSplitHands())
                 dispatch(beginDealerRound())
+                console.log('sendStore data ran')
+
                 dispatch(sendStoreData(store));
             }
         }
-    }, [changeToNextPlayer, dispatch, isLastPlayer, isPlayerSplit, makeCurrPlayerNotFinished, playerIndex, playersHaveSplit, splitHand.cards.length]);
+    }, [changeToNextPlayer, dispatch, isLastPlayer, isPlayerSplit, makeCurrPlayerNotFinished, playerIndex, playersHaveSplit, splitHand.cards.length, store]);
 
     return (
         <Modal

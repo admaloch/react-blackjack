@@ -33,6 +33,8 @@ export default function PlaceBetBtn({ setIsModalOpen, currPlayerIndex, moveToNex
                 setIsModalOpen(true)
             } else {
                 dispatch(beginPlayerRound())
+                console.log('sendStore data ran')
+
                 dispatch(sendStoreData(store));
                 navigate("/startRound");
             }

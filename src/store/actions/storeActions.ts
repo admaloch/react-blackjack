@@ -8,6 +8,7 @@ import { setPlayers } from "../player-arr/PlayersArrSlice";
 import { setInactivePlayers } from "../inactive-players/InactivePlayersSlice";
 import { setDeck } from "../deck/deckSlice";
 import { setDealer } from "../dealer-obj/dealerObjSlice";
+import { useSelector } from "react-redux";
 
 // Define Store Interface
 interface storeInterface {
@@ -47,23 +48,24 @@ export const fetchStoreData = (): ThunkAction<void, RootState, unknown, Action<s
 
 // Thunk Action to Send Store Data
 export const sendStoreData = (store: storeInterface): ThunkAction<void, RootState, unknown, Action<string>> => {
-    return async () => {
-        // try {
-        //     const response = await fetch(firebaseUrl, {
-        //         method: "PUT",
-        //         body: JSON.stringify(store),
-        //         headers: {
-        //             "Content-Type": "application/json"
-        //         }
-        //     });
-        //     if (!response.ok) {
-        //         throw new Error('Network response was not ok');
-        //     }
-        // } catch (error) {
-        //     console.error('Error saving data:', error);
-        // }
+    // const store = useSelector((state: RootState) => state);
 
-        console.log('sendStore data ran')
+    return async () => {
+        try {
+            const response = await fetch(firebaseUrl, {
+                method: "PUT",
+                body: JSON.stringify(store),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+        } catch (error) {
+            console.error('Error saving data:', error);
+        }
+
     };
 };
 

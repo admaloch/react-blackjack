@@ -19,7 +19,7 @@ let isInitial = true
 
 function App() {
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   // const navigate = useNavigate();
 
   // // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -44,6 +44,7 @@ function App() {
 // )
 //     dispatch(sendStoreData(state));
 //   }, [state, dispatch]);
+
 
   return (
     <>
