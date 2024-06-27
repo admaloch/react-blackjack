@@ -6,7 +6,7 @@ import ResultsModalContents from "./ResultsModalContent";
 import { beginDealerRound } from "../../../../store/game-data/GameDataSlice";
 import { useCallback } from "react";
 import { reverseAllSplitHands, reverseCurrSplitHand } from "../../../../store/player-arr/PlayersArrSlice";
-import { sendStoreData } from "../../../../store/actions/storeActions";
+import { useUpdateStore } from "../../../../store/actions/useUpdateStore";
 
 interface EndOfTurnResultsProps {
     playerIndex: number;
@@ -16,8 +16,9 @@ interface EndOfTurnResultsProps {
 }
 
 export default function ResultsModal({ playerIndex, isCurrPlayerFinished, makeCurrPlayerNotFinished, changeToNextPlayer }: EndOfTurnResultsProps) {
-    const store = useSelector((state: RootState) => state);
-    const playersArr = store.playersArr
+    const updateFireBaseDB = useUpdateStore()
+
+    const playersArr = useSelector((state: RootState) => state.playersArr);
 
     const dispatch = useDispatch()
     const currPlayer = playersArr[playerIndex]
@@ -41,10 +42,10 @@ export default function ResultsModal({ playerIndex, isCurrPlayerFinished, makeCu
                 dispatch(beginDealerRound())
                 console.log('sendStore data ran')
 
-                dispatch(sendStoreData(store));
+                updateFireBaseDB()
             }
         }
-    }, [changeToNextPlayer, dispatch, isLastPlayer, isPlayerSplit, makeCurrPlayerNotFinished, playerIndex, playersHaveSplit, splitHand.cards.length, store]);
+    }, [changeToNextPlayer, dispatch, isLastPlayer, isPlayerSplit, makeCurrPlayerNotFinished, playerIndex, playersHaveSplit, splitHand.cards.length, updateFireBaseDB]);
 
     return (
         <Modal

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import { beginPlayerRound } from "../../../store/game-data/GameDataSlice";
 import { resetDeck } from "../../../store/deck/deckSlice";
 import { updatePlayer } from "../../../store/player-arr/PlayersArrSlice";
-import { sendStoreData } from "../../../store/actions/storeActions";
+import { useUpdateStore } from "../../../store/actions/useUpdateStore";
 
 interface PlaceBetBtnProps {
     currPlayerIndex: number;
@@ -13,9 +13,10 @@ interface PlaceBetBtnProps {
 }
 
 export default function PlaceBetBtn({ setIsModalOpen, currPlayerIndex, moveToNextPlayer }: PlaceBetBtnProps) {
-    const store = useSelector((state: RootState) => state);
-    const playersArr = store.playersArr
-    const deck = store.deck
+    const updateFireBaseDB = useUpdateStore()
+
+    const playersArr = useSelector((state: RootState) => state.playersArr); 
+    const deck = useSelector((state: RootState) => state.deck); 
     const player = playersArr[currPlayerIndex]
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -35,7 +36,7 @@ export default function PlaceBetBtn({ setIsModalOpen, currPlayerIndex, moveToNex
                 dispatch(beginPlayerRound())
                 console.log('sendStore data ran')
 
-                dispatch(sendStoreData(store));
+                updateFireBaseDB()
                 navigate("/startRound");
             }
         }

@@ -10,7 +10,6 @@ import { beginDealerRound, endIsGameActive } from "../../../../store/game-data/G
 import { useNavigate } from "react-router";
 import { resetDealer } from "../../../../store/dealer-obj/dealerObjSlice";
 import { removePlayer } from "../../../../store/player-arr/PlayersArrSlice";
-import { deleteStoreData, sendStoreData } from "../../../../store/actions/storeActions";
 
 interface ExitTableContentProps {
     player: PlayerInterface;
@@ -18,10 +17,9 @@ interface ExitTableContentProps {
 }
 
 export default function ExitTableContent({ player, closeModal }: ExitTableContentProps) {
-    const store = useSelector((state: RootState) => state);
+    const playersArr = useSelector((state: RootState) => state.playersArr);
+    const { isPlayerRoundActive } = useSelector((state: RootState) => state.gameData);
 
-    const playersArr = store.playersArr
-    const { isPlayerRoundActive } = store.gameData
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -36,11 +34,10 @@ export default function ExitTableContent({ player, closeModal }: ExitTableConten
             ) {
                 dispatch(beginDealerRound())
             }
-            dispatch(sendStoreData(store));
+
         } else {
             dispatch(resetDealer())
             dispatch(endIsGameActive());
-            dispatch(deleteStoreData());
             navigate("/finalResults");
         }
 

@@ -6,7 +6,6 @@ import BGSection from '../UI/sections/BGSection';
 import { fetchStoreData } from '../../store/actions/storeActions';
 import { useEffect, useState } from 'react';
 import { RootState } from '../../store/store';
-import LoadPrevGame from '../load-game-modal/loadPrevGame';
 
 let initLoad = true
 

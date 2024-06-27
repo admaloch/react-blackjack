@@ -1,27 +1,26 @@
-import { ThunkAction } from "redux-thunk";
 import CardObjInterface from "../../models/CardProps";
 import { DealerObjInterface, PlayerInterface } from "../../models/PlayerProps";
 import { GameDataProps } from "../game-data/GameDataProps";
-import { RootState } from "../store";
-import { Action } from "@reduxjs/toolkit";
+
 import { setPlayers } from "../player-arr/PlayersArrSlice";
 import { setInactivePlayers } from "../inactive-players/InactivePlayersSlice";
 import { setDeck } from "../deck/deckSlice";
 import { setDealer } from "../dealer-obj/dealerObjSlice";
 import { getOrCreateCookie } from "../../utils/cookieUtils";
+import { AppThunk } from "../store";
 
 // Define Store Interface
-interface storeInterface {
+export interface storeInterface {
     dealerObj: DealerObjInterface;
     playersArr: PlayerInterface[];
     deck: CardObjInterface[];
     gameData: GameDataProps;
-    inactivePlayers: PlayerInterface[];
+    inactivePlayers: (PlayerInterface | null)[];
 }
 
 const firebaseUrlBase = 'https://blackjack-2c434-default-rtdb.firebaseio.com';
 
-export const fetchStoreData = (): ThunkAction<void, RootState, unknown, Action<string>> => {
+export const fetchStoreData = (): AppThunk => {
     const userId = getOrCreateCookie('blackjack-user');
     return async (dispatch) => {
         const updatedUrl = `${firebaseUrlBase}/blackjack/${userId}.json`;
@@ -37,8 +36,6 @@ export const fetchStoreData = (): ThunkAction<void, RootState, unknown, Action<s
             const data = await fetchData();
             // console.log('fetched data:', data)
             if (data && data.playersArr && data.playersArr.length > 0) {
-                // const updatedPlayers = [...data.playersArr].map(p)
-
                 dispatch(setDealer(data.dealerObj));
                 dispatch(setPlayers(data.playersArr));
                 dispatch(setDeck(data.deck));
@@ -51,7 +48,7 @@ export const fetchStoreData = (): ThunkAction<void, RootState, unknown, Action<s
 };
 
 
-export const sendStoreData = (store: storeInterface): ThunkAction<void, RootState, unknown, Action<string>> => {
+export const sendStoreData = (store: storeInterface): AppThunk => {
     const userId = getOrCreateCookie('blackjack-user');
 
     return async () => {
@@ -72,7 +69,8 @@ export const sendStoreData = (store: storeInterface): ThunkAction<void, RootStat
         }
     };
 };
-export const deleteStoreData = (): ThunkAction<void, RootState, unknown, Action<string>> => {
+
+export const deleteStoreData = (): AppThunk => {
     const userId = getOrCreateCookie('blackjack-user');
     return async () => {
         const updatedUrl = `${firebaseUrlBase}/blackjack/${userId}.json`;

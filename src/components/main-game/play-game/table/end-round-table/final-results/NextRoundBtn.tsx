@@ -7,15 +7,16 @@ import { resetDealer } from '../../../../../../store/dealer-obj/dealerObjSlice';
 import EmptyBankModal from '../../../empty-bank-modal/EmptyBankModal';
 import { useState } from 'react';
 import { updateAllPlayers } from '../../../../../../store/player-arr/PlayersArrSlice';
-import { sendStoreData } from '../../../../../../store/actions/storeActions';
+import { useUpdateStore } from '../../../../../../store/actions/useUpdateStore';
 
 export default function NextRoundBtn() {
+    const updateFireBaseDB = useUpdateStore()
+
     const [isPlayersBrokeModal, setIsPlayersBrokeModal] = useState(false)
     const closePlayerBrokeModal = () => setIsPlayersBrokeModal(false)
-    const store = useSelector((state: RootState) => state);
+    const { roundsPlayed } = useSelector((state: RootState) => state.gameData);
+    const playersArr = useSelector((state: RootState) => state.playersArr);
 
-    const { roundsPlayed } = store.gameData
-    const playersArr = store.playersArr
     const areAllPlayersBroke = playersArr.every(player => player.bank < 5)
     const areAnyPlayersBroke = playersArr.some(player => player.bank < 5)
     const dispatch = useDispatch();
@@ -30,8 +31,7 @@ export default function NextRoundBtn() {
             dispatch(resetGameData(areAllPlayersBroke))
         }
         console.log('sendStore data ran')
-
-        dispatch(sendStoreData(store));
+        updateFireBaseDB()
         dispatch(updateAllPlayers());
         dispatch(resetDealer())
     };

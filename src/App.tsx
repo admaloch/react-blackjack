@@ -11,45 +11,33 @@ import PlayerBets from './components/main-game/player-bets/PlayerBets'
 import PlayGame from './components/main-game/play-game/PlayGame'
 import FinalResults from './components/final-results/FinalResults'
 import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import {  useSelector } from 'react-redux'
 import { RootState } from './store/store'
-import { fetchStoreData, sendStoreData } from './store/actions/storeActions'
-import { getOrCreateCookie } from './utils/cookieUtils'
+
+import { useUpdateStore } from './store/actions/useUpdateStore'
 
 let isInitial = true
 
 function App() {
-
-  // const dispatch = useDispatch();
-  // const navigate = useNavigate();
+  const updateFireBaseDB = useUpdateStore()
+  const inactivePlayers = useSelector((state: RootState) => state.inactivePlayers);
+  const navigate = useNavigate();
 
   // // eslint-disable-next-line react-hooks/exhaustive-deps
-  // useEffect(() => {
-  //   if (location.pathname !== '/') {
-  //     navigate('/');
-  //     return;
-  //   }
-  // }, []);
-
-  const store = useSelector((state: RootState) => state);
-  // const inactivePlayers = useSelector((state: RootState) => state.inactivePlayers);
-  // const {isBetRoundActive, isDealerRoundActive, isPlayerRoundActive, isGameActive} = store
+  useEffect(() => {
+    if (location.pathname !== '/') {
+      navigate('/');
+      return;
+    }
+  }, []);
 
   useEffect(() => {
-    console.log(store)
-  }, [store])
-
-  //   useEffect(() => {
-  // if(isBetRoundActive ||
-
-  // )
-  //     dispatch(sendStoreData(state));
-  //   }, [state, dispatch]);
-
-  // useEffect(() => {
-  //   const userId = getOrCreateCookie('user_id');
-  // }, []);
-
+    if (isInitial) {
+      isInitial = false
+      return;
+    }
+    updateFireBaseDB()
+  }, [inactivePlayers])
 
   return (
     <>
