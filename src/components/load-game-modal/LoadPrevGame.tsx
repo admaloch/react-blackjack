@@ -6,9 +6,10 @@ import './LoadPrevGame.css'
 import { useDispatch } from 'react-redux';
 import { resetDealer } from '../../store/dealer-obj/dealerObjSlice';
 import { resetDeck } from '../../store/deck/deckSlice';
-import { resetPlayersArr } from '../../store/player-arr/PlayersArrSlice';
+import { resetPlayersArr, updateAllPlayers } from '../../store/player-arr/PlayersArrSlice';
 import { resetInactivePlayers } from '../../store/inactive-players/InactivePlayersSlice';
 import { returnToPrevGame } from '../../store/game-data/GameDataSlice';
+import { deleteStoreData } from '../../store/actions/storeActions';
 
 
 export default function LoadPrevGame({ closeModal, open }: ModalContentProps) {
@@ -22,16 +23,19 @@ export default function LoadPrevGame({ closeModal, open }: ModalContentProps) {
     // }
 
     const yesClickHandler = () => {
-        navigate("/placeBets")
         dispatch(returnToPrevGame())
+        dispatch(updateAllPlayers())
+        dispatch(resetDealer())
+        navigate("/placeBets")
     }
 
     const noClickHandler = () => {
-        closeModal()
+        dispatch(deleteStoreData());
         dispatch(resetDealer())
         dispatch(resetDeck())
         dispatch(resetPlayersArr())
         dispatch(resetInactivePlayers())
+        closeModal()
     }
 
     return (

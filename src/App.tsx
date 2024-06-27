@@ -14,6 +14,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from './store/store'
 import { fetchStoreData, sendStoreData } from './store/actions/storeActions'
+import { getOrCreateCookie } from './utils/cookieUtils'
 
 let isInitial = true
 
@@ -30,20 +31,24 @@ function App() {
   //   }
   // }, []);
 
-  // const gameData = useSelector((state: RootState) => state.gameData);
+  const store = useSelector((state: RootState) => state);
   // const inactivePlayers = useSelector((state: RootState) => state.inactivePlayers);
-  // const {isBetRoundActive, isDealerRoundActive, isPlayerRoundActive, isGameActive} = gameData
+  // const {isBetRoundActive, isDealerRoundActive, isPlayerRoundActive, isGameActive} = store
 
-// useEffect(()=>{
-//   console.log(gameData)
-// },[gameData])
+  useEffect(() => {
+    console.log(store)
+  }, [store])
 
-//   useEffect(() => {
-// if(isBetRoundActive ||
-  
-// )
-//     dispatch(sendStoreData(state));
-//   }, [state, dispatch]);
+  //   useEffect(() => {
+  // if(isBetRoundActive ||
+
+  // )
+  //     dispatch(sendStoreData(state));
+  //   }, [state, dispatch]);
+
+  // useEffect(() => {
+  //   const userId = getOrCreateCookie('user_id');
+  // }, []);
 
 
   return (

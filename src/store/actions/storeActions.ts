@@ -8,7 +8,7 @@ import { setPlayers } from "../player-arr/PlayersArrSlice";
 import { setInactivePlayers } from "../inactive-players/InactivePlayersSlice";
 import { setDeck } from "../deck/deckSlice";
 import { setDealer } from "../dealer-obj/dealerObjSlice";
-import { useSelector } from "react-redux";
+import { getOrCreateCookie } from "../../utils/cookieUtils";
 
 // Define Store Interface
 interface storeInterface {
@@ -16,15 +16,17 @@ interface storeInterface {
     playersArr: PlayerInterface[];
     deck: CardObjInterface[];
     gameData: GameDataProps;
-    inactivePlayers: (PlayerInterface | null)[];
+    inactivePlayers: PlayerInterface[];
 }
 
-const firebaseUrl = 'https://blackjack-2c434-default-rtdb.firebaseio.com/state.json';
+const firebaseUrlBase = 'https://blackjack-2c434-default-rtdb.firebaseio.com';
 
 export const fetchStoreData = (): ThunkAction<void, RootState, unknown, Action<string>> => {
+    const userId = getOrCreateCookie('blackjack-user');
     return async (dispatch) => {
+        const updatedUrl = `${firebaseUrlBase}/blackjack/${userId}.json`;
         const fetchData = async () => {
-            const response = await fetch(firebaseUrl);
+            const response = await fetch(updatedUrl);
             if (!response.ok) {
                 throw new Error('Could not fetch data');
             }
@@ -33,8 +35,10 @@ export const fetchStoreData = (): ThunkAction<void, RootState, unknown, Action<s
         };
         try {
             const data = await fetchData();
-            console.log('fetched data:', data)
-            if (data.playersArr && data.playersArr.length > 0) {
+            // console.log('fetched data:', data)
+            if (data && data.playersArr && data.playersArr.length > 0) {
+                // const updatedPlayers = [...data.playersArr].map(p)
+
                 dispatch(setDealer(data.dealerObj));
                 dispatch(setPlayers(data.playersArr));
                 dispatch(setDeck(data.deck));
@@ -46,13 +50,14 @@ export const fetchStoreData = (): ThunkAction<void, RootState, unknown, Action<s
     };
 };
 
-// Thunk Action to Send Store Data
+
 export const sendStoreData = (store: storeInterface): ThunkAction<void, RootState, unknown, Action<string>> => {
-    // const store = useSelector((state: RootState) => state);
+    const userId = getOrCreateCookie('blackjack-user');
 
     return async () => {
+        const updatedUrl = `${firebaseUrlBase}/blackjack/${userId}.json`;
         try {
-            const response = await fetch(firebaseUrl, {
+            const response = await fetch(updatedUrl, {
                 method: "PUT",
                 body: JSON.stringify(store),
                 headers: {
@@ -65,9 +70,23 @@ export const sendStoreData = (store: storeInterface): ThunkAction<void, RootStat
         } catch (error) {
             console.error('Error saving data:', error);
         }
-
     };
 };
-
+export const deleteStoreData = (): ThunkAction<void, RootState, unknown, Action<string>> => {
+    const userId = getOrCreateCookie('blackjack-user');
+    return async () => {
+        const updatedUrl = `${firebaseUrlBase}/blackjack/${userId}.json`;
+        try {
+            const response = await fetch(updatedUrl, {
+                method: "DELETE",
+            });
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+        } catch (error) {
+            console.error('Error deleting data:', error);
+        }
+    };
+};
 
 

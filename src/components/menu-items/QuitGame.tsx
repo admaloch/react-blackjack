@@ -6,6 +6,7 @@ import { addInactivePlayers } from "../../store/inactive-players/InactivePlayers
 import { endIsGameActive, resetGame } from "../../store/game-data/GameDataSlice";
 import { resetDealer } from "../../store/dealer-obj/dealerObjSlice";
 import { resetPlayersArr } from "../../store/player-arr/PlayersArrSlice";
+import { deleteStoreData } from "../../store/actions/storeActions";
 
 export default function QuitGame() {
   const playersArr = useSelector((state: RootState) => state.playersArr);
@@ -14,11 +15,13 @@ export default function QuitGame() {
   const dispatch = useDispatch()
 
   const quitGameHandler = () => {
+    dispatch(deleteStoreData());
     revertBetAfterQuit()
     dispatch(resetPlayersArr())
     dispatch(resetDealer())
     dispatch(endIsGameActive())
     handleQuitNavigation()
+    
   };
 
   //if you quit during bet round your money is returned
