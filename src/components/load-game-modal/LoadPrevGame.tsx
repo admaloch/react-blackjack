@@ -10,17 +10,13 @@ import { resetPlayersArr, updateAllPlayers } from '../../store/player-arr/Player
 import { resetInactivePlayers } from '../../store/inactive-players/InactivePlayersSlice';
 import { returnToPrevGame } from '../../store/game-data/GameDataSlice';
 import { deleteStoreData } from '../../store/actions/storeActions';
+import { AppDispatch } from '../../store/store';
 
 
 export default function LoadPrevGame({ closeModal, open }: ModalContentProps) {
     const navigate = useNavigate();
-    const dispatch = useDispatch();
+    const dispatch: AppDispatch = useDispatch();
 
-    // const closeShuffleModalHandler = async () => {
-    //     closeModal()
-    //     dispatch(beginPlayerRound())
-    //     navigate("/startRound");
-    // }
 
     const yesClickHandler = () => {
         dispatch(returnToPrevGame())

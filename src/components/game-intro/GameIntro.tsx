@@ -5,7 +5,8 @@ import Wrapper from '../UI/wrapper/Wrapper';
 import BGSection from '../UI/sections/BGSection';
 import { fetchStoreData } from '../../store/actions/storeActions';
 import { useEffect, useState } from 'react';
-import { RootState } from '../../store/store';
+import { AppDispatch, RootState } from '../../store/store';
+import LoadPrevGame from '../load-game-modal/LoadPrevGame';
 
 let initLoad = true
 
@@ -15,7 +16,7 @@ export default function GameIntro() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const closeModal = () => setIsModalOpen(false)
 
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
 
   const clickHandler = () => {
     dispatch(startAddPlayers())
