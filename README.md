@@ -3,7 +3,7 @@
 <ul>
   <li>This is a rebuild of a command line blackjack game I built with Node JS -- <a href="https://github.com/admaloch/blackjack-node-app">Link to GitHub Repository</a></li>
   <li>This is fully featured blackjack game built with React, Redux and Router, complete with a UI and multiple players. </li>
-  <li>Firebase DB is used to store redux store data and allow users to return to a previous game. </li>
+  <li>A Firebase realtime DB is used to store redux store data and allow users to return to a previous game. </li>
   <li>The logic for the cards, deck and user data are all built from scratch and no APIs were used. </li>
 </ul>
 <h2>Takeaways:</h2>
