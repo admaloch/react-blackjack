@@ -1,13 +1,14 @@
 import CardObjInterface from "../../models/CardProps";
 import { DealerObjInterface, PlayerInterface } from "../../models/PlayerProps";
 import { GameDataProps } from "../game-data/GameDataProps";
-
 import { setPlayers } from "../player-arr/PlayersArrSlice";
 import { setInactivePlayers } from "../inactive-players/InactivePlayersSlice";
 import { setDeck } from "../deck/deckSlice";
 import { setDealer } from "../dealer-obj/dealerObjSlice";
 import { getOrCreateCookie } from "../../utils/cookieUtils";
 import { AppThunk } from "../store";
+
+const firebaseUrlBase = import.meta.env.VITE_FIREBASE_URL_BASE;
 
 // Define Store Interface
 export interface storeInterface {
@@ -17,8 +18,6 @@ export interface storeInterface {
     gameData: GameDataProps;
     inactivePlayers: (PlayerInterface | null)[];
 }
-
-const firebaseUrlBase = 'https://blackjack-2c434-default-rtdb.firebaseio.com';
 
 export const fetchStoreData = (): AppThunk => {
     const userId = getOrCreateCookie('blackjack-user');
