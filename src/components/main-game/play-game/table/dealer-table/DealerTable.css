@@ -22,6 +22,7 @@
     justify-content: start;
     flex-direction: column;
     position: relative;
+    overflow-y: auto;
 }
 
 .rounds-played {

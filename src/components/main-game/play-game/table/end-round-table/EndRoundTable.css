@@ -154,3 +154,14 @@ overflow-x: auto;
         max-width: 95px;
     }
 }
+
+@media screen and (max-height: 600px) {
+    .curr-player-hand img {
+        max-width: 40px;
+    }
+    .player-hand {
+       top: 1.5rem;
+        justify-content: start;
+    }
+    
+}
