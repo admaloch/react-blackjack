@@ -148,7 +148,7 @@
 }
 
 
-@media only screen and (max-device-width: 950px) and (max-device-height: 500px) and (orientation: landscape) {
+@media screen and (max-height: 600px) {
 
     .player-table {
         overflow-y: auto;
