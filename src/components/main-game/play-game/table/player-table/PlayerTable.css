@@ -18,6 +18,9 @@
     margin-top: 2rem;
 }
 
+
+
+
 .player-table h5,
 .player-table h4 {
     padding: 0;
@@ -121,5 +124,9 @@
         width: 40px;
     }
 }
-
+@media only screen and (max-device-width: 950px) and (max-device-height: 500px) and (orientation: landscape) {
+    .main-player-hand {
+        margin-top: 2rem;
+    }
+}
 

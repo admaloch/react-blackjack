@@ -147,3 +147,11 @@
     }
 }
 
+
+@media only screen and (max-device-width: 950px) and (max-device-height: 500px) and (orientation: landscape) {
+
+    .player-table {
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+}
