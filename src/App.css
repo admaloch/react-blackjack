@@ -25,9 +25,6 @@ body {
 
 #root {
     padding: .2rem .7rem;
-    height: 100vh;
-    overflow: hidden;
-    max-height: 100vh;
     background-color: var(--background);
     color: var(--text);
     font-family: 'Roboto', sans-serif;
@@ -118,3 +115,20 @@ body {
         font-size: 1rem;
     }
 }
+
+/* Hide content only in landscape mode on mobile devices (max-width: 768px) */
+@media only screen and (max-width: 768px) and (orientation: landscape) {
+    body {
+        filter: blur(10px);
+    }
+    
+
+  }
+  
+  /* When in portrait mode or larger screens, show the content */
+  @media only screen and (orientation: portrait), (min-width: 769px) {
+    body {
+        filter: blur(0px);
+    }
+  }
+  

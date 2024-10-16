@@ -19,11 +19,12 @@ function PlayerTable({ playerIndex, makeCurrPlayerFinished }: PlayerTableProps) 
     const dealerObj = useSelector((state: RootState) => state.dealerObj);
     const { hand, splitHand, splitBet, name } = playersArr[playerIndex]
     const playerDraw = usePlayerDrawCard(playerIndex)
+
     useEffect(() => {
         let isMounted = true
         async function initPlayerDraw() {
             if (isMounted) {
-                await delay(300)
+                await delay(400)
                 if (dealerObj.hand.cards.length === 2) {
                     if (hand.cards.length === 0 || hand.cards.length === 1) {
                         playerDraw()
@@ -34,7 +35,9 @@ function PlayerTable({ playerIndex, makeCurrPlayerFinished }: PlayerTableProps) 
         initPlayerDraw()
         return () => { isMounted = false }
     }, [hand, dealerObj, playerDraw]);
+
     const handText = splitHand.cards.length === 1 ? ': Main hand' : ': Split hand'
+
     return (
         <div className="player-table">
             <PlayerOptions
@@ -42,13 +45,14 @@ function PlayerTable({ playerIndex, makeCurrPlayerFinished }: PlayerTableProps) 
                 playerIndex={playerIndex}
             />
             <PlayerDetails playerIndex={playerIndex} />
-            <div className="main-player-hand">
-                <div className="player-header">
+            <div className="player-header">
                     <h2>{name}&nbsp;</h2>
                     {splitBet > 0 &&
                         <h2> {handText}</h2>
                     }
                 </div>
+            <div className="main-player-hand">
+               
                 <div className="player-cards">
                     <Cards
                         cardUrlVals={hand.cardUrlVals}

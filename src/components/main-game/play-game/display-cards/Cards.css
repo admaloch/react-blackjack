@@ -3,7 +3,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 67%;
+    max-width: 95%;
     margin: 0 auto;
 
 }
@@ -147,11 +147,3 @@
     }
 }
 
-
-@media screen and (max-height: 600px) {
-
-    .player-table {
-        overflow-y: auto;
-        overflow-x: hidden;
-    }
-}

@@ -14,9 +14,11 @@ export default function AddPlayers() {
     const dispatch = useDispatch();
     const playerDataArr = useSelector((state: RootState) => state.playersArr);
 
-    const startbetRoundBtn = () => {
+    const startBetRoundHandler = () => {
         dispatch(startBetRound())
-        document.body.requestFullscreen();
+        if(window.innerWidth < 1000) {
+            document.body.requestFullscreen();
+        } 
     }
 
     return (
@@ -31,7 +33,7 @@ export default function AddPlayers() {
                 <div className="start-game-btn">
                     <NavLink to="/playGame">
                         <button
-                            onClick={() => startbetRoundBtn()}
+                            onClick={() => startBetRoundHandler()}
                             className="game-btn"
                         >
                             Start Game

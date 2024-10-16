@@ -36,7 +36,7 @@ const DealerTable: React.FC = () => {
             dealerDraw();
           }
           if (cardLength === 1) {
-            await delay(300)
+            await delay(400)
             dealerDraw();
           }
         }
