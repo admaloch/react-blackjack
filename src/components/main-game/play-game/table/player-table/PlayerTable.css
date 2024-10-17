@@ -41,18 +41,18 @@
     line-height: 12px;
 }
 
- .player-table .player-header {
+ /* .player-table .player-header {
    position: absolute;
    transform: translate(-50%, 0);
    left: 50%;
    top: 3rem;
-} 
+}  */
 
 .player-results-table .player-header {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 2rem;
+  
 }
 
 

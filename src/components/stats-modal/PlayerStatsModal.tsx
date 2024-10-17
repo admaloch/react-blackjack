@@ -1,43 +1,66 @@
-import Modal from '../UI/modal/Modal'
-import { useSelector } from "react-redux"
-import { RootState } from "../../store/store"
-import PlayerStatsItem from './PlayerStatsItem';
-import './PlayeStatsModal.css'
+import Modal from "../UI/modal/Modal";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
+import PlayerStatsItem from "./PlayerStatsItem";
+import "./PlayeStatsModal.css";
+import { useState } from "react";
+import FullscreenIcon from "@mui/icons-material/Fullscreen";
+import FullscreenExitIcon from "@mui/icons-material/FullscreenExit";
 
 interface PlayerStatsProps {
-    open: boolean;
-    closeModal: () => void;
+  open: boolean;
+  closeModal: () => void;
 }
 
-export default function PlayerStatsModal({ closeModal, open }: PlayerStatsProps) {
-    const playersArr = useSelector((state: RootState) => state.playersArr);
-    const currRound = useSelector((state: RootState) => state.gameData.roundsPlayed);
+export default function PlayerStatsModal({
+  closeModal,
+  open,
+}: PlayerStatsProps) {
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
-    return (
-        <Modal
-            closeModal={closeModal}
-            open={open}
-            isTimer={false}
-        >
-            <div className="stats-modal-container">
-                <h3>Player Stats</h3>
-                <h4>Current Round: {currRound}</h4>
+  const playersArr = useSelector((state: RootState) => state.playersArr);
+  const currRound = useSelector(
+    (state: RootState) => state.gameData.roundsPlayed
+  );
 
-                <ul>
-                    {playersArr.map((player) => (
-                        <PlayerStatsItem
-                            key={player.name}
-                            player={player}
-                        />
-                    ))}
-                </ul>
-                <div
-                    onClick={closeModal}
-                    className="game-btn">
-                    Return to game
-                </div>
+  // Function to toggle fullscreen mode
+  const toggleFullscreen = () => {
+    if (!isFullscreen) {
+      document.body.requestFullscreen();
+    } else {
+      document.exitFullscreen();
+    }
+    setIsFullscreen(!isFullscreen);
+  };
 
-            </div>
-        </Modal>
-    )
+  const isFullscreenText = isFullscreen ? "Exit" : "Enter";
+
+  return (
+    <Modal closeModal={closeModal} open={open} isTimer={false}>
+      <div className="stats-modal-container">
+        <h3>Player Stats</h3>
+        <h4>Current Round: {currRound}</h4>
+
+        <ul>
+          {playersArr.map((player) => (
+            <PlayerStatsItem key={player.name} player={player} />
+          ))}
+        </ul>
+        <div onClick={closeModal} className="game-btn">
+          Return to game
+        </div>
+
+        <div className="full-screen-container">
+          <p>{isFullscreenText} full screen:</p>
+          <div onClick={toggleFullscreen}>
+            {isFullscreen ? (
+              <FullscreenExitIcon fontSize="medium" />
+            ) : (
+              <FullscreenIcon fontSize="medium" />
+            )}
+          </div>
+        </div>
+      </div>
+    </Modal>
+  );
 }

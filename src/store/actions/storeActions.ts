@@ -8,7 +8,9 @@ import { setDealer } from "../dealer-obj/dealerObjSlice";
 import { getOrCreateCookie } from "../../utils/cookieUtils";
 import { AppThunk } from "../store";
 
-const firebaseUrlBase = import.meta.env.VITE_FIREBASE_URL_BASE;
+// const firebaseUrlBase = import.meta.env.VITE_FIREBASE_URL_BASE;
+
+const firebaseUrlBase = 'https://blackjack-2c434-default-rtdb.firebaseio.com'
 
 // Define Store Interface
 export interface storeInterface {

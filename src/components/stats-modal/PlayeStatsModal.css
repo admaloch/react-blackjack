@@ -37,6 +37,22 @@
 .stats-modal-container .game-btn {
     margin-top: .8rem;
 }
+.full-screen-container {
+    margin-top: 1rem;
+}
+.full-screen-container, .full-screen-container div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.full-screen-container div {
+    cursor: pointer;
+    transition: .15s ease-in-out opacity;
+}
+.full-screen-container div:hover {
+    opacity: .4;
+}
+
 
 @media screen and (min-width: 550px) {
     .stats-modal-container li {
@@ -50,3 +66,4 @@
         font-size: 1.3rem;
     }
 }
+
