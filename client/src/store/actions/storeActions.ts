@@ -71,6 +71,7 @@ export const sendStoreData = (store: storeInterface): AppThunk => {
     };
 };
 
+//LoadPrevGame.tsx
 export const deleteStoreData = (): AppThunk => {
     const userId = getOrCreateCookie('blackjack-user');
     return async () => {

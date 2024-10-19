@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState, AppDispatch } from '../store';
 import { sendStoreData } from './storeActions';
 import { storeInterface } from './storeActions';
+
 export const useUpdateStore = () => {
     const dispatch: AppDispatch = useDispatch();
     const dealerObj = useSelector((state: RootState) => state.dealerObj);
