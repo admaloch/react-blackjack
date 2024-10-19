@@ -1,0 +1,11 @@
+20241019	14:21:27	5f8bdad2-04c2-4ff6-8da7-9e7b05d34db8	POST	/gameSessions	undefined
+20241019	14:22:30	d097bc55-77dd-4c70-ac8f-42367067960c	POST	/gameSessions	undefined
+20241019	14:25:43	b498d653-d1a3-4935-bbf7-b6a94f7a9e6d	POST	/gameSessions	undefined
+20241019	14:26:04	a6d5dbc7-1106-45b3-83e5-42f872d91e2b	GET	/gameSessions	undefined
+20241019	14:29:55	dcb6a5bd-a8f0-41c5-89b3-bb90e24d633c	PATCH	/gameSessions?id=6713f9a719ca8e4137240cd2	undefined
+20241019	14:31:06	9a44001a-b936-4bda-916d-3355bfafa7c9	PATCH	/gameSessions/6713f9a719ca8e4137240cd2	undefined
+20241019	14:31:42	9ad116b1-3531-4dba-ae45-55cf86e1c576	PATCH	/gameSessions/6713f9a719ca8e4137240cd2	undefined
+20241019	14:32:08	bc21abf8-25f5-413a-89dc-9f9ec1a9e216	DELETE	/gameSessions/6713f9a719ca8e4137240cd2	undefined
+20241019	14:32:17	ac881d5f-4ca0-4e9f-b221-729a64d3865e	GET	/gameSessions	undefined
+20241019	14:32:45	f5fb326c-1562-4f5d-a27c-d9dddeccd754	POST	/gameSessions	undefined
+20241019	14:34:46	af2c00a6-b4d0-41d2-858a-bfcb2cd1908d	GET	/gameSessions	undefined

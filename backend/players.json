@@ -1,0 +1,161 @@
+{
+  "gameSessionData": { 
+    "dealerObj": {
+      "hand": {
+        "cardNumVals": [9, 5, 10],
+        "cardSum": 24,
+        "cardUrlVals": ["9S", "5D", "JD"],
+        "cards": ["9♠", "5♦", "J♦"],
+        "isBlackjack": false
+      },
+      "name": "Dealer"
+    },
+    "deck": [
+      {
+        "card": "2",
+        "suits": [2, 1, 2, 1],
+        "value": 2
+      },
+      {
+        "card": "3",
+        "suits": [2, 2, 2, 2],
+        "value": 3
+      },
+      {
+        "card": "4",
+        "suits": [2, 2, 2, 1],
+        "value": 4
+      },
+      {
+        "card": "5",
+        "suits": [0, 1, 2, 2],
+        "value": 5
+      },
+      {
+        "card": "6",
+        "suits": [2, 2, 1, 1],
+        "value": 6
+      },
+      {
+        "card": "7",
+        "suits": [2, 2, 2, 2],
+        "value": 7
+      },
+      {
+        "card": "8",
+        "suits": [2, 2, 2, 2],
+        "value": 8
+      },
+      {
+        "card": "9",
+        "suits": [1, 0, 2, 0],
+        "value": 9
+      },
+      {
+        "card": "0",
+        "suits": [2, 2, 1, 2],
+        "value": 10
+      },
+      {
+        "card": "J",
+        "suits": [1, 2, 2, 2],
+        "value": 10
+      },
+      {
+        "card": "Q",
+        "suits": [2, 0, 2, 2],
+        "value": 10
+      },
+      {
+        "card": "K",
+        "suits": [2, 2, 2, 2],
+        "value": 10
+      },
+      {
+        "card": "A",
+        "suits": [2, 2, 1, 2],
+        "value": 11
+      }
+    ],
+    "gameData": {
+      "isAddPlayersRound": false,
+      "isBetRoundActive": false,
+      "isDealerCardRevealed": true,
+      "isDealerDrawing": false,
+      "isDealerRoundActive": false,
+      "isGameActive": true,
+      "isGameIntro": false,
+      "isInsuranceRoundComplete": true,
+      "isMainResultsActive": false,
+      "isPlayerRoundActive": false,
+      "isRoundActive": false,
+      "isSplitResultsActive": false,
+      "roundsPlayed": 2
+    },
+    "playersArr": [
+      {
+        "bank": 1210,
+        "beginningRoundBank": 1005,
+        "currBet": 0,
+        "currTokens": [1, 5, 25, 50, 100, 500],
+        "hand": {
+          "cardNumVals": [6, 5, 9],
+          "cardSum": 20,
+          "cardUrlVals": ["6S", "5D", "9S"],
+          "cards": ["6♠", "5♦", "9♣"],
+          "isBlackjack": false
+        },
+        "insuranceBet": 0,
+        "isDoubleDown": false,
+        "isPlayerSplit": false,
+        "minBet": 205,
+        "name": "Dave",
+        "playerLeftTable": false,
+        "roundResults": {
+          "isComplete": true,
+          "mainResults": "Won",
+          "splitResults": ""
+        },
+        "roundsWon": 2,
+        "splitBet": 0,
+        "splitHand": {
+          "cardSum": 0,
+          "isBlackjack": false
+        },
+        "wonInsuranceRound": false
+      },
+      {
+        "bank": 1008,
+        "beginningRoundBank": 1008,
+        "currBet": 0,
+        "currTokens": [1, 5, 25, 50, 100, 500],
+        "hand": {
+          "cardNumVals": [9, 2, 5, 6],
+          "cardSum": 22,
+          "cardUrlVals": ["9S", "2S", "5S", "6H"],
+          "cards": ["9♠", "2♣", "5♣", "6♥"],
+          "isBlackjack": false
+        },
+        "insuranceBet": 0,
+        "isDoubleDown": false,
+        "isPlayerSplit": false,
+        "minBet": 255,
+        "name": "James",
+        "playerLeftTable": false,
+        "roundResults": {
+          "isComplete": true,
+          "mainResults": "Push",
+          "splitResults": ""
+        },
+        "roundsWon": 1,
+        "splitBet": 0,
+        "splitHand": {
+          "cardSum": 0,
+          "isBlackjack": false
+        },
+        "wonInsuranceRound": false
+      }
+    ]
+  }
+  
+}
