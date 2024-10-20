@@ -4,7 +4,7 @@ import './ShuffleDeckModal.css'
 import ModalTimer from '../modal-timer/ModalTimer';
 import { beginPlayerRound } from '../../store/game-data/GameDataSlice';
 import { useNavigate } from 'react-router';
-import { useUpdateStore } from '../../store/actions/useUpdateStore';
+import useUpdateGameSessionApi from '../../store/api/useUpdateGameSessionApi';
 
 interface ShuffleDeckModalProps {
     open: boolean;
@@ -12,11 +12,11 @@ interface ShuffleDeckModalProps {
 }
 
 export default function ShuffleDeckModal({ closeModal, open }: ShuffleDeckModalProps) {
-    const updateFireBaseDB = useUpdateStore()
+    const { updateGameSessionHandler } = useUpdateGameSessionApi(); //update save state in backend
     const dispatch = useDispatch()
     const navigate = useNavigate();
     const closeShuffleModalHandler = async () => {
-        updateFireBaseDB()
+        updateGameSessionHandler()
         closeModal()
         dispatch(beginPlayerRound())
         navigate("/startRound");

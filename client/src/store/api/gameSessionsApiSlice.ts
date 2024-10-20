@@ -1,8 +1,11 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+const nodeEnvironment = import.meta.env.VITE_NODE_ENV
+
+const url = nodeEnvironment === 'development' ? 'http://localhost:3500' : 'https://blackjack-temporary.onrender.com'
 
 const apiSlice = createApi({
   reducerPath: 'api',
-  baseQuery: fetchBaseQuery({ baseUrl: '/api' }), // Adjust base URL as needed
+  baseQuery: fetchBaseQuery({ baseUrl: url }), // Adjust base URL as needed
   endpoints: (builder) => ({
     getAllGameSessions: builder.query({
       query: () => 'gameSessions',
@@ -18,7 +21,7 @@ const apiSlice = createApi({
       }),
     }),
     updateGameSession: builder.mutation({
-      query: ({ id, gameSessionData }) => ({
+      query: ({ id, ...gameSessionData }) => ({
         url: `gameSessions/${id}`,
         method: 'PATCH',
         body: gameSessionData,
@@ -37,6 +40,7 @@ const apiSlice = createApi({
 export const {
   useGetAllGameSessionsQuery,
   useGetGameSessionByIdQuery,
+  useLazyGetGameSessionByIdQuery,
   useCreateGameSessionMutation,
   useUpdateGameSessionMutation,
   useDeleteGameSessionMutation,

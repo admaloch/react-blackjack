@@ -7,10 +7,10 @@ import { resetDealer } from '../../../../../../store/dealer-obj/dealerObjSlice';
 import EmptyBankModal from '../../../empty-bank-modal/EmptyBankModal';
 import { useState } from 'react';
 import { updateAllPlayers } from '../../../../../../store/player-arr/PlayersArrSlice';
-import { useUpdateStore } from '../../../../../../store/actions/useUpdateStore';
+import useUpdateGameSessionApi from '../../../../../../store/api/useUpdateGameSessionApi';
 
 export default function NextRoundBtn() {
-    const updateFireBaseDB = useUpdateStore()
+    const { updateGameSessionHandler } = useUpdateGameSessionApi(); //update save state in backend
 
     const [isPlayersBrokeModal, setIsPlayersBrokeModal] = useState(false)
     const closePlayerBrokeModal = () => setIsPlayersBrokeModal(false)
@@ -30,8 +30,7 @@ export default function NextRoundBtn() {
             navigate('/placeBets');
             dispatch(resetGameData(areAllPlayersBroke))
         }
-        console.log('sendStore data ran')
-        updateFireBaseDB()
+        updateGameSessionHandler()
         dispatch(updateAllPlayers());
         dispatch(resetDealer())
     };

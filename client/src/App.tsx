@@ -18,12 +18,16 @@ import { useUpdateStore } from './store/actions/useUpdateStore'
 
 let isInitial = true
 
+
+
 function App() {
   const updateFireBaseDB = useUpdateStore()
-  const inactivePlayers = useSelector((state: RootState) => state.inactivePlayers);
   const navigate = useNavigate();
 
-  // // eslint-disable-next-line react-hooks/exhaustive-deps
+  const inactivePlayers = useSelector((state: RootState) => state.inactivePlayers);
+
+
+  // lint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (location.pathname !== '/') {
       navigate('/');

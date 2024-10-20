@@ -76,6 +76,7 @@ const gameSessionSchema = new Schema({
   deck: { type: [deckCardSchema], required: true },
   gameData: { type: gameDataSchema, required: true },
   playersArr: { type: [playerSchema], required: true },
+  inactivePlayers: { type: [playerSchema], required: true },
 });
 
 module.exports = mongoose.model("GameSession", gameSessionSchema);
