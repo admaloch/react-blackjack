@@ -33,7 +33,7 @@ const useUpdateGameSessionApi = () => {
         deck,
       }).unwrap();
       console.log(
-        `Game session created with session id#: ${response.gameSession._id}`
+        `New game session created. id#: ${response.gameSession._id}`
       );
       const sessionId = response.gameSession._id;
       Cookies.set("blackjack-session-id", sessionId, { expires: 365 });
@@ -60,16 +60,12 @@ const useUpdateGameSessionApi = () => {
   };
 
   const deleteGameSessionHandler = async () => {
-    // Create game session here with state
+    // Createif game session here with state
+    if(!sessionId) return;
     try {
-      const response = await deleteGameSession({
-        playersArr,
-        inactivePlayers,
-        dealerObj,
-        gameData,
-        deck,
-      }).unwrap();
-      console.log(`Game session id#: ${response.gameSession._id} updated`);
+      await deleteGameSession(sessionId).unwrap();
+      console.log(`Game session id#: ${sessionId} deleted`);
+      Cookies.remove("blackjack-session-id");
     } catch (e) {
       console.error("Failed to update game session:", e);
     }

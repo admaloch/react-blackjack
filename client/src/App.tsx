@@ -1,65 +1,58 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import './App.css'
-import GameIntro from './components/game-intro/GameIntro'
-import AddPlayers from './components/add-players/AddPlayers'
-import StartRound from './components/main-game/round-num/RoundNum'
-import { CssBaseline } from '@mui/material'
-import { Routes, Route, Navigate, useNavigate } from 'react-router-dom'
-import GameMenu from './components/menu-items/GameMenu'
-import PlayerBets from './components/main-game/player-bets/PlayerBets'
-import PlayGame from './components/main-game/play-game/PlayGame'
-import FinalResults from './components/final-results/FinalResults'
-import { useEffect } from 'react'
-import {  useSelector } from 'react-redux'
-import { RootState } from './store/store'
-
-import { useUpdateStore } from './store/actions/useUpdateStore'
-
-let isInitial = true
+import "./App.css";
+import GameIntro from "./components/game-intro/GameIntro";
+import AddPlayers from "./components/add-players/AddPlayers";
+import StartRound from "./components/main-game/round-num/RoundNum";
+import { CssBaseline } from "@mui/material";
+import { Routes, Route, useNavigate } from "react-router-dom";
+import GameMenu from "./components/menu-items/GameMenu";
+import PlayerBets from "./components/main-game/player-bets/PlayerBets";
+import PlayGame from "./components/main-game/play-game/PlayGame";
+import FinalResults from "./components/final-results/FinalResults";
+import { useEffect } from "react";
 
 
+// let isInitial = true
 
 function App() {
-  const updateFireBaseDB = useUpdateStore()
+  // const updateFireBaseDB = useUpdateStore()
   const navigate = useNavigate();
 
-  const inactivePlayers = useSelector((state: RootState) => state.inactivePlayers);
-
+  // const inactivePlayers = useSelector((state: RootState) => state.inactivePlayers);
 
   // lint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-    if (location.pathname !== '/') {
-      navigate('/');
+    if (location.pathname !== "/") {
+      navigate("/");
       return;
     }
   }, []);
 
-  useEffect(() => {
-    if (isInitial) {
-      isInitial = false
-      return;
-    }
-    updateFireBaseDB()
-  }, [inactivePlayers])
+  // useEffect(() => {
+  //   if (isInitial) {
+  //     isInitial = false
+  //     return;
+  //   }
+  //   updateFireBaseDB()
+  // }, [inactivePlayers])
 
   return (
     <>
       <CssBaseline />
       <GameMenu />
       <Routes>
-        <Route path='/' element={<GameIntro />} />
-        <Route path='/addPlayers' element={<AddPlayers />} />
-        <Route path='/playGame' element={<StartRound />} />
-        <Route path='/placeBets' element={<PlayerBets />} />
-        <Route path='/startRound' element={<PlayGame />} />
-        <Route path='/finalResults' element={<FinalResults />} />
-        <Route path='*' element={<Navigate to='/' />} />  {/* Catch-all route */}
-      </Routes >
+        <Route path="/" element={<GameIntro />} />
+        <Route path="/addPlayers" element={<AddPlayers />} />
+        <Route path="/playGame" element={<StartRound />} />
+        <Route path="/placeBets" element={<PlayerBets />} />
+        <Route path="/startRound" element={<PlayGame />} />
+        <Route path="/finalResults" element={<FinalResults />} />
+      </Routes>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
 
 /* eslint-enable react-hooks/exhaustive-deps */

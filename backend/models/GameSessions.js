@@ -33,10 +33,7 @@ const playerSchema = new Schema({
   roundResults: { type: roundResultsSchema, required: true },
   roundsWon: { type: Number, default: 0 },
   splitBet: { type: Number, default: 0 },
-  splitHand: {
-    cardSum: { type: Number, default: 0 },
-    isBlackjack: { type: Boolean, default: false },
-  },
+  splitHand: { type: handSchema, required: true },
   wonInsuranceRound: { type: Boolean, default: false },
 });
 

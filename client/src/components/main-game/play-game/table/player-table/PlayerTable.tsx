@@ -23,6 +23,9 @@ function PlayerTable({
   const { hand, splitHand, splitBet, name } = playersArr[playerIndex];
   const playerDraw = usePlayerDrawCard(playerIndex);
 
+  console.log(playersArr[playerIndex]);
+
+
   useEffect(() => {
     let isMounted = true;
     async function initPlayerDraw() {
@@ -40,6 +43,7 @@ function PlayerTable({
       isMounted = false;
     };
   }, [hand, dealerObj, playerDraw]);
+
 
   const handText =
     splitHand.cards.length === 1 ? ": Main hand" : ": Split hand";

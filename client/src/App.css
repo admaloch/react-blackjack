@@ -8,6 +8,7 @@
 :root {
     --background: #001219;
     --table-background: #1D2A1F;
+    --ghost-table-background: rgba(29, 42, 31, .5);
     --text: #edf2f4;
     --modal-overlay: rgba(0, 0, 0, .7);
     --modal-color: #C9CDF3;
