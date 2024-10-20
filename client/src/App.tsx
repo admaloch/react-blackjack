@@ -11,15 +11,20 @@ import PlayerBets from "./components/main-game/player-bets/PlayerBets";
 import PlayGame from "./components/main-game/play-game/PlayGame";
 import FinalResults from "./components/final-results/FinalResults";
 import { useEffect } from "react";
-
+import useUpdateGameSessionApi from "./store/api/useUpdateGameSessionApi";
+import { useSelector } from "react-redux";
+import { RootState } from "./store/store";
 
 // let isInitial = true
 
 function App() {
-  // const updateFireBaseDB = useUpdateStore()
-  const navigate = useNavigate();
+  const playersArr = useSelector((state: RootState) => state.playersArr);
+  const { isGameIntro, isAddPlayersRound } = useSelector(
+    (state: RootState) => state.gameData
+  );
 
-  // const inactivePlayers = useSelector((state: RootState) => state.inactivePlayers);
+  const { deleteGameSessionHandler } = useUpdateGameSessionApi();
+  const navigate = useNavigate();
 
   // lint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
@@ -29,13 +34,23 @@ function App() {
     }
   }, []);
 
-  // useEffect(() => {
-  //   if (isInitial) {
-  //     isInitial = false
-  //     return;
-  //   }
-  //   updateFireBaseDB()
-  // }, [inactivePlayers])
+  const areAllPlayersBroke = playersArr.every((player) => player.bank + player.currBet < 5);
+
+  useEffect(() => {
+    if (
+      (!isGameIntro && !isAddPlayersRound && areAllPlayersBroke) ||
+      (!isGameIntro && !isAddPlayersRound && playersArr.length === 0)
+    ) {
+      console.log("all players are done");
+      deleteGameSessionHandler();
+    }
+  }, [
+    playersArr,
+    deleteGameSessionHandler,
+    isAddPlayersRound,
+    isGameIntro,
+    areAllPlayersBroke,
+  ]);
 
   return (
     <>

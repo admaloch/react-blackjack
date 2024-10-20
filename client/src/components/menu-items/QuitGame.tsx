@@ -6,14 +6,18 @@ import { addInactivePlayers } from "../../store/inactive-players/InactivePlayers
 import { endIsGameActive, resetGame } from "../../store/game-data/GameDataSlice";
 import { resetDealer } from "../../store/dealer-obj/dealerObjSlice";
 import { resetPlayersArr } from "../../store/player-arr/PlayersArrSlice";
+import useUpdateGameSessionApi from "../../store/api/useUpdateGameSessionApi";
 
 export default function QuitGame() {
+  const { deleteGameSessionHandler } = useUpdateGameSessionApi();
+
   const playersArr = useSelector((state: RootState) => state.playersArr);
   const { isBetRoundActive, isAddPlayersRound, roundsPlayed } = useSelector((state: RootState) => state.gameData);
   const navigate = useNavigate();
   const dispatch = useDispatch()
 
   const quitGameHandler = () => {
+    deleteGameSessionHandler()
     revertBetAfterQuit()
     dispatch(resetPlayersArr())
     dispatch(resetDealer())

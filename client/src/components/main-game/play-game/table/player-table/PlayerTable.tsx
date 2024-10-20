@@ -23,9 +23,6 @@ function PlayerTable({
   const { hand, splitHand, splitBet, name } = playersArr[playerIndex];
   const playerDraw = usePlayerDrawCard(playerIndex);
 
-  console.log(playersArr[playerIndex]);
-
-
   useEffect(() => {
     let isMounted = true;
     async function initPlayerDraw() {

@@ -17,7 +17,7 @@ export default function NextRoundBtn() {
     const { roundsPlayed } = useSelector((state: RootState) => state.gameData);
     const playersArr = useSelector((state: RootState) => state.playersArr);
 
-    const areAllPlayersBroke = playersArr.every(player => player.bank < 5)
+    const areAllPlayersBroke = playersArr.every((player) => player.bank + player.currBet < 5);
     const areAnyPlayersBroke = playersArr.some(player => player.bank < 5)
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -35,9 +35,12 @@ export default function NextRoundBtn() {
         dispatch(resetDealer())
     };
 
+
+    const btnText = areAllPlayersBroke ? 'View final results' : `Start Round ${roundsPlayed + 1}`
+
     return (
         <>
-            <button onClick={finalBtnHandler} className="game-btn">Start Round {roundsPlayed + 1}</button>
+            <button onClick={finalBtnHandler} className="game-btn">{btnText}</button>
             <EmptyBankModal
                 closePlayerBrokeModal={closePlayerBrokeModal}
                 isPlayersBrokeModal={isPlayersBrokeModal}

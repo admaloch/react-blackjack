@@ -12,6 +12,7 @@ export default function EndRoundTable() {
     const { isPlayerRoundActive, isMainResultsActive, isDealerRoundActive, isSplitResultsActive, isRoundActive } = useSelector((state: RootState) => state.gameData);
     const dispatch = useDispatch()
     const isPlayerSplitButNotInsured = playersArr.some(x => x.splitHand.cards.length > 0 && !x.wonInsuranceRound)
+   
 
     useEffect(() => {
         let isMounted = true
@@ -30,6 +31,9 @@ export default function EndRoundTable() {
         splitOrEndResults()
         return () => { isMounted = false }
     }, [isPlayerRoundActive, isDealerRoundActive, isSplitResultsActive, dispatch, isPlayerSplitButNotInsured, isMainResultsActive, isRoundActive])
+
+
+
 
     return (
         <div className="player-results-table">
