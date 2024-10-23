@@ -190,9 +190,11 @@ const playerArrSlice = createSlice({
             })
             return allPlayersWithSplitHands;
         },
-        updateAllPlayers: (state) => {
-            const inActivePlayers = state.filter(player => player.bank < 5)
-            const updatedActivePlayers = state.filter(player => player.bank >= 5).map((player: PlayerInterface) => {
+        updateAllPlayers: (state, action?) => {
+            const players = action?.payload || state; // Use payload if present, otherwise use current state
+
+            const inActivePlayers = players.filter(player => player.bank < 5)
+            const updatedActivePlayers = players.filter(player => player.bank >= 5).map((player: PlayerInterface) => {
                 return {
                     ...player,
                     hand: {

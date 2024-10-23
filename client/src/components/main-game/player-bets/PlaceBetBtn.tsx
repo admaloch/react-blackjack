@@ -39,7 +39,7 @@ export default function PlaceBetBtn({
         setIsModalOpen(true);
       } else {
         dispatch(beginPlayerRound());
-        updateGameSessionHandler();
+        // updateGameSessionHandler();
         navigate("/startRound");
       }
     }

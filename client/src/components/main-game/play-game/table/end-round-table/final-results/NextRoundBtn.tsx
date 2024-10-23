@@ -30,7 +30,7 @@ export default function NextRoundBtn() {
             navigate('/placeBets');
             dispatch(resetGameData(areAllPlayersBroke))
         }
-        updateGameSessionHandler()
+        // updateGameSessionHandler()
         dispatch(updateAllPlayers());
         dispatch(resetDealer())
     };

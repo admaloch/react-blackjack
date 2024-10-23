@@ -32,22 +32,19 @@ export interface PlayerInterface {
     roundsWon: number;
     roundResults: RoundResultsProps
 }
+
+export const emptyHand: Hand = {
+    cards: [],
+    cardUrlVals: [],
+    cardNumVals: [],
+    cardSum: 0,
+    isBlackjack: false,
+}
+
 export const emptyPlayerItem: PlayerInterface = {
     name: '',
-    hand: {
-        cards: [],
-        cardUrlVals: [],
-        cardNumVals: [],
-        cardSum: 0,
-        isBlackjack: false,
-    },
-    splitHand: {
-        cards: [],
-        cardUrlVals: [],
-        cardNumVals: [],
-        cardSum: 0,
-        isBlackjack: false,
-    },
+    hand: emptyHand,
+    splitHand: emptyHand,
     bank: 995,
     beginningRoundBank: 1000,
     currBet: 5,

@@ -14,16 +14,22 @@ import { useEffect } from "react";
 import useUpdateGameSessionApi from "./store/api/useUpdateGameSessionApi";
 import { useSelector } from "react-redux";
 import { RootState } from "./store/store";
+import Cookies from "js-cookie";
 
 // let isInitial = true
 
 function App() {
   const playersArr = useSelector((state: RootState) => state.playersArr);
-  const { isGameIntro, isAddPlayersRound } = useSelector(
-    (state: RootState) => state.gameData
+  const gameData = useSelector((state: RootState) => state.gameData);
+  const inactivePlayers = useSelector(
+    (state: RootState) => state.inactivePlayers
   );
+  const dealerObj = useSelector((state: RootState) => state.dealerObj);
+  const deck = useSelector((state: RootState) => state.deck);
 
-  const { deleteGameSessionHandler } = useUpdateGameSessionApi();
+
+  const { deleteGameSessionHandler, updateGameSessionHandler } =
+    useUpdateGameSessionApi();
   const navigate = useNavigate();
 
   // lint-disable-next-line react-hooks/exhaustive-deps
@@ -34,12 +40,14 @@ function App() {
     }
   }, []);
 
-  const areAllPlayersBroke = playersArr.every((player) => player.bank + player.currBet < 5);
-
+  //if all players are done delete session from backend
+  const areAllPlayersBroke = playersArr.every(
+    (player) => player.bank + player.currBet < 5
+  );
   useEffect(() => {
     if (
-      (!isGameIntro && !isAddPlayersRound && areAllPlayersBroke) ||
-      (!isGameIntro && !isAddPlayersRound && playersArr.length === 0)
+      (!gameData.isGameIntro && !gameData.isAddPlayersRound && areAllPlayersBroke) ||
+      (!gameData.isGameIntro && !gameData.isAddPlayersRound && playersArr.length === 0)
     ) {
       console.log("all players are done");
       deleteGameSessionHandler();
@@ -47,9 +55,22 @@ function App() {
   }, [
     playersArr,
     deleteGameSessionHandler,
-    isAddPlayersRound,
-    isGameIntro,
+    gameData,
     areAllPlayersBroke,
+  ]);
+
+  const sessionId = Cookies.get("blackjack-session-id");
+  //update game session in backend
+  useEffect(() => {
+    if (!gameData.isGameIntro && !gameData.isAddPlayersRound && sessionId) {
+      updateGameSessionHandler();
+    }
+  }, [
+    playersArr,
+    gameData,
+    inactivePlayers,
+    dealerObj,
+    deck,
   ]);
 
   return (

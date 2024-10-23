@@ -42,7 +42,7 @@ export default function ResultsModal({ playerIndex, isCurrPlayerFinished, makeCu
             } else {
                 playersHaveSplit && dispatch(reverseAllSplitHands())
                 dispatch(beginDealerRound())
-                updateGameSessionHandler()
+                // updateGameSessionHandler()
             }
         }
     }, [changeToNextPlayer, dispatch, isLastPlayer, isPlayerSplit, makeCurrPlayerNotFinished, playerIndex, playersHaveSplit, splitHand.cards.length, updateGameSessionHandler]);

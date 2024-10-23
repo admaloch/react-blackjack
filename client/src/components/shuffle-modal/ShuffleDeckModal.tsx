@@ -16,7 +16,7 @@ export default function ShuffleDeckModal({ closeModal, open }: ShuffleDeckModalP
     const dispatch = useDispatch()
     const navigate = useNavigate();
     const closeShuffleModalHandler = async () => {
-        updateGameSessionHandler()
+        // updateGameSessionHandler()
         closeModal()
         dispatch(beginPlayerRound())
         navigate("/startRound");

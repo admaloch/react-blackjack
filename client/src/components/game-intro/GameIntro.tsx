@@ -40,6 +40,7 @@ export default function GameIntro() {
       }
     }
     checkIfPrevSession();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   let content = null;
