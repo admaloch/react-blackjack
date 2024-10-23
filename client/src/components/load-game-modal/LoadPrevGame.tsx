@@ -4,8 +4,7 @@ import "./LoadPrevGame.css";
 import { useDispatch } from "react-redux";
 import { setDeck } from "../../store/deck/deckSlice";
 import {
-  setPlayers,
-  updateAllPlayers,
+  updatePlayersFromPrevGame,
 } from "../../store/player-arr/PlayersArrSlice";
 import { setInactivePlayers } from "../../store/inactive-players/InactivePlayersSlice";
 import { AppDispatch } from "../../store/store";
@@ -41,32 +40,18 @@ export default function LoadPrevGame({
   console.log("beginningRoundBank", playersArr[0].beginningRoundBank);
 
   const updatedPlayersArr = playersArr.map((player) => {
-    const updatedBank = player.currBet
-      ? player.bank - player.currBet
-      : player.bank;
-
-    const updatedMinBet = player.currBet >= player.bank ? player.currBet : 5;
-
     return {
       ...player,
       hand: emptyHand,
       splitHand: emptyHand,
-      // beginningRoundBank: player.bank,
-      // bank: player.bank - player.currBet,
-      // minBet: updatedMinBet,
       currBet: 0,
       splitBet: 0,
-      
-      // minBet: updatedMinBet,
-      // beginningRoundBank: player.bank,
     };
   });
 
   const yesClickHandler = () => {
     dispatch(returnToPrevGame());
-    dispatch(updateAllPlayers(updatedPlayersArr));
-    // dispatch(resetDealer())
-    // dispatch(setPlayers(updatedPlayersArr));
+    dispatch(updatePlayersFromPrevGame(updatedPlayersArr));
     dispatch(setDeck(deck));
     dispatch(setInactivePlayers(inactivePlayers));
     navigate("/placeBets");

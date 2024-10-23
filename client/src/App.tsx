@@ -21,18 +21,11 @@ import Cookies from "js-cookie";
 function App() {
   const playersArr = useSelector((state: RootState) => state.playersArr);
   const gameData = useSelector((state: RootState) => state.gameData);
-  const inactivePlayers = useSelector(
-    (state: RootState) => state.inactivePlayers
-  );
-  const dealerObj = useSelector((state: RootState) => state.dealerObj);
-  const deck = useSelector((state: RootState) => state.deck);
-
 
   const { deleteGameSessionHandler, updateGameSessionHandler } =
     useUpdateGameSessionApi();
   const navigate = useNavigate();
 
-  // lint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (location.pathname !== "/") {
       navigate("/");
@@ -46,32 +39,27 @@ function App() {
   );
   useEffect(() => {
     if (
-      (!gameData.isGameIntro && !gameData.isAddPlayersRound && areAllPlayersBroke) ||
-      (!gameData.isGameIntro && !gameData.isAddPlayersRound && playersArr.length === 0)
+      (!gameData.isGameIntro &&
+        !gameData.isAddPlayersRound &&
+        areAllPlayersBroke) ||
+      (!gameData.isGameIntro &&
+        !gameData.isAddPlayersRound &&
+        playersArr.length === 0)
     ) {
       console.log("all players are done");
       deleteGameSessionHandler();
     }
-  }, [
-    playersArr,
-    deleteGameSessionHandler,
-    gameData,
-    areAllPlayersBroke,
-  ]);
+  }, [playersArr, deleteGameSessionHandler, gameData, areAllPlayersBroke]);
 
-  const sessionId = Cookies.get("blackjack-session-id");
   //update game session in backend
+  const sessionId = Cookies.get("blackjack-session-id");
   useEffect(() => {
-    if (!gameData.isGameIntro && !gameData.isAddPlayersRound && sessionId) {
-      updateGameSessionHandler();
+    if (!gameData.isGameIntro && !gameData.isAddPlayersRound && !gameData.isBetRoundActive && sessionId) {
+      setTimeout(() => {
+        updateGameSessionHandler();
+      }, 300);
     }
-  }, [
-    playersArr,
-    gameData,
-    inactivePlayers,
-    dealerObj,
-    deck,
-  ]);
+  }, [playersArr]);
 
   return (
     <>

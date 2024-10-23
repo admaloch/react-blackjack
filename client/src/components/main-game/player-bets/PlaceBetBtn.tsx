@@ -4,7 +4,6 @@ import { useNavigate } from "react-router";
 import { beginPlayerRound } from "../../../store/game-data/GameDataSlice";
 import { resetDeck } from "../../../store/deck/deckSlice";
 import { updatePlayer } from "../../../store/player-arr/PlayersArrSlice";
-import useUpdateGameSessionApi from "../../../store/api/useUpdateGameSessionApi";
 
 interface PlaceBetBtnProps {
   currPlayerIndex: number;
@@ -17,7 +16,6 @@ export default function PlaceBetBtn({
   currPlayerIndex,
   moveToNextPlayer,
 }: PlaceBetBtnProps) {
-  const { updateGameSessionHandler } = useUpdateGameSessionApi(); //update save state in backend
   const playersArr = useSelector((state: RootState) => state.playersArr);
   const deck = useSelector((state: RootState) => state.deck);
   const player = playersArr[currPlayerIndex];

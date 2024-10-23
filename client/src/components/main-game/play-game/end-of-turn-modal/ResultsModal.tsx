@@ -6,7 +6,6 @@ import ResultsModalContents from "./ResultsModalContent";
 import { beginDealerRound } from "../../../../store/game-data/GameDataSlice";
 import { useCallback } from "react";
 import { reverseAllSplitHands, reverseCurrSplitHand } from "../../../../store/player-arr/PlayersArrSlice";
-import useUpdateGameSessionApi from "../../../../store/api/useUpdateGameSessionApi";
 
 interface EndOfTurnResultsProps {
     playerIndex: number;
@@ -16,9 +15,6 @@ interface EndOfTurnResultsProps {
 }
 
 export default function ResultsModal({ playerIndex, isCurrPlayerFinished, makeCurrPlayerNotFinished, changeToNextPlayer }: EndOfTurnResultsProps) {
-
-    const { updateGameSessionHandler } = useUpdateGameSessionApi(); //update save state in backend
-
 
     const playersArr = useSelector((state: RootState) => state.playersArr);
 
@@ -42,10 +38,9 @@ export default function ResultsModal({ playerIndex, isCurrPlayerFinished, makeCu
             } else {
                 playersHaveSplit && dispatch(reverseAllSplitHands())
                 dispatch(beginDealerRound())
-                // updateGameSessionHandler()
             }
         }
-    }, [changeToNextPlayer, dispatch, isLastPlayer, isPlayerSplit, makeCurrPlayerNotFinished, playerIndex, playersHaveSplit, splitHand.cards.length, updateGameSessionHandler]);
+    }, [changeToNextPlayer, dispatch, isLastPlayer, isPlayerSplit, makeCurrPlayerNotFinished, playerIndex, playersHaveSplit, splitHand.cards.length]);
 
     return (
         <Modal
