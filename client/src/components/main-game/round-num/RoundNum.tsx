@@ -13,13 +13,15 @@ export default function StartRound() {
     (state: RootState) => state.gameData.roundsPlayed
   );
 
-  async function playGame() {
-    await delay(1500);
-    navigate("/placeBets");
-  }
-  playGame();
+  useEffect(() => {
+    const playGame = async () => {
+      await delay(1500);
+      navigate("/placeBets");
+    };
+    playGame();
+  }, [navigate]); 
 
-  //loading cards can be laggy sometimes so prefetch them
+  //loading cards can be laggy during gameplay sometimes so prefetch them is necessary
   useEffect(() => {
     preFetchCards()
   }, []);

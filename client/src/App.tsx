@@ -22,13 +22,11 @@ import useTitle from "./hooks/useTitle";
 function App() {
   const playersArr = useSelector((state: RootState) => state.playersArr);
   const gameData = useSelector((state: RootState) => state.gameData);
-
-  useTitle('Blackjack')
-
-
   const { deleteGameSessionHandler, updateGameSessionHandler } =
     useUpdateGameSessionApi();
   const navigate = useNavigate();
+
+  useTitle('Blackjack')//custom hook to set the title on the tab in browser
 
   useEffect(() => {
     if (location.pathname !== "/") {
