@@ -15,12 +15,16 @@ import useUpdateGameSessionApi from "./store/api/useUpdateGameSessionApi";
 import { useSelector } from "react-redux";
 import { RootState } from "./store/store";
 import Cookies from "js-cookie";
+import useTitle from "./hooks/useTitle";
 
 // let isInitial = true
 
 function App() {
   const playersArr = useSelector((state: RootState) => state.playersArr);
   const gameData = useSelector((state: RootState) => state.gameData);
+
+  useTitle('Blackjack')
+
 
   const { deleteGameSessionHandler, updateGameSessionHandler } =
     useUpdateGameSessionApi();
