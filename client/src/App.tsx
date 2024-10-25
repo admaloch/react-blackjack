@@ -46,7 +46,6 @@ function App() {
         !gameData.isAddPlayersRound &&
         playersArr.length === 0)
     ) {
-      console.log("all players are done");
       deleteGameSessionHandler();
     }
   }, [playersArr, deleteGameSessionHandler, gameData, areAllPlayersBroke]);

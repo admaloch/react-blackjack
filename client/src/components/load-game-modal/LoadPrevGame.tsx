@@ -34,11 +34,6 @@ export default function LoadPrevGame({
 
   if (!playersArr) return null;
 
-  console.log("bank", playersArr[0].bank);
-  console.log("currBet", playersArr[0].currBet);
-  console.log("minBet", playersArr[0].minBet);
-  console.log("beginningRoundBank", playersArr[0].beginningRoundBank);
-
   const updatedPlayersArr = playersArr.map((player) => {
     return {
       ...player,

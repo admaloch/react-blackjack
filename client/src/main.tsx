@@ -9,8 +9,6 @@ import { disableReactDevTools } from '@fvilers/disable-react-devtools';
 
 if (process.env.NODE_ENV === 'production') disableReactDevTools();
 
-console.log(process.env.NODE_ENV);
-
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <BrowserRouter>

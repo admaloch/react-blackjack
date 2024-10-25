@@ -5,7 +5,7 @@ export default function MainLoadAnimation({
   dot2Color = "#00798c",
   dot3Color = "#edae49",
   textColor = "#00798c",
-  backColor = "rgba(255, 255, 255, .7)",
+  backColor = "rgba(255, 255, 255, .6)",
 }): JSX.Element {
   return (
     <div style={{ background: backColor }} className="loader ">
@@ -15,8 +15,9 @@ export default function MainLoadAnimation({
         <span style={{ background: dot3Color }}></span>
       </div>
       <div style={{ color: textColor }} className="loading">
-        Loading
+        <p>Loading</p>
       </div>
+      
     </div>
   );
 }
