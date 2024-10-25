@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 const nodeEnvironment = import.meta.env.VITE_NODE_ENV
 
-const url = nodeEnvironment === 'development' ? 'http://localhost:3500' : 'https://blackjack-temporary.onrender.com'
+const url = nodeEnvironment === 'development' ? 'http://localhost:3500' : 'https://blackjack.onrender.com'
 
 const apiSlice = createApi({
   reducerPath: 'api',

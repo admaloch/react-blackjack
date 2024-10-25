@@ -60,6 +60,7 @@ function App() {
       }, 300);
     }
   }, [playersArr]);
+  
 
   return (
     <>
