@@ -15,7 +15,7 @@ export default function MainLoadAnimation({
         <span style={{ background: dot3Color }}></span>
       </div>
       <div style={{ color: textColor }} className="loading">
-        <p>Loading</p>
+        <p>(The game needs a minute or two to wake up...)</p>
       </div>
       
     </div>

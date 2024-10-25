@@ -16,7 +16,6 @@ export default function GameIntro() {
   const [triggerGetGameSession, { data, isLoading }] =
     useLazyGetGameSessionByIdQuery();
 
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const closeModal = () => setIsModalOpen(false);
 
@@ -40,7 +39,7 @@ export default function GameIntro() {
       }
     }
     checkIfPrevSession();
-      // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   let content = null;
@@ -67,7 +66,5 @@ export default function GameIntro() {
     );
   }
 
-  return <BGSection bgClass="card-image">
-    {content}
-  </BGSection>;
+  return <BGSection bgClass="card-image">{content}</BGSection>;
 }
