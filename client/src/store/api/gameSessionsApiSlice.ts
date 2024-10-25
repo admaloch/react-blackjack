@@ -6,6 +6,8 @@ const url =
     ? "http://localhost:3500"
     : "https://react-blackjack-production.up.railway.app/";
 
+    console.log('backend url is:', url)
+
 // https://react-blackjack-production.up.railway.app/
 //https://blackjack-backend-goet.onrender.com/
 
