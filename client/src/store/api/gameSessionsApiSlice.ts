@@ -1,19 +1,19 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 const nodeEnvironment = import.meta.env.VITE_NODE_ENV;
+const backendUrl = import.meta.env.VITE_BACKEND_URL_BASE;
 
 const url =
   nodeEnvironment === "development"
     ? "http://localhost:3500"
-    : "https://react-blackjack-production.up.railway.app/";
+    : backendUrl;
 
     console.log('backend url is:', url)
 
-// https://react-blackjack-production.up.railway.app/
-//https://blackjack-backend-goet.onrender.com/
+
 
 const apiSlice = createApi({
   reducerPath: "api",
-  baseQuery: fetchBaseQuery({ baseUrl: url }), // Adjust base URL as needed
+  baseQuery: fetchBaseQuery({ baseUrl: url }), 
   endpoints: (builder) => ({
     getAllGameSessions: builder.query({
       query: () => "gameSessions",

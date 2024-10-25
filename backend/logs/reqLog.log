@@ -1797,3 +1797,7 @@
 20241025	17:07:38	4b271721-fad6-4d99-a851-f6993b4b82ee	GET	/gameSessions/671bfd9c1f2edd9ba15c56a4	http://localhost:5173
 20241025	17:07:41	889156da-a679-42f1-a6f6-28c0a039085c	GET	/gameSessions/671bfd9c1f2edd9ba15c56a4	http://localhost:5173
 20241025	17:07:46	addb4c1c-d33d-4141-b46e-88b0a382aa52	GET	/gameSessions/671bfd9c1f2edd9ba15c56a4	http://localhost:5173
+20241025	17:08:18	72501aae-cd71-45d6-80f6-a216fa1d680f	GET	/gameSessions/671bfd9c1f2edd9ba15c56a4	http://localhost:5173
+20241025	17:09:17	397e104e-b1a1-46ff-98ff-6857e13d9bc5	GET	/gameSessions/671bfd9c1f2edd9ba15c56a4	http://localhost:5173
+20241025	17:09:19	0931a814-0186-42f2-be4d-8c92e1868e9d	OPTIONS	/gameSessions/671bfd9c1f2edd9ba15c56a4	http://localhost:5173
+20241025	17:09:19	a5f12a23-e6ff-4f2b-a88b-a3745881d5a9	DELETE	/gameSessions/671bfd9c1f2edd9ba15c56a4	http://localhost:5173
