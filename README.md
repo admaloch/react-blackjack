@@ -2,7 +2,7 @@
 <h2>About this Project:</h2>
 <ul>
   <li>This is a rebuild of a command-line blackjack game I built with Node JS -- <a href="https://github.com/admaloch/blackjack-node-app">Link to GitHub Repository</a></li>
-  <li> This is a fully featured blackjack game built with the MERN stack, complete with a UI and support for multiple players. It includes all the typical features of a blackjack game, with custom-built logic for the cards, deck, and user data—no APIs were used in the development process. The backend is set up to store game sessions, allowing users to return to a previous game. The intent of this project was to solidify my proficiency in React component structuring, hooks, and to develop a deeper understanding of the component lifecycle and React re-rendering process. </li>
+  <li> This is a fully featured blackjack game built with the MERN stack, complete with a UI and support for multiple players. It includes all the typical features of a blackjack game, with custom-built logic for the cards, deck, and user data—no card/deck APIs were used in the development process. The backend is set up to store game sessions, allowing users to return to a previous game. The intent of this project was to solidify my proficiency in React component structuring, hooks, and to develop a deeper understanding of the component lifecycle and React re-rendering process. </li>
 
 </ul>
 <h2>Takeaways:</h2>
