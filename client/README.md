@@ -2,14 +2,13 @@
 <h2>About this Project:</h2>
 <ul>
   <li>This is a rebuild of a command-line blackjack game I built with Node JS -- <a href="https://github.com/admaloch/blackjack-node-app">Link to GitHub Repository</a></li>
-  <li>This is fully featured blackjack game built with React, Redux and Router, complete with a UI and multiple players. </li>
-  <li>A Firebase realtime DB is used to store redux store data and allow users to return to a previous game. </li>
-  <li>The logic for the cards, deck and user data are all built from scratch and no APIs were used. </li>
+  <li>This is fully featured blackjack game built with React, Redux, RTKQuery, Router, NodeJS, MongoDB/Mongoose/express etc.. It is complete with a UI and multiple players. Game data is saved on the backend in sessions and when a user leaves in the middle of a game, they can reopen when they return. OTherwise the session is deleted. </li>
+  <li>The logic for the cards, deck and user data are all built from scratch and no APIs were used except for the card images. </li>
 </ul>
 <h2>Takeaways:</h2>
 <li>This was a good opportunity to solidify React work flow, component structuring, implement new hooks, and develop a better understanding for component rerender cycles.
   <li>  The most challenging part of this was dealing with the many bugs that popped up. There were tons of asynchronous operations, effects loops, and timed operations so it was extremely tricky locating the source of issues when they popped up. </li>
-  <li>Another challenge was the deck logic. No card deck APIs were used so this was all built from scratch to emulate a real deck of cards including updating on draw </li>
+  <li>Another challenge was the deck logic which was built from scrath to emulate a real deck including card removal and shuffle.</li>
 <h2>Concepts:</h2>
 <ul>
   <li>React</li>
