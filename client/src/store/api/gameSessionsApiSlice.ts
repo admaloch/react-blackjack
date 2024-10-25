@@ -4,7 +4,10 @@ const nodeEnvironment = import.meta.env.VITE_NODE_ENV;
 const url =
   nodeEnvironment === "development"
     ? "http://localhost:3500"
-    : "https://blackjack-backend-goet.onrender.com/";
+    : "https://react-blackjack-production.up.railway.app/";
+
+// https://react-blackjack-production.up.railway.app/
+//https://blackjack-backend-goet.onrender.com/
 
 const apiSlice = createApi({
   reducerPath: "api",

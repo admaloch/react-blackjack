@@ -18,9 +18,6 @@ export default function AddPlayers() {
 
   const startBetRoundHandler = () => {
     dispatch(startBetRound());
-    if (window.innerWidth < 500) {
-      document.body.requestFullscreen();
-    }
     createGameSessionHandler(); // Create game session in backend to save data
   };
 
