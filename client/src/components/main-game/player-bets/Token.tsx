@@ -13,6 +13,7 @@ export default function Token({ number, currPlayerIndex }: TokenProps) {
     return (
         
         <div
+        aria-labelledby='player-tokens'
             id={`token${number}`}
             onClick={() => dispatch(clickTokenUpdate({ index: currPlayerIndex, number: number }))}
         >

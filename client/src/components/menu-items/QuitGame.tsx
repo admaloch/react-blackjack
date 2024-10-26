@@ -55,7 +55,7 @@ export default function QuitGame() {
   }
 
   return (
-    <div onClick={quitGameHandler}>
+    <div aria-label="quit game" onClick={quitGameHandler}>
       <QuitIconWithPopper />
     </div>
   );

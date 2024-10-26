@@ -37,7 +37,7 @@ export default function PlayerStatsModal({
 
   return (
     <Modal closeModal={closeModal} open={open} isTimer={false}>
-      <div className="stats-modal-container">
+      <section className="stats-modal-container">
         <h3>Player Stats</h3>
         <h4>Current Round: {currRound}</h4>
 
@@ -52,15 +52,15 @@ export default function PlayerStatsModal({
 
         <div className="full-screen-container">
           <p>{isFullscreenText} full screen:</p>
-          <div onClick={toggleFullscreen}>
+          <div role="button" onClick={toggleFullscreen}>
             {isFullscreen ? (
-              <FullscreenExitIcon fontSize="medium" />
+              <FullscreenExitIcon aria-label="exit full screen" fontSize="medium" />
             ) : (
-              <FullscreenIcon fontSize="medium" />
+              <FullscreenIcon aria-label="enter full screen" fontSize="medium" />
             )}
           </div>
         </div>
-      </div>
+      </section>
     </Modal>
   );
 }

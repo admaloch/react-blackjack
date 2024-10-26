@@ -10,6 +10,7 @@ export default function PlayerStats() {
   return (
     <>
       <div
+      aria-label="player stats"
         onClick={openModal}>
         <StatsIconWithPopper />
       </div>

@@ -46,7 +46,7 @@ function PlayerTable({
     splitHand.cards.length === 1 ? ": Main hand" : ": Split hand";
 
   return (
-    <div className="player-table">
+    <section className="player-table">
       <PlayerOptions
         makeCurrPlayerFinished={makeCurrPlayerFinished}
         playerIndex={playerIndex}
@@ -66,7 +66,7 @@ function PlayerTable({
       {playersArr[playerIndex].splitHand.cards.length > 0 && (
         <SplitCardPreview playerIndex={playerIndex} />
       )}
-    </div>
+    </section>
   );
 }
 

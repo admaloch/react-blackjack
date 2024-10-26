@@ -135,7 +135,7 @@ export default function PlayerHandResults({ player }: PlayerProps) {
  
 
   return (
-    <div className={playerClass}>
+    <article className={playerClass}>
       <PlayerResultsHeader
         player={player}
         changeToSplitHand={changeToSplitHand}
@@ -157,6 +157,6 @@ export default function PlayerHandResults({ player }: PlayerProps) {
       <Insurance player={player} />
       <EarningsOrLosses player={player} />
       {!isRoundActive && !isPlayerBroke && <ExitTableIcon player={player} />}
-    </div>
+    </article>
   );
 }

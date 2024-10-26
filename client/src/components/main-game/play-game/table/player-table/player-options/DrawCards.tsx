@@ -28,7 +28,7 @@ export default function DrawCards({ playerIndex }: PlayerIndexProps) {
     }
 
     return (
-        <div
+        <div aria-label='draw card'
             onClick={drawCardsHandler}
             className={drawCardClass}>
             <DrawCardsIconWithPopper placement="top" />

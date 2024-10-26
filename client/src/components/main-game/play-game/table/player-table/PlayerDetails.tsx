@@ -6,7 +6,7 @@ export default function PlayerDetails({ playerIndex }: PlayerIndexProps) {
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const currPlayer = playersArr[playerIndex]
     return (
-        <div className="player-info">
+        <aside className="player-info">
             <h5>Current Bank: ${currPlayer.bank}</h5>
             <h5>Main Bet: ${currPlayer.currBet}</h5>
             {currPlayer.splitBet > 0 &&
@@ -16,6 +16,6 @@ export default function PlayerDetails({ playerIndex }: PlayerIndexProps) {
                 < h5 > Insurance Bet: ${currPlayer.insuranceBet}</h5>
             }
             <h5>Card sum: {currPlayer.hand.cardSum}</h5>
-        </div >
+        </aside >
     )
 }

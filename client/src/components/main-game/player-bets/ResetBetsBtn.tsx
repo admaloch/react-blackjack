@@ -20,6 +20,7 @@ export default function ResetBetsBtn({ currPlayerIndex }: ResetBetsBtnProps) {
 
     return (
         <div
+        aria-label='reset tokens'
             className='reset-tokens'
             onClick={() => dispatch(updateTokens({ index: currPlayerIndex, type: 'reset-tokens' }))}>
             <ResetIconWithPopper placement='top' />

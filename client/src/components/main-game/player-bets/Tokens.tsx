@@ -16,7 +16,7 @@ export default function Tokens({ currPlayerIndex }: TokensProps) {
         : "all-tokens disabled"
 
     return (
-        <div className="tokens-container">
+        <div id='player-tokens' className="tokens-container" aria-label='player tokens'>
             {playersArr[currPlayerIndex].currTokens
                 .map((item) => (
                     <Token

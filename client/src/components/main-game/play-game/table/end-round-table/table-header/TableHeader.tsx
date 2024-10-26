@@ -26,9 +26,9 @@ export default function TableHeader() {
   }
 
   return (
-    <div className="header-btn-container">
+    <header className="header-btn-container">
       {currText && <h2>{currText}</h2>}
       {!isRoundActive && <NextRoundBtn />}
-    </div>
+    </header>
   );
 }

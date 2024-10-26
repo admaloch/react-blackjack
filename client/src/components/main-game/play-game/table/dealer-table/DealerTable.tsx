@@ -81,7 +81,7 @@ const DealerTable: React.FC = () => {
   }, [cardSum, dealerDraw, isDealerCardRevealed, isInsuranceRoundComplete, isDealerRoundActive, dispatch, allPlayersWonInsurance]);
 
   return (
-    <div className="dealer-table">
+    <section className="dealer-table">
       <DeckOfCardsSvg className='full-deck-image' />
       <div className="dealer-hand">
         {isShowRoundsPlayed && <h2 className='rounds-played'>Round {roundsPlayed}</h2>}
@@ -99,7 +99,7 @@ const DealerTable: React.FC = () => {
 
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
