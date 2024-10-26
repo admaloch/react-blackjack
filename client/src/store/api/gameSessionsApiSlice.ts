@@ -5,8 +5,6 @@ const backendUrl = import.meta.env.VITE_BACKEND_URL_BASE;
 const url =
   nodeEnvironment === "development" ? "http://localhost:3500" : backendUrl;
 
-  console.log(backendUrl)
-
 const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({ baseUrl: url }),

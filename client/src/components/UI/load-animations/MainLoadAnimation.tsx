@@ -4,8 +4,8 @@ export default function MainLoadAnimation({
   dot1Color = "#d1495b",
   dot2Color = "#00798c",
   dot3Color = "#edae49",
-  textColor = "#00798c",
-  backColor = "rgba(255, 255, 255, .6)",
+  textColor = "#003049",
+  backColor = "rgba(255, 255, 255, .5)",
 }): JSX.Element {
   return (
     <div style={{ background: backColor }} className="loader ">
@@ -14,9 +14,9 @@ export default function MainLoadAnimation({
         <span style={{ background: dot2Color }}></span>
         <span style={{ background: dot3Color }}></span>
       </div>
-      <div style={{ color: textColor }} className="loading">
-        <p>(The game needs a minute or two to wake up...)</p>
-      </div>
+  
+        <p style={{ color: textColor }}className="loading">Loading</p>
+     
       
     </div>
   );
