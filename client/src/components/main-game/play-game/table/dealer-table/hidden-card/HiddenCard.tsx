@@ -30,6 +30,8 @@ export default function HiddenCard() {
     return (
         <div className="playing-card">
              <img
+            width={100}
+            height={140}
             className='back-of-card hiddenCardAnimation'
             src={backOfCardImg}
             alt="Back of Card"

@@ -20,7 +20,7 @@ export default function ResultsModalContents({ playerIndex, endResultsBtnHandler
         <div className="end-turn-modal">
             <ResultsModalHeader playerIndex={playerIndex} />
             <ResultsModalStats playerIndex={playerIndex} />
-            <button className="hidden-btn" ref={buttonRef} onClick={endResultsBtnHandler}>Click hear</button>
+            <button aria-label="Show end results" className="hidden-btn" ref={buttonRef} onClick={endResultsBtnHandler}></button>
             <ModalTimer timeout={1500} onTimeout={handleClickButtonRef} />
         </div>
     );

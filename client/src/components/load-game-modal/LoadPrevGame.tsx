@@ -67,10 +67,10 @@ export default function LoadPrevGame({
       <div className="prev-game-modal">
         <h2>There is a previous game. Would you like to continue?</h2>
         <div className="btn-container">
-          <button onClick={yesClickHandler} className="game-btn">
+          <button aria-label="Return to previous game" onClick={yesClickHandler} className="game-btn">
             Yes
           </button>
-          <button onClick={noClickHandler} className="game-btn">
+          <button aria-label="Start new game" onClick={noClickHandler} className="game-btn">
             No
           </button>
         </div>

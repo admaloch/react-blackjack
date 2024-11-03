@@ -59,6 +59,7 @@ export default function ExitTableContent({ player, closeModal }: ExitTableConten
                     player={player}
                 />
                 <button
+                aria-label="Exit table"
                     className="hidden-btn"
                     ref={buttonRef} onClick={exitTableModalBtnHandler}>
                 </button>

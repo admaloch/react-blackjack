@@ -21,6 +21,8 @@ const Card: React.FC<CardProp> = ({ cardUrlVal, isHidden }) => {
   return (
     <div className={`playing-card ${isLoaded ? 'animate-in' : ''} ${isHidden ? 'hidden' : ''}`}>
       <img
+      width={100}
+      height={140}
         style={{ opacity: isLoaded ? 1 : 0 }}
         src={imagePath}
         alt={`${cardUrlVal}.png`}
