@@ -82,6 +82,7 @@
 
 .split-card-preview img {
     width: 30px;
+    height: auto;
 }
 
 .player-table .exit-table-icon {

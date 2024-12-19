@@ -16,9 +16,11 @@ const useUpdateGameSessionApi = () => {
   const sessionId = Cookies.get('blackjack-session-id');
 
   const playersArr = useSelector((state: RootState) => state.playersArr);
+  
   const inactivePlayers = useSelector(
     (state: RootState) => state.inactivePlayers
   );
+
   const dealerObj = useSelector((state: RootState) => state.dealerObj);
   const gameData = useSelector((state: RootState) => state.gameData);
   const deck = useSelector((state: RootState) => state.deck);

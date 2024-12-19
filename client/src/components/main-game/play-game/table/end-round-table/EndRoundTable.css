@@ -21,8 +21,7 @@
   height: 85%;
   margin-top: auto;
   padding: 1rem 0;
-  overflow-x: auto;
-  overflow-y: hidden;
+
 }
 
 @media screen and (min-width: 500px) and (max-height: 600px) {
@@ -45,6 +44,9 @@
   /* Added transition property */
   margin-bottom: 0.3rem;
   /* overflow-x: auto; */
+  overflow-y: auto;
+
+
 }
 
 .player-hand h4 {
@@ -102,7 +104,8 @@
 }
 
 .curr-player-hand img {
-  max-width: 70px;
+  max-width: 55px;
+  height: auto;
 }
 
 .insurance-msg {
@@ -131,37 +134,25 @@
 }
 
 @media screen and (min-width: 768px) {
-  .curr-player-hand img {
-    max-width: 80px;
-  }
+
   .player-results-table p {
     line-height: 14px;
     font-size: 1rem;
   }
 }
 
-@media screen and (min-width: 992px) {
-  .curr-player-hand img {
-    max-width: 70px;
-  }
-}
 
-@media screen and (min-width: 1200px) {
-  .curr-player-hand img {
-    max-width: 80px;
-  }
-}
+
+
 
 @media screen and (min-width: 1500px) {
   .curr-player-hand img {
-    max-width: 95px;
+    max-width: 85px;
   }
 }
 
 @media screen and (max-height: 600px) {
-  .curr-player-hand img {
-    max-width: 40px;
-  }
+
   .player-hand {
     top: 1.5rem;
     justify-content: start;
