@@ -4,6 +4,7 @@ import './ShuffleDeckModal.css'
 import ModalTimer from '../modal-timer/ModalTimer';
 import { beginPlayerRound } from '../../store/game-data/GameDataSlice';
 import { useNavigate } from 'react-router';
+import useUpdateGameSessionApi from '../../store/api/useUpdateGameSessionApi';
 
 interface ShuffleDeckModalProps {
     open: boolean;
@@ -11,10 +12,13 @@ interface ShuffleDeckModalProps {
 }
 
 export default function ShuffleDeckModal({ closeModal, open }: ShuffleDeckModalProps) {
+
+    const { updateGameSessionHandler } = useUpdateGameSessionApi();
+
     const dispatch = useDispatch()
     const navigate = useNavigate();
     const closeShuffleModalHandler = async () => {
-        // updateGameSessionHandler()
+        updateGameSessionHandler()
         closeModal()
         dispatch(beginPlayerRound())
         navigate("/startRound");

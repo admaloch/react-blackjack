@@ -6,8 +6,13 @@ import { endFullRound, endMainHandResults, endSplitRound } from "../../../../../
 import { RootState } from "../../../../../../store/store";
 import MoneyWonOrLost from "../../../../../results-components/MoneyWonOrLost";
 import { updateHandResults } from "../../../../../../store/player-arr/PlayersArrSlice";
+import useUpdateGameSessionApi from "../../../../../../store/api/useUpdateGameSessionApi";
+
 
 export default function EarningsOrLosses({ player }: PlayerInterfaceProps) {
+
+    const { updateGameSessionHandler } = useUpdateGameSessionApi();
+
     const dispatch = useDispatch()
     const { isRoundActive, isMainResultsActive } = useSelector((state: RootState) => state.gameData);
 
@@ -32,6 +37,7 @@ export default function EarningsOrLosses({ player }: PlayerInterfaceProps) {
                     if (splitBet && player.wonInsuranceRound) {
                         dispatch(updateHandResults(player))
                         dispatch(endFullRound())
+                        updateGameSessionHandler()
                     }
 
                 }
@@ -39,7 +45,7 @@ export default function EarningsOrLosses({ player }: PlayerInterfaceProps) {
         }
         updateHandsWithResults()
         return () => { isMounted = false }
-    }, [dispatch, player, isRoundActive, isMainResultsActive])
+    }, [dispatch, player, isRoundActive, isMainResultsActive, updateGameSessionHandler])
 
     return (!isRoundActive &&
         <MoneyWonOrLost player={player} />

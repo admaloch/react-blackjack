@@ -13,6 +13,7 @@ import MainLoadAnimation from "../UI/load-animations/MainLoadAnimation";
 let initLoad = true;
 
 export default function GameIntro() {
+  
   const [triggerGetGameSession, { data, isLoading }] =
     useLazyGetGameSessionByIdQuery();
 

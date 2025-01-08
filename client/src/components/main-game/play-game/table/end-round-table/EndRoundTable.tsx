@@ -6,8 +6,14 @@ import { useEffect } from "react";
 import { beginSplitRound, endFullRound } from "../../../../../store/game-data/GameDataSlice";
 import TableHeader from "./table-header/TableHeader";
 import { delay } from "../../../../../utils/Utility";
+import useUpdateGameSessionApi from "../../../../../store/api/useUpdateGameSessionApi";
+
 
 export default function EndRoundTable() {
+
+    const { updateGameSessionHandler } = useUpdateGameSessionApi();
+
+
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const { isPlayerRoundActive, isMainResultsActive, isDealerRoundActive, isSplitResultsActive, isRoundActive } = useSelector((state: RootState) => state.gameData);
     const dispatch = useDispatch()
@@ -30,7 +36,7 @@ export default function EndRoundTable() {
         }
         splitOrEndResults()
         return () => { isMounted = false }
-    }, [isPlayerRoundActive, isDealerRoundActive, isSplitResultsActive, dispatch, isPlayerSplitButNotInsured, isMainResultsActive, isRoundActive])
+    }, [isPlayerRoundActive, isDealerRoundActive, isSplitResultsActive, dispatch, isPlayerSplitButNotInsured, isMainResultsActive, isRoundActive, updateGameSessionHandler])
 
 
 

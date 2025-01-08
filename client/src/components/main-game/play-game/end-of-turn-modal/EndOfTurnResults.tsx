@@ -13,6 +13,8 @@ interface EndOfTurnResultsProps {
 
 export default function EndOfTurnResults({ playerIndex, isCurrPlayerFinished, makeCurrPlayerFinished, makeCurrPlayerNotFinished, changeToNextPlayer }: EndOfTurnResultsProps) {
 
+
+
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const currPlayer = playersArr[playerIndex]
     const { hand, isDoubleDown } = currPlayer

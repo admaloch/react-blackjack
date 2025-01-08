@@ -10,6 +10,8 @@ import { beginDealerRound, endIsGameActive } from "../../../../store/game-data/G
 import { useNavigate } from "react-router";
 import { resetDealer } from "../../../../store/dealer-obj/dealerObjSlice";
 import { removePlayer } from "../../../../store/player-arr/PlayersArrSlice";
+import useUpdateGameSessionApi from "../../../../store/api/useUpdateGameSessionApi";
+
 
 interface ExitTableContentProps {
     player: PlayerInterface;
@@ -17,6 +19,9 @@ interface ExitTableContentProps {
 }
 
 export default function ExitTableContent({ player, closeModal }: ExitTableContentProps) {
+
+    const { updateGameSessionHandler } = useUpdateGameSessionApi();
+
     const playersArr = useSelector((state: RootState) => state.playersArr);
     const { isPlayerRoundActive } = useSelector((state: RootState) => state.gameData);
 
@@ -33,6 +38,7 @@ export default function ExitTableContent({ player, closeModal }: ExitTableConten
                 isPlayerRoundActive
             ) {
                 dispatch(beginDealerRound())
+                updateGameSessionHandler()
             }
 
         } else {

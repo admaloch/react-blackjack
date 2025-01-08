@@ -20,10 +20,25 @@ import useTitle from "./hooks/useTitle";
 // let isInitial = true
 
 function App() {
+
   const playersArr = useSelector((state: RootState) => state.playersArr);
   const gameData = useSelector((state: RootState) => state.gameData);
+
+  // useEffect(() => {
+  //   if (
+  //     gameData.isBetRoundActive === false || 
+  //     gameData.isPlayerRoundActive === false || 
+  //     gameData.isRoundActive === false
+  //   ) {
+  //     console.log(gameData);
+  //   }
+  // }, [gameData.isBetRoundActive, gameData.isPlayerRoundActive, gameData.isRoundActive]);
+
+  
+
   const { deleteGameSessionHandler, updateGameSessionHandler } =
     useUpdateGameSessionApi();
+
   const navigate = useNavigate();
 
   useTitle('Blackjack')//custom hook to set the title on the tab in browser
@@ -39,6 +54,7 @@ function App() {
   const areAllPlayersBroke = playersArr.every(
     (player) => player.bank + player.currBet < 5
   );
+  
   useEffect(() => {
     if (
       (!gameData.isGameIntro &&
@@ -53,14 +69,19 @@ function App() {
   }, [playersArr, deleteGameSessionHandler, gameData, areAllPlayersBroke]);
 
   //update game session in backend
-  const sessionId = Cookies.get("blackjack-session-id");
-  useEffect(() => {
-    if (!gameData.isGameIntro && !gameData.isAddPlayersRound && !gameData.isBetRoundActive && sessionId) {
-      setTimeout(() => {
-        updateGameSessionHandler();
-      }, 300);
-    }
-  }, [playersArr]);
+  // const sessionId = Cookies.get("blackjack-session-id");
+  // useEffect(() => {
+  //   if (
+  //     !gameData.isGameIntro 
+  //     && !gameData.isAddPlayersRound 
+  //     && !gameData.isBetRoundActive 
+  //     && sessionId
+  //   ) {
+   
+  //       updateGameSessionHandler();
+      
+  //   }
+  // }, [gameData]);
   
 
   return (
