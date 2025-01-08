@@ -33,14 +33,16 @@ export default function ExitTableContent({ player, closeModal }: ExitTableConten
         const lastPlayerName = playersArr[playersArr.length - 1].name
         dispatch(removePlayer({ name: player.name }))
         dispatch(addInactivePlayer({ ...player }))
+
+     
+
         if (playersArr.length > 1) {
             if (currPlayerName === lastPlayerName &&
                 isPlayerRoundActive
             ) {
                 dispatch(beginDealerRound())
-                updateGameSessionHandler()
             }
-
+            updateGameSessionHandler();
         } else {
             dispatch(resetDealer())
             dispatch(endIsGameActive());

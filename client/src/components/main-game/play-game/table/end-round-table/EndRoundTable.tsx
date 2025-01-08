@@ -25,11 +25,15 @@ export default function EndRoundTable() {
         async function splitOrEndResults() {
             if (isMounted) {
                 if (isRoundActive && !isPlayerRoundActive && !isDealerRoundActive && !isSplitResultsActive && !isMainResultsActive) {
-                    await delay(1200)
+                    // await delay(1000)
                     if (isPlayerSplitButNotInsured) {
                         dispatch(beginSplitRound())
                     } else {
                         dispatch(endFullRound())
+                        if(playersArr.length > 1) {
+                                                    updateGameSessionHandler()
+
+                        }
                     }
                 }
             }

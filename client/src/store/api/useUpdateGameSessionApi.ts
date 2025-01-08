@@ -47,7 +47,10 @@ const useUpdateGameSessionApi = () => {
   const updateGameSessionHandler = async () => {
     // Create game session here with state
     if(!sessionId) return;
+
+    // console.trace("updateGameSessionHandler ran");
     
+    try {
       const response = await updateGameSession({
         playersArr,
         inactivePlayers,
@@ -57,6 +60,9 @@ const useUpdateGameSessionApi = () => {
         id: sessionId,
       }).unwrap();
       console.log(`Game session updated. Id#: ${response.gameSession._id}`);
+    } catch (error) {
+      console.trace("Failed to update game session:", error);
+    }
    
   };
 
