@@ -18,7 +18,6 @@ interface TokenClickProps {
 }
 
 const initialState: PlayerInterface[] = [];
-
 interface PlayerNameProps {
   name: string;
 }
@@ -224,6 +223,7 @@ const playerArrSlice = createSlice({
     },
 
     updateHandResults: (state, action: PayloadAction<PlayerInterface>) => {
+  
       const playerIndex = state.findIndex(
         (player) => player.name === action.payload.name
       );
@@ -266,7 +266,7 @@ const playerArrSlice = createSlice({
         state[playerIndex] = {
           ...player,
           bank: newBank,
-          splitBet: 0,
+          splitBet,
           roundResults: newRoundResObj,
         };
       }

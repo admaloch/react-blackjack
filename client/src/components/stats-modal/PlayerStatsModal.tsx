@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import PlayerStatsItem from "./PlayerStatsItem";
 import "./PlayeStatsModal.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FullscreenIcon from "@mui/icons-material/Fullscreen";
 import FullscreenExitIcon from "@mui/icons-material/FullscreenExit";
 
@@ -32,6 +32,19 @@ export default function PlayerStatsModal({
     }
     setIsFullscreen(!isFullscreen);
   };
+
+  // Update fullscreen state when fullscreen mode changes
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+
+    return () => {
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+    };
+  }, []);
 
   const isFullscreenText = isFullscreen ? "Exit" : "Enter";
 

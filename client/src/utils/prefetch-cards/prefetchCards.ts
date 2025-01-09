@@ -1,3 +1,5 @@
+// Purpose: Pre-fetches all card images to improve performance on card draw
+
 const cardUrls = [
   "https://deckofcardsapi.com/static/img/AH.png",
   "https://deckofcardsapi.com/static/img/2H.png",
@@ -57,6 +59,7 @@ const cardUrls = [
 ];
 
 const preFetchCards = () => {
+  console.log('prefetch cards ran')
   const head = document.head;
   cardUrls.forEach((url) => {
     const link = document.createElement("link");

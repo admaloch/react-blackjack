@@ -5,8 +5,8 @@ import PlayerHandResults from "./main-hand-results/PlayerHandResults";
 import { useEffect } from "react";
 import { beginSplitRound, endFullRound } from "../../../../../store/game-data/GameDataSlice";
 import TableHeader from "./table-header/TableHeader";
-import { delay } from "../../../../../utils/Utility";
 import useUpdateGameSessionApi from "../../../../../store/api/useUpdateGameSessionApi";
+import Cookies from "js-cookie";
 
 
 export default function EndRoundTable() {
@@ -19,28 +19,24 @@ export default function EndRoundTable() {
     const dispatch = useDispatch()
     const isPlayerSplitButNotInsured = playersArr.some(x => x.splitHand.cards.length > 0 && !x.wonInsuranceRound)
    
+    const sessionId = Cookies.get("blackjack-session-id");
 
     useEffect(() => {
-        let isMounted = true
-        async function splitOrEndResults() {
-            if (isMounted) {
+        
+         function splitOrEndResults() {
+         
                 if (isRoundActive && !isPlayerRoundActive && !isDealerRoundActive && !isSplitResultsActive && !isMainResultsActive) {
-                    // await delay(1000)
                     if (isPlayerSplitButNotInsured) {
                         dispatch(beginSplitRound())
                     } else {
+                        updateGameSessionHandler()
                         dispatch(endFullRound())
-                        if(playersArr.length > 1) {
-                                                    updateGameSessionHandler()
-
-                        }
                     }
                 }
-            }
-        }
+            
+         }
         splitOrEndResults()
-        return () => { isMounted = false }
-    }, [isPlayerRoundActive, isDealerRoundActive, isSplitResultsActive, dispatch, isPlayerSplitButNotInsured, isMainResultsActive, isRoundActive, updateGameSessionHandler])
+    }, [isPlayerRoundActive, sessionId, isDealerRoundActive, isSplitResultsActive, dispatch, isPlayerSplitButNotInsured, isMainResultsActive, isRoundActive, updateGameSessionHandler, playersArr.length])
 
 
 

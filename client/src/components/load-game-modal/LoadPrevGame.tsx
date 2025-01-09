@@ -34,15 +34,24 @@ export default function LoadPrevGame({
 
   if (!playersArr) return null;
 
-  const updatedPlayersArr = playersArr.map((player) => {
-    return {
-      ...player,
-      hand: emptyHand,
-      splitHand: emptyHand,
-      currBet: 0,
-      splitBet: 0,
-    };
+  const updatedPlayersArr = playersArr
+    .filter(player => player.bank >= 5)
+    .map((player) => {
+
+      return {
+        ...player,
+        hand: emptyHand,
+        splitHand: emptyHand,
+        minBet: player.bank >= player.currBet ? player.currBet : 5,
+        splitBet: 0,
+        beginningRoundBank: player.bank,
+      };
   });
+
+  if (!updatedPlayersArr.length) {
+    deleteGameSessionHandler();
+    return null;
+  }
 
   const yesClickHandler = () => {
     dispatch(returnToPrevGame());

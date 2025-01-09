@@ -22,8 +22,8 @@ export default function EarningsOrLosses({ player }: PlayerInterfaceProps) {
             if (isMounted) {
                 const { wonInsuranceRound, roundResults, splitBet } = player
                 const { mainResults, isComplete } = roundResults
-
                 if (isMainResultsActive || splitBet) {
+                    
                     if (isMainResultsActive && mainResults && !wonInsuranceRound && !isComplete) {
                         await delay(1500)
                         dispatch(updateHandResults(player))
@@ -31,6 +31,7 @@ export default function EarningsOrLosses({ player }: PlayerInterfaceProps) {
                     }
                     if (isRoundActive && roundResults.splitResults) {
                         await delay(1500)
+                        
                         dispatch(updateHandResults(player))
                         dispatch(endSplitRound())
                     }

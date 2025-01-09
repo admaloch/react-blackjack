@@ -10,36 +10,18 @@ import GameMenu from "./components/menu-items/GameMenu";
 import PlayerBets from "./components/main-game/player-bets/PlayerBets";
 import PlayGame from "./components/main-game/play-game/PlayGame";
 import FinalResults from "./components/final-results/FinalResults";
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import useUpdateGameSessionApi from "./store/api/useUpdateGameSessionApi";
 import { useSelector } from "react-redux";
 import { RootState } from "./store/store";
-import Cookies from "js-cookie";
 import useTitle from "./hooks/useTitle";
-
-// let isInitial = true
 
 function App() {
 
   const playersArr = useSelector((state: RootState) => state.playersArr);
-  const state = useSelector((state: RootState) => state);
   const gameData = useSelector((state: RootState) => state.gameData);
 
-  console.log(state)
-
-  // useEffect(() => {
-  //   if (
-  //     gameData.isBetRoundActive === false ||
-  //     gameData.isPlayerRoundActive === false ||
-  //     gameData.isRoundActive === false
-  //   ) {
-  //     console.log(gameData);
-  //   }
-  // }, [gameData.isBetRoundActive, gameData.isPlayerRoundActive, gameData.isRoundActive]);
-
-
-
-  const { deleteGameSessionHandler, updateGameSessionHandler } =
+  const { deleteGameSessionHandler } =
     useUpdateGameSessionApi();
 
   const navigate = useNavigate();
@@ -71,9 +53,6 @@ function App() {
     }
   }, [playersArr, deleteGameSessionHandler, gameData, areAllPlayersBroke]);
 
-
-
-
   return (
     <>
       <CssBaseline />
@@ -91,5 +70,3 @@ function App() {
 }
 
 export default App;
-
-/* eslint-enable react-hooks/exhaustive-deps */

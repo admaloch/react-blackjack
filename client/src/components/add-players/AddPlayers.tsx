@@ -19,6 +19,14 @@ export default function AddPlayers() {
   const startBetRoundHandler = () => {
     dispatch(startBetRound());
     createGameSessionHandler(); // Create game session in backend to save data
+     // Check if the user is on mobile
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth <= 768;
+
+  if (isMobile && document.body.requestFullscreen) {
+    document.body.requestFullscreen().catch((err) => {
+      console.error("Failed to enter full screen:", err);
+    });
+  }
   };
 
   return (
@@ -32,7 +40,7 @@ export default function AddPlayers() {
         <div className="start-game-btn">
           <NavLink to="/playGame">
             <button onClick={() => startBetRoundHandler()} className="game-btn">
-              Start Game
+              Start Round 1
             </button>
           </NavLink>
         </div>

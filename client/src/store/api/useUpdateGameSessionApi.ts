@@ -9,6 +9,7 @@ import { RootState } from "../store";
 import Cookies from "js-cookie";
 
 const useUpdateGameSessionApi = () => {
+
   const [createGameSession] = useCreateGameSessionMutation();
   const [updateGameSession] = useUpdateGameSessionMutation();
   const [deleteGameSession] = useDeleteGameSessionMutation();
@@ -44,11 +45,13 @@ const useUpdateGameSessionApi = () => {
     }
   };
 
+  const areSomePlayersBroke = playersArr.some(
+    (player) => player.bank + player.currBet < 5
+  );
+
   const updateGameSessionHandler = async () => {
     // Create game session here with state
-    if(!sessionId) return;
-
-    // console.trace("updateGameSessionHandler ran");
+    if(!sessionId || areSomePlayersBroke) return;
     
     try {
       const response = await updateGameSession({
