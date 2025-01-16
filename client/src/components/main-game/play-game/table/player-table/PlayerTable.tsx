@@ -41,7 +41,6 @@ function PlayerTable({
     };
   }, [hand, dealerObj, playerDraw]);
 
-
   const handText =
     splitHand.cards.length === 1 ? ": Main hand" : ": Split hand";
 
@@ -52,12 +51,12 @@ function PlayerTable({
         playerIndex={playerIndex}
       />
       <PlayerDetails playerIndex={playerIndex} />
-      
+
       <div className="main-player-hand">
-      <div className="player-header">
-        <h2>{name}&nbsp;</h2>
-        {splitBet > 0 && <h2> {handText}</h2>}
-      </div>
+        <div className="player-header">
+          <h2>{name}&nbsp;</h2>
+          {splitBet > 0 && <h2> {handText}</h2>}
+        </div>
         <div className="player-cards">
           <Cards cardUrlVals={hand.cardUrlVals} playerIndex={playerIndex} />
         </div>

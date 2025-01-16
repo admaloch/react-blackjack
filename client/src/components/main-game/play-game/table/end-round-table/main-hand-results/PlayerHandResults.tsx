@@ -26,7 +26,7 @@ export default function PlayerHandResults({ player }: PlayerProps) {
     (str: string) => {
       setPlayerClass(str);
     },
-    [setPlayerClass]
+    [setPlayerClass],
   );
 
   const {
@@ -42,7 +42,7 @@ export default function PlayerHandResults({ player }: PlayerProps) {
   const { splitResults, mainResults } = player.roundResults;
   const { cardUrlVals } = hand;
   const dealerSum = useSelector(
-    (state: RootState) => state.dealerObj.hand.cardSum
+    (state: RootState) => state.dealerObj.hand.cardSum,
   );
 
   const winOrLoseEmphasisFunc = useCallback(
@@ -55,7 +55,7 @@ export default function PlayerHandResults({ player }: PlayerProps) {
         updatePlayerClass("player-hand emphasize emphasize-push");
       }
     },
-    [updatePlayerClass]
+    [updatePlayerClass],
   );
 
   useEffect(() => {
@@ -131,8 +131,6 @@ export default function PlayerHandResults({ player }: PlayerProps) {
   ]);
 
   const isPlayerBroke = player.bank + player.currBet <= 5;
-
- 
 
   return (
     <article className={playerClass}>

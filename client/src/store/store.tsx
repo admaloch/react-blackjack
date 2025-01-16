@@ -18,9 +18,8 @@ export const store = configureStore({
     [apiSlice.reducerPath]: apiSlice.reducer, // Add API slice reducer
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(apiSlice.middleware), 
-  devTools: nodeEnvironment === 'development' ? true : false,
-
+    getDefaultMiddleware().concat(apiSlice.middleware),
+  devTools: nodeEnvironment === "development" ? true : false,
 });
 
 export type RootState = ReturnType<typeof store.getState>;

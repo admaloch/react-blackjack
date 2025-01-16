@@ -1,4 +1,4 @@
-import { SVGProps } from "react"
+import { SVGProps } from "react";
 const ExitTableIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -25,15 +25,13 @@ const ExitTableIcon = (props: SVGProps<SVGSVGElement>) => (
       fontFamily="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif"
       fontSize={5}
       fontWeight="bold"
-    >
-    </text>
+    ></text>
     <text
       y={120}
       fontFamily="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif"
       fontSize={5}
       fontWeight="bold"
-    >
-    </text>
+    ></text>
   </svg>
-)
-export default ExitTableIcon
+);
+export default ExitTableIcon;

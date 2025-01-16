@@ -34,7 +34,7 @@ const playerArrSlice = createSlice({
     },
     updatePlayer: (state, action: PayloadAction<PlayerInterface>) => {
       const index = state.findIndex(
-        (player) => player.name === action.payload.name
+        (player) => player.name === action.payload.name,
       );
       if (index !== -1) {
         state[index] = action.payload;
@@ -58,7 +58,7 @@ const playerArrSlice = createSlice({
     },
     resetAfterInsuranceWin: (state, action: PayloadAction<PlayerInterface>) => {
       const index = state.findIndex(
-        (player) => player.name === action.payload.name
+        (player) => player.name === action.payload.name,
       );
       const { bank, insuranceBet, currBet, splitBet } = state[index];
       state[index] = {
@@ -144,14 +144,14 @@ const playerArrSlice = createSlice({
     updateWinOrLose: (state, action: PayloadAction<PlayerAndDealerProps>) => {
       const { player: currPlayer, dealerObj: currDealer } = action.payload;
       const index = state.findIndex(
-        (player) => player.name === currPlayer.name
+        (player) => player.name === currPlayer.name,
       );
       const { roundResults } = currPlayer;
       const splitOrMainStr = currPlayer.currBet !== 0 ? "main" : "split";
       const winOrLoseStr = playerWonOrLostFunc(
         currPlayer,
         currDealer,
-        splitOrMainStr
+        splitOrMainStr,
       );
       const newRoundResults: RoundResultsProps =
         splitOrMainStr === "main"
@@ -169,7 +169,7 @@ const playerArrSlice = createSlice({
     },
     removePlayer: (state, action: PayloadAction<PlayerNameProps>) => {
       const index = state.findIndex(
-        (player) => player.name === action.payload.name
+        (player) => player.name === action.payload.name,
       );
       if (index !== -1) {
         state.splice(index, 1);
@@ -178,7 +178,7 @@ const playerArrSlice = createSlice({
     removePlayers: (state, action: PayloadAction<PlayerNameProps[]>) => {
       const playerNamesToRemove = action.payload.map((player) => player.name);
       return state.filter(
-        (player) => !playerNamesToRemove.includes(player.name)
+        (player) => !playerNamesToRemove.includes(player.name),
       );
     },
 
@@ -223,9 +223,8 @@ const playerArrSlice = createSlice({
     },
 
     updateHandResults: (state, action: PayloadAction<PlayerInterface>) => {
-  
       const playerIndex = state.findIndex(
-        (player) => player.name === action.payload.name
+        (player) => player.name === action.payload.name,
       );
       const player = state[playerIndex];
       const { currBet, splitBet, bank, roundResults, splitHand } = player;
@@ -293,7 +292,7 @@ export const {
   splitPlayerHand,
   updateTokens,
   clickTokenUpdate,
-  updatePlayersFromPrevGame
+  updatePlayersFromPrevGame,
 } = playerArrSlice.actions;
 
 export default playerArrSlice.reducer;

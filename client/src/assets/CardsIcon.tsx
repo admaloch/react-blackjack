@@ -1,4 +1,4 @@
-import { SVGProps } from "react"
+import { SVGProps } from "react";
 
 const NewCardsIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg
@@ -26,5 +26,5 @@ const NewCardsIcon = (props: SVGProps<SVGSVGElement>) => (
       {"from the Noun Project"}
     </text>
   </svg>
-)
-export default NewCardsIcon
+);
+export default NewCardsIcon;

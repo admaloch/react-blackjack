@@ -1,4 +1,4 @@
 export interface ModalContentProps {
-    open: boolean;
-    closeModal: () => void;
+  open: boolean;
+  closeModal: () => void;
 }

@@ -8,7 +8,7 @@ export default function TableHeader() {
   const playersArr = useSelector((state: RootState) => state.playersArr);
 
   const areAllPlayersBroke = playersArr.every(
-    (player) => player.bank + player.currBet < 5
+    (player) => player.bank + player.currBet < 5,
   );
 
   let currText = "";
@@ -21,7 +21,7 @@ export default function TableHeader() {
     currText = "Game Over";
   } else if (!isRoundActive) {
     currText = "Round complete:";
-  }  else {
+  } else {
     currText = "";
   }
 

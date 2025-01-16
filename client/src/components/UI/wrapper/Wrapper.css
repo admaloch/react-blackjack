@@ -1,49 +1,46 @@
 .wrapper {
-    background-color: var(--background);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 1.5rem .5rem;
-    border-radius: 7px;
-    border: var(--text) solid 2px;
-    -webkit-box-shadow: 0px 0px 8px 4px rgba(0, 0, 0, .5);
-    box-shadow: 0px 0px 8px 4px rgba(0, 0, 0, .5);
-    position: relative;
-    width: 95%;
-    max-width: 600px;
-
+  background-color: var(--background);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 1.5rem 0.5rem;
+  border-radius: 7px;
+  border: var(--text) solid 2px;
+  -webkit-box-shadow: 0px 0px 8px 4px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 8px 4px rgba(0, 0, 0, 0.5);
+  position: relative;
+  width: 95%;
+  max-width: 600px;
 }
 
 @media screen and (min-width: 650px) {
-    .wrapper {
-        padding: 2rem;
-    }
+  .wrapper {
+    padding: 2rem;
+  }
 }
 
 .wrapper h1,
 .wrapper h2 {
-    text-align: center;
-    /* margin-bottom: 1rem; */
+  text-align: center;
+  /* margin-bottom: 1rem; */
 }
 
 .wrapper h1 {
-    font-size: 2rem;
-    line-height: 2.5rem;
+  font-size: 2rem;
+  line-height: 2.5rem;
 }
 
 .wrapper h2 {
-    font-size: 1.7rem;
-    line-height: 2rem;
+  font-size: 1.7rem;
+  line-height: 2rem;
 }
 .wrapper h3 {
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 .wrapper h4 {
-    font-size: 1.3rem;
+  font-size: 1.3rem;
 }
 .wrapper h5 {
-    font-size: 1.1rem;
+  font-size: 1.1rem;
 }
-
-

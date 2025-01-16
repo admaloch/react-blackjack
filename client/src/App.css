@@ -1,121 +1,111 @@
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
-
-
 :root {
-    --background: #001219;
-    --table-background: #1D2A1F;
-    --ghost-table-background: rgba(29, 42, 31, .5);
-    --text: #edf2f4;
-    --modal-overlay: rgba(0, 0, 0, .7);
-    --modal-color: #C9CDF3;
-    --color1: #FF4D4D;
-    --blackjack: #09CE29;
-    --bust: #FF4D4D;
-    --active-text: #48cae4;
-    --neutral: #C7B229;
-    --alt-containers: rgba(35, 100, 170, .2)
+  --background: #001219;
+  --table-background: #1d2a1f;
+  --ghost-table-background: rgba(29, 42, 31, 0.5);
+  --text: #edf2f4;
+  --modal-overlay: rgba(0, 0, 0, 0.7);
+  --modal-color: #c9cdf3;
+  --color1: #ff4d4d;
+  --blackjack: #09ce29;
+  --bust: #ff4d4d;
+  --active-text: #48cae4;
+  --neutral: #c7b229;
+  --alt-containers: rgba(35, 100, 170, 0.2);
 }
 
 body {
-    overflow-x: hidden;
-
+  overflow-x: hidden;
 }
 
 #root {
-    padding: .2rem .7rem;
-    background-color: var(--background);
-    color: var(--text);
-    font-family: 'Roboto', sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  padding: 0.2rem 0.7rem;
+  background-color: var(--background);
+  color: var(--text);
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 @media screen and (min-width: 768px) {
-    #root {
-        padding: .2rem 2rem;
-        max-height: 100vh;
-        overflow: hidden;
-    }
+  #root {
+    padding: 0.2rem 2rem;
+    max-height: 100vh;
+    overflow: hidden;
+  }
 }
 
 .game-btn {
-    padding: .4rem 1rem;
-    color: var(--text);
-    border: var(--text) solid 2px;
-    background-color: var(--283618);
-    cursor: pointer;
-    transition: .15s ease-in-out all;
-    font-size: .8rem;
-    border-radius: 5px;
+  padding: 0.4rem 1rem;
+  color: var(--text);
+  border: var(--text) solid 2px;
+  background-color: var(--283618);
+  cursor: pointer;
+  transition: 0.15s ease-in-out all;
+  font-size: 0.8rem;
+  border-radius: 5px;
 }
 
-
-
 .game-btn a {
-    color: var(--text);
-    text-decoration: none;
-    transition: .15s ease-in-out all;
+  color: var(--text);
+  text-decoration: none;
+  transition: 0.15s ease-in-out all;
 }
 
 .game-btn:hover,
 .game-btn:hover a {
-    color: var(--background);
+  color: var(--background);
 }
 
 .game-btn:hover {
-    background-color: var(--text);
-    border: var(--background) solid 2px;
+  background-color: var(--text);
+  border: var(--background) solid 2px;
 }
 
 .disabled {
-    cursor: default;
-    pointer-events: none;
-    opacity: .5;
+  cursor: default;
+  pointer-events: none;
+  opacity: 0.5;
 }
 
 #icon-popper {
-    z-index: 200;
+  z-index: 200;
 }
 
 .win-color {
-    color: var(--blackjack);
+  color: var(--blackjack);
 }
 
 .lose-color {
-    color: var(--bust);
+  color: var(--bust);
 }
 
 .stay-color {
-    color: var(--neutral);
+  color: var(--neutral);
 }
 
 .hide-item {
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    /* You can adjust the duration and timing function */
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  /* You can adjust the duration and timing function */
 }
 
 .reveal-item {
-    opacity: 1;
+  opacity: 1;
 }
 
 .obscure-item {
-    opacity: .5;
+  opacity: 0.5;
 }
 
-@media screen and (min-width:550px) {
-    .game-btn {
-        padding: .5rem 1.5rem;
-        font-size: 1rem;
-    }
+@media screen and (min-width: 550px) {
+  .game-btn {
+    padding: 0.5rem 1.5rem;
+    font-size: 1rem;
+  }
 }
-
-
-  
-
-  

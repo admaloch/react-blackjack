@@ -1,4 +1,4 @@
-import { SVGProps } from "react"
+import { SVGProps } from "react";
 const DrawCardsIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -14,17 +14,13 @@ const DrawCardsIcon = (props: SVGProps<SVGSVGElement>) => (
       fontFamily="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif"
       fontSize={5}
       fontWeight="bold"
-    >
-    
-    </text>
+    ></text>
     <text
       y={84}
       fontFamily="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif"
       fontSize={5}
       fontWeight="bold"
-    >
-     
-    </text>
+    ></text>
   </svg>
-)
-export default DrawCardsIcon
+);
+export default DrawCardsIcon;

@@ -52,14 +52,24 @@ const createGameSession = async (req, res) => {
 
   // Check if game session data is provided
   if (!dealerObj || !deck || !gameData || !playersArr) {
-    return res.status(400).json({ message: "Some game data is missing. Data for dealer hand, player hand, deck, and game data is required" });
+    return res
+      .status(400)
+      .json({
+        message:
+          "Some game data is missing. Data for dealer hand, player hand, deck, and game data is required",
+      });
   }
 
   try {
     // Create the new game session
-    const gameSession = await GameSessionsModel.create({dealerObj, deck, gameData, playersArr});
+    const gameSession = await GameSessionsModel.create({
+      dealerObj,
+      deck,
+      gameData,
+      playersArr,
+    });
 
-    if(inactivePlayers) {
+    if (inactivePlayers) {
       gameSession.inactivePlayers = inactivePlayers;
     }
 
@@ -89,7 +99,9 @@ const updateGameSession = async (req, res) => {
 
   // Check if game session data is provided
   if (!id) {
-    return res.status(400).json({ message: "An id is required to locate the game session." });
+    return res
+      .status(400)
+      .json({ message: "An id is required to locate the game session." });
   }
 
   try {
@@ -104,8 +116,8 @@ const updateGameSession = async (req, res) => {
     gameSession.deck = deck && deck;
     gameSession.gameData = gameData && gameData;
     gameSession.playersArr = playersArr && playersArr;
-    gameSession.inactivePlayers = inactivePlayers && inactivePlayers
-    
+    gameSession.inactivePlayers = inactivePlayers && inactivePlayers;
+
     // Save the updated session to the database
     const updatedGameSession = await gameSession.save();
 

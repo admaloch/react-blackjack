@@ -17,7 +17,6 @@ export default function PlaceBetBtn({
   currPlayerIndex,
   moveToNextPlayer,
 }: PlaceBetBtnProps) {
-
   const { updateGameSessionHandler } = useUpdateGameSessionApi();
 
   const playersArr = useSelector((state: RootState) => state.playersArr);
@@ -26,7 +25,7 @@ export default function PlaceBetBtn({
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const deckSuitSumsArr = deck.map((card) =>
-    card.suits.reduce((p, c) => p + c)
+    card.suits.reduce((p, c) => p + c),
   );
   const currDeckSum = deckSuitSumsArr.reduce((p, c) => p + c);
   const isShuffleNeeded = currDeckSum < 104 / 2;

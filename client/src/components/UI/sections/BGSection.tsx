@@ -1,5 +1,5 @@
-import  { ReactNode } from 'react';
-import './BGSectionstyle.css'
+import { ReactNode } from "react";
+import "./BGSectionstyle.css";
 
 interface BGSectionProps {
   children: ReactNode;
@@ -7,9 +7,7 @@ interface BGSectionProps {
 }
 
 const BGSection: React.FC<BGSectionProps> = ({ children, bgClass }) => {
-  return (
-    <section className={`${bgClass} photo-container`}>{children}</section>
-  );
+  return <section className={`${bgClass} photo-container`}>{children}</section>;
 };
 
 export default BGSection;

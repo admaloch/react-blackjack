@@ -16,7 +16,7 @@
   align-items: center;
   visibility: hidden;
   opacity: 0;
-  transition: .5s all;
+  transition: 0.5s all;
 }
 .modal-container {
   background-color: var(--text);
@@ -52,7 +52,7 @@
   visibility: visible;
 }
 .modal-close-icon:hover {
-  opacity: .6;
+  opacity: 0.6;
   cursor: pointer;
 }
 

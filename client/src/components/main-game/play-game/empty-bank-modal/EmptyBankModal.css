@@ -10,10 +10,10 @@
   font-size: 1.4rem;
 }
 /* header if game is over */
-.empty-bank-container .game-over-header { 
-    font-size: 2rem;
-    color: var(--bust);
-  }
+.empty-bank-container .game-over-header {
+  font-size: 2rem;
+  color: var(--bust);
+}
 .empty-bank-list {
   display: flex;
   justify-content: center;
@@ -33,5 +33,3 @@
   font-style: italic;
   font-size: 0.7rem;
 }
-
-

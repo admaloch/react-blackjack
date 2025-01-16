@@ -1,23 +1,23 @@
 .header-btn-container {
-    position: absolute;
-    /* top: 1.5rem; */
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 5;
-    height: 15%;
+  position: absolute;
+  /* top: 1.5rem; */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+  height: 15%;
 }
 .header-btn-container button {
-    margin-left: .5rem;
+  margin-left: 0.5rem;
 }
 .header-btn-container h2 {
-    font-size: 1.4rem;
-    color: var(--active-text);
+  font-size: 1.4rem;
+  color: var(--active-text);
 }
 
 @media screen and (min-width: 550px) {
-    .header-btn-container h2 {
-        font-size: 2rem;
-    }
+  .header-btn-container h2 {
+    font-size: 2rem;
+  }
 }

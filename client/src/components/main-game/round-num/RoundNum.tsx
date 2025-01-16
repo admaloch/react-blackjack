@@ -10,7 +10,7 @@ import preFetchCards from "../../../utils/prefetch-cards/prefetchCards";
 export default function StartRound() {
   const navigate = useNavigate();
   const currRound = useSelector(
-    (state: RootState) => state.gameData.roundsPlayed
+    (state: RootState) => state.gameData.roundsPlayed,
   );
 
   useEffect(() => {
@@ -19,11 +19,11 @@ export default function StartRound() {
       navigate("/placeBets");
     };
     playGame();
-  }, [navigate]); 
+  }, [navigate]);
 
   //loading cards can be laggy during gameplay sometimes so prefetch them is necessary
   useEffect(() => {
-    preFetchCards()
+    preFetchCards();
   }, []);
 
   return (

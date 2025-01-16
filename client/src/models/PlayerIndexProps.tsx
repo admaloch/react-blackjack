@@ -1,3 +1,3 @@
 export default interface PlayerIndexProps {
-    playerIndex: number;
+  playerIndex: number;
 }

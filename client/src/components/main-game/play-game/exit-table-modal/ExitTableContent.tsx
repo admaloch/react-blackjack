@@ -6,79 +6,75 @@ import ExitTableStatus from "./ExitTableStatus";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
 import { addInactivePlayer } from "../../../../store/inactive-players/InactivePlayersSlice";
-import { beginDealerRound, endIsGameActive } from "../../../../store/game-data/GameDataSlice";
+import {
+  beginDealerRound,
+  endIsGameActive,
+} from "../../../../store/game-data/GameDataSlice";
 import { useNavigate } from "react-router";
 import { resetDealer } from "../../../../store/dealer-obj/dealerObjSlice";
 import { removePlayer } from "../../../../store/player-arr/PlayersArrSlice";
 import useUpdateGameSessionApi from "../../../../store/api/useUpdateGameSessionApi";
 
-
 interface ExitTableContentProps {
-    player: PlayerInterface;
-    closeModal: () => void;
+  player: PlayerInterface;
+  closeModal: () => void;
 }
 
-export default function ExitTableContent({ player, closeModal }: ExitTableContentProps) {
+export default function ExitTableContent({
+  player,
+  closeModal,
+}: ExitTableContentProps) {
+  const { updateGameSessionHandler } = useUpdateGameSessionApi();
 
-    const { updateGameSessionHandler } = useUpdateGameSessionApi();
+  const playersArr = useSelector((state: RootState) => state.playersArr);
+  const { isPlayerRoundActive } = useSelector(
+    (state: RootState) => state.gameData,
+  );
 
-    const playersArr = useSelector((state: RootState) => state.playersArr);
-    const { isPlayerRoundActive } = useSelector((state: RootState) => state.gameData);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+  const exitTableModalBtnHandler = () => {
+    const currPlayerName = player.name;
+    const lastPlayerName = playersArr[playersArr.length - 1].name;
+    dispatch(removePlayer({ name: player.name }));
+    dispatch(addInactivePlayer({ ...player }));
 
-    const exitTableModalBtnHandler = () => {
-        const currPlayerName = player.name
-        const lastPlayerName = playersArr[playersArr.length - 1].name
-        dispatch(removePlayer({ name: player.name }))
-        dispatch(addInactivePlayer({ ...player }))
+    if (playersArr.length > 1) {
+      if (currPlayerName === lastPlayerName && isPlayerRoundActive) {
+        dispatch(beginDealerRound());
+      }
+      updateGameSessionHandler();
+    } else {
+      dispatch(resetDealer());
+      dispatch(endIsGameActive());
+      navigate("/finalResults");
+    }
 
-     
+    closeModal();
+  };
 
-        if (playersArr.length > 1) {
-            if (currPlayerName === lastPlayerName &&
-                isPlayerRoundActive
-            ) {
-                dispatch(beginDealerRound())
-            }
-            updateGameSessionHandler();
-        } else {
-            dispatch(resetDealer())
-            dispatch(endIsGameActive());
-            navigate("/finalResults");
-        }
+  const buttonRef = useRef<HTMLButtonElement | null>(null);
 
-        closeModal()
-    };
+  const handleClickButtonRef = () => {
+    if (buttonRef.current) {
+      buttonRef.current.click();
+    }
+  };
 
-    const buttonRef = useRef<HTMLButtonElement | null>(null);
-
-    const handleClickButtonRef = () => {
-        if (buttonRef.current) {
-            buttonRef.current.click();
-        }
-    };
-
-    return (
-        <>
-            <div className="exit-table-modal">
-                <ExitTablePlayerInfo
-                    player={player}
-                />
-                <button
-                aria-label="Exit table"
-                    className="hidden-btn"
-                    ref={buttonRef} onClick={exitTableModalBtnHandler}>
-                </button>
-                <ModalTimer
-                    timeout={2000}
-                    onTimeout={handleClickButtonRef}
-                />
-                <ExitTableStatus
-                    player={player}
-                />
-            </div>
-        </>
-    );
+  return (
+    <>
+      <div className="exit-table-modal">
+        <ExitTablePlayerInfo player={player} />
+        <button
+          aria-label="Exit table"
+          className="hidden-btn"
+          ref={buttonRef}
+          onClick={exitTableModalBtnHandler}
+        ></button>
+        <ModalTimer timeout={2000} onTimeout={handleClickButtonRef} />
+        <ExitTableStatus player={player} />
+      </div>
+    </>
+  );
 }

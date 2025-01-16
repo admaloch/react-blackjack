@@ -2,38 +2,41 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../../../../store/store";
 
 interface StandProps {
-    makeCurrPlayerFinished: () => void;
-    playerIndex: number;
+  makeCurrPlayerFinished: () => void;
+  playerIndex: number;
 }
 
-export default function Stand({ makeCurrPlayerFinished, playerIndex }: StandProps) {
-    const playersArr = useSelector((state: RootState) => state.playersArr);
-    const { isDoubleDown, hand } = playersArr[playerIndex]
+export default function Stand({
+  makeCurrPlayerFinished,
+  playerIndex,
+}: StandProps) {
+  const playersArr = useSelector((state: RootState) => state.playersArr);
+  const { isDoubleDown, hand } = playersArr[playerIndex];
 
-    let standBtnClass = ''
+  let standBtnClass = "";
 
-    if (hand.cards.length < 2
-        || isDoubleDown
-        || hand.cardSum === 21 && hand.cards.length === 2
-        || hand.cardSum > 21
-    ) {
-        standBtnClass = 'game-btn stand-btn disabled'
-    } else {
-        standBtnClass = 'game-btn stand-btn'
-    }
+  if (
+    hand.cards.length < 2 ||
+    isDoubleDown ||
+    (hand.cardSum === 21 && hand.cards.length === 2) ||
+    hand.cardSum > 21
+  ) {
+    standBtnClass = "game-btn stand-btn disabled";
+  } else {
+    standBtnClass = "game-btn stand-btn";
+  }
 
-    const standBtnHandler = () => {
-        setTimeout(() => {
-            makeCurrPlayerFinished()
-        }, 350)
-    }
+  const standBtnHandler = () => {
+    setTimeout(() => {
+      makeCurrPlayerFinished();
+    }, 350);
+  };
 
-    return (
-        <div className="player-btn-container">
-            <button
-                onClick={standBtnHandler}
-                className={standBtnClass}>Stand
-            </button>
-        </div>
-    )
+  return (
+    <div className="player-btn-container">
+      <button onClick={standBtnHandler} className={standBtnClass}>
+        Stand
+      </button>
+    </div>
+  );
 }

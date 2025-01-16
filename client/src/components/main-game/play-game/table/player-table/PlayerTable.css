@@ -1,25 +1,22 @@
 .player-info {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    /* border: red solid 1px; */
-    position: absolute;
-    left: 0;
-    bottom: .3rem;
-    padding: .2rem .5rem;
-
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  /* border: red solid 1px; */
+  position: absolute;
+  left: 0;
+  bottom: 0.3rem;
+  padding: 0.2rem 0.5rem;
 }
 
-
-
 .main-player-hand {
-    width: 100%;
+  width: 100%;
 
-    height: 100%;
-    display: flex;
-    flex-direction: column ;
-    justify-content: center;
-    align-items: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 /* @media screen and (min-width: 500px) and (max-height: 600px) {
@@ -28,20 +25,17 @@
     }
 } */
 
-
-
-
 .player-table h5,
 .player-table h4 {
-    padding: 0;
+  padding: 0;
 }
 
 .player-info h5 {
-    font-size: .7rem;
-    line-height: 12px;
+  font-size: 0.7rem;
+  line-height: 12px;
 }
 
- /* .player-table .player-header {
+/* .player-table .player-header {
    position: absolute;
    transform: translate(-50%, 0);
    left: 50%;
@@ -49,100 +43,92 @@
 }  */
 
 .player-results-table .player-header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-
 .player-header h2 {
-    font-size: 1.3rem;
-    transition: all .25s ease-in-out;
-    /* margin-bottom: .4rem; */
+  font-size: 1.3rem;
+  transition: all 0.25s ease-in-out;
+  /* margin-bottom: .4rem; */
 }
 
 .player-hand-results h3 {
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 
 .split-card-preview {
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    /* or top: 50% if you want to center it vertically as well */
-    transform: translate(-50%, 0);
-    /* Adjust to -50%, -50% if you use top: 50% */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  /* or top: 50% if you want to center it vertically as well */
+  transform: translate(-50%, 0);
+  /* Adjust to -50%, -50% if you use top: 50% */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-
 .split-card-preview img {
-    width: 30px;
-    height: auto;
+  width: 30px;
+  height: auto;
 }
 
 .player-table .exit-table-icon {
-    position: absolute;
-    top: -.8rem;
-    left: .5rem;
-    /* display: none; */
-    z-index: 5;
+  position: absolute;
+  top: -0.8rem;
+  left: 0.5rem;
+  /* display: none; */
+  z-index: 5;
 }
 
-
-
 .player-table .exit-table-icon svg {
-    width: 30px;
+  width: 30px;
 }
 
 .player-hand-results .playing-card {
-    margin: 0 0px;
+  margin: 0 0px;
 }
 
-@media screen and (min-width:550px) {
-    .player-info {
-        top: 0;
-        padding: .2rem .5rem;
-    }
+@media screen and (min-width: 550px) {
+  .player-info {
+    top: 0;
+    padding: 0.2rem 0.5rem;
+  }
 
-    .split-card-preview {
-        left: 0;
-        top: 35%;
-        transform: none;
-    }
+  .split-card-preview {
+    left: 0;
+    top: 35%;
+    transform: none;
+  }
 
-    .split-card-preview img {
-        width: 50px;
-    }
+  .split-card-preview img {
+    width: 50px;
+  }
 
+  .player-header h2 {
+    font-size: 1.6rem;
+    margin-bottom: 0.4rem;
+  }
 
+  .player-info h5 {
+    font-size: 0.9rem;
+    line-height: 14px;
+  }
 
-    .player-header h2 {
-        font-size: 1.6rem;
-        margin-bottom: .4rem;
-    }
-
-    .player-info h5 {
-        font-size: .9rem;
-        line-height: 14px;
-    }
-
-    .player-table .exit-table-icon {
-        top: auto;
-        bottom: -1.5rem;
-        left: .5rem;
-    }
-    .player-table .exit-table-icon svg {
-        width: 40px;
-    }
+  .player-table .exit-table-icon {
+    top: auto;
+    bottom: -1.5rem;
+    left: 0.5rem;
+  }
+  .player-table .exit-table-icon svg {
+    width: 40px;
+  }
 }
 @media only screen and (max-device-width: 950px) and (max-device-height: 500px) and (orientation: landscape) {
-    .main-player-hand {
-        margin-top: 2rem;
-    }
+  .main-player-hand {
+    margin-top: 2rem;
+  }
 }
-

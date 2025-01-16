@@ -11,7 +11,12 @@ export default function ExitTableIcon({ player }: PlayerInterfaceProps) {
 
   return (
     <>
-      <div id="exit-table-icon" onClick={openModal} className="exit-table-icon" aria-label="exit table">
+      <div
+        id="exit-table-icon"
+        onClick={openModal}
+        className="exit-table-icon"
+        aria-label="exit table"
+      >
         <ExitTableIconWithPopper placement="top" />
       </div>
       <ExitTableModal

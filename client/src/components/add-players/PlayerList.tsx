@@ -10,12 +10,9 @@ export default function PlayerList() {
       <h3>Current players:</h3>
       <ul>
         {playerDataArr.map((player) => (
-          <Player
-            key={player.name}
-            name={player.name}
-          />
+          <Player key={player.name} name={player.name} />
         ))}
       </ul>
     </div>
-  )
+  );
 }

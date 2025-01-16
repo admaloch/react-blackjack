@@ -3,9 +3,7 @@ import Modal from "../UI/modal/Modal";
 import "./LoadPrevGame.css";
 import { useDispatch } from "react-redux";
 import { setDeck } from "../../store/deck/deckSlice";
-import {
-  updatePlayersFromPrevGame,
-} from "../../store/player-arr/PlayersArrSlice";
+import { updatePlayersFromPrevGame } from "../../store/player-arr/PlayersArrSlice";
 import { setInactivePlayers } from "../../store/inactive-players/InactivePlayersSlice";
 import { AppDispatch } from "../../store/store";
 import useUpdateGameSessionApi from "../../store/api/useUpdateGameSessionApi";
@@ -35,9 +33,8 @@ export default function LoadPrevGame({
   if (!playersArr) return null;
 
   const updatedPlayersArr = playersArr
-    .filter(player => player.bank >= 5)
+    .filter((player) => player.bank >= 5)
     .map((player) => {
-
       return {
         ...player,
         hand: emptyHand,
@@ -46,7 +43,7 @@ export default function LoadPrevGame({
         splitBet: 0,
         beginningRoundBank: player.bank,
       };
-  });
+    });
 
   if (!updatedPlayersArr.length) {
     deleteGameSessionHandler();
@@ -76,10 +73,18 @@ export default function LoadPrevGame({
       <div className="prev-game-modal">
         <h2>There is a previous game. Would you like to continue?</h2>
         <div className="btn-container">
-          <button aria-label="Return to previous game" onClick={yesClickHandler} className="game-btn">
+          <button
+            aria-label="Return to previous game"
+            onClick={yesClickHandler}
+            className="game-btn"
+          >
             Yes
           </button>
-          <button aria-label="Start new game" onClick={noClickHandler} className="game-btn">
+          <button
+            aria-label="Start new game"
+            onClick={noClickHandler}
+            className="game-btn"
+          >
             No
           </button>
         </div>

@@ -1,41 +1,41 @@
 .exit-table-modal {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .exit-table-modal h2 {
-    font-size: 2rem;
-    margin-bottom: 0;
-    text-align: center;
-    line-height: 20px;
+  font-size: 2rem;
+  margin-bottom: 0;
+  text-align: center;
+  line-height: 20px;
 }
 .exit-table-modal h3 {
-    font-size: 1.3rem;
-    margin-bottom: 0;
+  font-size: 1.3rem;
+  margin-bottom: 0;
 }
 .exit-table-modal p {
-    font-size: .8rem;
-    font-style: italic;
+  font-size: 0.8rem;
+  font-style: italic;
 }
 .exit-table-modal li {
-    font-size: 1rem;
-    font-style: italic;
-    list-style: none;
-    text-align: center;
+  font-size: 1rem;
+  font-style: italic;
+  list-style: none;
+  text-align: center;
 }
 
 @media screen and (min-width: 550px) {
-    .exit-table-modal h3 {
-        font-size: 1.4rem;
-    }
-    .exit-table-modal p {
-        font-size: .8rem;
-    }
-    .exit-table-modal li {
-        font-size: 1rem;
-        font-style: italic;
-    }
+  .exit-table-modal h3 {
+    font-size: 1.4rem;
+  }
+  .exit-table-modal p {
+    font-size: 0.8rem;
+  }
+  .exit-table-modal li {
+    font-size: 1rem;
+    font-style: italic;
+  }
 }

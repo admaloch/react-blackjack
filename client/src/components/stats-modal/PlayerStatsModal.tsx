@@ -20,7 +20,7 @@ export default function PlayerStatsModal({
 
   const playersArr = useSelector((state: RootState) => state.playersArr);
   const currRound = useSelector(
-    (state: RootState) => state.gameData.roundsPlayed
+    (state: RootState) => state.gameData.roundsPlayed,
   );
 
   // Function to toggle fullscreen mode
@@ -67,9 +67,15 @@ export default function PlayerStatsModal({
           <p>{isFullscreenText} full screen:</p>
           <div role="button" onClick={toggleFullscreen}>
             {isFullscreen ? (
-              <FullscreenExitIcon aria-label="exit full screen" fontSize="medium" />
+              <FullscreenExitIcon
+                aria-label="exit full screen"
+                fontSize="medium"
+              />
             ) : (
-              <FullscreenIcon aria-label="enter full screen" fontSize="medium" />
+              <FullscreenIcon
+                aria-label="enter full screen"
+                fontSize="medium"
+              />
             )}
           </div>
         </div>

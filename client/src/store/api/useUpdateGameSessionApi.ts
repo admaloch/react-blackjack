@@ -9,17 +9,16 @@ import { RootState } from "../store";
 import Cookies from "js-cookie";
 
 const useUpdateGameSessionApi = () => {
-
   const [createGameSession] = useCreateGameSessionMutation();
   const [updateGameSession] = useUpdateGameSessionMutation();
   const [deleteGameSession] = useDeleteGameSessionMutation();
 
-  const sessionId = Cookies.get('blackjack-session-id');
+  const sessionId = Cookies.get("blackjack-session-id");
 
   const playersArr = useSelector((state: RootState) => state.playersArr);
-  
+
   const inactivePlayers = useSelector(
-    (state: RootState) => state.inactivePlayers
+    (state: RootState) => state.inactivePlayers,
   );
 
   const dealerObj = useSelector((state: RootState) => state.dealerObj);
@@ -35,9 +34,7 @@ const useUpdateGameSessionApi = () => {
         gameData,
         deck,
       }).unwrap();
-      console.log(
-        `New game session created. id#: ${response.gameSession._id}`
-      );
+      console.log(`New game session created. id#: ${response.gameSession._id}`);
       const sessionId = response.gameSession._id;
       Cookies.set("blackjack-session-id", sessionId, { expires: 365 });
     } catch (e) {
@@ -46,13 +43,13 @@ const useUpdateGameSessionApi = () => {
   };
 
   const areSomePlayersBroke = playersArr.some(
-    (player) => player.bank + player.currBet < 5
+    (player) => player.bank + player.currBet < 5,
   );
 
   const updateGameSessionHandler = async () => {
     // Create game session here with state
-    if(!sessionId || areSomePlayersBroke) return;
-    
+    if (!sessionId || areSomePlayersBroke) return;
+
     try {
       const response = await updateGameSession({
         playersArr,
@@ -66,12 +63,11 @@ const useUpdateGameSessionApi = () => {
     } catch (error) {
       console.trace("Failed to update game session:", error);
     }
-   
   };
 
   const deleteGameSessionHandler = async () => {
     // Createif game session here with state
-    if(!sessionId) return;
+    if (!sessionId) return;
     try {
       Cookies.remove("blackjack-session-id");
       await deleteGameSession(sessionId).unwrap();

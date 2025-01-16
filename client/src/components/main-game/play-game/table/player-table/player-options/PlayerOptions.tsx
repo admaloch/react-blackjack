@@ -8,27 +8,30 @@ import { RootState } from "../../../../../../store/store";
 import { useSelector } from "react-redux";
 
 interface PlayerIconsProps {
-    playerIndex: number;
-    makeCurrPlayerFinished: () => void;
+  playerIndex: number;
+  makeCurrPlayerFinished: () => void;
 }
 
+export default function PlayerOptions({
+  playerIndex,
+  makeCurrPlayerFinished,
+}: PlayerIconsProps) {
+  const playersArr = useSelector((state: RootState) => state.playersArr);
+  const currPlayer = playersArr[playerIndex];
 
-
-export default function PlayerOptions({ playerIndex, makeCurrPlayerFinished }: PlayerIconsProps) {
-
-    const playersArr = useSelector((state: RootState) => state.playersArr);
-    const currPlayer = playersArr[playerIndex]
-
-    return (
-        <>
-            <div className="current-options">
-                <DoubleDown playerIndex={playerIndex} />
-                <Split playerIndex={playerIndex} />
-                < Insurance playerIndex={playerIndex} />
-            </div>
-            <Stand playerIndex={playerIndex} makeCurrPlayerFinished={makeCurrPlayerFinished} />
-            <DrawCards playerIndex={playerIndex} />
-            <ExitTableIcon player={currPlayer} />
-        </>
-    )
+  return (
+    <>
+      <div className="current-options">
+        <DoubleDown playerIndex={playerIndex} />
+        <Split playerIndex={playerIndex} />
+        <Insurance playerIndex={playerIndex} />
+      </div>
+      <Stand
+        playerIndex={playerIndex}
+        makeCurrPlayerFinished={makeCurrPlayerFinished}
+      />
+      <DrawCards playerIndex={playerIndex} />
+      <ExitTableIcon player={currPlayer} />
+    </>
+  );
 }

@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 interface CardProp {
   cardUrlVal: string;
-  isHidden: boolean; 
+  isHidden: boolean;
 }
 
 const Card: React.FC<CardProp> = ({ cardUrlVal, isHidden }) => {
@@ -19,10 +19,12 @@ const Card: React.FC<CardProp> = ({ cardUrlVal, isHidden }) => {
   }, [imagePath]);
 
   return (
-    <div className={`playing-card ${isLoaded ? 'animate-in' : ''} ${isHidden ? 'hidden' : ''}`}>
+    <div
+      className={`playing-card ${isLoaded ? "animate-in" : ""} ${isHidden ? "hidden" : ""}`}
+    >
       <img
-      width={100}
-      height={140}
+        width={100}
+        height={140}
         style={{ opacity: isLoaded ? 1 : 0 }}
         src={imagePath}
         alt={`${cardUrlVal}.png`}

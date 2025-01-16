@@ -1,5 +1,5 @@
 {
-  "gameSessionData": { 
+  "gameSessionData": {
     "dealerObj": {
       "hand": {
         "cardNumVals": [9, 5, 10],
@@ -157,5 +157,4 @@
       }
     ]
   }
-  
 }

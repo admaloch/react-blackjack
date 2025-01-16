@@ -17,16 +17,14 @@ import { RootState } from "./store/store";
 import useTitle from "./hooks/useTitle";
 
 function App() {
-
   const playersArr = useSelector((state: RootState) => state.playersArr);
   const gameData = useSelector((state: RootState) => state.gameData);
 
-  const { deleteGameSessionHandler } =
-    useUpdateGameSessionApi();
+  const { deleteGameSessionHandler } = useUpdateGameSessionApi();
 
   const navigate = useNavigate();
 
-  useTitle('Blackjack')//custom hook to set the title on the tab in browser
+  useTitle("Blackjack"); //custom hook to set the title on the tab in browser
 
   useEffect(() => {
     if (location.pathname !== "/") {
@@ -37,7 +35,7 @@ function App() {
 
   //if all players are done delete session from backend
   const areAllPlayersBroke = playersArr.every(
-    (player) => player.bank + player.currBet < 5
+    (player) => player.bank + player.currBet < 5,
   );
 
   useEffect(() => {

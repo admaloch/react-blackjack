@@ -29,7 +29,7 @@ export const initialGameState: GameDataProps = {
   isMainResultsActive: false,
   isSplitResultsActive: false,
   isRoundActive: false,
-  isFullScreen: false
+  isFullScreen: false,
 };
 // export const initialGameState: GameDataProps = {
 //   "roundsPlayed": 1,
@@ -47,4 +47,4 @@ export const initialGameState: GameDataProps = {
 //   "isRoundActive": true
 // };
 
-export default initialGameState
+export default initialGameState;

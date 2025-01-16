@@ -21,7 +21,6 @@
   height: 85%;
   margin-top: auto;
   padding: 1rem 0;
-
 }
 
 @media screen and (min-width: 500px) and (max-height: 600px) {
@@ -45,8 +44,6 @@
   margin-bottom: 0.3rem;
   /* overflow-x: auto; */
   overflow-y: auto;
-
-
 }
 
 .player-hand h4 {
@@ -134,16 +131,11 @@
 }
 
 @media screen and (min-width: 768px) {
-
   .player-results-table p {
     line-height: 14px;
     font-size: 1rem;
   }
 }
-
-
-
-
 
 @media screen and (min-width: 1500px) {
   .curr-player-hand img {
@@ -152,7 +144,6 @@
 }
 
 @media screen and (max-height: 600px) {
-
   .player-hand {
     top: 1.5rem;
     justify-content: start;
