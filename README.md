@@ -10,5 +10,3 @@
   <li>  The most challenging part of this was dealing with the many bugs that popped up. There were tons of asynchronous operations, effects loops, and timed operations so it was extremely tricky locating the source of issues when they popped up. </li>
   <li>Another challenge was the deck logic which was built from scrath to emulate a real deck including card removal and shuffle.</li>
 
-<h2>Note:</h2>
-<p>Backend hosted on Render.com free tier so it takes a few minutes to wakup after inactivity.</p>
