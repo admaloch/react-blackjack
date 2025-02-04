@@ -6,7 +6,7 @@ interface WrapperProps {
 }
 
 const Wrapper: React.FC<WrapperProps> = ({ children }) => {
-  return <main className="wrapper">{children}</main>;
+  return <main id="main-content" className="wrapper">{children}</main>;
 };
 
 export default Wrapper;

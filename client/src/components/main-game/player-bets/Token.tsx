@@ -10,7 +10,8 @@ export default function Token({ number, currPlayerIndex }: TokenProps) {
   const dispatch = useDispatch();
 
   return (
-    <div
+    <button
+      className="remove-default-btn-style"
       aria-labelledby="player-tokens"
       id={`token${number}`}
       onClick={() =>
@@ -18,6 +19,6 @@ export default function Token({ number, currPlayerIndex }: TokenProps) {
       }
     >
       {number}
-    </div>
+    </button>
   );
 }

@@ -22,18 +22,18 @@ export default function DrawCards({ playerIndex }: PlayerIndexProps) {
     (hand.cardSum === 21 && hand.cards.length === 2) ||
     hand.cardSum > 21
   ) {
-    drawCardClass = "draw-cards-icon disabled";
+    drawCardClass = "draw-cards-icon disabled remove-default-btn-style";
   } else {
-    drawCardClass = "draw-cards-icon";
+    drawCardClass = "draw-cards-icon remove-default-btn-style";
   }
 
   return (
-    <div
+    <button
       aria-label="draw card"
       onClick={drawCardsHandler}
       className={drawCardClass}
     >
       <DrawCardsIconWithPopper placement="top" />
-    </div>
+    </button>
   );
 }

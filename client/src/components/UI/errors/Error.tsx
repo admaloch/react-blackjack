@@ -12,7 +12,7 @@ export default function Error({ text }: { text: string }): JSX.Element {
   };
 
   return (
-    <main className="error-page-container">
+    <main id="main-content" className="error-page-container">
       <InfoCard classes="item-error">
         <SentimentDissatisfiedIcon sx={{ fontSize: 100 }} />
         <h1>{text}</h1>

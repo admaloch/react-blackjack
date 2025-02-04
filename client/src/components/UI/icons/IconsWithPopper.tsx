@@ -33,7 +33,7 @@ export function IconWithPopper({
 
   return (
     <div
-      className="icon-container"
+      className="icon-container remove-default-btn-style"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >

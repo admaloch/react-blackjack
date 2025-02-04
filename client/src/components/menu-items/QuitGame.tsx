@@ -16,7 +16,7 @@ export default function QuitGame() {
 
   const playersArr = useSelector((state: RootState) => state.playersArr);
   const { isBetRoundActive, isAddPlayersRound, roundsPlayed } = useSelector(
-    (state: RootState) => state.gameData,
+    (state: RootState) => state.gameData
   );
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -56,8 +56,12 @@ export default function QuitGame() {
   };
 
   return (
-    <div aria-label="quit game" onClick={quitGameHandler}>
+    <button
+      className="remove-default-btn-style"
+      aria-label="quit game"
+      onClick={quitGameHandler}
+    >
       <QuitIconWithPopper />
-    </div>
+    </button>
   );
 }

@@ -73,6 +73,11 @@ body {
   opacity: 0.5;
 }
 
+.remove-default-btn-style {
+  background: none;
+  border: none;
+}
+
 #icon-popper {
   z-index: 200;
 }

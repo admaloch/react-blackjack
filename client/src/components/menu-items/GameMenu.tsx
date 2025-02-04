@@ -17,6 +17,10 @@ export default function GameMenu() {
   return (
     <nav className="game-menu">
       <div className="menu-container">
+        {/* Skip Link for Accessibility */}
+        <a href="#main-content" className="skip-link">
+            Skip to Main Content
+          </a>
         <h2>Blackjack</h2>
         <div className={isStatsDisabled ? "disabled menu-icons" : "menu-icons"}>
           {isPlayerStatsShown && <PlayerStats />}

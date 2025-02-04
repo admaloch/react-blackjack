@@ -21,14 +21,14 @@ export default function ResetBetsBtn({ currPlayerIndex }: ResetBetsBtnProps) {
   }, [isBetRoundActive, currPlayerIndex, dispatch]);
 
   return (
-    <div
+    <button
       aria-label="reset tokens"
-      className="reset-tokens"
+      className="reset-tokens remove-default-btn-style"
       onClick={() =>
         dispatch(updateTokens({ index: currPlayerIndex, type: "reset-tokens" }))
       }
     >
       <ResetIconWithPopper placement="top" />
-    </div>
+    </button>
   );
 }

@@ -11,10 +11,9 @@
   align-items: center;
   margin: 0.5rem 0;
 }
-.tokens-container div {
+.tokens-container button {
   background-color: var(--text);
   color: var(--background);
-  transition: opacity 0.15s ease-in-out;
   border-radius: 50px;
   /* text-align: center; */
   margin: 0.1rem;
@@ -25,13 +24,14 @@
   width: 45px;
   height: 45px;
   padding: 0.2rem;
+  transition: transform .15s ease-in-out, opacity .15s ease-in-out;
 }
 
+
 @media screen and (min-width: 600px) {
-  .tokens-container div {
+  .tokens-container button {
     background-color: var(--text);
     color: var(--background);
-    transition: opacity 0.15s ease-in-out;
     border-radius: 50px;
     /* text-align: center; */
     margin: 0.5rem;
@@ -43,6 +43,11 @@
     height: 50px;
     padding: 0.2rem;
   }
+}
+
+.tokens-container button:hover{
+  transform: scale(1.1);
+  opacity: 0.7;
 }
 
 :root {
@@ -96,10 +101,12 @@
   justify-content: center;
 }
 
-.tokens-container div:hover,
+
 .reset-tokens:hover {
+  transform: scale(1.1);
   opacity: 0.7;
 }
+
 .place-bets button {
   margin-top: 0.5rem;
 }

@@ -11,12 +11,12 @@ export default function Player({ name }: PlayerProps) {
   return (
     <li>
       {formattedName}
-      <div
+      <button
         onClick={() => dispatch(removePlayer({ name: name }))}
-        className="delete-icon"
+        className="delete-icon remove-default-btn-style"
       >
         <TrashcanIconWithPopper placement="right" />
-      </div>
+      </button>
     </li>
   );
 }

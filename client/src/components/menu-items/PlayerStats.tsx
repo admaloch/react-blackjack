@@ -9,9 +9,13 @@ export default function PlayerStats() {
 
   return (
     <>
-      <div aria-label="player stats" onClick={openModal}>
+      <button
+        className="remove-default-btn-style"
+        aria-label="player stats"
+        onClick={openModal}
+      >
         <StatsIconWithPopper />
-      </div>
+      </button>
       <PlayerStatsModal open={isModalOpen} closeModal={closeModal} />
     </>
   );

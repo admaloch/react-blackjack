@@ -12,25 +12,23 @@ export default function Tokens({ currPlayerIndex }: TokensProps) {
   const dispatch = useDispatch();
   const playersArr = useSelector((state: RootState) => state.playersArr);
   const allTokensClass =
-    playersArr[currPlayerIndex].bank > 0 ? "all-tokens" : "all-tokens disabled";
+    playersArr[currPlayerIndex].bank > 0
+      ? "all-tokens remove-default-button-styles"
+      : "all-tokens remove-default-button-styles disabled";
 
   return (
-    <div
-      id="player-tokens"
-      className="tokens-container"
-      aria-label="player tokens"
-    >
+    <div id="player-tokens" className="tokens-container">
       {playersArr[currPlayerIndex].currTokens.map((item) => (
         <Token key={item} number={item} currPlayerIndex={currPlayerIndex} />
       ))}
-      <div
+      <button
         onClick={() =>
           dispatch(updateTokens({ index: currPlayerIndex, type: "all-tokens" }))
         }
         className={allTokensClass}
       >
         All
-      </div>
+      </button>
     </div>
   );
 }

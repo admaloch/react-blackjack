@@ -18,7 +18,7 @@ export default function MainTable({
   );
 
   return (
-    <main className="table">
+    <main id="main-content" className="table">
       <DealerTable />
       {isPlayerRoundActive && (
         <PlayerTable
