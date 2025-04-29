@@ -5842,3 +5842,7 @@
 20250203	17:27:33	71894940-ce40-43ff-843c-f6e276058f7e	OPTIONS	/gameSessions/67a150cd32cc0cba13d6ec8d	http://localhost:5173
 20250203	17:27:33	e906f59d-8d46-479f-b691-6a49f829f779	PATCH	/gameSessions/67a150cd32cc0cba13d6ec8d	http://localhost:5173
 20250203	17:27:35	5be88e90-7c7d-41a6-9e00-da1d54ab261f	DELETE	/gameSessions/67a150cd32cc0cba13d6ec8d	http://localhost:5173
+20250203	21:34:52	465bb90a-808b-4f4c-b6b0-ba5f111beb59	OPTIONS	/gameSessions	http://localhost:5173
+20250203	21:34:52	87f79546-8e86-4026-9ab6-72794b5a3284	POST	/gameSessions	http://localhost:5173
+20250203	21:35:01	d31c1949-1a8c-439a-b1c9-211f69ba05e1	OPTIONS	/gameSessions/67a18adc32cc0cba13d6ed32	http://localhost:5173
+20250203	21:35:01	8c599bb4-89cc-4155-8e58-cab74d6f42f4	DELETE	/gameSessions/67a18adc32cc0cba13d6ed32	http://localhost:5173
