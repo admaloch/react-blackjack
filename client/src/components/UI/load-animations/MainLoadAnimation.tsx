@@ -1,14 +1,15 @@
 import "./MainLoadAnimation.css";
 
 export default function MainLoadAnimation({
-  dot1Color = "#d1495b",
-  dot2Color = "#00798c",
-  dot3Color = "#edae49",
-  backColor = "rgba(255, 255, 255, .1)",
+  dot1Color = "#000",
+  dot2Color = "#000",
+  dot3Color = "#000",
+  backColor = "rgba(0, 0, 0, 0.7)",
 }): JSX.Element {
   return (
     <div style={{ background: backColor }} className="loader ">
-      <div className="dots">
+      <div className="loader-background">
+         <div className="dots">
         <span style={{ background: dot1Color }}></span>
         <span style={{ background: dot2Color }}></span>
         <span style={{ background: dot3Color }}></span>
@@ -23,6 +24,8 @@ export default function MainLoadAnimation({
         <span style={{ color: dot3Color }}>n</span>
         <span style={{ color: dot1Color }}>g</span>
       </p>
+      </div>
+     
     </div>
   );
 }
